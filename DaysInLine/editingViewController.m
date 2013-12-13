@@ -225,10 +225,11 @@ double incomeFinal;
     }
     
     flag=NO;
-    if (!(self.startLabel.text) || !(self.endLabel.text)) {
+
+    if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"请输入事件起始和结束时间"
-                                                       delegate:self
+                                                       delegate:nil
                                               cancelButtonTitle:@"确定"
                                               otherButtonTitles:nil];
         [alert show];
