@@ -226,6 +226,7 @@ double incomeFinal;
     
     flag=NO;
 
+    NSLog(@"hello!");
     if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"请输入事件起始和结束时间"
