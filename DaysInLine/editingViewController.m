@@ -20,6 +20,8 @@
 
 bool flag;
 double incomeFinal;
+double expendFinal;
+bool firstInmoney;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +36,7 @@ double incomeFinal;
     [super viewDidLoad];
     
     incomeFinal=0.0f;
+    firstInmoney = NO;
     
     NSString *docsDir;
     NSArray *dirPaths;
@@ -78,6 +81,7 @@ double incomeFinal;
 -(void)moneyTapped
 {
     NSNumber *income_mdfy;
+    NSNumber *expend_mdfy;
     
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"moneyView" owner:self options:nil];
     
@@ -95,7 +99,8 @@ double incomeFinal;
     [income setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [outcome setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     
-    if (modifying == 1) {
+    
+    if ((modifying == 1)&&(!firstInmoney)){
         sqlite3_stmt *statement;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
@@ -107,6 +112,7 @@ double incomeFinal;
                     
                     
                     income_mdfy = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement, 0)];
+                    expend_mdfy = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement, 1)];
                     NSLog(@"AAAAAAA%@",income_mdfy);
                     
                     
@@ -120,9 +126,17 @@ double incomeFinal;
             
         }
         sqlite3_close(dataBase);
+        incomeFinal = [income_mdfy doubleValue];
+        expendFinal = [expend_mdfy doubleValue];
+        firstInmoney = YES;
         
         [income setText:[NSString stringWithFormat:@"%.2f",[income_mdfy doubleValue]]];
+        [outcome setText:[NSString stringWithFormat:@"%.2f",[expend_mdfy doubleValue]]];
     }
+    
+    [income setText:[NSString stringWithFormat:@"%.2f",incomeFinal]];
+    [outcome setText:[NSString stringWithFormat:@"%.2f",expendFinal]];
+
     
     UIButton *okButton =(UIButton *)[tmpCustomView viewWithTag:503];
     [okButton addTarget:self action:@selector(okTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -135,7 +149,6 @@ double incomeFinal;
                                           cancelButtonTitle:@"ok"
                                           otherButtonTitles:nil];
    
-    alert.delegate = self;
     [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     [alert addSubview:tmpCustomView];
     self.moneyAlert = alert;
@@ -320,7 +333,8 @@ double incomeFinal;
                         sqlite3_bind_text(statement,3, [self.mainText.text UTF8String], -1, SQLITE_TRANSIENT);
                         //未添加功能的数据
                         sqlite3_bind_double(statement,4, incomeFinal);
-                        sqlite3_bind_int(statement,5, 0);
+                        sqlite3_bind_double(statement,5, expendFinal);
+
                         
                         sqlite3_bind_text(statement,6, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_double(statement,7, [startTimeNum doubleValue]);
@@ -364,8 +378,8 @@ double incomeFinal;
                             sqlite3_bind_text(statement,1, [self.theme.text UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_text(statement,2, [self.mainText.text UTF8String], -1, SQLITE_TRANSIENT);
                             //未添加功能的数据
-                            sqlite3_bind_double(statement,4, incomeFinal);
-                            sqlite3_bind_int(statement,4, 0);
+                            sqlite3_bind_double(statement,3, incomeFinal);
+                            sqlite3_bind_double(statement,4, expendFinal);
                             
                             sqlite3_bind_double(statement,5, [startTimeNum doubleValue]);
                             sqlite3_bind_double(statement,6, [endTimeNum doubleValue]);
@@ -412,12 +426,15 @@ double incomeFinal;
 -(void)okTapped
 {
     UITextField * income = (UITextField *)[self.moneyAlert viewWithTag:501];
+    UITextField * outcome = (UITextField *)[self.moneyAlert viewWithTag:502];
     NSString *incomeText = income.text;
     incomeFinal=[incomeText doubleValue];
+    NSString *outcomeText = outcome.text;
+    expendFinal=[outcomeText doubleValue];
     NSLog(@"BBBBBBBBB%f",incomeFinal);
    
-    
-    [income resignFirstResponder];
+    [self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+    //[income resignFirstResponder];
 
 }
 
@@ -430,7 +447,6 @@ double incomeFinal;
     [self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
     
  
-    [self.view.window makeKeyAndVisible];
     
     
 }
