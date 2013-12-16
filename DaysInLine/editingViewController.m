@@ -54,6 +54,7 @@ bool firstInmoney;
     self.theme = (UITextField *)[self.view viewWithTag:105];
     self.mainText = (UITextView *)[self.view viewWithTag:106];
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
+    
 
 	// Do any additional setup after loading the view.
     [self.startTimeButton addTarget:self action:@selector(startTimeTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -61,6 +62,7 @@ bool firstInmoney;
     [self.saveButton addTarget:self action:@selector(saveTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.returnButton addTarget:self action:@selector(returnTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.moneyButton addTarget:self action:@selector(moneyTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.remindButton addTarget:self action:@selector(remindTapped) forControlEvents:UIControlEventTouchUpInside];
     
     self.startTimeButton.layer.borderWidth = 3.5;
     self.startTimeButton.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -76,6 +78,39 @@ bool firstInmoney;
     NSLog(@"%@!!!!!!!!!!!",self.startLabel.text);
 
 }
+
+-(void)remindTapped
+{
+    NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
+    actionSheet.tag = 3;
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height/2-15)];
+    view1.backgroundColor = [UIColor clearColor];
+    
+    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"按日期提醒", @"按天数提醒"]];
+    segmentedControl.frame = CGRectMake(view1.frame.size.width/4, view1.frame.size.height/5, view1.frame.size.width/2, view1.frame.size.height/5);
+    
+    
+    segmentedControl.backgroundColor = [UIColor whiteColor];
+    
+    [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
+    [view1 addSubview:segmentedControl];
+
+
+    
+    
+    [actionSheet addSubview:view1];
+    
+	[actionSheet showInView:self.view];
+    
+}
+
+-(void)valueChanged:(UIButton *)sender
+{
+    UISegmentedControl *myUISegmentedControl=(UISegmentedControl *)sender;
+    NSLog(@"!!!!!!%d",myUISegmentedControl.selectedSegmentIndex);
+}
+
 
 //tag = 3的actionsheet
 -(void)moneyTapped
@@ -504,10 +539,10 @@ bool firstInmoney;
 
         endTimeNum = [[NSNumber alloc] initWithDouble:(endNum-360.00)];
         if (self.startLabel.text) {
-            if ([endTimeNum doubleValue]<[startTimeNum doubleValue]) {
+            if ([endTimeNum doubleValue]<=[startTimeNum doubleValue]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                                 message:@"结束时间应该比开始时间更大哦！"
-                                                               delegate:self
+                                                               delegate:nil
                                                       cancelButtonTitle:@"确定"
                                                       otherButtonTitles:nil];
                 [alert show];
@@ -526,9 +561,6 @@ bool firstInmoney;
         
     }
 
-    if (actionSheet.tag == 3) {
-         [actionSheet setBackgroundColor:[UIColor grayColor]];
-    }
 	
 }
 
