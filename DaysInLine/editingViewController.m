@@ -8,6 +8,7 @@
 
 #import "editingViewController.h"
 
+
 #import "globalVars.h"
 
 @interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate>
@@ -79,6 +80,13 @@ bool firstInmoney;
 
 }
 
+
+-(void)remindTapped
+{
+}
+
+/*
+//tag=3的actionsheet
 -(void)remindTapped
 {
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
@@ -86,33 +94,44 @@ bool firstInmoney;
     actionSheet.tag = 3;
     UIView *view1 = [[UIView alloc] initWithFrame:CGRectMake(0,0,self.view.frame.size.width, self.view.frame.size.height/2-15)];
     view1.backgroundColor = [UIColor clearColor];
+ 
     
-    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"按日期提醒", @"按天数提醒"]];
-    segmentedControl.frame = CGRectMake(view1.frame.size.width/4, view1.frame.size.height/5, view1.frame.size.width/2, view1.frame.size.height/5);
+    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"按日期提醒", @"按间隔提醒"]];
+    segmentedControl.frame = CGRectMake(self.view.frame.size.width/6, 20, 2*(self.view.frame.size.width/3), 35);
     
-    
-    segmentedControl.backgroundColor = [UIColor whiteColor];
+    segmentedControl.selectedSegmentIndex= 0;
+    segmentedControl.backgroundColor = [UIColor clearColor];
     
     [segmentedControl addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
-    [view1 addSubview:segmentedControl];
-
-
+  
     
+    UIDatePicker *remindDatePicker = [[UIDatePicker alloc] init] ;
     
-    [actionSheet addSubview:view1];
+    remindDatePicker.datePickerMode = UIDatePickerModeDate;
+    remindDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width, 40);
+    remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/4);
+    
     
 	[actionSheet showInView:self.view];
+    [actionSheet addSubview:remindDatePicker];
+    [actionSheet addSubview:segmentedControl];
     
 }
+*/
 
--(void)valueChanged:(UIButton *)sender
+-(void)valueChanged:(id)sender
 {
     UISegmentedControl *myUISegmentedControl=(UISegmentedControl *)sender;
     NSLog(@"!!!!!!%d",myUISegmentedControl.selectedSegmentIndex);
+    if (myUISegmentedControl.selectedSegmentIndex ==0) {
+        
+       
+        
+    }
+    
 }
 
 
-//tag = 3的actionsheet
 -(void)moneyTapped
 {
     NSNumber *income_mdfy;
@@ -202,7 +221,7 @@ bool firstInmoney;
 	[actionSheet showInView:self.view];
     
 	UIDatePicker *datePicker = [[UIDatePicker alloc] init] ;
-	datePicker.tag = 101;
+	datePicker.tag = 201;
 	datePicker.datePickerMode = UIDatePickerModeTime;
 
     
@@ -220,7 +239,7 @@ bool firstInmoney;
 	[actionSheet showInView:self.view];
     
 	UIDatePicker *datePicker = [[UIDatePicker alloc] init] ;
-	datePicker.tag = 102;
+	datePicker.tag = 202;
 	datePicker.datePickerMode = UIDatePickerModeTime;
     
 	[actionSheet addSubview:datePicker];
@@ -504,7 +523,7 @@ bool firstInmoney;
     if (actionSheet.tag == 1) {
         
     
-	UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:101];
+	UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:201];
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     formatter.dateFormat = @"H:mm";
     NSString *timestart = [formatter stringFromDate:datePicker.date];
@@ -522,7 +541,7 @@ bool firstInmoney;
     if (actionSheet.tag == 2) {
         
         
-        UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:102];
+        UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:202];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
         formatter.dateFormat = @"H:mm";
         NSString *timestart = [formatter stringFromDate:datePicker.date];
