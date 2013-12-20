@@ -7,7 +7,7 @@
 //
 
 #import "editingViewController.h"
-
+#import "remindViewController.h"
 
 #import "globalVars.h"
 
@@ -83,6 +83,10 @@ bool firstInmoney;
 
 -(void)remindTapped
 {
+    remindViewController *my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController" bundle:nil];
+    my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:my_remind animated:YES completion:Nil ];
+    
 }
 
 /*
@@ -119,17 +123,7 @@ bool firstInmoney;
 }
 */
 
--(void)valueChanged:(id)sender
-{
-    UISegmentedControl *myUISegmentedControl=(UISegmentedControl *)sender;
-    NSLog(@"!!!!!!%d",myUISegmentedControl.selectedSegmentIndex);
-    if (myUISegmentedControl.selectedSegmentIndex ==0) {
-        
-       
-        
-    }
-    
-}
+
 
 
 -(void)moneyTapped

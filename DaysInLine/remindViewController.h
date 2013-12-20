@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface remindViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UISegmentedControl *remindMode;
 
 @end
