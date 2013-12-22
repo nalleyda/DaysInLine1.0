@@ -64,7 +64,7 @@
  /*           NSString *createsql = @"CREATE TABLE IF NOT EXISTS DAYTABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT UNIQUE,MOOD INTEGER,GROWTH INTEGER)";
  */
             NSString *createDayable = @"CREATE TABLE IF NOT EXISTS DAYTABLE (DATE TEXT PRIMARY KEY,MOOD INTEGER,GROWTH INTEGER)";
-            NSString *createEvent = @"CREATE TABLE IF NOT EXISTS EVENT (eventID INTEGER PRIMARY KEY AUTOINCREMENT,TYPE INTEGER,TITLE TEXT,mainText TEXT,income REAL,expend REAL,date TEXT,startTime TEXT,endTime TEXT,distance TEXT,label TEXT,remind INTEGER,startArea INTEGER,photoDir TEXT)";
+            NSString *createEvent = @"CREATE TABLE IF NOT EXISTS EVENT (eventID INTEGER PRIMARY KEY AUTOINCREMENT,TYPE INTEGER,TITLE TEXT,mainText TEXT,income REAL,expend REAL,date TEXT,startTime TEXT,endTime TEXT,distance TEXT,label TEXT,remind TEXT,startArea INTEGER,photoDir TEXT)";
             NSString *createRemind = @"CREATE TABLE IF NOT EXISTS REMIND (remindID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER,date TEXT,fromToday TEXT,time TEXT)";
 
             [self execSql:createDayable];
@@ -323,6 +323,10 @@
   
     NSString *startTime;
     NSString *endTime;
+    
+    NSNumber *income;
+    NSNumber *expend;
+    NSString *remind;
  
     modifying = 1;
     
@@ -333,7 +337,7 @@
     sqlite3_stmt *statement;
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[startArea intValue]];
+        NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,remind from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[startArea intValue]];
         const char *queryEventstatment = [queryEvent UTF8String];
         if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
             if (sqlite3_step(statement)==SQLITE_ROW) {
@@ -382,8 +386,17 @@
                 
                 NSLog(@"start time is:%@",startTime);
                 
-                              
-            }
+                income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
+                expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                char *remind_mdfy = (char *)sqlite3_column_text(statement, 8);
+                if (remind_mdfy == nil) {
+                    remind = @"";
+                }else {
+                    remind = [[NSString alloc] initWithUTF8String:remind_mdfy];
+
+                    NSLog(@"nsstring_mdfy  is %@",remind);
+                }
+                            }
             
         }
         sqlite3_finalize(statement);
@@ -407,6 +420,10 @@
     [(UILabel*)[my_modifyViewController.view viewWithTag:104] setText:endTime];
     [(UIButton*)[my_modifyViewController.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
     [(UIButton*)[my_modifyViewController.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
+    my_modifyViewController.incomeFinal = [income doubleValue];
+    my_modifyViewController.expendFinal = [expend doubleValue];
+    
+    my_modifyViewController.remindData = remind;
  //   [(UITextField*)[my_modifyViewController.moneyAlert viewWithTag:501] setText:[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]];
     modifyEventId = [evtID_mdfy intValue];
     NSLog(@"eventID is : %d",modifyEventId);

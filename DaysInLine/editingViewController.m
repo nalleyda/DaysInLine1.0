@@ -20,9 +20,9 @@
 @implementation editingViewController
 
 bool flag;
-double incomeFinal;
-double expendFinal;
+
 bool firstInmoney;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,9 +36,10 @@ bool firstInmoney;
 {
     [super viewDidLoad];
     
-    incomeFinal=0.0f;
+    //self.incomeFinal=0.0f;
     firstInmoney = NO;
-    
+    //self.remindData = nil;
+    NSLog(@"<<<<<%@>>>>>",self.remindData);
     NSString *docsDir;
     NSArray *dirPaths;
     
@@ -85,6 +86,9 @@ bool firstInmoney;
 {
     remindViewController *my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController" bundle:nil];
     my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    my_remind.setRemindDelegate = self;
+    NSLog(@"<<<<<%@>>>>>2",self.remindData);
+
     [self presentViewController:my_remind animated:YES completion:Nil ];
     
 }
@@ -174,16 +178,16 @@ bool firstInmoney;
             
         }
         sqlite3_close(dataBase);
-        incomeFinal = [income_mdfy doubleValue];
-        expendFinal = [expend_mdfy doubleValue];
+        self.incomeFinal = [income_mdfy doubleValue];
+        self.expendFinal = [expend_mdfy doubleValue];
         firstInmoney = YES;
         
         [income setText:[NSString stringWithFormat:@"%.2f",[income_mdfy doubleValue]]];
         [outcome setText:[NSString stringWithFormat:@"%.2f",[expend_mdfy doubleValue]]];
     }
     
-    [income setText:[NSString stringWithFormat:@"%.2f",incomeFinal]];
-    [outcome setText:[NSString stringWithFormat:@"%.2f",expendFinal]];
+    [income setText:[NSString stringWithFormat:@"%.2f",self.incomeFinal]];
+    [outcome setText:[NSString stringWithFormat:@"%.2f",self.expendFinal]];
 
     
     UIButton *okButton =(UIButton *)[tmpCustomView viewWithTag:503];
@@ -243,6 +247,8 @@ bool firstInmoney;
 -(void)saveTapped
 {
     NSNumber *oldStartNum;
+    NSLog(@"<<<<<%@>>>>>3",self.remindData);
+
     
     if (modifying == 1) {
         sqlite3_stmt *statement;
@@ -380,8 +386,8 @@ bool firstInmoney;
                         sqlite3_bind_text(statement,2, [self.theme.text UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_text(statement,3, [self.mainText.text UTF8String], -1, SQLITE_TRANSIENT);
                         //未添加功能的数据
-                        sqlite3_bind_double(statement,4, incomeFinal);
-                        sqlite3_bind_double(statement,5, expendFinal);
+                        sqlite3_bind_double(statement,4, self.incomeFinal);
+                        sqlite3_bind_double(statement,5, self.expendFinal);
 
                         
                         sqlite3_bind_text(statement,6, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
@@ -390,7 +396,8 @@ bool firstInmoney;
                         sqlite3_bind_double(statement,9, [endTimeNum doubleValue]-[startTimeNum doubleValue]);
                         
                         sqlite3_bind_text(statement,10, [@"label" UTF8String], -1, SQLITE_TRANSIENT);
-                        sqlite3_bind_int(statement,11, 0);
+                        sqlite3_bind_text(statement,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
+                      //  sqlite3_bind_int(statement,11, 0);
                         sqlite3_bind_int(statement,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
                         sqlite3_bind_text(statement,13, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
                         
@@ -426,15 +433,15 @@ bool firstInmoney;
                             sqlite3_bind_text(statement,1, [self.theme.text UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_text(statement,2, [self.mainText.text UTF8String], -1, SQLITE_TRANSIENT);
                             //未添加功能的数据
-                            sqlite3_bind_double(statement,3, incomeFinal);
-                            sqlite3_bind_double(statement,4, expendFinal);
+                            sqlite3_bind_double(statement,3, self.incomeFinal);
+                            sqlite3_bind_double(statement,4, self.expendFinal);
                             
                             sqlite3_bind_double(statement,5, [startTimeNum doubleValue]);
                             sqlite3_bind_double(statement,6, [endTimeNum doubleValue]);
                             sqlite3_bind_double(statement,7, [endTimeNum doubleValue]-[startTimeNum doubleValue]);
                             
                             sqlite3_bind_text(statement,8, [@"label" UTF8String], -1, SQLITE_TRANSIENT);
-                            sqlite3_bind_int(statement,9, 0);
+                            sqlite3_bind_text(statement,9, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_int(statement,10, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
                             sqlite3_bind_text(statement,11, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_int(statement,12, modifyEventId);
@@ -476,10 +483,10 @@ bool firstInmoney;
     UITextField * income = (UITextField *)[self.moneyAlert viewWithTag:501];
     UITextField * outcome = (UITextField *)[self.moneyAlert viewWithTag:502];
     NSString *incomeText = income.text;
-    incomeFinal=[incomeText doubleValue];
+    self.incomeFinal=[incomeText doubleValue];
     NSString *outcomeText = outcome.text;
-    expendFinal=[outcomeText doubleValue];
-    NSLog(@"BBBBBBBBB%f",incomeFinal);
+    self.expendFinal=[outcomeText doubleValue];
+    NSLog(@"BBBBBBBBB%f",self.incomeFinal);
    
     [self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
     //[income resignFirstResponder];
@@ -612,4 +619,14 @@ bool firstInmoney;
 - (void)willPresentAlertView:(UIAlertView *)myAlertView {
     myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height/3);
 }
+
+#pragma remindData Delegate
+-(void)setRemindData:(NSString *)date :(NSString *)time
+{
+    self.remindData = [NSString stringWithFormat:@"%@,%@",date,time];
+    NSLog(@"%@",self.remindData);
+    
+    
+}
+
 @end

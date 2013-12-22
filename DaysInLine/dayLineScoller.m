@@ -88,7 +88,7 @@ int contentLongth;
             NSLog(@"finding the right button:%d",[oldStartNum intValue]);
             
             for (UIView *curView in self.subviews) {
-                if (curView.tag == [oldStartNum integerValue]/30) {
+                if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/30) {
                     NSLog(@"find it!!!!");
                     [curView removeFromSuperview];
                 }

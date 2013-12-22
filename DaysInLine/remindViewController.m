@@ -7,6 +7,7 @@
 //
 
 #import "remindViewController.h"
+#import "globalVars.h"
 
 @interface remindViewController ()<UITextFieldDelegate>
 
@@ -17,6 +18,10 @@
 
 @implementation remindViewController
 UITextField *daysInterval;
+UILabel *dayslabel;
+UIDatePicker *remindDatePicker ;
+UIDatePicker *remindTimePicker ;
+UIDatePicker *remindTimePicker2;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,9 +41,9 @@ UITextField *daysInterval;
     //按日期设置提醒时间的视图
     
     //self.viewDate.backgroundColor = [UIColor greenColor];
-    UIDatePicker *remindDatePicker = [[UIDatePicker alloc] init] ;
-    UIDatePicker *remindTimePicker = [[UIDatePicker alloc] init] ;
-    UIDatePicker *remindTimePicker2 = [[UIDatePicker alloc] init] ;
+    remindDatePicker = [[UIDatePicker alloc] init] ;
+    remindTimePicker = [[UIDatePicker alloc] init] ;
+    remindTimePicker2 = [[UIDatePicker alloc] init] ;
     
     remindDatePicker.datePickerMode = UIDatePickerModeDate;
     remindDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-20, 30);
@@ -64,7 +69,7 @@ UITextField *daysInterval;
     daysInterval.keyboardType = UIKeyboardTypeNumberPad;
     daysInterval.backgroundColor = [UIColor whiteColor];
     daysInterval.delegate = self;
-    UILabel *dayslabel = [[UILabel alloc] init];
+    dayslabel = [[UILabel alloc] init];
     dayslabel.frame = CGRectMake(0, 0, 60, 40);
     dayslabel.center = CGPointMake(self.view.frame.size.width/2+45, 60);
     dayslabel.text = @"天后";
@@ -79,6 +84,8 @@ UITextField *daysInterval;
     remindTimePicker2.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
     remindTimePicker2.center = CGPointMake(self.view.frame.size.width/2, 220);
     [self.viewInterval addSubview:remindTimePicker2];
+    
+   
     
     
     // Do any additional setup after loading the view from its nib.
@@ -145,4 +152,49 @@ UITextField *daysInterval;
     [daysInterval resignFirstResponder];
 }
 
+- (IBAction)remindOkButton:(UIButton *)sender {
+    
+    
+    NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    formatter.dateFormat = @"yyyy-MM-dd";
+    
+    NSDate *dateTime = [formatter dateFromString:modifyDate];
+    //时区偏移
+    NSInteger zoneInterval = [zone secondsFromGMTForDate: dateTime];
+    
+//    NSDate *localDate = [dateTime  dateByAddingTimeInterval: zoneInterval];
+
+    
+    if (self.remindMode.selectedSegmentIndex == 0 ) {
+        
+        self.remindDate = [formatter stringFromDate:remindDatePicker.date];
+        formatter.dateFormat = @"H:mm";
+        self.remindTime = [formatter stringFromDate:remindTimePicker.date];
+        
+    
+    }
+    else if(self.remindMode.selectedSegmentIndex == 1)
+    {
+        NSInteger interval = [daysInterval.text intValue];
+        NSLog(@"ttttttt%@",modifyDate);
+        
+        NSDate *remindDate = [dateTime dateByAddingTimeInterval:zoneInterval+interval*24*60*60];
+        self.remindDate = [formatter stringFromDate:remindDate];
+        
+        formatter.dateFormat = @"H:mm";
+        self.remindTime = [formatter stringFromDate:remindTimePicker.date];
+        
+        
+    }
+    [self.setRemindDelegate setRemindData:self.remindDate :self.remindTime ];
+    NSLog(@"self.remindDate = %@,,,,,, self.remindTime = %@",self.remindDate,self.remindTime);
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+
+}
+
+- (IBAction)remindCancelButton:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end

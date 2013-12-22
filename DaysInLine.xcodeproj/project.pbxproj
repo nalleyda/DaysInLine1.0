@@ -93,6 +93,7 @@
 		0BD7008A1813BC66004FCBE2 /* daylineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = daylineView.m; path = view/daylineView.m; sourceTree = "<group>"; };
 		0BD7008C1814242C004FCBE2 /* dayLineScoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dayLineScoller.h; sourceTree = "<group>"; };
 		0BD7008D1814242C004FCBE2 /* dayLineScoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dayLineScoller.m; sourceTree = "<group>"; };
+		0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindDataDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +238,7 @@
 			children = (
 				0BB629D31829233B00D9B859 /* redrawButtonDelegate.h */,
 				0BB629D418293F3C00D9B859 /* globalVars.h */,
+				0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */,
 			);
 			name = data;
 			sourceTree = "<group>";

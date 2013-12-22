@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "remindDataDelegate.h"
 
 @interface remindViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *remindMode;
+- (IBAction)remindOkButton:(UIButton *)sender;
+- (IBAction)remindCancelButton:(id)sender;
 
+@property (strong, nonatomic) NSString *remindDate;
+@property (strong, nonatomic) NSString *remindTime;
+
+@property (weak, nonatomic) NSObject <remindDataDelegate> *setRemindDelegate;
 @end

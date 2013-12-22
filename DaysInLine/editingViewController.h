@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "sqlite3.h"
 #import "redrawButtonDelegate.h"
+#import "remindDataDelegate.h"
 
 
-@interface editingViewController : UIViewController <UIAlertViewDelegate> {
+@interface editingViewController : UIViewController <UIAlertViewDelegate,remindDataDelegate> {
     sqlite3 *dataBase;
     NSString *databasePath;
     NSNumber *startTimeNum;
     NSNumber *endTimeNum;
+
 
     
 }
@@ -38,6 +40,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *mainText;
 @property (weak, nonatomic) IBOutlet UITextField *theme;
 @property (weak, nonatomic) IBOutlet NSNumber *eventType;
+@property double incomeFinal;
+@property double expendFinal;
+@property (strong, nonatomic) NSString *remindData;
 
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
 - (IBAction)endEditing:(id)sender;
