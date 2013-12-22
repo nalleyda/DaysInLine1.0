@@ -608,6 +608,7 @@ bool firstInmoney;
 }
 
 
+
 - (void)willPresentAlertView:(UIAlertView *)myAlertView {
     myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height/3);
 }
