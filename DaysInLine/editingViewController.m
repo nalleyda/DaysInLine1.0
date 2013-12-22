@@ -86,6 +86,7 @@ bool firstInmoney;
 {
     remindViewController *my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController" bundle:nil];
     my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
     my_remind.setRemindDelegate = self;
     NSLog(@"<<<<<%@>>>>>2",self.remindData);
 
@@ -469,13 +470,120 @@ bool firstInmoney;
                     
                 }
                 
-                
-                [self dismissViewControllerAnimated:YES completion:nil];
             }
             
         }
     }
+    NSDate *now = [[NSDate alloc] init];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    if (modifying == 0) {
+        if (self.remindData) {
+            NSArray *remindDate = [self.remindData componentsSeparatedByString:@","];
+            NSString *date = remindDate[0];
+            NSString *time = remindDate[1];
+
+            formatter.dateFormat = @"yyyy-MM-dd";
+            NSString *time1 = [formatter stringFromDate:now];
+            NSDate *dateNow = [formatter dateFromString:time1];
+
+            NSDate *daysRemind = [formatter dateFromString:date];
+            formatter.dateFormat = @"H:mm";
+            NSDate *timeRemind = [formatter dateFromString:time];
+            NSString *time2 = [formatter stringFromDate:now];
+            NSDate *timeNow = [formatter dateFromString:time2];
+            
+            NSTimeInterval daysInterval=[daysRemind timeIntervalSinceDate:dateNow];
+            NSTimeInterval timeInterval=[timeRemind timeIntervalSinceDate:timeNow];
+            
+            int interval = (int)(daysInterval + timeInterval);
+            
+            UILocalNotification *notification=[[UILocalNotification alloc] init];
+            if (notification!=nil)
+            {
+                
+                //NSDate *now=[NSDate new];
+                notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
+                NSLog(@"%d",interval);
+                notification.timeZone=[NSTimeZone defaultTimeZone];
+             
+                //notification.alertBody=@"TIME！";
+                
+                notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
+                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,@"key",nil];
+ 
+                [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
+                
+                
+            }
+
+         
+        }else{
+            
+        }
+    }
+    else if(modifying == 1)
+    {
+        if (![self.remindData isEqualToString:@""]) {
+            
+            
+            NSArray * allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
+            
+            for (UILocalNotification * localNotification in allLocalNotification) {
+                NSLog(@"%@",localNotification.userInfo);
+                NSString * alarmValue=[localNotification.userInfo objectForKey:@"key"];
+                if ([self.remindData isEqualToString:alarmValue]) {
+                    NSLog(@"666666666666");
+                    [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+                }
+            }
+
+        }
+        NSArray *remindDate = [self.remindData componentsSeparatedByString:@","];
+        NSString *date = remindDate[0];
+        NSString *time = remindDate[1];
+        
+        formatter.dateFormat = @"yyyy-MM-dd";
+        NSString *time1 = [formatter stringFromDate:now];
+        NSDate *dateNow = [formatter dateFromString:time1];
+        
+        NSDate *daysRemind = [formatter dateFromString:date];
+        formatter.dateFormat = @"H:mm";
+        NSDate *timeRemind = [formatter dateFromString:time];
+        NSString *time2 = [formatter stringFromDate:now];
+        NSDate *timeNow = [formatter dateFromString:time2];
+        
+        NSTimeInterval daysInterval=[daysRemind timeIntervalSinceDate:dateNow];
+        NSTimeInterval timeInterval=[timeRemind timeIntervalSinceDate:timeNow];
+        
+        int interval = (int)(daysInterval + timeInterval);
+        
+        UILocalNotification *notification=[[UILocalNotification alloc] init];
+        if (notification!=nil)
+        {
+            
+            //NSDate *now=[NSDate new];
+            notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
+            NSLog(@"%d",interval);
+            notification.timeZone=[NSTimeZone defaultTimeZone];
+            
+            //notification.alertBody=@"TIME！";
+            
+            notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
+            notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,@"key",nil];
+            
+            [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
+            
+            
+        }
+        
     
+    
+    
+
+    
+    }
+        [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 -(void)okTapped

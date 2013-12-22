@@ -154,16 +154,17 @@ UIDatePicker *remindTimePicker2;
 
 - (IBAction)remindOkButton:(UIButton *)sender {
     
-    
+    NSDate *now = [[NSDate alloc] init];
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     formatter.dateFormat = @"yyyy-MM-dd";
-    
+    NSString *time1 = [formatter stringFromDate:now];
+    NSDate *dateNow = [formatter dateFromString:time1];
     NSDate *dateTime = [formatter dateFromString:modifyDate];
     //时区偏移
     NSInteger zoneInterval = [zone secondsFromGMTForDate: dateTime];
     
-//    NSDate *localDate = [dateTime  dateByAddingTimeInterval: zoneInterval];
+ //   NSDate *localDate = [dateTime  dateByAddingTimeInterval: zoneInterval];
 
     
     if (self.remindMode.selectedSegmentIndex == 0 ) {
@@ -188,6 +189,11 @@ UIDatePicker *remindTimePicker2;
         
     }
     [self.setRemindDelegate setRemindData:self.remindDate :self.remindTime ];
+    
+
+
+
+    
     NSLog(@"self.remindDate = %@,,,,,, self.remindTime = %@",self.remindDate,self.remindTime);
     [self dismissViewControllerAnimated:YES completion:nil];
 
