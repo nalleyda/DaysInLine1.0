@@ -20,7 +20,7 @@
 @implementation editingViewController
 
 bool flag;
-
+NSString *oldRemindDate;
 bool firstInmoney;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -40,6 +40,7 @@ bool firstInmoney;
     firstInmoney = NO;
     //self.remindData = nil;
     NSLog(@"<<<<<%@>>>>>",self.remindData);
+    
     NSString *docsDir;
     NSArray *dirPaths;
     
@@ -89,6 +90,7 @@ bool firstInmoney;
     
     my_remind.setRemindDelegate = self;
     NSLog(@"<<<<<%@>>>>>2",self.remindData);
+    oldRemindDate = self.remindData;
 
     [self presentViewController:my_remind animated:YES completion:Nil ];
     
@@ -509,7 +511,7 @@ bool firstInmoney;
                 //notification.alertBody=@"TIME！";
                 
                 notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
-                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,@"key",nil];
+                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
  
                 [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
                 
@@ -530,8 +532,8 @@ bool firstInmoney;
             
             for (UILocalNotification * localNotification in allLocalNotification) {
                 NSLog(@"%@",localNotification.userInfo);
-                NSString * alarmValue=[localNotification.userInfo objectForKey:@"key"];
-                if ([self.remindData isEqualToString:alarmValue]) {
+                NSString * alarmValue=[localNotification.userInfo objectForKey:oldRemindDate];
+                if ([oldRemindDate isEqualToString:alarmValue]) {
                     NSLog(@"666666666666");
                     [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
                 }
@@ -569,7 +571,7 @@ bool firstInmoney;
             //notification.alertBody=@"TIME！";
             
             notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
-            notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,@"key",nil];
+            notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
             
             [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
             
