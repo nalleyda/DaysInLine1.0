@@ -22,6 +22,7 @@
 @property (nonatomic,strong) daylineView *my_dayline ;
 @property (nonatomic,strong) dayLineScoller *my_scoller;
 @property (nonatomic,strong) NSString *today;
+@property (nonatomic,strong) NSMutableArray *allTags;
 @end
 
 @implementation ViewController
@@ -31,6 +32,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    self.allTags = [[NSMutableArray alloc] initWithObjects:@"+", nil];
     
     homeView *my_homeView = [[homeView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:my_homeView];
@@ -55,26 +57,44 @@
     
     databasePath = [[NSString alloc] initWithString:[docsDir stringByAppendingPathComponent:@"info.sqlite"]];
     
- //   NSFileManager *filemanager = [NSFileManager defaultManager];
+    //   NSFileManager *filemanager = [NSFileManager defaultManager];
     
     NSLog(@"路径：%@",databasePath);
+    sqlite3_stmt *statement;
     
-        const char *dbpath = [databasePath UTF8String];
-        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
- /*           NSString *createsql = @"CREATE TABLE IF NOT EXISTS DAYTABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT UNIQUE,MOOD INTEGER,GROWTH INTEGER)";
- */
-            NSString *createDayable = @"CREATE TABLE IF NOT EXISTS DAYTABLE (DATE TEXT PRIMARY KEY,MOOD INTEGER,GROWTH INTEGER)";
-            NSString *createEvent = @"CREATE TABLE IF NOT EXISTS EVENT (eventID INTEGER PRIMARY KEY AUTOINCREMENT,TYPE INTEGER,TITLE TEXT,mainText TEXT,income REAL,expend REAL,date TEXT,startTime TEXT,endTime TEXT,distance TEXT,label TEXT,remind TEXT,startArea INTEGER,photoDir TEXT)";
-            NSString *createRemind = @"CREATE TABLE IF NOT EXISTS REMIND (remindID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER,date TEXT,fromToday TEXT,time TEXT)";
-
-            [self execSql:createDayable];
-            [self execSql:createEvent];
-            [self execSql:createRemind];
+    const char *dbpath = [databasePath UTF8String];
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        /*           NSString *createsql = @"CREATE TABLE IF NOT EXISTS DAYTABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT UNIQUE,MOOD INTEGER,GROWTH INTEGER)";
+         */
+        NSString *createDayable = @"CREATE TABLE IF NOT EXISTS DAYTABLE (DATE TEXT PRIMARY KEY,MOOD INTEGER,GROWTH INTEGER)";
+        NSString *createEvent = @"CREATE TABLE IF NOT EXISTS EVENT (eventID INTEGER PRIMARY KEY AUTOINCREMENT,TYPE INTEGER,TITLE TEXT,mainText TEXT,income REAL,expend REAL,date TEXT,startTime TEXT,endTime TEXT,distance TEXT,label TEXT,remind TEXT,startArea INTEGER,photoDir TEXT)";
+        //      NSString *createRemind = @"CREATE TABLE IF NOT EXISTS REMIND (remindID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER,date TEXT,fromToday TEXT,time TEXT)";
+        NSString *createTag = @"CREATE TABLE IF NOT EXISTS TAG (tagID INTEGER PRIMARY KEY AUTOINCREMENT,tagName TEXT UNIQUE)";
+        
+        [self execSql:createDayable];
+        [self execSql:createEvent];
+        [self execSql:createTag];
+    }
+    else {
+        NSLog(@"数据库打开失败");
+        
+    }
+    
+    NSString *queryStar = [NSString stringWithFormat:@"SELECT tagname from TAG"];
+    const char *queryStarstatement = [queryStar UTF8String];
+    if (sqlite3_prepare_v2(dataBase, queryStarstatement, -1, &statement, NULL)==SQLITE_OK) {
+        while (sqlite3_step(statement)==SQLITE_ROW) {
+            //当天数据已经存在，则取出数据还原界面
+            char *tagName = (char *) sqlite3_column_text(statement, 0);
+            [self.allTags addObject:[NSString stringWithUTF8String:tagName]];
+          
         }
-        else {
-            NSLog(@"数据库打开失败");
-            
-        }
+        
+        //[allTags addObject:nil];
+       // NSLog(@"%@",self.allTags[5]);
+    }
+    
+    
     
     sqlite3_close(dataBase);
     
@@ -83,6 +103,8 @@
     
     CGRect rect=[[UIScreen mainScreen] bounds];
     NSLog(@"x:%f,y:%f\nwidth%f,height%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+    
+  
     
     
       
@@ -294,6 +316,8 @@
     my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
     NSLog(@"type is:%@",my_editingViewController.eventType);
     my_editingViewController.drawBtnDelegate = self.my_scoller;
+   // my_editingViewController.addTagDataDelegate = self;
+    my_editingViewController.tags = self.allTags;
 
     modifying = 0;
     
@@ -408,6 +432,8 @@
     sqlite3_close(dataBase);
     editingViewController *my_modifyViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
     my_modifyViewController.drawBtnDelegate = self.my_scoller;
+  //  my_modifyViewController.addTagDataDelegate = self;
+    my_modifyViewController.tags = self.allTags;
     
     
     
@@ -437,4 +463,12 @@
 
 }
 
+/*
+ #pragma mark addTag delegation
+
+-(void)addTagData:(NSString *)date
+{
+    [self.allTags addObject:date];
+}
+ */
 @end

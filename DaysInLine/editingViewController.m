@@ -11,7 +11,7 @@
 
 #import "globalVars.h"
 
-@interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate>
+@interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 
 
 
@@ -66,6 +66,8 @@ bool firstInmoney;
     [self.returnButton addTarget:self action:@selector(returnTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.moneyButton addTarget:self action:@selector(moneyTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.remindButton addTarget:self action:@selector(remindTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.addTagButton addTarget:self action:@selector(addTagTapped) forControlEvents:UIControlEventTouchUpInside];
+    
     
     self.startTimeButton.layer.borderWidth = 3.5;
     self.startTimeButton.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -80,6 +82,48 @@ bool firstInmoney;
     
     NSLog(@"%@!!!!!!!!!!!",self.startLabel.text);
 
+}
+
+-(void)addTagTapped
+{
+    
+    NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"tagView" owner:self options:nil];
+    
+    UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width/2, 372)];
+    
+    tmpCustomView = [nib objectAtIndex:0];
+   // NSLog(@"tag 3 is: %@",self.tags[3]);
+    
+   // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
+    UIButton *okButton =(UIButton *)[tmpCustomView viewWithTag:602];
+    [okButton addTarget:self action:@selector(okTagTapped) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *cancelButton =(UIButton *)[tmpCustomView viewWithTag:603];
+    [cancelButton addTarget:self action:@selector(cancelTagTapped) forControlEvents:UIControlEventTouchUpInside];
+    self.tagTable.delegate = self;
+    self.tagTable.dataSource = self;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:nil
+                                                   delegate:self
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:nil];
+    alert.tag = 1;
+    
+    [alert setAlertViewStyle:UIAlertViewStyleDefault];
+    [alert addSubview:tmpCustomView];
+   
+    self.tagAlert = alert;
+    [ self.tagAlert  show];
+
+}
+
+-(void)okTagTapped
+{
+    
+}
+-(void)cancelTagTapped
+{
+    [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
 }
 
 
@@ -203,6 +247,7 @@ bool firstInmoney;
                                                    delegate:self
                                           cancelButtonTitle:@"ok"
                                           otherButtonTitles:nil];
+    alert.tag = 0;
    
     [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
     [alert addSubview:tmpCustomView];
@@ -578,11 +623,7 @@ bool firstInmoney;
             
         }
         
-    
-    
-    
-
-    
+        
     }
         [self dismissViewControllerAnimated:YES completion:nil];
 
@@ -727,8 +768,75 @@ bool firstInmoney;
 
 
 - (void)willPresentAlertView:(UIAlertView *)myAlertView {
-    myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height/3);
+    if (myAlertView.tag == 0) {
+        NSLog(@"Alert0000000000");
+        myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height/3);
+
+    }
+    else if(myAlertView.tag == 1){
+        
+        NSLog(@"Alert111111111");
+        myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width/2, 372);
+        
+    }
+ 
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == 3) {
+        if (buttonIndex == 1) {
+        UITextField *tf=[alertView textFieldAtIndex:0];
+            NSLog(@"new tag is : %@",tf.text);
+            const char *dbpath = [databasePath UTF8String];
+            sqlite3_stmt *statement;
+            
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                
+                // 插入当天的数据
+                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO TAG(tagName) VALUES(?)"];
+                
+                const char *insertsatement = [insertSql UTF8String];
+                sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
+                sqlite3_bind_text(statement,1, [tf.text UTF8String], -1, SQLITE_TRANSIENT);
+                
+                if (sqlite3_step(statement)==SQLITE_DONE) {
+                    NSLog(@"innsert tag ok");
+                [self.tags addObject:tf.text];
+               // [self.addTagDataDelegate addTagData:tf.text];
+                }
+                else {
+                    NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
+                    UIAlertView *tagNotUnique = [[UIAlertView alloc]
+                                    initWithTitle:@"Attention"
+                                    message:@"This tag is already exist!"
+                                    delegate:nil
+                                    cancelButtonTitle:@"确定"
+                                    otherButtonTitles:nil];
+                    
+                    
+                    [tagNotUnique show];
+
+                }
+                sqlite3_finalize(statement);
+            }
+            
+            else {
+                NSLog(@"数据库打开失败");
+                
+            }
+            sqlite3_close(dataBase);
+            
+            [self.tagTable reloadData];
+            
+
+
+            NSLog(@"点击了确定按钮");
+        }
+        else {
+            NSLog(@"点击了取消按钮");
+        }
+    }
+}
+
 
 #pragma remindData Delegate
 -(void)setRemindData:(NSString *)date :(NSString *)time
@@ -738,5 +846,53 @@ bool firstInmoney;
     
     
 }
+#pragma tavleView Delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //  NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
+    return self.tags.count;
+}
+
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        
+        
+    }
+    NSUInteger row=[indexPath row];
+    
+    //设置文本
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.text =[self.tags objectAtIndex :row];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (indexPath.row == 0) {
+        UIAlertView* addSelection;
+        
+        addSelection = [[UIAlertView alloc]
+                        initWithTitle:@"Add tag"
+                        message:nil
+                        delegate:self
+                        cancelButtonTitle:@"取消"
+                        otherButtonTitles:@"确定",nil];
+        
+        [addSelection setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        addSelection.tag = 3;
+        
+        [addSelection show];
+        
+    }
+
+}
+
 
 @end

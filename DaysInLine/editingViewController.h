@@ -10,6 +10,7 @@
 #import "sqlite3.h"
 #import "redrawButtonDelegate.h"
 #import "remindDataDelegate.h"
+//#import "addTagDelegate.h"
 
 
 @interface editingViewController : UIViewController <UIAlertViewDelegate,remindDataDelegate> {
@@ -17,8 +18,6 @@
     NSString *databasePath;
     NSNumber *startTimeNum;
     NSNumber *endTimeNum;
-
-
     
 }
 @property (weak, nonatomic) IBOutlet UIButton *addTagButton;
@@ -36,15 +35,19 @@
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
 @property (strong, nonatomic) UIAlertView *moneyAlert;
+@property (strong, nonatomic) UIAlertView *tagAlert;
 
+@property (weak, nonatomic) IBOutlet UITableView *tagTable;
 @property (weak, nonatomic) IBOutlet UITextView *mainText;
 @property (weak, nonatomic) IBOutlet UITextField *theme;
 @property (weak, nonatomic) IBOutlet NSNumber *eventType;
 @property double incomeFinal;
 @property double expendFinal;
+@property NSMutableArray *tags;
 @property (strong, nonatomic) NSString *remindData;
 
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
+//@property (weak, nonatomic) NSObject <addTagDelegate> *addTagDataDelegate;
 - (IBAction)endEditing:(id)sender;
 
 @end
