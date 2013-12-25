@@ -29,6 +29,7 @@
 		0B9A53F81812274D0085FFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A53F61812274D0085FFD7 /* InfoPlist.strings */; };
 		0B9A53FA1812274D0085FFD7 /* DaysInLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A53F91812274D0085FFD7 /* DaysInLineTests.m */; };
 		0B9A5406181230990085FFD7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A5405181230990085FFD7 /* Default.png */; };
+		0BA02C6F186B094E00563857 /* tagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA02C6E186B094E00563857 /* tagView.xib */; };
 		0BAE55B0185B7B1700695F0E /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE55AC185B7B1700695F0E /* editView.png */; };
 		0BAE55B1185B7B1700695F0E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE55AD185B7B1700695F0E /* icon.png */; };
 		0BAE55B2185B7B1700695F0E /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE55AE185B7B1700695F0E /* star1.png */; };
@@ -80,6 +81,8 @@
 		0B9A53F71812274D0085FFD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A53F91812274D0085FFD7 /* DaysInLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaysInLineTests.m; sourceTree = "<group>"; };
 		0B9A5405181230990085FFD7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0BA02C6E186B094E00563857 /* tagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tagView.xib; sourceTree = "<group>"; };
+		0BA02C70186B2FE700563857 /* addTagDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTagDelegate.h; sourceTree = "<group>"; };
 		0BAE55AC185B7B1700695F0E /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
 		0BAE55AD185B7B1700695F0E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0BAE55AE185B7B1700695F0E /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
@@ -229,6 +232,7 @@
 				0B2C3339185B7CEE00CB2763 /* moneyView.xib */,
 				0B929ECF18154B94008E1726 /* buttonInScroll.h */,
 				0B929ED018154B94008E1726 /* buttonInScroll.m */,
+				0BA02C6E186B094E00563857 /* tagView.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -239,6 +243,7 @@
 				0BB629D31829233B00D9B859 /* redrawButtonDelegate.h */,
 				0BB629D418293F3C00D9B859 /* globalVars.h */,
 				0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */,
+				0BA02C70186B2FE700563857 /* addTagDelegate.h */,
 			);
 			name = data;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 				0B9A53E71812274D0085FFD7 /* Images.xcassets in Resources */,
 				0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */,
 				0BAE55B0185B7B1700695F0E /* editView.png in Resources */,
+				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0BAE55B3185B7B1700695F0E /* star2.png in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
 				0BAE55B1185B7B1700695F0E /* icon.png in Resources */,
