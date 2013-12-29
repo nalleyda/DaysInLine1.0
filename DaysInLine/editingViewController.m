@@ -25,6 +25,7 @@
 bool flag;
 NSString *oldRemindDate;
 bool firstInmoney;
+bool moveON;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -441,6 +442,7 @@ bool firstInmoney;
                                                   otherButtonTitles:nil];
             alert.tag = 100;
             [alert show];
+            return;
         }
         else{
             
@@ -469,6 +471,9 @@ bool firstInmoney;
                                                       otherButtonTitles:nil];
                 alert.tag = 101;
                 [alert show];
+               
+                    return;
+                
                 
             }
             else{
@@ -593,6 +598,8 @@ bool firstInmoney;
                 }
                 
             }
+        
+
             
         }
     }
@@ -912,10 +919,7 @@ bool firstInmoney;
             NSLog(@"点击了取消按钮");
         }
     }
-    else
-    {
-        return;
-    }
+    
 }
 
 
