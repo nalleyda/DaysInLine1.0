@@ -184,7 +184,7 @@ UIDatePicker *remindTimePicker2;
         self.remindDate = [formatter stringFromDate:remindDate];
         
         formatter.dateFormat = @"H:mm";
-        self.remindTime = [formatter stringFromDate:remindTimePicker.date];
+        self.remindTime = [formatter stringFromDate:remindTimePicker2.date];
         
         
     }

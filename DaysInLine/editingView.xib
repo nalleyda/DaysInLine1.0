@@ -131,7 +131,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="106" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="onDrag" text="点击输入... ..." translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-5t-kIE">
-                    <rect key="frame" x="40" y="126" width="240" height="255"/>
+                    <rect key="frame" x="40" y="127" width="240" height="255"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.93899473852040816" green="0.93899473852040816" blue="0.93899473852040816" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>

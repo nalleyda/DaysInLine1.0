@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.allTags = [[NSMutableArray alloc] initWithObjects:@"+", nil];
+    self.allTags = [[NSMutableArray alloc] init];
     
     homeView *my_homeView = [[homeView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:my_homeView];
@@ -128,6 +128,7 @@
     
     self.my_scoller.modifyEvent_delegate = self;
     self.drawBtnDelegate = self.my_scoller;
+    
     
 
     [self.homePage addSubview:self.my_scoller];
@@ -351,6 +352,8 @@
     NSNumber *income;
     NSNumber *expend;
     NSString *remind;
+    NSString *oldLabel;
+   // NSArray *tagToDraw = [[NSArray alloc] init];
  
     modifying = 1;
     
@@ -361,7 +364,7 @@
     sqlite3_stmt *statement;
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,remind from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[startArea intValue]];
+        NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[startArea intValue]];
         const char *queryEventstatment = [queryEvent UTF8String];
         if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
             if (sqlite3_step(statement)==SQLITE_ROW) {
@@ -412,7 +415,18 @@
                 
                 income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
                 expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
-                char *remind_mdfy = (char *)sqlite3_column_text(statement, 8);
+                
+                char *oldTags = (char *)sqlite3_column_text(statement, 8);
+                if (oldTags == nil) {
+                    oldLabel = @"";
+                }else {
+                    oldLabel = [[NSString alloc] initWithUTF8String:oldTags];
+                    
+                    NSLog(@"nsstring_old labels  is %@",oldLabel);
+                }
+
+                
+                char *remind_mdfy = (char *)sqlite3_column_text(statement, 9);
                 if (remind_mdfy == nil) {
                     remind = @"";
                 }else {
@@ -431,11 +445,15 @@
     }
     sqlite3_close(dataBase);
     editingViewController *my_modifyViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
+    self.drawLabelDelegate = my_modifyViewController;
     my_modifyViewController.drawBtnDelegate = self.my_scoller;
   //  my_modifyViewController.addTagDataDelegate = self;
     my_modifyViewController.tags = self.allTags;
     
     
+
+    
+
     
     
     //将该事件还原现使出来
@@ -448,8 +466,10 @@
     [(UIButton*)[my_modifyViewController.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
     my_modifyViewController.incomeFinal = [income doubleValue];
     my_modifyViewController.expendFinal = [expend doubleValue];
-    
+    [self.drawLabelDelegate drawTag:oldLabel];
+  //  my_modifyViewController.oldLabel = oldLabel;
     my_modifyViewController.remindData = remind;
+    
  //   [(UITextField*)[my_modifyViewController.moneyAlert viewWithTag:501] setText:[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]];
     modifyEventId = [evtID_mdfy intValue];
     NSLog(@"eventID is : %d",modifyEventId);

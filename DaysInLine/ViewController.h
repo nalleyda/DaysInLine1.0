@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "sqlite3.h"
 #import "redrawButtonDelegate.h"
+#import "drawTagDelegate.h"
 //#import "addTagDelegate.h"
 
 @class homeView;
@@ -21,4 +22,5 @@
    
 }
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
+@property (weak, nonatomic) NSObject <drawTagDelegate> *drawLabelDelegate;
 @end

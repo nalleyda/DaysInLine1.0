@@ -11,7 +11,10 @@
 
 #import "globalVars.h"
 
-@interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>{
+    NSMutableArray *selected;
+    NSMutableArray *tagLabels;
+}
 
 
 
@@ -22,6 +25,7 @@
 bool flag;
 NSString *oldRemindDate;
 bool firstInmoney;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +44,7 @@ bool firstInmoney;
     firstInmoney = NO;
     //self.remindData = nil;
     NSLog(@"<<<<<%@>>>>>",self.remindData);
+    tagLabels = [[NSMutableArray alloc] init];
     
     NSString *docsDir;
     NSArray *dirPaths;
@@ -57,6 +62,9 @@ bool firstInmoney;
     self.theme = (UITextField *)[self.view viewWithTag:105];
     self.mainText = (UITextView *)[self.view viewWithTag:106];
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
+    
+    self.selectedTags = [[NSMutableString alloc] init];
+    
     
 
 	// Do any additional setup after loading the view.
@@ -80,12 +88,14 @@ bool firstInmoney;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tap];
     
-    NSLog(@"%@!!!!!!!!!!!",self.startLabel.text);
+    
 
 }
 
 -(void)addTagTapped
 {
+    selected = [[NSMutableArray alloc] init];
+   
     
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"tagView" owner:self options:nil];
     
@@ -99,8 +109,14 @@ bool firstInmoney;
     [okButton addTarget:self action:@selector(okTagTapped) forControlEvents:UIControlEventTouchUpInside];
     UIButton *cancelButton =(UIButton *)[tmpCustomView viewWithTag:603];
     [cancelButton addTarget:self action:@selector(cancelTagTapped) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *addButton =(UIButton *)[tmpCustomView viewWithTag:604];
+    [addButton addTarget:self action:@selector(addButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *deleteButton =(UIButton *)[tmpCustomView viewWithTag:605];
+    [deleteButton addTarget:self action:@selector(deleteButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     self.tagTable.delegate = self;
     self.tagTable.dataSource = self;
+    self.tagTable.allowsMultipleSelection = YES;
+    
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:nil
@@ -116,9 +132,54 @@ bool firstInmoney;
     [ self.tagAlert  show];
 
 }
+-(void)addButtonTapped
+{
+    UIAlertView* addSelection;
+    
+    addSelection = [[UIAlertView alloc]
+                    initWithTitle:@"Add tag"
+                    message:nil
+                    delegate:self
+                    cancelButtonTitle:@"取消"
+                    otherButtonTitles:@"确定",nil];
+    
+    [addSelection setAlertViewStyle:UIAlertViewStylePlainTextInput];
+    addSelection.tag = 3;
+    
+    [addSelection show];
+    
+}
+-(void)deleteButtonTapped
+{
+    [self.tagTable setEditing:YES animated:YES];
+}
 
 -(void)okTagTapped
 {
+    
+    NSMutableString *choices = [[NSMutableString alloc] init];
+    NSLog(@"count is %d",tagLabels.count);
+    for (int i = 0 ; i< tagLabels.count ; i++) {
+        UILabel * oldTag = [tagLabels objectAtIndex:i];
+        [oldTag removeFromSuperview];
+      
+    }
+    if (selected.count > 0) {
+        for (int i = 0; i < selected.count; i++) {
+            [choices appendFormat:@"%@,",selected[i]];
+            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(280, 150+30*i, self.view.frame.size.width-280, 20)];
+            tag.text = selected[i];
+            [tagLabels addObject:tag];
+            [self.view addSubview:tag];
+            
+        }
+        self.selectedTags = [choices substringToIndex:(choices.length-1)];
+        NSLog(@"OK   tapped---->:%@",self.selectedTags);
+
+    }
+  
+       [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+    
     
 }
 -(void)cancelTagTapped
@@ -488,7 +549,7 @@ bool firstInmoney;
                             sqlite3_bind_double(statement,6, [endTimeNum doubleValue]);
                             sqlite3_bind_double(statement,7, [endTimeNum doubleValue]-[startTimeNum doubleValue]);
                             
-                            sqlite3_bind_text(statement,8, [@"label" UTF8String], -1, SQLITE_TRANSIENT);
+                            sqlite3_bind_text(statement,8, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_text(statement,9, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_int(statement,10, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
                             sqlite3_bind_text(statement,11, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
@@ -838,7 +899,7 @@ bool firstInmoney;
 }
 
 
-#pragma remindData Delegate
+#pragma mark remindData Delegate
 -(void)setRemindData:(NSString *)date :(NSString *)time
 {
     self.remindData = [NSString stringWithFormat:@"%@,%@",date,time];
@@ -846,7 +907,31 @@ bool firstInmoney;
     
     
 }
-#pragma tavleView Delegate
+
+#pragma mark drawTag delegation
+
+-(void) drawTag:(NSString *)oldTags
+{
+    NSLog(@"old label is :%@",oldTags);
+    
+    NSArray *tagToDraw = [oldTags componentsSeparatedByString:@","];
+    if (tagToDraw.count > 0) {
+        for (int i = 0; i < tagToDraw.count; i++) {
+            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(280, 150+30*i, self.view.frame.size.width-280, 20)];
+            tag.text = tagToDraw[i];
+            [tagLabels addObject:tag];
+            [self.view addSubview:tag];
+            
+        }
+        
+    }
+    
+
+    
+}
+
+
+#pragma mark tavleView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //  NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
@@ -875,23 +960,68 @@ bool firstInmoney;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (indexPath.row == 0) {
-        UIAlertView* addSelection;
+    NSUInteger row=[indexPath row];
+ 
+    [selected addObject:[self.tags objectAtIndex:row]];
+    NSLog(@"select---->:%@",selected);
+
+    
+
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete ;
+}
+
+
+
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
+     NSLog(@"Deselect---->:%@",selected);
+
+}
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"here!!!!!!!!!");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        addSelection = [[UIAlertView alloc]
-                        initWithTitle:@"Add tag"
-                        message:nil
-                        delegate:self
-                        cancelButtonTitle:@"取消"
-                        otherButtonTitles:@"确定",nil];
+        const char *dbpath = [databasePath UTF8String];
+        sqlite3_stmt *statement;
         
-        [addSelection setAlertViewStyle:UIAlertViewStylePlainTextInput];
-        addSelection.tag = 3;
+        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+            
+            // 插入当天的数据
+            NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM TAG WHERE tagName=?"];
+            
+            const char *deletestement = [deleteSql UTF8String];
+            sqlite3_prepare_v2(dataBase, deletestement, -1, &statement, NULL);
+            sqlite3_bind_text(statement,1, [[self.tags objectAtIndex:indexPath.row] UTF8String], -1, SQLITE_TRANSIENT);
+            
+            
+            if (sqlite3_step(statement)==SQLITE_DONE) {
+                NSLog(@"delete tag ok");
+                [self.tags removeObject:[self.tags objectAtIndex:indexPath.row]];
+               
+            }
+            else {
+                NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
+                
+            }
+            sqlite3_finalize(statement);
+        }
         
-        [addSelection show];
+        else {
+            NSLog(@"数据库打开失败");
+            
+        }
+        sqlite3_close(dataBase);
+        
+        // Delete the row from the data source.
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tagTable setEditing:NO animated:YES];
+
         
     }
-
+   
 }
 
 
