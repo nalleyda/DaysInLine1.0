@@ -45,7 +45,8 @@ bool firstInmoney;
     //self.remindData = nil;
     NSLog(@"<<<<<%@>>>>>",self.remindData);
     tagLabels = [[NSMutableArray alloc] init];
-    
+    self.selectedTags = [[NSMutableString alloc] init];
+
     NSString *docsDir;
     NSArray *dirPaths;
     
@@ -63,7 +64,6 @@ bool firstInmoney;
     self.mainText = (UITextView *)[self.view viewWithTag:106];
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
     
-    self.selectedTags = [[NSMutableString alloc] init];
     
     
 
@@ -173,9 +173,14 @@ bool firstInmoney;
             [self.view addSubview:tag];
             
         }
+
         self.selectedTags = [choices substringToIndex:(choices.length-1)];
         NSLog(@"OK   tapped---->:%@",self.selectedTags);
 
+    }
+    else
+    {
+        self.selectedTags = @"";
     }
   
        [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
@@ -427,9 +432,10 @@ bool firstInmoney;
         if (startNum >= endNum) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"结束应该在开始之后哦"
-                                                           delegate:self
+                                                           delegate:nil
                                                   cancelButtonTitle:@"确定"
                                                   otherButtonTitles:nil];
+            alert.tag = 100;
             [alert show];
         }
         else{
@@ -453,9 +459,10 @@ bool firstInmoney;
             if (flag) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                                 message:@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充"
-                                                               delegate:self
+                                                               delegate:nil
                                                       cancelButtonTitle:@"确定"
                                                       otherButtonTitles:nil];
+                alert.tag = 101;
                 [alert show];
                 
             }
@@ -504,7 +511,7 @@ bool firstInmoney;
                         sqlite3_bind_double(statement,8, [endTimeNum doubleValue]);
                         sqlite3_bind_double(statement,9, [endTimeNum doubleValue]-[startTimeNum doubleValue]);
                         
-                        sqlite3_bind_text(statement,10, [@"label" UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_text(statement,10, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_text(statement,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                       //  sqlite3_bind_int(statement,11, 0);
                         sqlite3_bind_int(statement,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
@@ -631,6 +638,7 @@ bool firstInmoney;
     }
     else if(modifying == 1)
     {
+        NSLog(@"~~~~~~~~%@",self.remindData);
         if (![self.remindData isEqualToString:@""]) {
             
             
@@ -645,43 +653,44 @@ bool firstInmoney;
                 }
             }
 
-        }
-        NSArray *remindDate = [self.remindData componentsSeparatedByString:@","];
-        NSString *date = remindDate[0];
-        NSString *time = remindDate[1];
-        
-        formatter.dateFormat = @"yyyy-MM-dd";
-        NSString *time1 = [formatter stringFromDate:now];
-        NSDate *dateNow = [formatter dateFromString:time1];
-        
-        NSDate *daysRemind = [formatter dateFromString:date];
-        formatter.dateFormat = @"H:mm";
-        NSDate *timeRemind = [formatter dateFromString:time];
-        NSString *time2 = [formatter stringFromDate:now];
-        NSDate *timeNow = [formatter dateFromString:time2];
-        
-        NSTimeInterval daysInterval=[daysRemind timeIntervalSinceDate:dateNow];
-        NSTimeInterval timeInterval=[timeRemind timeIntervalSinceDate:timeNow];
-        
-        int interval = (int)(daysInterval + timeInterval);
-        
-        UILocalNotification *notification=[[UILocalNotification alloc] init];
-        if (notification!=nil)
-        {
             
-            //NSDate *now=[NSDate new];
-            notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
-            NSLog(@"%d",interval);
-            notification.timeZone=[NSTimeZone defaultTimeZone];
+            NSArray *remindDate = [self.remindData componentsSeparatedByString:@","];
+            NSString *date = remindDate[0];
+            NSString *time = remindDate[1];
             
-            //notification.alertBody=@"TIME！";
+            formatter.dateFormat = @"yyyy-MM-dd";
+            NSString *time1 = [formatter stringFromDate:now];
+            NSDate *dateNow = [formatter dateFromString:time1];
             
-            notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
-            notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
+            NSDate *daysRemind = [formatter dateFromString:date];
+            formatter.dateFormat = @"H:mm";
+            NSDate *timeRemind = [formatter dateFromString:time];
+            NSString *time2 = [formatter stringFromDate:now];
+            NSDate *timeNow = [formatter dateFromString:time2];
             
-            [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
+            NSTimeInterval daysInterval=[daysRemind timeIntervalSinceDate:dateNow];
+            NSTimeInterval timeInterval=[timeRemind timeIntervalSinceDate:timeNow];
             
+            int interval = (int)(daysInterval + timeInterval);
             
+            UILocalNotification *notification=[[UILocalNotification alloc] init];
+            if (notification!=nil)
+            {
+                
+                //NSDate *now=[NSDate new];
+                notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
+                NSLog(@"%d",interval);
+                notification.timeZone=[NSTimeZone defaultTimeZone];
+                
+                //notification.alertBody=@"TIME！";
+                
+                notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
+                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
+                
+                [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
+                
+                
+            }
         }
         
         
@@ -896,6 +905,10 @@ bool firstInmoney;
             NSLog(@"点击了取消按钮");
         }
     }
+    else
+    {
+        return;
+    }
 }
 
 
@@ -913,6 +926,7 @@ bool firstInmoney;
 -(void) drawTag:(NSString *)oldTags
 {
     NSLog(@"old label is :%@",oldTags);
+    self.selectedTags = oldTags;
     
     NSArray *tagToDraw = [oldTags componentsSeparatedByString:@","];
     if (tagToDraw.count > 0) {

@@ -437,6 +437,9 @@
                             }
             
         }
+        else{
+            NSLog(@"wwwwwwwwwwww!!!!!1");
+        }
         sqlite3_finalize(statement);
     }
     else {
