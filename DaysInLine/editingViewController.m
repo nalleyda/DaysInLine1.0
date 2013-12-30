@@ -362,6 +362,7 @@ bool firstInmoney;
 {
     NSNumber *oldStartNum;
     NSLog(@"<<<<<%@>>>>>3",self.remindData);
+    
 
     
     if (modifying == 1) {
@@ -417,6 +418,7 @@ bool firstInmoney;
         [alert show];
         
     }
+    
     else  {
         NSArray *startTime = [self.startLabel.text componentsSeparatedByString:@":"];
         NSArray *endTime = [self.endLabel.text componentsSeparatedByString:@":"];
@@ -425,6 +427,8 @@ bool firstInmoney;
         double minite_0 = [startTime[1] doubleValue];
         double hour_1 = [endTime[0] doubleValue];
         double minite_1 = [endTime[1] doubleValue];
+        
+        
         
         double startNum = hour_0*60 + minite_0;
         double endNum = hour_1*60 + minite_1;
@@ -456,6 +460,7 @@ bool firstInmoney;
                 }
             }
             
+            
             if (flag) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                                 message:@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充"
@@ -469,7 +474,6 @@ bool firstInmoney;
             else{
                 NSLog(@"the old start is :%d",[oldStartNum intValue]);
                 [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
-                
                 if ([self.eventType intValue]==0) {
                     for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
                         workArea[i] = 1;
@@ -483,6 +487,8 @@ bool firstInmoney;
                 }else{
                     NSLog(@"事件类型有误！");
                 }
+                
+                NSLog(@"%d yyyyyyyy",modifying);
                 
                 if (modifying == 0) {
                     
@@ -504,7 +510,7 @@ bool firstInmoney;
                         //未添加功能的数据
                         sqlite3_bind_double(statement,4, self.incomeFinal);
                         sqlite3_bind_double(statement,5, self.expendFinal);
-
+                        
                         
                         sqlite3_bind_text(statement,6, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_double(statement,7, [startTimeNum doubleValue]);
@@ -513,16 +519,17 @@ bool firstInmoney;
                         
                         sqlite3_bind_text(statement,10, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_text(statement,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
-                      //  sqlite3_bind_int(statement,11, 0);
+                        //  sqlite3_bind_int(statement,11, 0);
                         sqlite3_bind_int(statement,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
                         sqlite3_bind_text(statement,13, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
                         
-                        if (sqlite3_step(statement)==SQLITE_DONE) {
-                            NSLog(@"innsert event ok");
-                        }
-                        else {
+                            if (sqlite3_step(statement)==SQLITE_DONE) {
+                            NSLog(@"innsert event okqqqqqq");
+                            }
+                            else {
                             NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
-                        }
+                            }
+                       
                         sqlite3_finalize(statement);
                     }
                     
@@ -563,7 +570,7 @@ bool firstInmoney;
                             sqlite3_bind_int(statement,12, modifyEventId);
                             
                             if (sqlite3_step(statement)==SQLITE_DONE) {
-                                NSLog(@"innsert event ok");
+                                NSLog(@"innsert event okwwwwwwww");
                             }
                             else {
                                 NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));

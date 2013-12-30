@@ -106,6 +106,7 @@ int contentLongth;
         height=15.6;
     }
     
+    
     NSLog(@"start:%f,height:%f,longth:%d",start,end-start,contentLongth);
   /*
     UIButton *eventButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -133,6 +134,7 @@ int contentLongth;
     eventButton.backgroundColor = [UIColor clearColor];
     eventButton.layer.borderWidth = 1.0;
     
+    
     [eventButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     eventButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     
@@ -140,9 +142,10 @@ int contentLongth;
     [eventButton setTitle:title forState:UIControlStateNormal];
     
     [eventButton addTarget:self action:@selector(eventModify:) forControlEvents:UIControlEventTouchUpInside];
-  
+    
     [self addSubview:eventButton];
      NSLog(@"redraw000");
+      
 }
 
 -(void)eventModify:(UIButton *)sender
