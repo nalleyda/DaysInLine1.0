@@ -82,18 +82,25 @@ int contentLongth;
 
 -(void)redrawButton:(NSNumber *)startNum :(NSNumber *)endNum :(NSString *)title :(NSNumber *)eventType :(NSNumber *)oldStartNum
 {
+    
+   //enentType:0为工作事件，1为生活事件 startNum=nil时为删除该事件。
     NSLog(@"drawing begin");
     if (oldStartNum) {
         if ([self.subviews count] > 0) {
             NSLog(@"finding the right button:%d",[oldStartNum intValue]);
             
             for (UIView *curView in self.subviews) {
+                NSLog(@"button tag is : %d",curView.tag);
                 if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/30) {
                     NSLog(@"find it!!!!");
                     [curView removeFromSuperview];
+                    NSLog(@"removed it :%d!!!!",curView.tag);
                 }
                 
             }
+        }
+        if (startNum == nil) {
+            return;
         }
     }
     

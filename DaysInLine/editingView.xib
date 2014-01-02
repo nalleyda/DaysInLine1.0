@@ -68,7 +68,7 @@
                     </state>
                 </button>
                 <button opaque="NO" tag="2004" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PTi-KT-iw5">
-                    <rect key="frame" x="219" y="422" width="45" height="35"/>
+                    <rect key="frame" x="221" y="422" width="45" height="35"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="删除">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
