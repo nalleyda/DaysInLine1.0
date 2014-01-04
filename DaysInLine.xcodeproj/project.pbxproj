@@ -11,6 +11,12 @@
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
+		0B9009DD1877D791008D3799 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009D81877D791008D3799 /* left_arrow.png */; };
+		0B9009DE1877D791008D3799 /* left_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009D91877D791008D3799 /* left_arrow@2x.png */; };
+		0B9009DF1877D791008D3799 /* right_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009DA1877D791008D3799 /* right_arrow.png */; };
+		0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009DB1877D791008D3799 /* right_arrow@2x.png */; };
+		0B9009E31877DDA6008D3799 /* selectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9009E21877DDA6008D3799 /* selectView.m */; };
+		0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9009E51877EBE4008D3799 /* CKCalendarView.m */; };
 		0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B916CFC1816BB2200B3F41D /* editingViewController.m */; };
 		0B928730183A300400AB69BB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B92872F183A300400AB69BB /* libsqlite3.dylib */; };
 		0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B929ED018154B94008E1726 /* buttonInScroll.m */; };
@@ -56,6 +62,14 @@
 		0B8F0D8C18641FA900FD1264 /* remindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController.xib; sourceTree = "<group>"; };
 		0B8F0D8F186422F300FD1264 /* remindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindViewController.h; sourceTree = "<group>"; };
 		0B8F0D90186422F300FD1264 /* remindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remindViewController.m; sourceTree = "<group>"; };
+		0B9009D81877D791008D3799 /* left_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_arrow.png; sourceTree = "<group>"; };
+		0B9009D91877D791008D3799 /* left_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "left_arrow@2x.png"; sourceTree = "<group>"; };
+		0B9009DA1877D791008D3799 /* right_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_arrow.png; sourceTree = "<group>"; };
+		0B9009DB1877D791008D3799 /* right_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right_arrow@2x.png"; sourceTree = "<group>"; };
+		0B9009E11877DDA6008D3799 /* selectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = selectView.h; sourceTree = "<group>"; };
+		0B9009E21877DDA6008D3799 /* selectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = selectView.m; sourceTree = "<group>"; };
+		0B9009E41877EBE4008D3799 /* CKCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCalendarView.h; sourceTree = "<group>"; };
+		0B9009E51877EBE4008D3799 /* CKCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKCalendarView.m; sourceTree = "<group>"; };
 		0B916CFB1816BB2200B3F41D /* editingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = editingViewController.h; sourceTree = "<group>"; };
 		0B916CFC1816BB2200B3F41D /* editingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = editingViewController.m; sourceTree = "<group>"; };
 		0B92872F183A300400AB69BB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -125,6 +139,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B9009D71877D791008D3799 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B9009D81877D791008D3799 /* left_arrow.png */,
+				0B9009D91877D791008D3799 /* left_arrow@2x.png */,
+				0B9009DA1877D791008D3799 /* right_arrow.png */,
+				0B9009DB1877D791008D3799 /* right_arrow@2x.png */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
 		0B929ED918156730008E1726 /* controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +212,7 @@
 		0B9A53D51812274D0085FFD7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0B9009D71877D791008D3799 /* resources */,
 				0B9A5405181230990085FFD7 /* Default.png */,
 				0BD7008218139338004FCBE2 /* backgroundHome.png */,
 				0BAE55AC185B7B1700695F0E /* editView.png */,
@@ -222,6 +248,8 @@
 		0BD700871813AC06004FCBE2 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				0B9009E41877EBE4008D3799 /* CKCalendarView.h */,
+				0B9009E51877EBE4008D3799 /* CKCalendarView.m */,
 				0BD700841813ABFB004FCBE2 /* homeView.h */,
 				0BD700851813ABFB004FCBE2 /* homeView.m */,
 				0BD700891813BC66004FCBE2 /* daylineView.h */,
@@ -234,6 +262,8 @@
 				0BA02C6E186B094E00563857 /* tagView.xib */,
 				0B929ECF18154B94008E1726 /* buttonInScroll.h */,
 				0B929ED018154B94008E1726 /* buttonInScroll.m */,
+				0B9009E11877DDA6008D3799 /* selectView.h */,
+				0B9009E21877DDA6008D3799 /* selectView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -328,17 +358,21 @@
 			files = (
 				0B9A5406181230990085FFD7 /* Default.png in Resources */,
 				0BAE55B2185B7B1700695F0E /* star1.png in Resources */,
+				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
 				0B9A53E71812274D0085FFD7 /* Images.xcassets in Resources */,
 				0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */,
+				0B9009DE1877D791008D3799 /* left_arrow@2x.png in Resources */,
 				0BAE55B0185B7B1700695F0E /* editView.png in Resources */,
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0BAE55B3185B7B1700695F0E /* star2.png in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
+				0B9009DF1877D791008D3799 /* right_arrow.png in Resources */,
 				0BAE55B1185B7B1700695F0E /* icon.png in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
 				0B9A53E21812274D0085FFD7 /* Main.storyboard in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
+				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +398,8 @@
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
 				0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */,
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,
+				0B9009E31877DDA6008D3799 /* selectView.m in Sources */,
+				0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */,
 				0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */,
 				0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */,
 			);

@@ -27,7 +27,7 @@ int contentLongth;
         
         
         self.backgroundColor = [UIColor whiteColor];
-        CGSize newSize = CGSizeMake(self.frame.size.width-85, self.frame.size.height+320);
+        CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height+320);
         contentLongth = self.frame.size.height+320;
         [self setContentSize:newSize];
         
@@ -48,8 +48,8 @@ int contentLongth;
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
     
     CGContextSetLineWidth(context, 1.5f); //设置线的宽度 为1.5个像素
-    CGContextMoveToPoint(context, self.frame.size.width/2+18, 0);
-    CGContextAddLineToPoint(context, self.frame.size.width/2+18, self.frame.size.height);
+    CGContextMoveToPoint(context, (self.frame.size.width)/2+18, 0);
+    CGContextAddLineToPoint(context, (self.frame.size.width)/2+18, self.frame.size.height);
     CGContextStrokePath(context);
     
 
@@ -127,10 +127,10 @@ int contentLongth;
     NSLog(@"in draw the typ is : %@",eventType);
     UIButton *eventButton;
     if ([eventType intValue] == 0) {
-         eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, self.frame.size.width/2-32, height)];
+         eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-32, height)];
     }
     else if ([eventType intValue] == 1) {
-        eventButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2+25, start, self.frame.size.width/2-32, height)];
+        eventButton = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width)/2+25, start, (self.frame.size.width)/2-32, height)];
     }
    
     eventButton.tag =[eventType intValue]*1000 + [startNum intValue]/30;
