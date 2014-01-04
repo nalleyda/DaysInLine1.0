@@ -313,7 +313,7 @@ bool moveON;
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:nil
                                                    delegate:self
-                                          cancelButtonTitle:@"ok"
+                                          cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     alert.tag = 0;
    
@@ -360,80 +360,18 @@ bool moveON;
 }
 -(void)deleteTapped
 {
-    NSNumber *oldStartNum;
+   
     NSLog(@"delete！！！！！！！！");
-    if(modifying == 1){
     
-        const char *dbpath = [databasePath UTF8String];
-        sqlite3_stmt *statement;
-        sqlite3_stmt *statement_1;
-        
-        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-            
-            NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
-            
-            const char *queryEventstatment = [queryEvent UTF8String];
-            if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
-                if (sqlite3_step(statement)==SQLITE_ROW) {
-                    //找到当前修改的事件，取出数据，并清零对应的Area。
-                    NSLog(@"After select event ID");
-                    NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
-                    oldStartNum = startTm;
-                    NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
-                    
-                    if ([self.eventType intValue] == 0) {
-                        for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
-                            workArea[i] = 0;
-                            NSLog(@"release work area is :%d",i);
-                        }
-                    }else if([self.eventType intValue] == 1){
-                        for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
-                            lifeArea[i] = 0;
-                            NSLog(@"release life area is :%d",i);
-                        }
-                    }
-                    
-                }
-                
-            }
-            NSLog(@"the old start is :%d",[oldStartNum intValue]);
-            [self.drawBtnDelegate redrawButton:nil:nil:nil:self.eventType:oldStartNum];
-            
-            // 删除当天的数据
-            NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM EVENT WHERE eventID=?"];
-            
-            const char *deletestement = [deleteSql UTF8String];
-            sqlite3_prepare_v2(dataBase, deletestement, -1, &statement_1, NULL);
-            sqlite3_bind_int(statement_1, 1, modifyEventId);
-            
-            if (sqlite3_step(statement_1)==SQLITE_DONE) {
-                NSLog(@"delete event ok");
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"成功删除该事项"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil];
-                [alert show];
-                
-                [self dismissViewControllerAnimated:YES completion:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"确定删除该事项吗"
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定",nil];
+    alert.tag = 4;
+    
+    [ alert  show];
 
-
-            }
-            else {
-                NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
-                
-            }
-            sqlite3_finalize(statement);
-            sqlite3_finalize(statement_1);
-        }
-        
-        else {
-            NSLog(@"数据库打开失败");
-            
-        }
-        sqlite3_close(dataBase);
-        NSLog(@"事项删除完毕！！！！！！") ;
-    }
     
 }
 
@@ -780,8 +718,7 @@ bool moveON;
                 notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
                 
                 [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
-                
-                完成删除事件按钮的编写，在redrawbutton中添加条件判断，若startNum为空则说明时删除事件，removefromsuperview后直接return。遇到一个bug，经查为数据库操作时，若有插入、删除、查询等多个动作时，需要用不同的statement，否则会在取数据或bind数据时候冲突，导致数据库lock。
+             
             }
         }
         
@@ -821,7 +758,16 @@ bool moveON;
 
 -(void)returnTapped
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"本次编辑内容尚未保存，确定离开吗"
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定",nil];
+    alert.tag = 5;
+    
+    [ alert  show];
+
+
     
 }
 
@@ -995,6 +941,99 @@ bool moveON;
         }
         else {
             NSLog(@"点击了取消按钮");
+        }
+    }
+    if (alertView.tag == 4) {
+        
+        NSNumber *oldStartNum;
+        if (buttonIndex == 1) {
+            
+            if(modifying == 1){
+                
+                const char *dbpath = [databasePath UTF8String];
+                sqlite3_stmt *statement;
+                sqlite3_stmt *statement_1;
+                
+                if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                    
+                    NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
+                    
+                    const char *queryEventstatment = [queryEvent UTF8String];
+                    if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
+                        if (sqlite3_step(statement)==SQLITE_ROW) {
+                            //找到当前修改的事件，取出数据，并清零对应的Area。
+                            NSLog(@"After select event ID");
+                            NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
+                            oldStartNum = startTm;
+                            NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
+                            
+                            if ([self.eventType intValue] == 0) {
+                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                    workArea[i] = 0;
+                                    NSLog(@"release work area is :%d",i);
+                                }
+                            }else if([self.eventType intValue] == 1){
+                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                    lifeArea[i] = 0;
+                                    NSLog(@"release life area is :%d",i);
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                    NSLog(@"the old start is :%d",[oldStartNum intValue]);
+                    [self.drawBtnDelegate redrawButton:nil:nil:nil:self.eventType:oldStartNum];
+                    
+                    // 删除当天的数据
+                    NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM EVENT WHERE eventID=?"];
+                    
+                    const char *deletestement = [deleteSql UTF8String];
+                    sqlite3_prepare_v2(dataBase, deletestement, -1, &statement_1, NULL);
+                    sqlite3_bind_int(statement_1, 1, modifyEventId);
+                    
+                    if (sqlite3_step(statement_1)==SQLITE_DONE) {
+                        NSLog(@"delete event ok");
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                        message:@"成功删除该事项"
+                                                                       delegate:nil
+                                                              cancelButtonTitle:@"确定"
+                                                              otherButtonTitles:nil];
+                        [alert show];
+                        
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                        
+                        
+                    }
+                    else {
+                        NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
+                        
+                    }
+                    sqlite3_finalize(statement);
+                    sqlite3_finalize(statement_1);
+                }
+                
+                else {
+                    NSLog(@"数据库打开失败");
+                    
+                }
+                sqlite3_close(dataBase);
+                NSLog(@"事项删除完毕！！！！！！") ;
+            }else{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                message:@"该事件尚未保存，无须删除"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil];
+                [alert show];
+
+            }
+            
+        }
+    }
+    if (alertView.tag == 5) {
+        if (buttonIndex == 1) {
+            [self dismissViewControllerAnimated:YES completion:nil];
         }
     }
     

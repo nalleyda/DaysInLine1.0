@@ -37,12 +37,12 @@
         
         UIButton *my_treasureButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 84, 45)];
         my_treasureButton.backgroundColor = [UIColor brownColor];
-        [my_treasureButton setTitle:@"聚宝盆" forState:UIControlStateNormal];
+        [my_treasureButton setTitle:@"收藏夹" forState:UIControlStateNormal];
         self.treasureButton = my_treasureButton;
         
         UIButton *my_achieveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 260, 84, 45)];
         my_achieveButton.backgroundColor = [UIColor brownColor];
-        [my_achieveButton setTitle:@"成就" forState:UIControlStateNormal];
+        [my_achieveButton setTitle:@"任务" forState:UIControlStateNormal];
         self.achieveButton = my_achieveButton;
         
         UIButton *my_analyseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 320, 84, 45)];
