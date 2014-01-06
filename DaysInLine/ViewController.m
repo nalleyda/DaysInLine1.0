@@ -216,6 +216,7 @@
         sqlite3_stmt *statement;
         
         modifyDate = self.today;
+        self.my_dayline.dateNow.text = modifyDate;
         const char *dbpath = [databasePath UTF8String];
         //查看当天是否已经有数据
         
@@ -471,6 +472,7 @@
     
     //获取将要查询的日期
     modifyDate = self.dateToSelect;
+    self.my_selectDay.dateNow.text = modifyDate;
     
     sqlite3_stmt *statement;
     const char *dbpath = [databasePath UTF8String];

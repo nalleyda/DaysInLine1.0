@@ -9,6 +9,7 @@
 #import "daylineView.h"
 
 
+
 @implementation daylineView
 
 
@@ -100,6 +101,18 @@
         [self addSubview:starButton];
         
     }
+    
+    self.dateNow = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-42, 7, 120, 30)];
+    //self.dateNow.backgroundColor = [UIColor blueColor];
+   // self.dateNow.text = modifyDate;
+    self.dateNow.font = [UIFont systemFontOfSize:18.0];
+    self.dateNow.layer.borderColor = [UIColor blackColor].CGColor;
+    self.dateNow.layer.borderWidth = 1.0;
+    self.dateNow.textAlignment = NSTextAlignmentCenter;
+    self.dateNow.layer.borderColor = [UIColor whiteColor].CGColor;
+   // self.dateNow.layer.borderWidth = 2.0;
+    [self addSubview:self.dateNow];
+    
 /*   测试这十个star是否咱顺序被创建，按顺序插入了starArray
     for (int i=0; i<10; i++) {
         UIButton *test = [self.starArray objectAtIndex:i];
@@ -108,17 +121,17 @@
     }
  */
     
-    UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+ /*   UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [finishButton setFrame:CGRectMake(175, 10, 45, 25)];
     
     [finishButton setTitle:@"完成" forState:UIControlStateNormal];
     [finishButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     finishButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
 
-
     
     [self addSubview:finishButton];
-    
+  
+*/  
 }
 
 
