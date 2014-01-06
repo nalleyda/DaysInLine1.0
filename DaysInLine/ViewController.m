@@ -28,8 +28,11 @@
 @property (nonatomic,strong) NSString *today;
 @property (nonatomic,strong) NSMutableArray *allTags;
 @property(nonatomic, strong) NSMutableArray *HasEventsDates;
+
 @property(nonatomic, strong) NSMutableArray *tableLeft;
 @property(nonatomic, strong) NSMutableArray *tableRight;
+@property(nonatomic, strong) NSMutableArray *EventsInTag;
+@property(nonatomic, strong) NSMutableArray *EventsIDInTag;
 @property(nonatomic, strong) NSString *dateToSelect;
 
 @end
@@ -42,6 +45,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.allTags = [[NSMutableArray alloc] init];
+    self.EventsInTag = [[NSMutableArray alloc] init];
+    self.EventsIDInTag = [[NSMutableArray alloc] init];
     
     homeView *my_homeView = [[homeView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:my_homeView];
@@ -57,9 +62,14 @@
     self.my_select.calendar.delegate = self;
     self.my_select.eventsTable.delegate = self;
     self.my_select.eventsTable.dataSource = self;
+    self.my_select.alltagTable.delegate = self;
+    self.my_select.alltagTable.dataSource = self;
+    self.my_select.eventInTagTable.delegate = self;
+    self.my_select.eventInTagTable.dataSource = self;
     [self.homePage addSubview:self.my_dayline];
     [self.homePage addSubview:self.my_select];
     [self.homePage addSubview:self.my_selectDay];
+    
     
     [self.my_dayline setHidden:YES];
     [self.my_select setHidden:YES];
@@ -433,13 +443,27 @@
     [self.my_selectDay setHidden:YES];
     [self.my_dayline setHidden:YES];
     if (self.my_select.hidden) {
+                [self.my_select.alltagTable reloadData];
         [self.my_select setHidden: NO];
     }
     self.tableLeft = [[NSMutableArray alloc] init];
     self.tableRight = [[NSMutableArray alloc] init];
     
     [self.my_select.goInThatDay addTarget:self action:@selector(goInThatDayTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_select.returnToTags addTarget:self action:@selector(returnToTagsTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.my_select.alltagTable setHidden:NO];
+    [self.my_select.eventInTagTable setHidden:YES];
+    [self.my_select.returnToTags setHidden:YES];
 }
+
+-(void)returnToTagsTapped
+{
+    [self.my_select.alltagTable setHidden:NO];
+    [self.my_select.eventInTagTable setHidden:YES];
+    [self.my_select.returnToTags setHidden:YES];
+}
+
 -(void)goInThatDayTapped
 {
     for (int i=0; i<18; i++) {
@@ -838,37 +862,318 @@
 #pragma mark tavleView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger tableRows ;
     //  NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
-    return self.tableRight.count;
+    switch (tableView.tag) {
+        case 0:
+            tableRows = self.tableRight.count;
+            break;
+        case 1:
+            tableRows = self.allTags.count;
+            break;
+        case 2:
+            tableRows = self.EventsInTag.count;
+                NSLog(@"~~~~~~~~~%d~~~~~~~~~",tableRows);
+            break;
+            
+        default: tableRows = 0;
+            break;
+    }
+
+    return tableRows;
+    
 }
 
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectEvent"];
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectEvent"];
-        
-        
-    }
-    NSUInteger row=[indexPath row];
-    
-    //设置文本
-    if (row<self.tableRight.count) {
-        cell.textLabel.text = self.tableLeft[row];
-        
-        cell.detailTextLabel.text = self.tableRight[row];
-        
 
-    }
-    
+    UITableViewCell *cell;
+    UITableViewCell *cell_1 = [tableView dequeueReusableCellWithIdentifier:@"selectEvent"];
+    UITableViewCell *cell_2 = [tableView dequeueReusableCellWithIdentifier:@"selectTags"];
+    UITableViewCell *cell_3 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInTag"];
+    switch (tableView.tag) {
+        case 0:
+            
+            if (!cell_1)
+            {
+                cell_1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectEvent"];
+            }
+            NSUInteger row1=[indexPath row];
+            
+            //设置文本
+            if (row1<self.tableRight.count) {
+                cell_1.textLabel.text = self.tableLeft[row1];
+                
+                cell_1.detailTextLabel.text = self.tableRight[row1];
+            }
+            cell = cell_1;
 
-    
+            break;
+        case 1:
+            if (!cell_2)
+            {
+                cell_2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectTags"];
+                [cell_2 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                
+            }
+                NSUInteger row2=[indexPath row];
+                //设置文本
+            if (row2<self.allTags.count) {
+                cell_2.textLabel.text = self.allTags[row2];
+                NSLog(@"%@",self.allTags);
+                
+            }
+            cell = cell_2;
+
+            break;
+        
+        case 2:
+            
+            if (!cell_3)
+            {
+                cell_3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectEventsInTag"];
+                [cell_3 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                
+            }
+            
+                NSUInteger row3=[indexPath row];
+            //设置文本
+            if (row3<self.EventsInTag.count) {
+                cell_3.textLabel.text = self.EventsInTag[row3];
+                NSLog(@"%@",self.EventsInTag[row3]);
+                
+            }
+            cell = cell_3;
+   
+            
+            break;
+            
+            
+        default: cell = nil;
+            break;
+    }
+
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *evtTitle;
+    NSNumber *evtID;
+    NSUInteger row=[indexPath row];
+    sqlite3_stmt *statement;
+    
+    
+    NSString *title_mdfy;
+    NSString *mainTxt_mdfy;
+    NSNumber *evtID_mdfy;
+    NSNumber *evtType_mdfy;
+    
+    NSString *startTime;
+    NSString *endTime;
+    
+    NSNumber *income;
+    NSNumber *expend;
+    NSString *remind;
+    NSString *oldLabel;
+    
+    const char *dbpath = [databasePath UTF8String];
 
+    
+   // [[tableView cellForRowAtIndexPath:row] textLabel];
+    switch (tableView.tag) {
+        case 0:
+            
+            break;
+        case 1:
+  
+            [self.EventsIDInTag removeAllObjects];
+            [self.EventsInTag removeAllObjects];
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID from event where label like'%%%@%%'",self.allTags[row]];
+                const char *queryEventstatment = [queryEvent UTF8String];
+                if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
+                    while (sqlite3_step(statement)==SQLITE_ROW) {
+                        //找到要查询的事件主题，取出数据。
+  
+                        char *ttl_mdfy = (char *)sqlite3_column_text(statement, 0);
+                        NSLog(@"char_mdfy is %s",ttl_mdfy);
+                        if (ttl_mdfy == nil) {
+                            evtTitle = @"空";
+                        }else {
+                            evtTitle = [[NSString alloc] initWithUTF8String:ttl_mdfy];
+                            NSLog(@"nsstring_evtTitle  is %@",evtTitle);
+                        }
+                        
+                        evtID = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 1)];
+                        
+                        [self.EventsInTag addObject:evtTitle];
+                        [self.EventsIDInTag addObject:evtID];
+                    }
+                    
+                }
+                else{
+                    NSLog(@"查询不OK");
+                }
+                sqlite3_finalize(statement);
+               
+
+            }
+            else {
+                NSLog(@"数据库打开失败");
+                
+            }
+            sqlite3_close(dataBase);
+            
+            [self.my_select.eventInTagTable reloadData];
+            
+            [self.my_select.alltagTable setHidden:YES];
+            [self.my_select.eventInTagTable setHidden:NO];
+            [self.my_select.returnToTags setHidden:NO];
+            
+
+            break;
+        case 2:
+        {
+            modifying = 1;
+            int eventid = [self.EventsIDInTag[row] intValue];
+            NSLog(@"&&&&&%@&&&&&",self.EventsIDInTag[row]);
+            NSLog(@"&&&&&%d&&&&&",eventid);
+            sqlite3_stmt *statement;
+            const char *dbpath = [databasePath UTF8String];
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",eventid];
+                const char *queryEventstatment = [queryEvent UTF8String];
+                if  (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
+                    while  (sqlite3_step(statement)==SQLITE_ROW) {
+                        //找到要查询的事件，取出数据。
+                        
+                        
+                        evtID_mdfy = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                        
+                        evtType_mdfy = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 1)];
+                        char *ttl_mdfy = (char *)sqlite3_column_text(statement, 2);
+                        NSLog(@"char_mdfy is %s",ttl_mdfy);
+                        if (ttl_mdfy == nil) {
+                            title_mdfy = @"";
+                        }else {
+                            title_mdfy = [[NSString alloc] initWithUTF8String:ttl_mdfy];
+                            NSLog(@"nsstring_mdfy  is %@",title_mdfy);
+                        }
+                        
+                        char *mTxt_mdfy = (char *)sqlite3_column_text(statement, 3);
+                        NSLog(@"mainTxt_mdfy is %s",mTxt_mdfy);
+                        if (mTxt_mdfy == nil) {
+                            mainTxt_mdfy = @"";
+                        }else {
+                            mainTxt_mdfy = [[NSString alloc] initWithUTF8String:mTxt_mdfy];
+                            NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
+                        }
+                        
+                        
+                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,4)];
+                        int start = [startTm intValue]+360;
+                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
+                        int end = [endTm intValue]+360;
+                        if (start%60<10) {
+                            startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
+                            
+                        }else{
+                            startTime = [NSString stringWithFormat:@"%d:%d",start/60,start%60];
+                        }
+                        if (end%60<10) {
+                            endTime = [NSString stringWithFormat:@"%d:0%d",end/60,end%60];
+                            
+                        }else{
+                            endTime = [NSString stringWithFormat:@"%d:%d",end/60,end%60];
+                        }
+                        
+                        
+                        NSLog(@"start time is:%@",startTime);
+                        
+                        income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
+                        expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                        
+                        char *oldTags = (char *)sqlite3_column_text(statement, 8);
+                        if (oldTags == nil) {
+                            oldLabel = @"";
+                        }else {
+                            oldLabel = [[NSString alloc] initWithUTF8String:oldTags];
+                            
+                            NSLog(@"nsstring_old labels  is %@",oldLabel);
+                        }
+                        
+                        
+                        char *remind_mdfy = (char *)sqlite3_column_text(statement, 9);
+                        if (remind_mdfy == nil) {
+                            remind = @"";
+                        }else {
+                            remind = [[NSString alloc] initWithUTF8String:remind_mdfy];
+                            
+                            NSLog(@"nsstring_mdfy  is %@",remind);
+                        }
+                    }
+                    
+                }
+                else{
+                    NSLog(@"wwwwwwwwwwww!!!!!1");
+                }
+                sqlite3_finalize(statement);
+            }
+            else {
+                NSLog(@"数据库打开失败");
+                
+            }
+            sqlite3_close(dataBase);
+            editingViewController *my_selectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
+            self.drawLabelDelegate = my_selectEvent;
+            if(self.my_dayline.hidden == NO){
+                my_selectEvent.drawBtnDelegate = self.my_scoller;
+            }else if (self.my_selectDay.hidden == NO){
+                my_selectEvent.drawBtnDelegate = self.my_selectScoller;
+            }
+            //  my_modifyViewController.addTagDataDelegate = self;
+            my_selectEvent.tags = self.allTags;
+            
+            
+            
+            
+            
+            
+            //将该事件还原现使出来
+            my_selectEvent.eventType = evtType_mdfy;
+            [(UITextField*)[my_selectEvent.view viewWithTag:105] setText:title_mdfy] ;
+            [(UITextView*)[my_selectEvent.view viewWithTag:106] setText:mainTxt_mdfy];
+            [(UILabel*)[my_selectEvent.view viewWithTag:103] setText:startTime];
+            [(UILabel*)[my_selectEvent.view viewWithTag:104] setText:endTime];
+            [(UIButton*)[my_selectEvent.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
+            [(UIButton*)[my_selectEvent.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
+            my_selectEvent.incomeFinal = [income doubleValue];
+            my_selectEvent.expendFinal = [expend doubleValue];
+            [self.drawLabelDelegate drawTag:oldLabel];
+            //  my_modifyViewController.oldLabel = oldLabel;
+            my_selectEvent.remindData = remind;
+            
+            //   [(UITextField*)[my_modifyViewController.moneyAlert viewWithTag:501] setText:[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]];
+            modifyEventId = [evtID_mdfy intValue];
+            NSLog(@"eventID is : %d",modifyEventId);
+            // NSLog(@"income is &&&&&&: %@",[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]);
+            
+            
+            my_selectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [self presentViewController:my_selectEvent animated:YES completion:Nil ];
+            
+        }
+            break;
+            
+        default:
+            
+            break;
+    }
+    
+    
+    }
 
 @end
