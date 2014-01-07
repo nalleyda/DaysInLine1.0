@@ -1,0 +1,35 @@
+//
+//  collectionView.m
+//  DaysInLine
+//
+//  Created by 张力 on 14-1-7.
+//  Copyright (c) 2014年 张力. All rights reserved.
+//
+
+#import "collectionView.h"
+
+@implementation collectionView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        self.collectionScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-100)];
+        self.collectionScroll.backgroundColor = [UIColor grayColor];
+        [self addSubview:self.collectionScroll];
+        
+    }
+    return self;
+}
+
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

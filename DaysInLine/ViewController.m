@@ -13,6 +13,7 @@
 #import "dayLineScoller.h"
 #import "buttonInScroll.h"
 #import "editingViewController.h"
+#import "collectionView.h"
 #import "globalVars.h"
 
 
@@ -25,6 +26,7 @@
 @property (nonatomic,strong) dayLineScoller *my_scoller;
 @property (nonatomic,strong) dayLineScoller *my_selectScoller;
 @property (nonatomic,strong) selectView *my_select ;
+@property (nonatomic,strong) collectionView *my_collect;
 @property (nonatomic,strong) NSString *today;
 @property (nonatomic,strong) NSMutableArray *allTags;
 @property(nonatomic, strong) NSMutableArray *HasEventsDates;
@@ -54,11 +56,13 @@
     
     [my_homeView.todayButton addTarget:self action:@selector(todayTapped) forControlEvents:UIControlEventTouchUpInside];
     [my_homeView.selectButton addTarget:self action:@selector(selectTapped) forControlEvents:UIControlEventTouchUpInside];
+    [my_homeView.treasureButton addTarget:self action:@selector(treasureTapped) forControlEvents:UIControlEventTouchUpInside];
     
     CGRect frame = CGRectMake(85,0, self.view.bounds.size.width-85, self.view.bounds.size.height );
     self.my_dayline = [[daylineView alloc] initWithFrame:frame];
     self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
     self.my_select = [[selectView alloc] initWithFrame:frame];
+    self.my_collect = [[collectionView alloc] initWithFrame:frame];
     self.my_select.calendar.delegate = self;
     self.my_select.eventsTable.delegate = self;
     self.my_select.eventsTable.dataSource = self;
@@ -69,11 +73,12 @@
     [self.homePage addSubview:self.my_dayline];
     [self.homePage addSubview:self.my_select];
     [self.homePage addSubview:self.my_selectDay];
-    
+    [self.homePage addSubview:self.my_collect];
     
     [self.my_dayline setHidden:YES];
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
+    [self.my_collect setHidden:YES];
     
     //初始化全局数据
     for (int i=0; i<18; i++) {
@@ -194,6 +199,7 @@
     
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
+    [self.my_collect setHidden:YES];
     
     if (self.my_dayline.hidden) {
         [self.my_dayline setHidden:NO];
@@ -442,6 +448,8 @@
     
     [self.my_selectDay setHidden:YES];
     [self.my_dayline setHidden:YES];
+    [self.my_collect setHidden:YES];
+    
     if (self.my_select.hidden) {
                 [self.my_select.alltagTable reloadData];
         [self.my_select setHidden: NO];
@@ -526,28 +534,7 @@
                 }
                 
             }
-            /*   else {
-             // 插入当天的数据
-             NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
-             
-             //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
-             const char *insertsatement = [insertSql UTF8String];
-             sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
-             sqlite3_bind_text(statement, 1, [self.dateToSelect UTF8String], -1, SQLITE_TRANSIENT);
-             sqlite3_bind_int(statement, 2, 0);
-             sqlite3_bind_int(statement, 3, 0);
-             
-             
-             if (sqlite3_step(statement)==SQLITE_DONE) {
-             NSLog(@"innsert today ok");
-             }
-             else {
-             NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
-             }
-             
-             }
-             
-             */
+            
         }
         else{
             NSLog(@"Error in select:%s",sqlite3_errmsg(dataBase));
@@ -607,6 +594,33 @@
     
     
 }
+
+
+-(void)treasureTapped
+{
+    [self.my_select setHidden:YES];
+    [self.my_dayline setHidden:YES];
+    [self.my_selectDay setHidden:YES];
+    if (self.my_select.hidden) {
+        [self.my_collect setHidden:NO];
+    }
+    
+    
+
+        //此处可根据收藏数量设置scroll 的长度。
+    [self.my_collect.collectionScroll setContentSize:CGSizeMake(self.my_collect.collectionScroll.frame.size.width, 2000)];
+   
+    //此处添加每个收藏按钮，一行两个。
+    for (int i=0; i<100; i++) {
+        UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,i*20, 100, 15 )];
+        testLabel.text = @"hello";
+        testLabel.backgroundColor = [UIColor yellowColor];
+        [self.my_collect.collectionScroll addSubview:testLabel];
+    }
+    }
+ 
+
+
 
 //数据库操作方法
 -(void)execSql:(NSString *)sql
@@ -738,11 +752,7 @@
   //  my_modifyViewController.addTagDataDelegate = self;
     my_modifyViewController.tags = self.allTags;
     
-    
-
-
-    
-    
+        
     //将该事件还原现使出来
     my_modifyViewController.eventType = evtType_mdfy;
     [(UITextField*)[my_modifyViewController.view viewWithTag:105] setText:title_mdfy] ;
@@ -769,6 +779,10 @@
         
 
 }
+
+
+
+
 
 - (BOOL)dateHasEvents:(NSDate *)date {
     for (NSDate *eventDate in self.HasEventsDates) {
