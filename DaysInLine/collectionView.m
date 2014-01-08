@@ -14,11 +14,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+       /*
         // Initialization code
         self.collectionScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-100)];
         self.collectionScroll.backgroundColor = [UIColor grayColor];
         [self addSubview:self.collectionScroll];
-        
+        */
+        self.collectionTable = [[UITableView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-100)];
+   
+        self.collectionTable.tag = 3;
+        self.collectionTable.rowHeight = 62;
+        [self addSubview:self.collectionTable];
     }
     return self;
 }

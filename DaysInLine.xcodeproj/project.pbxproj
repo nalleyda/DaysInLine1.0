@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B00AC54187D849400427F35 /* collectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B00AC53187D849400427F35 /* collectCell.xib */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
@@ -58,6 +59,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B00AC53187D849400427F35 /* collectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = collectCell.xib; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
 		0B2C3339185B7CEE00CB2763 /* moneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moneyView.xib; sourceTree = "<group>"; };
 		0B8F0D8C18641FA900FD1264 /* remindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController.xib; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				0B9009E21877DDA6008D3799 /* selectView.m */,
 				0BA18F6B187C41B700ADBB01 /* collectionView.h */,
 				0BA18F6C187C41B700ADBB01 /* collectionView.m */,
+				0B00AC53187D849400427F35 /* collectCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
 				0B9009DF1877D791008D3799 /* right_arrow.png in Resources */,
 				0BAE55B1185B7B1700695F0E /* icon.png in Resources */,
+				0B00AC54187D849400427F35 /* collectCell.xib in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
 				0B9A53E21812274D0085FFD7 /* Main.storyboard in Resources */,

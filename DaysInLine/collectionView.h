@@ -10,5 +10,6 @@
 
 @interface collectionView : UIView
 @property (strong,nonatomic) UIScrollView *collectionScroll;
+@property (strong,nonatomic) UITableView *collectionTable;
 
 @end

@@ -36,6 +36,7 @@
 @property(nonatomic, strong) NSMutableArray *EventsInTag;
 @property(nonatomic, strong) NSMutableArray *EventsIDInTag;
 @property(nonatomic, strong) NSString *dateToSelect;
+@property (strong, nonatomic) IBOutlet UITableViewCell *cellinCollection;
 
 @end
 
@@ -70,10 +71,14 @@
     self.my_select.alltagTable.dataSource = self;
     self.my_select.eventInTagTable.delegate = self;
     self.my_select.eventInTagTable.dataSource = self;
+    self.my_collect.collectionTable.delegate = self;
+    self.my_collect.collectionTable.dataSource = self;
     [self.homePage addSubview:self.my_dayline];
     [self.homePage addSubview:self.my_select];
     [self.homePage addSubview:self.my_selectDay];
     [self.homePage addSubview:self.my_collect];
+    
+    
     
     [self.my_dayline setHidden:YES];
     [self.my_select setHidden:YES];
@@ -113,9 +118,12 @@
         //      NSString *createRemind = @"CREATE TABLE IF NOT EXISTS REMIND (remindID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER,date TEXT,fromToday TEXT,time TEXT)";
         NSString *createTag = @"CREATE TABLE IF NOT EXISTS TAG (tagID INTEGER PRIMARY KEY AUTOINCREMENT,tagName TEXT UNIQUE)";
         
+        NSString *createCollect = @"CREATE TABLE IF NOT EXISTS collection (collectionID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER)";
+        
         [self execSql:createDayable];
         [self execSql:createEvent];
         [self execSql:createTag];
+        [self execSql:createCollect];
     }
     else {
         NSLog(@"数据库打开失败");
@@ -146,7 +154,7 @@
         }
         
         
-        NSLog(@"%@",self.HasEventsDates);
+       // NSLog(@"%@",self.HasEventsDates);
     }else {
         NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
     }
@@ -451,7 +459,7 @@
     [self.my_collect setHidden:YES];
     
     if (self.my_select.hidden) {
-                [self.my_select.alltagTable reloadData];
+               // [self.my_select.alltagTable reloadData];
         [self.my_select setHidden: NO];
     }
     self.tableLeft = [[NSMutableArray alloc] init];
@@ -601,11 +609,14 @@
     [self.my_select setHidden:YES];
     [self.my_dayline setHidden:YES];
     [self.my_selectDay setHidden:YES];
-    if (self.my_select.hidden) {
+    if (self.my_collect.hidden==YES) {
+        [self.my_collect.collectionTable reloadData];
         [self.my_collect setHidden:NO];
     }
     
     
+    NSLog(@"%d",self.my_collect.collectionTable.tag);
+    /*
 
         //此处可根据收藏数量设置scroll 的长度。
     [self.my_collect.collectionScroll setContentSize:CGSizeMake(self.my_collect.collectionScroll.frame.size.width, 2000)];
@@ -617,7 +628,8 @@
         testLabel.backgroundColor = [UIColor yellowColor];
         [self.my_collect.collectionScroll addSubview:testLabel];
     }
-    }
+     */
+}
  
 
 
@@ -889,6 +901,9 @@
             tableRows = self.EventsInTag.count;
                 NSLog(@"~~~~~~~~~%d~~~~~~~~~",tableRows);
             break;
+        case 3:
+            tableRows = 10;
+            break;
             
         default: tableRows = 0;
             break;
@@ -907,6 +922,7 @@
     UITableViewCell *cell_1 = [tableView dequeueReusableCellWithIdentifier:@"selectEvent"];
     UITableViewCell *cell_2 = [tableView dequeueReusableCellWithIdentifier:@"selectTags"];
     UITableViewCell *cell_3 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInTag"];
+    UITableViewCell *cell_4 = [tableView dequeueReusableCellWithIdentifier:@"CustomXibCellIdentifier"];
     switch (tableView.tag) {
         case 0:
             
@@ -963,6 +979,17 @@
    
             
             break;
+        
+        case 3:
+            
+        
+            if(cell_4==nil){
+                cell_4 = [[[NSBundle mainBundle]loadNibNamed:@"collectCell" owner:self options:nil] lastObject];//加载nib文件
+          
+                
+            }
+            cell = cell_4;
+            break;
             
             
         default: cell = nil;
@@ -996,7 +1023,7 @@
     const char *dbpath = [databasePath UTF8String];
 
     
-   // [[tableView cellForRowAtIndexPath:row] textLabel];
+   // tag:0为编辑页面内的标签按钮弹出的列表，1为查询界面中的tag列表，2为点击某一tag之后的所有事件列表，3为收藏中的列表
     switch (tableView.tag) {
         case 0:
             
@@ -1013,12 +1040,11 @@
                         //找到要查询的事件主题，取出数据。
   
                         char *ttl_mdfy = (char *)sqlite3_column_text(statement, 0);
-                        NSLog(@"char_mdfy is %s",ttl_mdfy);
                         if (ttl_mdfy == nil) {
                             evtTitle = @"空";
                         }else {
                             evtTitle = [[NSString alloc] initWithUTF8String:ttl_mdfy];
-                            NSLog(@"nsstring_evtTitle  is %@",evtTitle);
+                            
                         }
                         
                         evtID = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 1)];
@@ -1053,8 +1079,7 @@
         {
             modifying = 1;
             int eventid = [self.EventsIDInTag[row] intValue];
-            NSLog(@"&&&&&%@&&&&&",self.EventsIDInTag[row]);
-            NSLog(@"&&&&&%d&&&&&",eventid);
+            
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
@@ -1167,27 +1192,26 @@
             my_selectEvent.incomeFinal = [income doubleValue];
             my_selectEvent.expendFinal = [expend doubleValue];
             [self.drawLabelDelegate drawTag:oldLabel];
-            //  my_modifyViewController.oldLabel = oldLabel;
+
             my_selectEvent.remindData = remind;
             
-            //   [(UITextField*)[my_modifyViewController.moneyAlert viewWithTag:501] setText:[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]];
             modifyEventId = [evtID_mdfy intValue];
-            NSLog(@"eventID is : %d",modifyEventId);
-            // NSLog(@"income is &&&&&&: %@",[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]);
-            
-            
             my_selectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:my_selectEvent animated:YES completion:Nil ];
             
         }
             break;
             
+        case 3:
+            NSLog(@"colletcell tapped");
+            break;
         default:
             
             break;
     }
     
-    
-    }
+}
+
+
 
 @end

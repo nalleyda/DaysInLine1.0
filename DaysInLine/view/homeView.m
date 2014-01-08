@@ -27,7 +27,7 @@
         
         UIButton *my_todayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, 84, 45)];
         my_todayButton.backgroundColor = [UIColor brownColor];
-        [my_todayButton setTitle:@"Today" forState:UIControlStateNormal];
+        [my_todayButton setTitle:@"今天" forState:UIControlStateNormal];
         self.todayButton = my_todayButton;
         
         UIButton *my_selectButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 140, 84, 45)];
@@ -42,12 +42,12 @@
         
         UIButton *my_achieveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 260, 84, 45)];
         my_achieveButton.backgroundColor = [UIColor brownColor];
-        [my_achieveButton setTitle:@"任务" forState:UIControlStateNormal];
+        [my_achieveButton setTitle:@"状态分析" forState:UIControlStateNormal];
         self.achieveButton = my_achieveButton;
         
         UIButton *my_analyseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 320, 84, 45)];
         my_analyseButton.backgroundColor = [UIColor brownColor];
-        [my_analyseButton setTitle:@"统计" forState:UIControlStateNormal];
+        [my_analyseButton setTitle:@"退出" forState:UIControlStateNormal];
         self.analyseButton = my_analyseButton;
         
         [self addSubview:my_todayButton];
