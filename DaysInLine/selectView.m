@@ -51,7 +51,8 @@
         self.eventsTable.rowHeight = 34;
         self.eventsTable.tag = 0;
         NSLog(@"frame:%f",self.eventsTable.frame.origin.y);
-        self.eventsTable.backgroundColor = [UIColor grayColor];
+        [self.eventsTable setEditing:NO];
+      //  self.eventsTable.backgroundColor = [UIColor grayColor];
         [self.dateView addSubview:self.eventsTable];
         
         
@@ -60,7 +61,7 @@
       //  [self.alltagTable setIndicatorStyle:UIScrollViewIndicatorStyleBlack];
 
         self.alltagTable.tag = 1;
-       // self.alltagTable.rowHeight = 34;
+               // self.alltagTable.rowHeight = 34;
         self.eventInTagTable= [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, self.frame.size.height-170)];
         self.eventInTagTable.tag = 2;
        // self.alltagTable.backgroundColor = [UIColor yellowColor];

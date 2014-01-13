@@ -741,7 +741,8 @@
 
                     NSLog(@"nsstring_mdfy  is %@",remind);
                 }
-                            }
+                
+            }
             
         }
         else{
@@ -931,7 +932,7 @@
                 cell_1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectEvent"];
             }
             NSUInteger row1=[indexPath row];
-            
+            [cell_1 setSelectionStyle:UITableViewCellSelectionStyleNone];
             //设置文本
             if (row1<self.tableRight.count) {
                 cell_1.textLabel.text = self.tableLeft[row1];
@@ -949,6 +950,8 @@
                 
             }
                 NSUInteger row2=[indexPath row];
+            
+            
                 //设置文本
             if (row2<self.allTags.count) {
                 cell_2.textLabel.text = self.allTags[row2];
@@ -1023,7 +1026,7 @@
     const char *dbpath = [databasePath UTF8String];
 
     
-   // tag:0为编辑页面内的标签按钮弹出的列表，1为查询界面中的tag列表，2为点击某一tag之后的所有事件列表，3为收藏中的列表
+   // tag:0为按日期查询界面中的列表，1为查询界面中的tag列表，2为点击某一tag之后的所有事件列表，3为收藏中的列表
     switch (tableView.tag) {
         case 0:
             
@@ -1066,6 +1069,7 @@
                 
             }
             sqlite3_close(dataBase);
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             
             [self.my_select.eventInTagTable reloadData];
             
@@ -1166,6 +1170,9 @@
                 
             }
             sqlite3_close(dataBase);
+            
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
             editingViewController *my_selectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_selectEvent;
             if(self.my_dayline.hidden == NO){
