@@ -24,13 +24,14 @@
    
         self.collectionTable.tag = 3;
         self.collectionTable.rowHeight = 62;
+        
         [self addSubview:self.collectionTable];
     }
     return self;
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
+// Only override drawRect: if you perform custom drawi ng.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
