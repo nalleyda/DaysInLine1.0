@@ -214,7 +214,7 @@
 -(void)todayTapped
 {
 
-    for (int i=0; i<18; i++) {
+    for (int i=0; i<36; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -497,7 +497,7 @@
 
 -(void)goInThatDayTapped
 {
-    for (int i=0; i<18; i++) {
+    for (int i=0; i<36; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -762,6 +762,56 @@
     NSLog(@"%d",self.my_collect.collectionTable.tag);
   }
 
+
+-(void)seizeArea:(NSString *)date
+{
+    
+    for (int i=0; i<36; i++) {
+        workArea[i] = 0;
+        lifeArea[i] = 0;
+    }
+    
+    sqlite3_stmt *statement;
+    const char *dbpath = [databasePath UTF8String];
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,startTime,endTime from event where DATE=\"%@\"",date];
+        const char *queryEventstatement = [queryEventButton UTF8String];
+        if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
+            while (sqlite3_step(statement)==SQLITE_ROW) {
+                //当天已有事件存在，则取出数据还原界面
+              
+                NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
+                NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
+                
+                
+                if ([evtType intValue]==0) {
+                    for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                        workArea[i] = 1;
+                        NSLog(@"seized work area is :%d",i);
+                    }
+                }else if([evtType intValue]==1){
+                    for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                        lifeArea[i] = 1;
+                        NSLog(@"seized work area is :%d",i);
+                    }
+                }else{
+                    NSLog(@"事件类型有误！");
+                }
+                
+            }
+            
+        }
+        
+        sqlite3_finalize(statement);
+        
+    }else {
+        NSLog(@"数据库打开失败aaaa啊啊啊");
+        
+    }
+    sqlite3_close(dataBase);
+
+}
 
 
 
@@ -1159,6 +1209,8 @@
     NSNumber *evtID_mdfy;
     NSNumber *evtType_mdfy;
     
+    NSString *dateGoesIn;
+    NSString *dateInCollect;
     NSString *startTime;
     NSString *endTime;
     
@@ -1231,7 +1283,7 @@
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",eventid];
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,date,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",eventid];
                 const char *queryEventstatment = [queryEvent UTF8String];
                 if  (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                     while  (sqlite3_step(statement)==SQLITE_ROW) {
@@ -1259,10 +1311,19 @@
                             NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
                         }
                         
+                        char *date_mdfy = (char *)sqlite3_column_text(statement, 4);
+                        NSLog(@"date_mdfy is %s",date_mdfy);
+                        if (date_mdfy == nil) {
+                            dateGoesIn = @"";
+                        }else {
+                            dateGoesIn = [[NSString alloc] initWithUTF8String:date_mdfy];
+                            NSLog(@"nsstring_dateGoesIn  is %@",dateGoesIn);
+                        }
                         
-                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,4)];
+                        [self seizeArea:dateGoesIn];
+                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
                         int start = [startTm intValue]+360;
-                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
+                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
                         int end = [endTm intValue]+360;
                         if (start%60<10) {
                             startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
@@ -1280,10 +1341,10 @@
                         
                         NSLog(@"start time is:%@",startTime);
                         
-                        income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
-                        expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                        income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                        expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,8)];
                         
-                        char *oldTags = (char *)sqlite3_column_text(statement, 8);
+                        char *oldTags = (char *)sqlite3_column_text(statement, 9);
                         if (oldTags == nil) {
                             oldLabel = @"";
                         }else {
@@ -1293,7 +1354,7 @@
                         }
                         
                         
-                        char *remind_mdfy = (char *)sqlite3_column_text(statement, 9);
+                        char *remind_mdfy = (char *)sqlite3_column_text(statement, 10);
                         if (remind_mdfy == nil) {
                             remind = @"";
                         }else {
@@ -1328,10 +1389,7 @@
             //  my_modifyViewController.addTagDataDelegate = self;
             my_selectEvent.tags = self.allTags;
             
-            
-            
-            
-            
+                        
             
             //将该事件还原现使出来
             my_selectEvent.eventType = evtType_mdfy;
@@ -1364,7 +1422,7 @@
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",collectEventid];
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,date,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",collectEventid];
                 const char *queryEventstatment = [queryEvent UTF8String];
                 if  (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                     while  (sqlite3_step(statement)==SQLITE_ROW) {
@@ -1392,10 +1450,20 @@
                             NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
                         }
                         
+                        char *date_mdfy = (char *)sqlite3_column_text(statement, 4);
+                        NSLog(@"date_mdfy is %s",date_mdfy);
+                        if (date_mdfy == nil) {
+                            dateInCollect = @"";
+                        }else {
+                            dateInCollect = [[NSString alloc] initWithUTF8String:date_mdfy];
+                            NSLog(@"nsstring_dateGoesIn  is %@",dateInCollect);
+                        }
                         
-                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,4)];
+                        [self seizeArea:dateInCollect];
+                        
+                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
                         int start = [startTm intValue]+360;
-                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
+                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
                         int end = [endTm intValue]+360;
                         if (start%60<10) {
                             startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
@@ -1413,10 +1481,10 @@
                         
                         NSLog(@"start time is:%@",startTime);
                         
-                        income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
-                        expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                        income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                        expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,8)];
                         
-                        char *oldTags = (char *)sqlite3_column_text(statement, 8);
+                        char *oldTags = (char *)sqlite3_column_text(statement, 9);
                         if (oldTags == nil) {
                             oldLabel = @"";
                         }else {
@@ -1426,7 +1494,7 @@
                         }
                         
                         
-                        char *remind_mdfy = (char *)sqlite3_column_text(statement, 9);
+                        char *remind_mdfy = (char *)sqlite3_column_text(statement, 10);
                         if (remind_mdfy == nil) {
                             remind = @"";
                         }else {
