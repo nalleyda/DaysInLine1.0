@@ -100,7 +100,7 @@
     [self.my_collect setHidden:YES];
     
     //初始化全局数据
-    for (int i=0; i<18; i++) {
+    for (int i=0; i<48; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -214,7 +214,7 @@
 -(void)todayTapped
 {
 
-    for (int i=0; i<36; i++) {
+    for (int i=0; i<48; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -497,7 +497,7 @@
 
 -(void)goInThatDayTapped
 {
-    for (int i=0; i<36; i++) {
+    for (int i=0; i<48; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -696,9 +696,9 @@
 
                     
                     NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(stateQueryEvent,2)];
-                    int start = [startTm intValue]+360;
+                    int start = [startTm intValue];
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(stateQueryEvent,3)];
-                    int end = [endTm intValue]+360;
+                    int end = [endTm intValue];
                     if (start%60<10) {
                         eventStart = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
                         
@@ -766,7 +766,7 @@
 -(void)seizeArea:(NSString *)date
 {
     
-    for (int i=0; i<36; i++) {
+    for (int i=0; i<48; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -882,9 +882,9 @@
                 
                 
                 NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,4)];
-               int start = [startTm intValue]+360;
+               int start = [startTm intValue];
                 NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
-               int end = [endTm intValue]+360;
+               int end = [endTm intValue];
                 if (start%60<10) {
                     startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
 
@@ -1322,9 +1322,9 @@
                         
                         [self seizeArea:dateGoesIn];
                         NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
-                        int start = [startTm intValue]+360;
+                        int start = [startTm intValue];
                         NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
-                        int end = [endTm intValue]+360;
+                        int end = [endTm intValue];
                         if (start%60<10) {
                             startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
                             
@@ -1462,9 +1462,9 @@
                         [self seizeArea:dateInCollect];
                         
                         NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
-                        int start = [startTm intValue]+360;
+                        int start = [startTm intValue];
                         NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
-                        int end = [endTm intValue]+360;
+                        int end = [endTm intValue];
                         if (start%60<10) {
                             startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
                             

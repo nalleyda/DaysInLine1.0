@@ -27,8 +27,9 @@ int contentLongth;
         
         
         self.backgroundColor = [UIColor whiteColor];
-        CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height+320);
-        contentLongth = self.frame.size.height+320;
+        CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height+320+180);
+        contentLongth = self.frame.size.height+320+180;
+        [self setContentOffset:CGPointMake(0, 180)];
         [self setContentSize:newSize];
         
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
@@ -43,19 +44,19 @@ int contentLongth;
 
 - (void)drawRect:(CGRect)rect
 {
-    int t=6;
+    int t=0;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
     
     CGContextSetLineWidth(context, 1.5f); //设置线的宽度 为1.5个像素
     CGContextMoveToPoint(context, (self.frame.size.width)/2+18, 0);
-    CGContextAddLineToPoint(context, (self.frame.size.width)/2+18, self.frame.size.height);
+    CGContextAddLineToPoint(context, (self.frame.size.width)/2+18, 2*self.frame.size.height);
     CGContextStrokePath(context);
     
 
     
     
-    for (int i=0; i<self.frame.size.height+310;i=i+30) {
+    for (int i=0; i<self.frame.size.height+310+180;i=i+30) {
        
 /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
         buttonWorks1.backgroundColor = [UIColor blueColor];
@@ -106,8 +107,8 @@ int contentLongth;
     
     
     NSLog(@"redraw");
-    double start = ([startNum doubleValue]/1080)*contentLongth;
-    double end = ([endNum doubleValue]/1080)*contentLongth;
+    double start = ([startNum doubleValue]/1440)*contentLongth;
+    double end = ([endNum doubleValue]/1440)*contentLongth;
     double height = end - start;
     if (height<15.6) {
         height=15.6;

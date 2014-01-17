@@ -458,8 +458,8 @@ bool haveSaved;
         }
         else{
             
-            startTimeNum = [[NSNumber alloc] initWithDouble:(startNum-360.00)];
-            endTimeNum = [[NSNumber alloc] initWithDouble:(endNum-360.00)];
+            startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
+            endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
             
             for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
                 if([self.eventType intValue]==0 && workArea[i] == 1)
@@ -643,6 +643,46 @@ bool haveSaved;
     
 
     
+    if (modifying == 1) {
+        sqlite3_stmt *statement;
+        const char *dbpath = [databasePath UTF8String];
+        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+            NSLog(@"before select event ID");
+            NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
+            
+            const char *queryEventstatment = [queryEvent UTF8String];
+            if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
+                if (sqlite3_step(statement)==SQLITE_ROW) {
+                    //找到当前修改的事件，取出数据，并清零对应的Area。
+                    NSLog(@"After select event ID");
+                    NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
+                    oldStartNum = startTm;
+                    NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
+                    
+                    if ([self.eventType intValue] == 0) {
+                        for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                            workArea[i] = 0;
+                            NSLog(@"release work area is :%d",i);
+                        }
+                    }else if([self.eventType intValue] == 1){
+                        for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                            lifeArea[i] = 0;
+                            NSLog(@"release life area is :%d",i);
+                        }
+                    }
+                    
+                }
+                
+            }
+            sqlite3_finalize(statement);
+        }
+        else {
+            NSLog(@"数据库打开失败");
+            
+        }
+        sqlite3_close(dataBase);
+        
+    }
 
     
     flag=NO;
@@ -681,12 +721,13 @@ bool haveSaved;
                                                   otherButtonTitles:nil];
             alert.tag = 100;
             [alert show];
+            
             return;
         }
         else{
             
-            startTimeNum = [[NSNumber alloc] initWithDouble:(startNum-360.00)];
-            endTimeNum = [[NSNumber alloc] initWithDouble:(endNum-360.00)];
+            startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
+            endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
             
             for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
                 if([self.eventType intValue]==0 && workArea[i] == 1)
@@ -711,52 +752,53 @@ bool haveSaved;
                 alert.tag = 101;
                 [alert show];
                
+                
+                
+                
+                //未能成功保存，所选时间内有其他事件冲突。所以先恢复当前修改中事件的占位，防止占位清零后点击返回，造成Area错误释放。
+                sqlite3_stmt *statement;
+                const char *dbpath = [databasePath UTF8String];
+                if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                    NSLog(@"before select event ID");
+                    NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
+                    
+                    const char *queryEventstatment = [queryEvent UTF8String];
+                    if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
+                        if (sqlite3_step(statement)==SQLITE_ROW) {
+                            //找到当前修改的事件，取出数据，将对应的Area设置为1。
+                            NSLog(@"After select event ID");
+                            NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
+                            oldStartNum = startTm;
+                            NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
+                            
+                            if ([self.eventType intValue] == 0) {
+                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                    workArea[i] = 1;
+                                    NSLog(@"seize work area is :%d",i);
+                                }
+                            }else if([self.eventType intValue] == 1){
+                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                    lifeArea[i] = 1;
+                                    NSLog(@"seize life area is :%d",i);
+                                }
+                            }
+                            
+                        }
+                        
+                    }
+                    sqlite3_finalize(statement);
+                }
+                
+                
+
+                
+                
                     return;
                 
                 
             }
             else{
-                
-                if (modifying == 1) {
-                    sqlite3_stmt *statement;
-                    const char *dbpath = [databasePath UTF8String];
-                    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                        NSLog(@"before select event ID");
-                        NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
-                        
-                        const char *queryEventstatment = [queryEvent UTF8String];
-                        if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
-                            if (sqlite3_step(statement)==SQLITE_ROW) {
-                                //找到当前修改的事件，取出数据，并清零对应的Area。
-                                NSLog(@"After select event ID");
-                                NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
-                                oldStartNum = startTm;
-                                NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
-                                
-                                if ([self.eventType intValue] == 0) {
-                                    for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
-                                        workArea[i] = 0;
-                                        NSLog(@"release work area is :%d",i);
-                                    }
-                                }else if([self.eventType intValue] == 1){
-                                    for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
-                                        lifeArea[i] = 0;
-                                        NSLog(@"release life area is :%d",i);
-                                    }
-                                }
-                                
-                            }
-                            
-                        }
-                        sqlite3_finalize(statement);
-                    }
-                    else {
-                        NSLog(@"数据库打开失败");
-                        
-                    }
-                    sqlite3_close(dataBase);
-                    
-                }
+
                 
                 
                 NSLog(@"the old start is :%d",[oldStartNum intValue]);
@@ -1013,14 +1055,8 @@ bool haveSaved;
 
 -(void)cancelTapped
 {
-  //  UIView *viewInAlert = (UIView *)[self.moneyAlert viewWithTag:500];
-   // [viewInAlert removeFromSuperview];
-   // [viewInAlert.window resignKeyWindow];
-  //  [self.moneyAlert removeFromSuperview];
+  
     [self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
-    
- 
-    
     
 }
 
@@ -1068,7 +1104,7 @@ bool haveSaved;
     double hour_0 = [startTime[0] doubleValue];
     double minite_0 = [startTime[1] doubleValue];
     double startNum = hour_0*60 + minite_0;
-    startTimeNum = [[NSNumber alloc] initWithDouble:(startNum-360.00)];
+    startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
     }
     
     if (actionSheet.tag == 2) {
@@ -1089,7 +1125,7 @@ bool haveSaved;
         double minite_1 = [endTime[1] doubleValue];
         double endNum = hour_1*60 + minite_1;
 
-        endTimeNum = [[NSNumber alloc] initWithDouble:(endNum-360.00)];
+        endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
         if (self.startLabel.text) {
             if ([endTimeNum doubleValue]<=[startTimeNum doubleValue]) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
