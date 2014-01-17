@@ -23,7 +23,7 @@
         self.collectionTable = [[UITableView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-100)];
    
         self.collectionTable.tag = 3;
-        self.collectionTable.rowHeight = 62;
+        self.collectionTable.rowHeight = 48;
         
         [self addSubview:self.collectionTable];
     }

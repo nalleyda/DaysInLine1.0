@@ -36,6 +36,14 @@
 @property(nonatomic, strong) NSMutableArray *EventsInTag;
 @property(nonatomic, strong) NSMutableArray *EventsIDInTag;
 @property(nonatomic, strong) NSString *dateToSelect;
+
+@property(nonatomic, strong) NSMutableArray *collectEvent;
+@property(nonatomic, strong) NSMutableArray *collectEventTitle;
+@property(nonatomic, strong) NSMutableArray *collectEventTag;
+@property(nonatomic, strong) NSMutableArray *collectEventDate;
+@property(nonatomic, strong) NSMutableArray *collectEventStart;
+@property(nonatomic, strong) NSMutableArray *collectEventEnd;
+
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellinCollection;
 
 @end
@@ -50,6 +58,12 @@
     self.allTags = [[NSMutableArray alloc] init];
     self.EventsInTag = [[NSMutableArray alloc] init];
     self.EventsIDInTag = [[NSMutableArray alloc] init];
+    self.collectEvent = [[NSMutableArray alloc] init];
+      self.collectEventTitle = [[NSMutableArray alloc] init];
+      self.collectEventTag = [[NSMutableArray alloc] init];
+      self.collectEventDate = [[NSMutableArray alloc] init];
+      self.collectEventStart = [[NSMutableArray alloc] init];
+      self.collectEventEnd = [[NSMutableArray alloc] init];
     
     homeView *my_homeView = [[homeView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:my_homeView];
@@ -606,31 +620,146 @@
 
 -(void)treasureTapped
 {
+    const char *dbpath = [databasePath UTF8String];
+    sqlite3_stmt *statement;
+    sqlite3_stmt *stateQueryEvent;
+    NSNumber *collectEventID;
+    
+    NSString *eventTittle;
+    NSString *eventDate;
+    NSString *eventStart;
+    NSString *eventEnd;
+    NSString *eventTag;
+    
     [self.my_select setHidden:YES];
     [self.my_dayline setHidden:YES];
     [self.my_selectDay setHidden:YES];
+  
+    
+    [self.collectEvent removeAllObjects];
+    [self.collectEventTitle removeAllObjects];
+    [self.collectEventTag removeAllObjects];
+    [self.collectEventDate removeAllObjects];
+    [self.collectEventStart removeAllObjects];
+    [self.collectEventEnd removeAllObjects];
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        NSString *queryEventId = [NSString stringWithFormat:@"SELECT eventID from collection"];
+        const char *queryEventIdstatment = [queryEventId UTF8String];
+        if (sqlite3_prepare_v2(dataBase, queryEventIdstatment, -1, &statement, NULL)==SQLITE_OK) {
+            while (sqlite3_step(statement)==SQLITE_ROW) {
+                //找到收藏的事件ID，存入collectEvent数组。
+                
+                collectEventID = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                
+                [self.collectEvent addObject:collectEventID];
+                
+            }
+            
+        }
+        else{
+            NSLog(@"查询不OK啊啊啊");
+        }
+        sqlite3_finalize(statement);
+        
+        
+        for (int i = 0; i<self.collectEvent.count; i++) {
+            NSString *queryEventId = [NSString stringWithFormat:@"SELECT title,date,startTime,endTime,label from event where eventID=\"%d\"",[(NSNumber *)self.collectEvent[i] intValue]];
+
+            const char *queryEventIdstatment = [queryEventId UTF8String];
+            
+            if  (sqlite3_prepare_v2(dataBase, queryEventIdstatment, -1, &stateQueryEvent, NULL)==SQLITE_OK) {
+                if   (sqlite3_step(stateQueryEvent)==SQLITE_ROW) {
+                    //找到要查询的事件，取出数据。
+                    
+                    char *ttl_mdfy = (char *)sqlite3_column_text(stateQueryEvent, 0);
+                    NSLog(@"char_eventTittle is %s",ttl_mdfy);
+                    if (ttl_mdfy == nil) {
+                        eventTittle = @"";
+                    }else {
+                        eventTittle = [[NSString alloc] initWithUTF8String:ttl_mdfy];
+                        NSLog(@"nsstring_eventTittle  is %@",eventTittle);
+                    }
+                    [self.collectEventTitle addObject:eventTittle];
+                    
+                    
+                    char *date_mdfy = (char *)sqlite3_column_text(stateQueryEvent, 1);
+                    NSLog(@"date_mdfy is %s",date_mdfy);
+                    if (date_mdfy == nil) {
+                        eventDate = @"";
+                    }else {
+                        eventDate = [[NSString alloc] initWithUTF8String:date_mdfy];
+                        NSLog(@"nsstring_date  is %@",eventDate);
+                    }
+                    [self.collectEventDate addObject:eventDate];
+                    
+
+                    
+                    NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(stateQueryEvent,2)];
+                    int start = [startTm intValue]+360;
+                    NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(stateQueryEvent,3)];
+                    int end = [endTm intValue]+360;
+                    if (start%60<10) {
+                        eventStart = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
+                        
+                    }else{
+                        eventStart = [NSString stringWithFormat:@"%d:%d",start/60,start%60];
+                    }
+                    if (end%60<10) {
+                        eventEnd = [NSString stringWithFormat:@"%d:0%d",end/60,end%60];
+                        
+                    }else{
+                        eventEnd = [NSString stringWithFormat:@"%d:%d",end/60,end%60];
+                    }
+                    
+                    [self.collectEventStart addObject:eventStart];
+                    [self.collectEventEnd addObject:eventEnd];
+                    
+        //            NSLog(@"start time is:%@",startTime);
+                    
+                   
+                    char *EvtTag = (char *)sqlite3_column_text(stateQueryEvent, 4);
+                    if (EvtTag == nil) {
+                        eventTag = @"";
+                    }else {
+                        eventTag = [[NSString alloc] initWithUTF8String:EvtTag];
+                        
+                        NSLog(@"nsstring_old labels  is %@",eventTag);
+                    }
+                    
+                    [self.collectEventTag addObject:eventTag];
+                    
+                   
+                }
+                
+            }
+            else{
+                NSLog(@"wwwwwwwwwwww!!!!!2");
+            }
+            sqlite3_finalize(stateQueryEvent);
+        }
+
+        
+        
+        
+    }
+    else {
+        NSLog(@"数据库打开失败啊啊啊");
+        
+    }
+    sqlite3_close(dataBase);
+    
+     NSLog(@"%@,%@,%@,%@,%@",self.collectEvent,self.collectEventTitle,self.collectEventTag,self.collectEventDate,self.collectEventStart);
+    
     if (self.my_collect.hidden==YES) {
         [self.my_collect.collectionTable reloadData];
         [self.my_collect setHidden:NO];
     }
+   
     
     
     NSLog(@"%d",self.my_collect.collectionTable.tag);
-    /*
+  }
 
-        //此处可根据收藏数量设置scroll 的长度。
-    [self.my_collect.collectionScroll setContentSize:CGSizeMake(self.my_collect.collectionScroll.frame.size.width, 2000)];
-   
-    //此处添加每个收藏按钮，一行两个。
-    for (int i=0; i<100; i++) {
-        UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(100,i*20, 100, 15 )];
-        testLabel.text = @"hello";
-        testLabel.backgroundColor = [UIColor yellowColor];
-        [self.my_collect.collectionScroll addSubview:testLabel];
-    }
-     */
-}
- 
 
 
 
@@ -762,7 +891,7 @@
     }else if (self.my_selectDay.hidden == NO){
         my_modifyViewController.drawBtnDelegate = self.my_selectScoller;
     }
-  //  my_modifyViewController.addTagDataDelegate = self;
+
     my_modifyViewController.tags = self.allTags;
     
         
@@ -903,7 +1032,8 @@
                 NSLog(@"~~~~~~~~~%d~~~~~~~~~",tableRows);
             break;
         case 3:
-            tableRows = 10;
+            tableRows = self.collectEvent.count;
+             NSLog(@"^^^^^^^^^%d^^^^^^^^^",tableRows);
             break;
             
         default: tableRows = 0;
@@ -984,16 +1114,27 @@
             break;
         
         case 3:
-            
-        
+
             if(cell_4==nil){
                 cell_4 = [[[NSBundle mainBundle]loadNibNamed:@"collectCell" owner:self options:nil] lastObject];//加载nib文件
-          
                 
             }
+            
+         
+            NSUInteger row4=[indexPath row];
+            //设置文本
+            if (row4<self.collectEvent.count) {
+                NSLog(@"%@,%@,%@,%@",self.collectEventTitle[row4],self.collectEventTag[row4],self.collectEventDate[row4],self.collectEventStart[row4]);
+                ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
+                //NSLog(@"%@",self.collectEventTitle[row4]);
+                ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
+                ((UILabel *)[cell_4.contentView viewWithTag:3]).text = self.collectEventDate[row4];
+                ((UILabel *)[cell_4.contentView viewWithTag:4]).text =[NSString stringWithFormat:@"%@-%@",self.collectEventStart[row4],self.collectEventEnd[row4]];
+                
+            }
+            
             cell = cell_4;
             break;
-            
             
         default: cell = nil;
             break;
@@ -1076,7 +1217,7 @@
             [self.my_select.alltagTable setHidden:YES];
             [self.my_select.eventInTagTable setHidden:NO];
             [self.my_select.returnToTags setHidden:NO];
-            
+    
 
             break;
         case 2:
