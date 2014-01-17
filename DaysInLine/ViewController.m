@@ -128,7 +128,7 @@
         /*           NSString *createsql = @"CREATE TABLE IF NOT EXISTS DAYTABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT UNIQUE,MOOD INTEGER,GROWTH INTEGER)";
          */
         NSString *createDayable = @"CREATE TABLE IF NOT EXISTS DAYTABLE (DATE TEXT PRIMARY KEY,MOOD INTEGER,GROWTH INTEGER)";
-        NSString *createEvent = @"CREATE TABLE IF NOT EXISTS EVENT (eventID INTEGER PRIMARY KEY AUTOINCREMENT,TYPE INTEGER,TITLE TEXT,mainText TEXT,income REAL,expend REAL,date TEXT,startTime TEXT,endTime TEXT,distance TEXT,label TEXT,remind TEXT,startArea INTEGER,photoDir TEXT)";
+        NSString *createEvent = @"CREATE TABLE IF NOT EXISTS EVENT (eventID INTEGER PRIMARY KEY AUTOINCREMENT,TYPE INTEGER,TITLE TEXT,mainText TEXT,income REAL,expend REAL,date TEXT,startTime REAL,endTime REAL,distance TEXT,label TEXT,remind TEXT,startArea INTEGER,photoDir TEXT)";
         //      NSString *createRemind = @"CREATE TABLE IF NOT EXISTS REMIND (remindID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER,date TEXT,fromToday TEXT,time TEXT)";
         NSString *createTag = @"CREATE TABLE IF NOT EXISTS TAG (tagID INTEGER PRIMARY KEY AUTOINCREMENT,tagName TEXT UNIQUE)";
         
@@ -447,6 +447,7 @@
 {
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
     my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
+
     NSLog(@"type is:%@",my_editingViewController.eventType);
     if(self.my_dayline.hidden == NO){
         my_editingViewController.drawBtnDelegate = self.my_scoller;
@@ -750,8 +751,9 @@
     
      NSLog(@"%@,%@,%@,%@,%@",self.collectEvent,self.collectEventTitle,self.collectEventTag,self.collectEventDate,self.collectEventStart);
     
+    [self.my_collect.collectionTable reloadData];
+    
     if (self.my_collect.hidden==YES) {
-        [self.my_collect.collectionTable reloadData];
         [self.my_collect setHidden:NO];
     }
    
@@ -886,6 +888,7 @@
     sqlite3_close(dataBase);
     editingViewController *my_modifyViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
     self.drawLabelDelegate = my_modifyViewController;
+    my_modifyViewController.reloadDelegate = self;
     if(self.my_dayline.hidden == NO){
         my_modifyViewController.drawBtnDelegate = self.my_scoller;
     }else if (self.my_selectDay.hidden == NO){
@@ -1316,6 +1319,7 @@
             
             editingViewController *my_selectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_selectEvent;
+            my_selectEvent.reloadDelegate = self;
             if(self.my_dayline.hidden == NO){
                 my_selectEvent.drawBtnDelegate = self.my_scoller;
             }else if (self.my_selectDay.hidden == NO){
@@ -1351,7 +1355,139 @@
             break;
             
         case 3:
+        {
             NSLog(@"colletcell tapped");
+            
+            modifying = 1;
+            int collectEventid = [self.collectEvent[row] intValue];
+            
+            sqlite3_stmt *statement;
+            const char *dbpath = [databasePath UTF8String];
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",collectEventid];
+                const char *queryEventstatment = [queryEvent UTF8String];
+                if  (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
+                    while  (sqlite3_step(statement)==SQLITE_ROW) {
+                        //找到要查询的事件，取出数据。
+                        
+                        
+                        evtID_mdfy = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                        
+                        evtType_mdfy = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 1)];
+                        char *ttl_mdfy = (char *)sqlite3_column_text(statement, 2);
+                        NSLog(@"char_mdfy is %s",ttl_mdfy);
+                        if (ttl_mdfy == nil) {
+                            title_mdfy = @"";
+                        }else {
+                            title_mdfy = [[NSString alloc] initWithUTF8String:ttl_mdfy];
+                            NSLog(@"nsstring_mdfy  is %@",title_mdfy);
+                        }
+                        
+                        char *mTxt_mdfy = (char *)sqlite3_column_text(statement, 3);
+                        NSLog(@"mainTxt_mdfy is %s",mTxt_mdfy);
+                        if (mTxt_mdfy == nil) {
+                            mainTxt_mdfy = @"";
+                        }else {
+                            mainTxt_mdfy = [[NSString alloc] initWithUTF8String:mTxt_mdfy];
+                            NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
+                        }
+                        
+                        
+                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,4)];
+                        int start = [startTm intValue]+360;
+                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,5)];
+                        int end = [endTm intValue]+360;
+                        if (start%60<10) {
+                            startTime = [NSString stringWithFormat:@"%d:0%d",start/60,start%60];
+                            
+                        }else{
+                            startTime = [NSString stringWithFormat:@"%d:%d",start/60,start%60];
+                        }
+                        if (end%60<10) {
+                            endTime = [NSString stringWithFormat:@"%d:0%d",end/60,end%60];
+                            
+                        }else{
+                            endTime = [NSString stringWithFormat:@"%d:%d",end/60,end%60];
+                        }
+                        
+                        
+                        NSLog(@"start time is:%@",startTime);
+                        
+                        income = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,6)];
+                        expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
+                        
+                        char *oldTags = (char *)sqlite3_column_text(statement, 8);
+                        if (oldTags == nil) {
+                            oldLabel = @"";
+                        }else {
+                            oldLabel = [[NSString alloc] initWithUTF8String:oldTags];
+                            
+                            NSLog(@"nsstring_old labels  is %@",oldLabel);
+                        }
+                        
+                        
+                        char *remind_mdfy = (char *)sqlite3_column_text(statement, 9);
+                        if (remind_mdfy == nil) {
+                            remind = @"";
+                        }else {
+                            remind = [[NSString alloc] initWithUTF8String:remind_mdfy];
+                            
+                            NSLog(@"nsstring_mdfy  is %@",remind);
+                        }
+                    }
+                    
+                }
+                else{
+                    NSLog(@"wwwwwwwwwwww!!!!!1");
+                }
+                sqlite3_finalize(statement);
+            }
+            else {
+                NSLog(@"数据库打开失败");
+                
+            }
+            sqlite3_close(dataBase);
+            
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
+            editingViewController *my_collectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
+            self.drawLabelDelegate = my_collectEvent;
+            my_collectEvent.reloadDelegate = self;
+            if(self.my_dayline.hidden == NO){
+                my_collectEvent.drawBtnDelegate = self.my_scoller;
+            }else if (self.my_selectDay.hidden == NO){
+                my_collectEvent.drawBtnDelegate = self.my_selectScoller;
+            }
+            //  my_modifyViewController.addTagDataDelegate = self;
+            my_collectEvent.tags = self.allTags;
+            
+            
+            
+            
+            
+            
+            //将该事件还原现使出来
+            my_collectEvent.eventType = evtType_mdfy;
+            [(UITextField*)[my_collectEvent.view viewWithTag:105] setText:title_mdfy] ;
+            [(UITextView*)[my_collectEvent.view viewWithTag:106] setText:mainTxt_mdfy];
+            [(UILabel*)[my_collectEvent.view viewWithTag:103] setText:startTime];
+            [(UILabel*)[my_collectEvent.view viewWithTag:104] setText:endTime];
+            [(UIButton*)[my_collectEvent.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
+            [(UIButton*)[my_collectEvent.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
+            my_collectEvent.incomeFinal = [income doubleValue];
+            my_collectEvent.expendFinal = [expend doubleValue];
+            [self.drawLabelDelegate drawTag:oldLabel];
+            
+            my_collectEvent.remindData = remind;
+            
+            modifyEventId = [evtID_mdfy intValue];
+            my_collectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+            [self presentViewController:my_collectEvent animated:YES completion:Nil ];
+            
+    }
+
+            
+            
             break;
         default:
             
@@ -1359,7 +1495,86 @@
     }
     
 }
+- (UITableViewCellEditingStyle)tableView: (UITableView *)tableView editingStyleForRowAtIndexPath: (NSIndexPath *)indexPath
+{
+    if (tableView.tag ==3) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    else
+        return UITableViewCellEditingStyleNone;
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //使收藏夹可删除
+    if (tableView.tag == 3) {
+        
+        
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            
+            const char *dbpath = [databasePath UTF8String];
+            sqlite3_stmt *statement;
+            
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                
+                // 删除某一收藏
+                NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM collection WHERE eventID=?"];
+                
+                const char *deletestement = [deleteSql UTF8String];
+                sqlite3_prepare_v2(dataBase, deletestement, -1, &statement, NULL);
+                sqlite3_bind_int(statement, 1, [[self.collectEvent objectAtIndex:indexPath.row] intValue]);
+
+              
+                if (sqlite3_step(statement)==SQLITE_DONE) {
+                    NSLog(@"delete collection ok");
+                    [self.collectEvent removeObjectAtIndex:indexPath.row];
+                }
+                else {
+                    NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
+                    
+                }
+                sqlite3_finalize(statement);
+            }
+            
+            else {
+                NSLog(@"数据库打开失败");
+                
+            }
+            sqlite3_close(dataBase);
+            
+            // Delete the row from the data source.
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            //[self.tagTable setEditing:NO animated:YES];
+            
+            
+        }
+    }
+    else
+        return;
+    
+}
+
+
+#pragma mark reloadTable delegate
+-(void)reloadTable
+{
+    if (self.my_collect.hidden == NO) {
+        [self treasureTapped];
+    }
+    if (self.my_select.hidden ==NO){
+        
+        NSLog(@"alltags:::%@",self.allTags);
+        [self.my_select.eventsTable reloadData];
+        [self.my_select.alltagTable reloadData];
+        
+        [self.my_select.alltagTable setHidden:NO];
+        [self.my_select.eventInTagTable setHidden:YES];
+        [self.my_select.returnToTags setHidden:YES];
+
+
+        
+    }
+    
+}
 
 
 @end

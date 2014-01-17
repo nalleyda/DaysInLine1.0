@@ -11,6 +11,7 @@
 #import "redrawButtonDelegate.h"
 #import "remindDataDelegate.h"
 #import "drawTagDelegate.h"
+#import "reloadTableDelegate.h"
 //#import "addTagDelegate.h"
 
 
@@ -51,6 +52,7 @@
 //@property (strong, nonatomic) NSString *oldLabel;
 
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
+@property (weak, nonatomic) NSObject <reloadTableDelegate> *reloadDelegate;
 //@property (weak, nonatomic) NSObject <addTagDelegate> *addTagDataDelegate;
 - (IBAction)endEditing:(id)sender;
 

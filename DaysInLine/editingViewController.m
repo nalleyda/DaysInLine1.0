@@ -986,7 +986,9 @@ bool haveSaved;
         
         
     }
-        [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.reloadDelegate reloadTable];
+    [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
@@ -1286,6 +1288,9 @@ bool haveSaved;
                                                               cancelButtonTitle:@"确定"
                                                               otherButtonTitles:nil];
                         [alert show];
+                        
+                        //刷新所有列表，因为删除了事件，列表内容应该有相应的改变
+                        [self.reloadDelegate reloadTable];
                         
                         [self dismissViewControllerAnimated:YES completion:nil];
                         

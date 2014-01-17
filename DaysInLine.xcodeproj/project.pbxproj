@@ -62,6 +62,7 @@
 		0B00AC53187D849400427F35 /* collectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = collectCell.xib; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
 		0B2C3339185B7CEE00CB2763 /* moneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moneyView.xib; sourceTree = "<group>"; };
+		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
 		0B8F0D8C18641FA900FD1264 /* remindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController.xib; sourceTree = "<group>"; };
 		0B8F0D8F186422F300FD1264 /* remindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindViewController.h; sourceTree = "<group>"; };
 		0B8F0D90186422F300FD1264 /* remindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remindViewController.m; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		0B9A53F91812274D0085FFD7 /* DaysInLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaysInLineTests.m; sourceTree = "<group>"; };
 		0B9A5405181230990085FFD7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0BA02C6E186B094E00563857 /* tagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tagView.xib; sourceTree = "<group>"; };
-		0BA02C70186B2FE700563857 /* addTagDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = addTagDelegate.h; sourceTree = "<group>"; };
 		0BA18F6B187C41B700ADBB01 /* collectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionView.h; sourceTree = "<group>"; };
 		0BA18F6C187C41B700ADBB01 /* collectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionView.m; sourceTree = "<group>"; };
 		0BAE55AC185B7B1700695F0E /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
@@ -282,8 +282,8 @@
 				0BB629D31829233B00D9B859 /* redrawButtonDelegate.h */,
 				0BB629D418293F3C00D9B859 /* globalVars.h */,
 				0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */,
-				0BA02C70186B2FE700563857 /* addTagDelegate.h */,
 				0B9726041870516100787BE9 /* drawTagDelegate.h */,
+				0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */,
 			);
 			name = data;
 			sourceTree = "<group>";
