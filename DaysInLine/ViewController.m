@@ -72,6 +72,9 @@
     [my_homeView.todayButton addTarget:self action:@selector(todayTapped) forControlEvents:UIControlEventTouchUpInside];
     [my_homeView.selectButton addTarget:self action:@selector(selectTapped) forControlEvents:UIControlEventTouchUpInside];
     [my_homeView.treasureButton addTarget:self action:@selector(treasureTapped) forControlEvents:UIControlEventTouchUpInside];
+    [my_homeView.analyseButton addTarget:self action:@selector(analyseTapped) forControlEvents:UIControlEventTouchUpInside];
+
+    
     
     CGRect frame = CGRectMake(85,0, self.view.bounds.size.width-85, self.view.bounds.size.height );
     self.my_dayline = [[daylineView alloc] initWithFrame:frame];
@@ -761,6 +764,41 @@
     
     NSLog(@"%d",self.my_collect.collectionTable.tag);
   }
+
+
+-(void)analyseTapped
+{
+    
+    NSString *date = @"2014-01-15";
+    sqlite3_stmt *statement;
+    const char *dbpath = [databasePath UTF8String];
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,startTime,endTime from event where DATE>\"%@\"",date];
+        const char *queryEventstatement = [queryEventButton UTF8String];
+        if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
+            while (sqlite3_step(statement)==SQLITE_ROW) {
+                //当天已有事件存在，则取出数据还原界面
+                
+                NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
+                NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
+                
+                NSLog(@"{%@,%@,%@}",evtType,startTm,endTm);
+            }
+            
+        }
+        
+        sqlite3_finalize(statement);
+        
+    }else {
+        NSLog(@"数据库打开失败aaaa啊啊啊");
+        
+    }
+    sqlite3_close(dataBase);
+    
+
+
+}
 
 
 -(void)seizeArea:(NSString *)date

@@ -366,7 +366,7 @@ bool haveSaved;
     //先判断当前事件是否已经保存过，如果时新增事件，先保存再加入收藏夹。
     int eventIdNow=-1;
     
-    //else modifying＝1时候，先查询收藏表中是否已经存在，若有，提示存在，若无，添加只收藏并提示成功。
+    // modifying＝1时候，先查询收藏表中是否已经存在，若有，提示存在，若无，添加只收藏并提示成功。
     if (modifying == 1)
     {
         const char *dbpath = [databasePath UTF8String];
@@ -411,16 +411,16 @@ bool haveSaved;
                     }
                     
                     
-
+                    
                 }
-            
-
+                
+                
             }else{
                 NSLog(@"wwwwwwwwwwww!!!!!!!!!~~");
             }
             sqlite3_finalize(stmtIfcollect);
             sqlite3_finalize(stmtInsertCollect);
-
+            
         } else {
             NSLog(@"数据库打开失败");
             
@@ -430,192 +430,204 @@ bool haveSaved;
         sqlite3_close(dataBase);
         
     }else if (modifying == 0) {
-        
-        
-        NSNumber *oldStartNum;
-        NSArray *startTime = [self.startLabel.text componentsSeparatedByString:@":"];
-        NSArray *endTime = [self.endLabel.text componentsSeparatedByString:@":"];
-        
-        double hour_0 = [startTime[0] doubleValue];
-        double minite_0 = [startTime[1] doubleValue];
-        double hour_1 = [endTime[0] doubleValue];
-        double minite_1 = [endTime[1] doubleValue];
-        
-        
-        
-        double startNum = hour_0*60 + minite_0;
-        double endNum = hour_1*60 + minite_1;
-        
-        if (startNum >= endNum) {
+        if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"结束应该在开始之后哦"
+                                                            message:@"请输入事件起始和结束时间"
                                                            delegate:nil
                                                   cancelButtonTitle:@"确定"
                                                   otherButtonTitles:nil];
-            alert.tag = 100;
             [alert show];
             return;
+            
         }
-        else{
-            
-            startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
-            endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
-            
-            for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
-                if([self.eventType intValue]==0 && workArea[i] == 1)
-                {
-                    flag=YES;
-                    break;
-                }
-                if([self.eventType intValue]==1 && lifeArea[i] == 1)
-                {
-                    flag=YES;
-                    break;
-                }
-            }
+        
+        else  {
             
             
-            if (flag) {
+            NSNumber *oldStartNum;
+            NSArray *startTime = [self.startLabel.text componentsSeparatedByString:@":"];
+            NSArray *endTime = [self.endLabel.text componentsSeparatedByString:@":"];
+            
+            double hour_0 = [startTime[0] doubleValue];
+            double minite_0 = [startTime[1] doubleValue];
+            double hour_1 = [endTime[0] doubleValue];
+            double minite_1 = [endTime[1] doubleValue];
+            
+            
+            
+            double startNum = hour_0*60 + minite_0;
+            double endNum = hour_1*60 + minite_1;
+            
+            if (startNum >= endNum) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充"
+                                                                message:@"结束应该在开始之后哦"
                                                                delegate:nil
                                                       cancelButtonTitle:@"确定"
                                                       otherButtonTitles:nil];
-                alert.tag = 101;
+                alert.tag = 100;
                 [alert show];
-                
                 return;
-                
-                
             }
             else{
-                NSLog(@"the old start is :%d",[oldStartNum intValue]);
-                [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
-                if ([self.eventType intValue]==0) {
-                    for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
-                        workArea[i] = 1;
-                        NSLog(@"seized work area is :%d",i);
+                
+                startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
+                endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
+                
+                for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                    if([self.eventType intValue]==0 && workArea[i] == 1)
+                    {
+                        flag=YES;
+                        break;
                     }
-                }else if([self.eventType intValue]==1){
-                    for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
-                        lifeArea[i] = 1;
-                        NSLog(@"seized life area is :%d",i);
+                    if([self.eventType intValue]==1 && lifeArea[i] == 1)
+                    {
+                        flag=YES;
+                        break;
                     }
-                }else{
-                    NSLog(@"事件类型有误！");
                 }
                 
-                //在数据库中存储该事件
                 
-                const char *dbpath = [databasePath UTF8String];
-                sqlite3_stmt *statementInsert;
-                sqlite3_stmt *statementSelect;
-                sqlite3_stmt *statementCollect;
-           
-                
-                if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                if (flag) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                    message:@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"确定"
+                                                          otherButtonTitles:nil];
+                    alert.tag = 101;
+                    [alert show];
                     
-                    // 插入当天的数据
-                    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO EVENT(TYPE,TITLE,mainText,income,expend,date,startTime,endTime,distance,label,remind,startArea,photoDir) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"];
-                    
-                    const char *insertsatement = [insertSql UTF8String];
-                    sqlite3_prepare_v2(dataBase, insertsatement, -1, &statementInsert, NULL);
-                    sqlite3_bind_int(statementInsert,1, [self.eventType intValue]);
-                    sqlite3_bind_text(statementInsert,2, [self.theme.text UTF8String], -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(statementInsert,3, [self.mainText.text UTF8String], -1, SQLITE_TRANSIENT);
-                    //未添加功能的数据
-                    sqlite3_bind_double(statementInsert,4, self.incomeFinal);
-                    sqlite3_bind_double(statementInsert,5, self.expendFinal);
+                    return;
                     
                     
-                    sqlite3_bind_text(statementInsert,6, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_double(statementInsert,7, [startTimeNum doubleValue]);
-                    sqlite3_bind_double(statementInsert,8, [endTimeNum doubleValue]);
-                    sqlite3_bind_double(statementInsert,9, [endTimeNum doubleValue]-[startTimeNum doubleValue]);
-                    
-                    sqlite3_bind_text(statementInsert,10, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_text(statementInsert,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
-                    //  sqlite3_bind_int(statement,11, 0);
-                    sqlite3_bind_int(statementInsert,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
-                    sqlite3_bind_text(statementInsert,13, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
-                    
-                    if (sqlite3_step(statementInsert)==SQLITE_DONE) {
-                        NSLog(@"innsert event okssssssssssscollect");
-                    }
-                    else {
-                        NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
-                    }
-                    
-                    sqlite3_finalize(statementInsert);
-                    
-                    //此处添加插入收藏的数据库语句，并alert已自动保存并添加至收藏夹。
-                    //先找到本次事件的eventID。
-       
-                    
-                    
-                    NSString *queryEventID = [NSString stringWithFormat:@"SELECT eventID from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[self.eventType intValue]*1000+[startTimeNum intValue]/30];
-                    const char *queryEventIDstatement = [queryEventID UTF8String];
-                    if (sqlite3_prepare_v2(dataBase, queryEventIDstatement, -1, &statementSelect, NULL)==SQLITE_OK) {
-                        if (sqlite3_step(statementSelect)==SQLITE_ROW) {
-                            eventIdNow = sqlite3_column_int(statementSelect, 0);
-
-                            modifying = 1;
-                            modifyEventId = eventIdNow;
-                            haveSaved = YES;
+                }
+                else{
+                    NSLog(@"the old start is :%d",[oldStartNum intValue]);
+                    [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
+                    if ([self.eventType intValue]==0) {
+                        for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                            workArea[i] = 1;
+                            NSLog(@"seized work area is :%d",i);
                         }
+                    }else if([self.eventType intValue]==1){
+                        for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                            lifeArea[i] = 1;
+                            NSLog(@"seized life area is :%d",i);
+                        }
+                    }else{
+                        NSLog(@"事件类型有误！");
                     }
                     
-                    else{
-                        NSLog(@"wwwwwwwwwwww!!!!!1");
-                    }
-                    sqlite3_finalize(statementSelect);
+                    //在数据库中存储该事件
                     
-                    if (eventIdNow>0) {
+                    const char *dbpath = [databasePath UTF8String];
+                    sqlite3_stmt *statementInsert;
+                    sqlite3_stmt *statementSelect;
+                    sqlite3_stmt *statementCollect;
+                    
+                    
+                    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
                         
-                        NSString *insertCollctSql = [NSString stringWithFormat:@"INSERT INTO collection(eventID) VALUES(?)"];
+                        // 插入当天的数据
+                        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO EVENT(TYPE,TITLE,mainText,income,expend,date,startTime,endTime,distance,label,remind,startArea,photoDir) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)"];
                         
-                        const char *collectsatement = [insertCollctSql UTF8String];
-                        sqlite3_prepare_v2(dataBase, collectsatement, -1, &statementCollect, NULL);
-                        sqlite3_bind_int(statementCollect,1, eventIdNow);
+                        const char *insertsatement = [insertSql UTF8String];
+                        sqlite3_prepare_v2(dataBase, insertsatement, -1, &statementInsert, NULL);
+                        sqlite3_bind_int(statementInsert,1, [self.eventType intValue]);
+                        sqlite3_bind_text(statementInsert,2, [self.theme.text UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_text(statementInsert,3, [self.mainText.text UTF8String], -1, SQLITE_TRANSIENT);
+                        //未添加功能的数据
+                        sqlite3_bind_double(statementInsert,4, self.incomeFinal);
+                        sqlite3_bind_double(statementInsert,5, self.expendFinal);
                         
-                        if (sqlite3_step(statementCollect)==SQLITE_DONE) {
-                            NSLog(@"innsert collect okssssssssssscollect");
+                        
+                        sqlite3_bind_text(statementInsert,6, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_double(statementInsert,7, [startTimeNum doubleValue]);
+                        sqlite3_bind_double(statementInsert,8, [endTimeNum doubleValue]);
+                        sqlite3_bind_double(statementInsert,9, [endTimeNum doubleValue]-[startTimeNum doubleValue]);
+                        
+                        sqlite3_bind_text(statementInsert,10, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_text(statementInsert,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
+                        //  sqlite3_bind_int(statement,11, 0);
+                        sqlite3_bind_int(statementInsert,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
+                        sqlite3_bind_text(statementInsert,13, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
+                        
+                        if (sqlite3_step(statementInsert)==SQLITE_DONE) {
+                            NSLog(@"innsert event okssssssssssscollect");
                         }
                         else {
-                            NSLog(@"Error while insert collect:%s",sqlite3_errmsg(dataBase));
+                            NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                         }
                         
-                        sqlite3_finalize(statementCollect);
-          
+                        sqlite3_finalize(statementInsert);
+                        
+                        //此处添加插入收藏的数据库语句，并alert已自动保存并添加至收藏夹。
+                        //先找到本次事件的eventID。
+                        
+                        
+                        
+                        NSString *queryEventID = [NSString stringWithFormat:@"SELECT eventID from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[self.eventType intValue]*1000+[startTimeNum intValue]/30];
+                        const char *queryEventIDstatement = [queryEventID UTF8String];
+                        if (sqlite3_prepare_v2(dataBase, queryEventIDstatement, -1, &statementSelect, NULL)==SQLITE_OK) {
+                            if (sqlite3_step(statementSelect)==SQLITE_ROW) {
+                                eventIdNow = sqlite3_column_int(statementSelect, 0);
+                                
+                                modifying = 1;
+                                modifyEventId = eventIdNow;
+                                haveSaved = YES;
+                            }
+                        }
+                        
+                        else{
+                            NSLog(@"wwwwwwwwwwww!!!!!1");
+                        }
+                        sqlite3_finalize(statementSelect);
+                        
+                        if (eventIdNow>0) {
+                            
+                            NSString *insertCollctSql = [NSString stringWithFormat:@"INSERT INTO collection(eventID) VALUES(?)"];
+                            
+                            const char *collectsatement = [insertCollctSql UTF8String];
+                            sqlite3_prepare_v2(dataBase, collectsatement, -1, &statementCollect, NULL);
+                            sqlite3_bind_int(statementCollect,1, eventIdNow);
+                            
+                            if (sqlite3_step(statementCollect)==SQLITE_DONE) {
+                                NSLog(@"innsert collect okssssssssssscollect");
+                            }
+                            else {
+                                NSLog(@"Error while insert collect:%s",sqlite3_errmsg(dataBase));
+                            }
+                            
+                            sqlite3_finalize(statementCollect);
+                            
+                            
+                        }
+                        else
+                        {
+                            NSLog(@"未能正确录入该事件，时间ID没有正确填充！！！！！！！");
+                        }
                         
                     }
-                    else
-                    {
-                        NSLog(@"未能正确录入该事件，时间ID没有正确填充！！！！！！！");
-                    }
-
-                }
-                
-                else {
-                    NSLog(@"数据库打开失败");
                     
+                    else {
+                        NSLog(@"数据库打开失败");
+                        
+                    }
+                    
+                    
+                    sqlite3_close(dataBase);
                 }
-                                
-                
-                sqlite3_close(dataBase);
             }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"该事项已自动保存并存入收藏夹"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+            
+            [ alert  show];
+            
         }
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"该事项已自动保存并存入收藏夹"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"确定"
-                                              otherButtonTitles:nil];
-        
-        [ alert  show];
-        
     }
     
-        
 }
 
 

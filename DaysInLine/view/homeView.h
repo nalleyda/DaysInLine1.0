@@ -12,7 +12,7 @@
 
 @property (nonatomic,weak) UIButton *todayButton;
 @property (nonatomic,weak) UIButton *selectButton;
-@property (nonatomic,weak) UIButton *achieveButton;
+@property (nonatomic,weak) UIButton *exitButton;
 @property (nonatomic,weak) UIButton *treasureButton;
 @property (nonatomic,weak) UIButton *analyseButton;
 

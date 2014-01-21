@@ -28,9 +28,10 @@ int contentLongth;
         
         self.backgroundColor = [UIColor whiteColor];
         CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height+320+180);
-        contentLongth = self.frame.size.height+320+180;
+        contentLongth = self.frame.size.height+302+180;
         [self setContentOffset:CGPointMake(0, 180)];
         [self setContentSize:newSize];
+        NSLog(@"***************%f",self.frame.size.height);
         
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
      //   [self addSubview:self.btnInScroll];
@@ -56,7 +57,7 @@ int contentLongth;
 
     
     
-    for (int i=0; i<self.frame.size.height+310+180;i=i+30) {
+    for (int i=0; i<=self.frame.size.height+300+180;i=i+30) {
        
 /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
         buttonWorks1.backgroundColor = [UIColor blueColor];
@@ -65,7 +66,7 @@ int contentLongth;
         buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
         [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
 */
-        UILabel *labelTime = [[UILabel alloc] initWithFrame:CGRectMake(0, i, 40, 20)];
+        UILabel *labelTime = [[UILabel alloc] initWithFrame:CGRectMake(0, i-5, 40, 20)];
         NSString *time = [NSString stringWithFormat:@"%d:00",t];
         t++;
         labelTime.font = [UIFont systemFontOfSize:14.0];
