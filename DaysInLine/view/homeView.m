@@ -15,7 +15,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        
+   /*     NSArray *vComp = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
+        if ( [[vComp objectAtIndex:0] intValue] >= 7){//do this only for ios7+
+            CGRect viewFrame = self.frame;
+        viewFrame.origin.y = 10;//change this according to ur top bar height.
+        viewFrame.size.height = self.frame.size.height-20;
+        self.frame = viewFrame;
+    }
+    */
      //   UIImageView *homeBackground = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"backgroundHome"]];
         UIImageView *homeBackground = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
         

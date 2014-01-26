@@ -14,6 +14,7 @@
 #import "buttonInScroll.h"
 #import "editingViewController.h"
 #import "collectionView.h"
+#import "statisticView.h"
 #import "globalVars.h"
 
 
@@ -27,6 +28,7 @@
 @property (nonatomic,strong) dayLineScoller *my_selectScoller;
 @property (nonatomic,strong) selectView *my_select ;
 @property (nonatomic,strong) collectionView *my_collect;
+@property (nonatomic,strong) statisticView *my_analyse;
 @property (nonatomic,strong) NSString *today;
 @property (nonatomic,strong) NSMutableArray *allTags;
 @property(nonatomic, strong) NSMutableArray *HasEventsDates;
@@ -53,7 +55,11 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+       [super viewDidLoad];
+    
+    
+
+
 	// Do any additional setup after loading the view, typically from a nib.
     self.allTags = [[NSMutableArray alloc] init];
     self.EventsInTag = [[NSMutableArray alloc] init];
@@ -81,6 +87,7 @@
     self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
     self.my_select = [[selectView alloc] initWithFrame:frame];
     self.my_collect = [[collectionView alloc] initWithFrame:frame];
+    self.my_analyse = [[statisticView alloc] initWithFrame:frame];
     self.my_select.calendar.delegate = self;
     self.my_select.eventsTable.delegate = self;
     self.my_select.eventsTable.dataSource = self;
@@ -94,6 +101,7 @@
     [self.homePage addSubview:self.my_select];
     [self.homePage addSubview:self.my_selectDay];
     [self.homePage addSubview:self.my_collect];
+    [self.homePage addSubview:self.my_analyse];
     
     
     
@@ -101,6 +109,7 @@
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
     [self.my_collect setHidden:YES];
+    [self.my_analyse setHidden:YES];
     
     //初始化全局数据
     for (int i=0; i<48; i++) {
@@ -225,6 +234,7 @@
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
     [self.my_collect setHidden:YES];
+    [self.my_analyse setHidden:YES];
     
     if (self.my_dayline.hidden) {
         [self.my_dayline setHidden:NO];
@@ -475,6 +485,7 @@
     [self.my_selectDay setHidden:YES];
     [self.my_dayline setHidden:YES];
     [self.my_collect setHidden:YES];
+    [self.my_analyse setHidden:YES];
     
     if (self.my_select.hidden) {
                // [self.my_select.alltagTable reloadData];
@@ -638,6 +649,7 @@
     [self.my_select setHidden:YES];
     [self.my_dayline setHidden:YES];
     [self.my_selectDay setHidden:YES];
+    [self.my_analyse setHidden:YES];
   
     
     [self.collectEvent removeAllObjects];
@@ -768,8 +780,16 @@
 
 -(void)analyseTapped
 {
+    //UIDatePicker *remindDatePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-20, 30)] ;
     
-    NSString *date = @"2014-01-15";
+    [self.my_dayline setHidden:YES];
+    [self.my_select setHidden:YES];
+    [self.my_selectDay setHidden:YES];
+    [self.my_collect setHidden:YES];
+    
+   	    
+    
+    NSString *date = @"2014-01-24";
     sqlite3_stmt *statement;
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
@@ -797,6 +817,10 @@
     sqlite3_close(dataBase);
     
 
+    if (self.my_analyse.hidden==YES) {
+        [self.my_analyse setHidden:NO];
+    }
+    
 
 }
 

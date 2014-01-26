@@ -26,6 +26,8 @@
 	<true/>
 	<key>UILaunchImageFile</key>
 	<string>Default</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

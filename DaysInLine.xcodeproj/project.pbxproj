@@ -27,7 +27,6 @@
 		0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A53D71812274D0085FFD7 /* InfoPlist.strings */; };
 		0B9A53DB1812274D0085FFD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A53DA1812274D0085FFD7 /* main.m */; };
 		0B9A53DF1812274D0085FFD7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A53DE1812274D0085FFD7 /* AppDelegate.m */; };
-		0B9A53E21812274D0085FFD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A53E01812274D0085FFD7 /* Main.storyboard */; };
 		0B9A53E51812274D0085FFD7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A53E41812274D0085FFD7 /* ViewController.m */; };
 		0B9A53E71812274D0085FFD7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A53E61812274D0085FFD7 /* Images.xcassets */; };
 		0B9A53EE1812274D0085FFD7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53ED1812274D0085FFD7 /* XCTest.framework */; };
@@ -36,6 +35,7 @@
 		0B9A53F81812274D0085FFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A53F61812274D0085FFD7 /* InfoPlist.strings */; };
 		0B9A53FA1812274D0085FFD7 /* DaysInLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9A53F91812274D0085FFD7 /* DaysInLineTests.m */; };
 		0B9A5406181230990085FFD7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A5405181230990085FFD7 /* Default.png */; };
+		0B9B364A1895467600E9151A /* statisticView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9B36491895467600E9151A /* statisticView.m */; };
 		0BA02C6F186B094E00563857 /* tagView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA02C6E186B094E00563857 /* tagView.xib */; };
 		0BA18F6D187C41B700ADBB01 /* collectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA18F6C187C41B700ADBB01 /* collectionView.m */; };
 		0BAE55B0185B7B1700695F0E /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE55AC185B7B1700695F0E /* editView.png */; };
@@ -90,7 +90,6 @@
 		0B9A53DC1812274D0085FFD7 /* DaysInLine-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DaysInLine-Prefix.pch"; sourceTree = "<group>"; };
 		0B9A53DD1812274D0085FFD7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0B9A53DE1812274D0085FFD7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0B9A53E11812274D0085FFD7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0B9A53E31812274D0085FFD7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0B9A53E41812274D0085FFD7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0B9A53E61812274D0085FFD7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -100,6 +99,8 @@
 		0B9A53F71812274D0085FFD7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0B9A53F91812274D0085FFD7 /* DaysInLineTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DaysInLineTests.m; sourceTree = "<group>"; };
 		0B9A5405181230990085FFD7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		0B9B36481895467600E9151A /* statisticView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statisticView.h; sourceTree = "<group>"; };
+		0B9B36491895467600E9151A /* statisticView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = statisticView.m; sourceTree = "<group>"; };
 		0BA02C6E186B094E00563857 /* tagView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tagView.xib; sourceTree = "<group>"; };
 		0BA18F6B187C41B700ADBB01 /* collectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = collectionView.h; sourceTree = "<group>"; };
 		0BA18F6C187C41B700ADBB01 /* collectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionView.m; sourceTree = "<group>"; };
@@ -205,7 +206,6 @@
 				0BD700881813AC26004FCBE2 /* data */,
 				0B9A53DD1812274D0085FFD7 /* AppDelegate.h */,
 				0B9A53DE1812274D0085FFD7 /* AppDelegate.m */,
-				0B9A53E01812274D0085FFD7 /* Main.storyboard */,
 				0B929ED918156730008E1726 /* controller */,
 				0BD700871813AC06004FCBE2 /* view */,
 				0B9A53E61812274D0085FFD7 /* Images.xcassets */,
@@ -272,6 +272,8 @@
 				0BA18F6B187C41B700ADBB01 /* collectionView.h */,
 				0BA18F6C187C41B700ADBB01 /* collectionView.m */,
 				0B00AC53187D849400427F35 /* collectCell.xib */,
+				0B9B36481895467600E9151A /* statisticView.h */,
+				0B9B36491895467600E9151A /* statisticView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -379,7 +381,6 @@
 				0B00AC54187D849400427F35 /* collectCell.xib in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
-				0B9A53E21812274D0085FFD7 /* Main.storyboard in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
 				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 			);
@@ -403,6 +404,7 @@
 				0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */,
 				0B9A53E51812274D0085FFD7 /* ViewController.m in Sources */,
 				0BA18F6D187C41B700ADBB01 /* collectionView.m in Sources */,
+				0B9B364A1895467600E9151A /* statisticView.m in Sources */,
 				0BD700861813ABFB004FCBE2 /* homeView.m in Sources */,
 				0B9A53DF1812274D0085FFD7 /* AppDelegate.m in Sources */,
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
@@ -440,14 +442,6 @@
 				0B9A53D81812274D0085FFD7 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0B9A53E01812274D0085FFD7 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0B9A53E11812274D0085FFD7 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		0B9A53F61812274D0085FFD7 /* InfoPlist.strings */ = {
