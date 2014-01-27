@@ -15,6 +15,7 @@
 #import "editingViewController.h"
 #import "collectionView.h"
 #import "statisticView.h"
+#import "statisticViewController.h"
 #import "globalVars.h"
 
 
@@ -787,39 +788,38 @@
     [self.my_selectDay setHidden:YES];
     [self.my_collect setHidden:YES];
     
-   	    
+    [self.my_analyse.resultButton addTarget:self action:@selector(analyseResultButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
-    NSString *date = @"2014-01-24";
-    sqlite3_stmt *statement;
-    const char *dbpath = [databasePath UTF8String];
-    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,startTime,endTime from event where DATE>\"%@\"",date];
-        const char *queryEventstatement = [queryEventButton UTF8String];
-        if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
-            while (sqlite3_step(statement)==SQLITE_ROW) {
-                //当天已有事件存在，则取出数据还原界面
-                
-                NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
-                NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
-                NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
-                
-                NSLog(@"{%@,%@,%@}",evtType,startTm,endTm);
-            }
-            
-        }
-        
-        sqlite3_finalize(statement);
-        
-    }else {
-        NSLog(@"数据库打开失败aaaa啊啊啊");
-        
-    }
-    sqlite3_close(dataBase);
-    
+
 
     if (self.my_analyse.hidden==YES) {
         [self.my_analyse setHidden:NO];
     }
+    
+}
+
+-(void)analyseResultButtonTapped
+{
+    
+    
+    //  NSTimeZone *zone = [NSTimeZone systemTimeZone];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+    formatter.dateFormat = @"yyyy-MM-dd";
+    
+    NSString *start = [formatter stringFromDate:self.my_analyse.dateStart.date];
+    NSString *end = [formatter stringFromDate:self.my_analyse.dateEnd.date];
+    //时区偏移
+    //   NSInteger zoneInterval = [zone secondsFromGMTForDate: dateTime];
+
+    
+
+    
+    statisticViewController *my_statisticViewController = [[statisticViewController alloc] initWithNibName:@"statisticViewController" bundle:nil];
+    my_statisticViewController.startDate = start;
+    my_statisticViewController.endDate = end;
+    
+    my_statisticViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentViewController:my_statisticViewController animated:YES completion:Nil ];
     
 
 }

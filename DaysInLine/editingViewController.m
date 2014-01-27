@@ -339,7 +339,7 @@ bool haveSaved;
 	UIDatePicker *datePicker = [[UIDatePicker alloc] init] ;
 	datePicker.tag = 201;
 	datePicker.datePickerMode = UIDatePickerModeTime;
-
+    [datePicker setMinuteInterval:30];
     
     [actionSheet addSubview:datePicker];
 }
@@ -357,6 +357,7 @@ bool haveSaved;
 	UIDatePicker *datePicker = [[UIDatePicker alloc] init] ;
 	datePicker.tag = 202;
 	datePicker.datePickerMode = UIDatePickerModeTime;
+    [datePicker setMinuteInterval:30];
     
 	[actionSheet addSubview:datePicker];
 }

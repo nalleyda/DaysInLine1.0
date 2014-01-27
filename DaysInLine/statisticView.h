@@ -11,4 +11,8 @@
 @interface statisticView : UIView
 
 @property (strong,nonatomic) UIButton *resultButton;
+//@property (strong,nonatomic) NSString *startDate;
+//@property (strong,nonatomic) NSString *endDate;
+@property (strong,nonatomic) UIDatePicker *dateEnd;
+@property (strong,nonatomic) UIDatePicker *dateStart;
 @end

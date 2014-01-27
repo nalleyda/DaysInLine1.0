@@ -154,12 +154,12 @@ UIDatePicker *remindTimePicker2;
 
 - (IBAction)remindOkButton:(UIButton *)sender {
     
-    NSDate *now = [[NSDate alloc] init];
+   // NSDate *now = [[NSDate alloc] init];
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     formatter.dateFormat = @"yyyy-MM-dd";
-    NSString *time1 = [formatter stringFromDate:now];
-    NSDate *dateNow = [formatter dateFromString:time1];
+   // NSString *time1 = [formatter stringFromDate:now];
+   // NSDate *dateNow = [formatter dateFromString:time1];
     NSDate *dateTime = [formatter dateFromString:modifyDate];
     //时区偏移
     NSInteger zoneInterval = [zone secondsFromGMTForDate: dateTime];

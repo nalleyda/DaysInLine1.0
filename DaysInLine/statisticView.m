@@ -15,6 +15,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        
+        
         UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.origin.y+30, self.frame.size.width-20, 30) ];
         tips.text = @"请选择想要分析的时间段：";
         
@@ -28,22 +31,25 @@
         [self addSubview:to];
 
         
-        UIDatePicker *dateStart = [[UIDatePicker alloc] init] ;
+        self.dateStart = [[UIDatePicker alloc] init] ;
         
-        dateStart.datePickerMode = UIDatePickerModeDate;
-        dateStart.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2-100);
+        self.dateStart.datePickerMode = UIDatePickerModeDate;
+        self.dateStart.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2-100);
         
-        dateStart.transform = CGAffineTransformMakeScale(0.65, 0.55);
-        [self addSubview:dateStart];
+        self.dateStart.transform = CGAffineTransformMakeScale(0.65, 0.55);
+        [self addSubview:self.dateStart];
         
         
-        UIDatePicker *dateEnd = [[UIDatePicker alloc] init] ;
+        self.dateEnd = [[UIDatePicker alloc] init] ;
         
-        dateEnd.datePickerMode = UIDatePickerModeDate;
-        dateEnd.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2+80);
+        self.dateEnd.datePickerMode = UIDatePickerModeDate;
+        self.dateEnd.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2+80);
         
-        dateEnd.transform = CGAffineTransformMakeScale(0.65, 0.55);
-        [self addSubview:dateEnd];
+        self.dateEnd.transform = CGAffineTransformMakeScale(0.65, 0.55);
+        [self addSubview:self.dateEnd];
+        
+        
+             
         
         self.resultButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-50, self.frame.size.height/2+150, 100, 30) ];
         [self.resultButton setTitle:@"查看结果" forState:UIControlStateNormal];
