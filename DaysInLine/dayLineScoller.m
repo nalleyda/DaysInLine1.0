@@ -18,7 +18,12 @@
 @end
 
 @implementation dayLineScoller
-int contentLongth;
+
+const int TIME_LABEL_SPACE  = 30;
+const int TIME_LABEL_WIDTH  = 40;
+const int TIME_LABEL_HEIGHT = 20;
+const int NR_TIME_LABEL = 24;
+const int MINUTES_OF_DAY = 24 * 60;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,9 +32,8 @@ int contentLongth;
         
         
         self.backgroundColor = [UIColor whiteColor];
-        CGSize newSize = CGSizeMake(self.frame.size.width, self.frame.size.height+320+180);
-        contentLongth = self.frame.size.height+302+180;
-        [self setContentOffset:CGPointMake(0, 180)];
+        CGSize newSize = CGSizeMake(self.frame.size.width, NR_TIME_LABEL*TIME_LABEL_SPACE);
+        //[self setContentOffset:CGPointMake(0, 180)];
         [self setContentSize:newSize];
         NSLog(@"***************%f",self.frame.size.height);
         
@@ -45,7 +49,6 @@ int contentLongth;
 
 - (void)drawRect:(CGRect)rect
 {
-    int t=0;
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
     
@@ -54,10 +57,7 @@ int contentLongth;
     CGContextAddLineToPoint(context, (self.frame.size.width)/2+18, 2*self.frame.size.height);
     CGContextStrokePath(context);
     
-
-    
-    
-    for (int i=0; i<=self.frame.size.height+300+180;i=i+30) {
+    for (int i = 0; i <= NR_TIME_LABEL; i++) {
        
 /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
         buttonWorks1.backgroundColor = [UIColor blueColor];
@@ -66,11 +66,10 @@ int contentLongth;
         buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
         [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
 */
-        UILabel *labelTime = [[UILabel alloc] initWithFrame:CGRectMake(0, i-5, 40, 20)];
-        NSString *time = [NSString stringWithFormat:@"%d:00",t];
-        t++;
+        UILabel *labelTime = [[UILabel alloc] initWithFrame:
+                              CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
         labelTime.font = [UIFont systemFontOfSize:14.0];
-        labelTime.text = time;
+        labelTime.text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
 
         [self addSubview:labelTime];
 //        [self addSubview:buttonWorks1];
@@ -108,15 +107,17 @@ int contentLongth;
     
     
     NSLog(@"redraw");
-    double start = ([startNum doubleValue]/1440)*contentLongth;
-    double end = ([endNum doubleValue]/1440)*contentLongth;
+    
+    int h = self.contentSize.height;
+    double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h + TIME_LABEL_HEIGHT / 2;
+    double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h + TIME_LABEL_HEIGHT / 2;
     double height = end - start;
     if (height<15.6) {
         height=15.6;
     }
     
     
-    NSLog(@"start:%f,height:%f,longth:%d",start,end-start,contentLongth);
+    NSLog(@"start:%f,height:%f,longth:%d",start,end-start,h);
   /*
     UIButton *eventButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [eventButton setFrame:CGRectMake(40, start, self.frame.size.width/2-28, height)];
