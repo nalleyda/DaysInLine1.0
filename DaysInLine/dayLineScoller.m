@@ -24,6 +24,7 @@ const int TIME_LABEL_WIDTH  = 40;
 const int TIME_LABEL_HEIGHT = 20;
 const int NR_TIME_LABEL = 24;
 const int MINUTES_OF_DAY = 24 * 60;
+UILabel *labelTime[NR_TIME_LABEL];
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -39,7 +40,6 @@ const int MINUTES_OF_DAY = 24 * 60;
         
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
      //   [self addSubview:self.btnInScroll];
-
 
         
         
@@ -66,16 +66,16 @@ const int MINUTES_OF_DAY = 24 * 60;
         buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
         [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
 */
-        self.labelTime = [[UILabel alloc] initWithFrame:
+        
+        labelTime[i] = [[UILabel alloc] initWithFrame:
                               CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
-        self.labelTime.font = [UIFont systemFontOfSize:14.0];
-        self.labelTime.text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
+        labelTime[i].font = [UIFont systemFontOfSize:14.0];
+        labelTime[i].text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
 
-        [self addSubview:self.labelTime];
+        [self addSubview: labelTime[i]];
 //        [self addSubview:buttonWorks1];
     }
-
- 
+    [self setNeedsDisplay];
     
 }
 

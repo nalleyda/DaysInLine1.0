@@ -13,7 +13,6 @@
 @interface dayLineScoller : UIScrollView<redrawButtonDelegate>
 
 @property (nonatomic,strong) buttonInScroll *btnInScroll;
-@property (nonatomic,strong) UILabel *labelTime;
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *modifyEvent_delegate;
 
 @end
