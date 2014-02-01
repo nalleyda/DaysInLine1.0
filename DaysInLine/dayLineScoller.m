@@ -31,7 +31,7 @@ const int MINUTES_OF_DAY = 24 * 60;
     if (self) {
         
         
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor clearColor];
         CGSize newSize = CGSizeMake(self.frame.size.width, NR_TIME_LABEL*TIME_LABEL_SPACE);
         [self setContentOffset:CGPointMake(0, 6 * TIME_LABEL_SPACE)]; /* scroller initially stay at 6:00 */
         [self setContentSize:newSize];
@@ -40,44 +40,29 @@ const int MINUTES_OF_DAY = 24 * 60;
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
      //   [self addSubview:self.btnInScroll];
 
+        for (int i = 0; i <= NR_TIME_LABEL; i++) {
+            
+            /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
+             buttonWorks1.backgroundColor = [UIColor blueColor];
+             buttonWorks1.layer.borderWidth = 1.0;
+             
+             buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
+             [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
+             */
+            self.labelTime = [[UILabel alloc] initWithFrame:
+                              CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
+            self.labelTime.font = [UIFont systemFontOfSize:14.0];
+            self.labelTime.text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
+            
+            [self addSubview:self.labelTime];
 
+        }
         
         
     }
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
-    
-    CGContextSetLineWidth(context, 1.5f); //设置线的宽度 为1.5个像素
-    CGContextMoveToPoint(context, (self.frame.size.width)/2+18, 0);
-    CGContextAddLineToPoint(context, (self.frame.size.width)/2+18, 2*self.frame.size.height);
-    CGContextStrokePath(context);
-    
-    for (int i = 0; i <= NR_TIME_LABEL; i++) {
-       
-/*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
-        buttonWorks1.backgroundColor = [UIColor blueColor];
-        buttonWorks1.layer.borderWidth = 1.0;
-
-        buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
-        [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
-*/
-        self.labelTime = [[UILabel alloc] initWithFrame:
-                              CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
-        self.labelTime.font = [UIFont systemFontOfSize:14.0];
-        self.labelTime.text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
-
-        [self addSubview:self.labelTime];
-//        [self addSubview:buttonWorks1];
-    }
-
- 
-    
-}
 
 #pragma redrawButton delegate
 
@@ -155,7 +140,8 @@ const int MINUTES_OF_DAY = 24 * 60;
     
     [self addSubview:eventButton];
      NSLog(@"redraw000");
-      
+    [self setNeedsDisplay];
+    
 }
 
 -(void)eventModify:(UIButton *)sender
