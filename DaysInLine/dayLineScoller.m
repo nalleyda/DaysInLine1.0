@@ -33,7 +33,7 @@ const int MINUTES_OF_DAY = 24 * 60;
         
         self.backgroundColor = [UIColor whiteColor];
         CGSize newSize = CGSizeMake(self.frame.size.width, NR_TIME_LABEL*TIME_LABEL_SPACE);
-        //[self setContentOffset:CGPointMake(0, 180)];
+        [self setContentOffset:CGPointMake(0, 6 * TIME_LABEL_SPACE)]; /* scroller initially stay at 6:00 */
         [self setContentSize:newSize];
         NSLog(@"***************%f",self.frame.size.height);
         
