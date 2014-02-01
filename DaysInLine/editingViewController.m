@@ -8,7 +8,7 @@
 
 #import "editingViewController.h"
 #import "remindViewController.h"
-
+#import "CustomIOS7AlertView.h"
 #import "globalVars.h"
 
 @interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>{
@@ -122,18 +122,14 @@ bool haveSaved;
     self.tagTable.allowsMultipleSelection = YES;
     
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:nil
-                                          otherButtonTitles:nil];
+    CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
     alert.tag = 1;
     
-    [alert setAlertViewStyle:UIAlertViewStyleDefault];
-    [alert addSubview:tmpCustomView];
+    [alert setContainerView:tmpCustomView];
    
     self.tagAlert = alert;
-    [ self.tagAlert  show];
+    
+    [alert show];
 
 }
 -(void)addButtonTapped
@@ -187,13 +183,13 @@ bool haveSaved;
         self.selectedTags = @"";
     }
   
-       [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+    //   [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
     
     
 }
 -(void)cancelTagTapped
 {
-    [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+   // [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
 }
 
 

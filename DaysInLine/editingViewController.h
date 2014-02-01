@@ -38,7 +38,7 @@
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
 @property (strong, nonatomic) UIAlertView *moneyAlert;
-@property (strong, nonatomic) UIAlertView *tagAlert;
+@property (strong, nonatomic) UIView *tagAlert;
 
 @property (weak, nonatomic) IBOutlet UITableView *tagTable;
 @property (weak, nonatomic) IBOutlet UITextView *mainText;

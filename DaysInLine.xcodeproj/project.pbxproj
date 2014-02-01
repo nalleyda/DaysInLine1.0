@@ -48,6 +48,7 @@
 		0BD700861813ABFB004FCBE2 /* homeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD700851813ABFB004FCBE2 /* homeView.m */; };
 		0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008A1813BC66004FCBE2 /* daylineView.m */; };
 		0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
+		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		0BD7008C1814242C004FCBE2 /* dayLineScoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dayLineScoller.h; sourceTree = "<group>"; };
 		0BD7008D1814242C004FCBE2 /* dayLineScoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dayLineScoller.m; sourceTree = "<group>"; };
 		0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindDataDelegate.h; sourceTree = "<group>"; };
+		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
+		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,7 @@
 		0B9A53C21812274D0085FFD7 = {
 			isa = PBXGroup;
 			children = (
+				134E8AFB189CEC6700C2F805 /* CustomIOS7AlertView */,
 				0B9A53D41812274D0085FFD7 /* DaysInLine */,
 				0B9A53F31812274D0085FFD7 /* DaysInLineTests */,
 				0B9A53CD1812274D0085FFD7 /* Frameworks */,
@@ -298,6 +302,16 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		134E8AFB189CEC6700C2F805 /* CustomIOS7AlertView */ = {
+			isa = PBXGroup;
+			children = (
+				134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */,
+				134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */,
+			);
+			name = CustomIOS7AlertView;
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,6 +427,7 @@
 				0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */,
 				0B9A53E51812274D0085FFD7 /* ViewController.m in Sources */,
 				0BA18F6D187C41B700ADBB01 /* collectionView.m in Sources */,
+				134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */,
 				0B942F861896720A002864B8 /* statisticViewController.m in Sources */,
 				0B9B364A1895467600E9151A /* statisticView.m in Sources */,
 				0BD700861813ABFB004FCBE2 /* homeView.m in Sources */,
