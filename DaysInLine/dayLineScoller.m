@@ -66,12 +66,12 @@ const int MINUTES_OF_DAY = 24 * 60;
         buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
         [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
 */
-        UILabel *labelTime = [[UILabel alloc] initWithFrame:
+        self.labelTime = [[UILabel alloc] initWithFrame:
                               CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
-        labelTime.font = [UIFont systemFontOfSize:14.0];
-        labelTime.text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
+        self.labelTime.font = [UIFont systemFontOfSize:14.0];
+        self.labelTime.text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
 
-        [self addSubview:labelTime];
+        [self addSubview:self.labelTime];
 //        [self addSubview:buttonWorks1];
     }
 
