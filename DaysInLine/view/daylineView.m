@@ -12,6 +12,8 @@
 
 @implementation daylineView
 
+const int MOOD_BOTTOM_GAP = 80;
+const int GROWTH_BOTTOM_GAP = 50;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -76,33 +78,24 @@
     [self addSubview:self.addMoreWork];
     [self addSubview:self.addMoreLife];
     
+    int bottom_y = frame.origin.y + frame.size.height;
     for (int i=0; i<5; i++) {
-        
-    
-    UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [starButton setFrame:CGRectMake(65+i*30, frame.origin.y+377, 25, 25)];
-                            
-    [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-    [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
-    starButton.tag = i;
-  
-    
-    [self.starArray addObject:starButton];
-    [self addSubview:starButton];
-    
+        UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [starButton setFrame:CGRectMake(65+i*30, bottom_y - GROWTH_BOTTOM_GAP, 25, 25)];
+        [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+        [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
+        starButton.tag = i;
+        [self.starArray addObject:starButton];
+        [self addSubview:starButton];
     }
     
     for (int i=0; i<5; i++) {
-        
-        
         UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [starButton setFrame:CGRectMake(65+i*30, frame.origin.y+417, 25, 25)];
+        [starButton setFrame:CGRectMake(65+i*30, bottom_y - MOOD_BOTTOM_GAP, 25, 25)];
         
         [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
         [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
-         starButton.tag = i+100;
-       
-        
+        starButton.tag = i+100;
         [self.starArray addObject:starButton];
         [self addSubview:starButton];
         
@@ -161,14 +154,16 @@
     [self addSubview:workLabel];
     [self addSubview:lifeLabel];
     
-    UILabel *moodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, frame.origin.y+380, 40, 26)];
+    int bottom_y = frame.origin.y + frame.size.height;
+    
+    UILabel *moodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, bottom_y - MOOD_BOTTOM_GAP, 40, 26)];
     moodLabel.text = @"心情";
     moodLabel.font = [UIFont systemFontOfSize:14.0];
     moodLabel.textAlignment = NSTextAlignmentCenter;
     moodLabel.layer.borderColor = [UIColor whiteColor].CGColor;
     moodLabel.layer.borderWidth = 2.0;
     
-    UILabel *growthLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, frame.origin.y+420, 40, 26)];
+    UILabel *growthLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, bottom_y - GROWTH_BOTTOM_GAP, 40, 26)];
     growthLabel.text = @"成长";
     growthLabel.font = [UIFont systemFontOfSize:14.0];
     growthLabel.textAlignment = NSTextAlignmentCenter;
