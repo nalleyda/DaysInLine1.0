@@ -308,18 +308,14 @@ bool haveSaved;
     UIButton *cancelButton =(UIButton *)[tmpCustomView viewWithTag:504];
     [cancelButton addTarget:self action:@selector(cancelTapped) forControlEvents:UIControlEventTouchUpInside];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:nil
-                                                   delegate:self
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
+    CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
     alert.tag = 0;
-   
-    [alert setAlertViewStyle:UIAlertViewStyleLoginAndPasswordInput];
-    [alert addSubview:tmpCustomView];
+    
+    [alert setContainerView:tmpCustomView];
+    
     self.moneyAlert = alert;
-    [ self.moneyAlert  show];
-
+    
+    [alert show];
 }
 
 
@@ -1066,7 +1062,7 @@ bool haveSaved;
     self.expendFinal=[outcomeText doubleValue];
     NSLog(@"BBBBBBBBB%f",self.incomeFinal);
    
-    [self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+    //[self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
     //[income resignFirstResponder];
 
 }
@@ -1074,7 +1070,7 @@ bool haveSaved;
 -(void)cancelTapped
 {
   
-    [self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+    //[self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
     
 }
 
