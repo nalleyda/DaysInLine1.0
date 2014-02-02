@@ -49,6 +49,7 @@
 		0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008A1813BC66004FCBE2 /* daylineView.m */; };
 		0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
 		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
+		13ED7A85189E844E002F669C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13ED7A84189E844E002F669C /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +127,7 @@
 		0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindDataDelegate.h; sourceTree = "<group>"; };
 		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
+		13ED7A84189E844E002F669C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				0B9009D71877D791008D3799 /* resources */,
+				13ED7A84189E844E002F669C /* Default-568h@2x.png */,
 				0B9A5405181230990085FFD7 /* Default.png */,
 				0BD7008218139338004FCBE2 /* backgroundHome.png */,
 				0BAE55AC185B7B1700695F0E /* editView.png */,
@@ -400,6 +403,7 @@
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
 				0B9009DF1877D791008D3799 /* right_arrow.png in Resources */,
 				0BAE55B1185B7B1700695F0E /* icon.png in Resources */,
+				13ED7A85189E844E002F669C /* Default-568h@2x.png in Resources */,
 				0B00AC54187D849400427F35 /* collectCell.xib in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
@@ -560,6 +564,7 @@
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
 				INFOPLIST_FILE = "DaysInLine/DaysInLine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -572,6 +577,7 @@
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
 				INFOPLIST_FILE = "DaysInLine/DaysInLine-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
