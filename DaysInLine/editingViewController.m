@@ -8,16 +8,12 @@
 
 #import "editingViewController.h"
 #import "remindViewController.h"
-#import "CustomIOS7AlertView.h"
 #import "globalVars.h"
 
-@interface editingViewController ()<UIActionSheetDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface editingViewController (){
     NSMutableArray *selected;
     NSMutableArray *tagLabels;
 }
-
-
-
 @end
 
 @implementation editingViewController
@@ -123,6 +119,7 @@ bool haveSaved;
     
     
     CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
+    [alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
     alert.tag = 1;
     
     [alert setContainerView:tmpCustomView];
@@ -183,13 +180,11 @@ bool haveSaved;
         self.selectedTags = @"";
     }
   
-    //   [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
-    
-    
+    [self.tagAlert close];
 }
 -(void)cancelTagTapped
 {
-   // [self.tagAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+   [self.tagAlert close];
 }
 
 
@@ -309,6 +304,7 @@ bool haveSaved;
     [cancelButton addTarget:self action:@selector(cancelTapped) forControlEvents:UIControlEventTouchUpInside];
     
     CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
+    [alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
     alert.tag = 0;
     
     [alert setContainerView:tmpCustomView];
@@ -1062,16 +1058,14 @@ bool haveSaved;
     self.expendFinal=[outcomeText doubleValue];
     NSLog(@"BBBBBBBBB%f",self.incomeFinal);
    
-    //[self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
+    [self.moneyAlert close];
     //[income resignFirstResponder];
 
 }
 
 -(void)cancelTapped
 {
-  
-    //[self.moneyAlert dismissWithClickedButtonIndex:(int)nil animated:YES];
-    
+    [self.moneyAlert close];
 }
 
 -(void)returnTapped

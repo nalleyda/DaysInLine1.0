@@ -12,10 +12,18 @@
 #import "remindDataDelegate.h"
 #import "drawTagDelegate.h"
 #import "reloadTableDelegate.h"
+#import "CustomIOS7AlertView.h"
 //#import "addTagDelegate.h"
 
 
-@interface editingViewController : UIViewController <UIAlertViewDelegate,remindDataDelegate,drawTagDelegate> {
+@interface editingViewController : UIViewController
+    <UIAlertViewDelegate,
+    remindDataDelegate,
+    drawTagDelegate,
+    UIActionSheetDelegate,
+    UITextFieldDelegate,
+    UITableViewDelegate,
+    UITableViewDataSource> {
     sqlite3 *dataBase;
     NSString *databasePath;
     NSNumber *startTimeNum;
@@ -37,8 +45,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
-@property (strong, nonatomic) UIView *moneyAlert;
-@property (strong, nonatomic) UIView *tagAlert;
+@property (strong, nonatomic) CustomIOS7AlertView *moneyAlert;
+@property (strong, nonatomic) CustomIOS7AlertView *tagAlert;
 
 @property (weak, nonatomic) IBOutlet UITableView *tagTable;
 @property (weak, nonatomic) IBOutlet UITextView *mainText;
