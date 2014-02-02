@@ -37,7 +37,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
-@property (strong, nonatomic) UIAlertView *moneyAlert;
+@property (strong, nonatomic) UIView *moneyAlert;
 @property (strong, nonatomic) UIView *tagAlert;
 
 @property (weak, nonatomic) IBOutlet UITableView *tagTable;
