@@ -24,6 +24,7 @@ const int TIME_LABEL_WIDTH  = 40;
 const int TIME_LABEL_HEIGHT = 20;
 const int NR_TIME_LABEL = 24;
 const int MINUTES_OF_DAY = 24 * 60;
+const int TIME_LABEL_TAG_BASE = 2000;
 UILabel *labelTime[NR_TIME_LABEL];
 
 - (id)initWithFrame:(CGRect)frame
@@ -41,7 +42,7 @@ UILabel *labelTime[NR_TIME_LABEL];
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
      //   [self addSubview:self.btnInScroll];
 
-       
+
        
     }
     return self;
@@ -64,7 +65,7 @@ UILabel *labelTime[NR_TIME_LABEL];
                         CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
         labelTime[i].font = [UIFont systemFontOfSize:14.0];
         labelTime[i].text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
-        
+        labelTime[i].tag = TIME_LABEL_TAG_BASE + i;
         [self addSubview: labelTime[i]];
         //        [self addSubview:buttonWorks1];
     }
