@@ -26,7 +26,7 @@
         [self addSubview:self.selectMode];
         
         self.goInThatDay= [UIButton buttonWithType:UIButtonTypeCustom];
-        self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, self.frame.size.height-100, 120, 30);
+        self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, frame.size.height-100, 120, 30);
         [self.goInThatDay setTitle:@"回顾当日" forState:UIControlStateNormal];
         
         self.goInThatDay.layer.borderColor = [UIColor blackColor].CGColor;

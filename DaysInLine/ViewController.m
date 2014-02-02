@@ -63,7 +63,7 @@
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenHeight = screenRect.size.height;
         self.view.frame =  CGRectMake(0, 20, self.view.frame.size.width,screenHeight-20);
-        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
+        self.view.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+20);
         NSLog(@"ios7!!!!");
     }
 
