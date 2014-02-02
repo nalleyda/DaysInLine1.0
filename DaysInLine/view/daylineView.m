@@ -24,7 +24,13 @@
         [self drawButtons:frame];
         
         
+        self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.frame.size.width-1.5, self.bounds.size.height-220)];
         
+        
+        
+        
+        [self addSubview:self.my_scoller];
+
     }
     return self;
 }

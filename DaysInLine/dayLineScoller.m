@@ -41,29 +41,36 @@ UILabel *labelTime[NR_TIME_LABEL];
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
      //   [self addSubview:self.btnInScroll];
 
-        for (int i = 0; i <= NR_TIME_LABEL; i++) {
-            
-            /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
-             buttonWorks1.backgroundColor = [UIColor blueColor];
-             buttonWorks1.layer.borderWidth = 1.0;
-             
-             buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
-             [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
-             */
-            
-            labelTime[i] = [[UILabel alloc] initWithFrame:
-                            CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
-            labelTime[i].font = [UIFont systemFontOfSize:14.0];
-            labelTime[i].text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
-            
-            [self addSubview: labelTime[i]];
-            //        [self addSubview:buttonWorks1];
-        }
-        [self setNeedsDisplay];
+       
        
     }
     return self;
 }
+
+- (void)drawRect:(CGRect)rect
+{
+
+    for (int i = 0; i <= NR_TIME_LABEL; i++) {
+        
+        /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
+         buttonWorks1.backgroundColor = [UIColor blueColor];
+         buttonWorks1.layer.borderWidth = 1.0;
+         
+         buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
+         [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
+         */
+        
+        labelTime[i] = [[UILabel alloc] initWithFrame:
+                        CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
+        labelTime[i].font = [UIFont systemFontOfSize:14.0];
+        labelTime[i].text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
+        
+        [self addSubview: labelTime[i]];
+        //        [self addSubview:buttonWorks1];
+    }
+
+}
+
 
 #pragma redrawButton delegate
 

@@ -25,8 +25,8 @@
 @property (nonatomic,weak) homeView *homePage;
 @property (nonatomic,strong) daylineView *my_dayline ;
 @property (nonatomic,strong) daylineView *my_selectDay ;
-@property (nonatomic,strong) dayLineScoller *my_scoller;
-@property (nonatomic,strong) dayLineScoller *my_selectScoller;
+//@property (nonatomic,strong) dayLineScoller *my_scoller;
+//@property (nonatomic,strong) dayLineScoller *my_selectScoller;
 @property (nonatomic,strong) selectView *my_select ;
 @property (nonatomic,strong) collectionView *my_collect;
 @property (nonatomic,strong) statisticView *my_analyse;
@@ -243,14 +243,14 @@
   
         
         
-        self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
+       // self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
         
-        self.my_scoller.modifyEvent_delegate = self;
-        self.drawBtnDelegate = self.my_scoller;
+        self.my_dayline.my_scoller.modifyEvent_delegate = self;
+        self.drawBtnDelegate = self.my_dayline.my_scoller;
         
         
         
-        [self.my_dayline addSubview:self.my_scoller];
+     //   [self.my_dayline addSubview:self.my_scoller];
         
         for (int i = 0; i<10; i++) {
             [[self.my_dayline.starArray objectAtIndex:i] addTarget:self action:@selector(starTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -464,9 +464,9 @@
 
     NSLog(@"type is:%@",my_editingViewController.eventType);
     if(self.my_dayline.hidden == NO){
-        my_editingViewController.drawBtnDelegate = self.my_scoller;
+        my_editingViewController.drawBtnDelegate = self.my_dayline.my_scoller;
     }else if (self.my_selectDay.hidden == NO){
-        my_editingViewController.drawBtnDelegate = self.my_selectScoller;
+        my_editingViewController.drawBtnDelegate = self.my_selectDay.my_scoller;
     }
 
    // my_editingViewController.addTagDataDelegate = self;
@@ -525,14 +525,14 @@
     }
   
     
-    self.my_selectScoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
+   // self.my_selectScoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
     
-    self.my_selectScoller.modifyEvent_delegate = self;
-    self.drawBtnDelegate = self.my_selectScoller;
+    self.my_selectDay.my_scoller.modifyEvent_delegate = self;
+    self.drawBtnDelegate = self.my_selectDay.my_scoller;
     
     
     
-    [self.my_selectDay addSubview:self.my_selectScoller];
+   // [self.my_selectDay addSubview:self.my_selectScoller];
     
     for (int i = 0; i<10; i++) {
         [[self.my_selectDay.starArray objectAtIndex:i] addTarget:self action:@selector(starTapped:) forControlEvents:UIControlEventTouchUpInside];
@@ -1002,9 +1002,9 @@
     self.drawLabelDelegate = my_modifyViewController;
     my_modifyViewController.reloadDelegate = self;
     if(self.my_dayline.hidden == NO){
-        my_modifyViewController.drawBtnDelegate = self.my_scoller;
+        my_modifyViewController.drawBtnDelegate = self.my_dayline.my_scoller;
     }else if (self.my_selectDay.hidden == NO){
-        my_modifyViewController.drawBtnDelegate = self.my_selectScoller;
+        my_modifyViewController.drawBtnDelegate = self.my_selectDay.my_scoller;
     }
 
     my_modifyViewController.tags = self.allTags;
@@ -1444,9 +1444,9 @@
             self.drawLabelDelegate = my_selectEvent;
             my_selectEvent.reloadDelegate = self;
             if(self.my_dayline.hidden == NO){
-                my_selectEvent.drawBtnDelegate = self.my_scoller;
+                my_selectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
             }else if (self.my_selectDay.hidden == NO){
-                my_selectEvent.drawBtnDelegate = self.my_selectScoller;
+                my_selectEvent.drawBtnDelegate = self.my_selectDay.my_scoller;
             }
             //  my_modifyViewController.addTagDataDelegate = self;
             my_selectEvent.tags = self.allTags;
@@ -1584,9 +1584,9 @@
             self.drawLabelDelegate = my_collectEvent;
             my_collectEvent.reloadDelegate = self;
             if(self.my_dayline.hidden == NO){
-                my_collectEvent.drawBtnDelegate = self.my_scoller;
+                my_collectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
             }else if (self.my_selectDay.hidden == NO){
-                my_collectEvent.drawBtnDelegate = self.my_selectScoller;
+                my_collectEvent.drawBtnDelegate = self.my_selectDay.my_scoller;
             }
             //  my_modifyViewController.addTagDataDelegate = self;
             my_collectEvent.tags = self.allTags;

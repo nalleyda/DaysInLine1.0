@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "dayLineScoller.h"
 #import "globalVars.h"
 
 @interface daylineView : UIView
@@ -15,4 +16,6 @@
 @property (nonatomic,strong) UIButton *addMoreWork ;
 @property (nonatomic,strong) UIButton *addMoreLife ;
 @property (nonatomic,strong) UILabel *dateNow;
+
+@property (nonatomic,strong) dayLineScoller *my_scoller;
 @end
