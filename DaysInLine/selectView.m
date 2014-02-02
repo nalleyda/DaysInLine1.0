@@ -20,7 +20,7 @@
         NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期查询",@"按标签查询", nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
         
-        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, 10, 200, 35)];
+        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+10, 200, 35)];
         self.selectMode.selectedSegmentIndex= 0;
         [self.selectMode addTarget:self action:@selector(selectValueChanged:) forControlEvents:UIControlEventValueChanged];
         [self addSubview:self.selectMode];
@@ -35,9 +35,9 @@
         
 
         //按日期查询视图
-        self.dateView = [[UIView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-55)];
+        self.dateView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
 
-        self.tagView = [[UIView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-55)];
+        self.tagView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
        // self.tagView.backgroundColor = [UIColor grayColor];
         
         self.calendar = [[CKCalendarView alloc] initWithStartDay:startSunday];

@@ -57,8 +57,16 @@
 - (void)viewDidLoad
 {
        [super viewDidLoad];
-    
-    
+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        self.view.clipsToBounds = YES;
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenHeight = screenRect.size.height;
+        self.view.frame =  CGRectMake(0, 20, self.view.frame.size.width,screenHeight-20);
+        self.view.bounds = CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height);
+        NSLog(@"ios7!!!!");
+    }
+
 
 
 	// Do any additional setup after loading the view, typically from a nib.
@@ -83,7 +91,8 @@
 
     
     
-    CGRect frame = CGRectMake(85,0, self.view.bounds.size.width-85, self.view.bounds.size.height );
+    CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y, self.view.frame.size.width-85, self.view.frame.size.height );
+    NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
     self.my_dayline = [[daylineView alloc] initWithFrame:frame];
     self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
     self.my_select = [[selectView alloc] initWithFrame:frame];

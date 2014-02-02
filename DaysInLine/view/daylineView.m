@@ -101,7 +101,7 @@ const int GROWTH_BOTTOM_GAP = 50;
         
     }
     
-    self.dateNow = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-42, 7, 120, 30)];
+    self.dateNow = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-42, frame.origin.y+7, 120, 30)];
     //self.dateNow.backgroundColor = [UIColor blueColor];
    // self.dateNow.text = modifyDate;
     self.dateNow.font = [UIFont systemFontOfSize:18.0];

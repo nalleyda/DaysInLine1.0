@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <objects>
@@ -239,7 +239,7 @@
                 <constraint firstItem="ZEV-5t-kIE" firstAttribute="top" secondItem="jnF-cr-2Iy" secondAttribute="bottom" constant="13" id="vbl-fh-hgF"/>
                 <constraint firstItem="tpe-fm-0n4" firstAttribute="top" secondItem="ZEV-5t-kIE" secondAttribute="bottom" constant="49" id="yy7-cv-9DC"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
