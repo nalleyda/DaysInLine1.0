@@ -56,8 +56,9 @@
 
 - (void)viewDidLoad
 {
+    
        [super viewDidLoad];
-
+/*
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.view.clipsToBounds = YES;
         CGRect screenRect = [[UIScreen mainScreen] bounds];
@@ -66,7 +67,7 @@
         self.view.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+20);
         NSLog(@"ios7!!!!");
     }
-
+*/
 
 
 	// Do any additional setup after loading the view, typically from a nib.
@@ -91,13 +92,36 @@
 
     
     
-    CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y, self.view.frame.size.width-85, self.view.frame.size.height );
-    NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
-    self.my_dayline = [[daylineView alloc] initWithFrame:frame];
-    self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
-    self.my_select = [[selectView alloc] initWithFrame:frame];
-    self.my_collect = [[collectionView alloc] initWithFrame:frame];
-    self.my_analyse = [[statisticView alloc] initWithFrame:frame];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        
+        CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+10, self.view.frame.size.width-85, self.view.frame.size.height-10 );
+            
+        NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
+            
+        self.my_selectDay = [[daylineView alloc] initWithFrame:frame7];
+        self.my_select = [[selectView alloc] initWithFrame:frame7];
+        self.my_dayline = [[daylineView alloc] initWithFrame:frame7];
+        self.my_collect = [[collectionView alloc] initWithFrame:frame7];
+        self.my_analyse = [[statisticView alloc] initWithFrame:frame7];
+
+        NSLog(@"ios7!!!!");
+    }else{
+        
+        CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+        
+        NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
+        
+        self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
+        self.my_select = [[selectView alloc] initWithFrame:frame];
+        self.my_dayline = [[daylineView alloc] initWithFrame:frame];
+        self.my_collect = [[collectionView alloc] initWithFrame:frame];
+        self.my_analyse = [[statisticView alloc] initWithFrame:frame];
+
+    }
+    
+
+    
+    
     self.my_select.calendar.delegate = self;
     self.my_select.eventsTable.delegate = self;
     self.my_select.eventsTable.dataSource = self;
@@ -469,7 +493,7 @@
 -(void)eventTapped:(UIButton *)sender
 {
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
-    my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
+        my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
 
     NSLog(@"type is:%@",my_editingViewController.eventType);
     if(self.my_dayline.hidden == NO){

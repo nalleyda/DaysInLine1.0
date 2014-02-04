@@ -29,13 +29,21 @@ bool haveSaved;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) // only for iOS 7 and above
+        {
+            self.view.frame = CGRectMake(0, 10, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
+        }
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
+
+    
     [super viewDidLoad];
+    
+
     
     //self.incomeFinal=0.0f;
     firstInmoney = NO;
