@@ -33,18 +33,18 @@
         [self sendSubviewToBack:homeBackground];
         
         UIButton *my_todayButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 80, 84, 45)];
-        my_todayButton.backgroundColor = [UIColor brownColor];
-        [my_todayButton setTitle:@"今天" forState:UIControlStateNormal];
+       // my_todayButton.backgroundColor = [UIColor brownColor];
+        //[my_todayButton setTitle:@"今天" forState:UIControlStateNormal];
         self.todayButton = my_todayButton;
         
         UIButton *my_selectButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 140, 84, 45)];
-        my_selectButton.backgroundColor = [UIColor brownColor];
-        [my_selectButton setTitle:@"查询" forState:UIControlStateNormal];
+       // my_selectButton.backgroundColor = [UIColor brownColor];
+        //[my_selectButton setTitle:@"查询" forState:UIControlStateNormal];
         self.selectButton = my_selectButton;
         
         UIButton *my_treasureButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 84, 45)];
-        my_treasureButton.backgroundColor = [UIColor brownColor];
-        [my_treasureButton setTitle:@"收藏夹" forState:UIControlStateNormal];
+        //my_treasureButton.backgroundColor = [UIColor brownColor];
+        //[my_treasureButton setTitle:@"收藏夹" forState:UIControlStateNormal];
         self.treasureButton = my_treasureButton;
      /*
         UIButton *my_achieveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 260, 84, 45)];
@@ -53,21 +53,21 @@
         self.achieveButton = my_achieveButton;
       */  
         UIButton *my_analyseButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 260, 84, 45)];
-        my_analyseButton.backgroundColor = [UIColor brownColor];
-        [my_analyseButton setTitle:@"状态分析" forState:UIControlStateNormal];
+        //my_analyseButton.backgroundColor = [UIColor brownColor];
+        //[my_analyseButton setTitle:@"状态分析" forState:UIControlStateNormal];
         self.analyseButton = my_analyseButton;
         
         UIButton *my_exitButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 320, 84, 45)];
-        my_exitButton.backgroundColor = [UIColor brownColor];
-        [my_exitButton setTitle:@"退出" forState:UIControlStateNormal];
+        //my_exitButton.backgroundColor = [UIColor brownColor];
+        //[my_exitButton setTitle:@"退出" forState:UIControlStateNormal];
         self.exitButton = my_exitButton;
-        
+      
         [self addSubview:my_todayButton];
         [self addSubview:my_selectButton];
         [self addSubview:my_treasureButton];
         [self addSubview:my_exitButton];
         [self addSubview:my_analyseButton];
-        
+       
         
     }
     return self;

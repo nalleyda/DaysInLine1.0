@@ -29,18 +29,30 @@ bool haveSaved;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        if([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) // only for iOS 7 and above
-        {
-            self.view.frame = CGRectMake(0, 10, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-        }
-    }
+          }
     return self;
 }
-
+/*- (void) viewDidLayoutSubviews {
+    // only works for iOS 7+
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        CGRect viewBounds = self.view.bounds;
+       // CGFloat topBarOffset = self.topLayoutGuide.length;
+        
+        // snaps the view under the status bar (iOS 6 style)
+        viewBounds.origin.y = 10;
+        
+        // shrink the bounds of your view to compensate for the offset
+        viewBounds.size.height = viewBounds.size.height -10;
+        self.view.bounds = viewBounds;
+    }
+}
+ */
 - (void)viewDidLoad
 {
-
-    
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
+        self.edgesForExtendedLayout = UIRectEdgeBottom;
+        NSLog(@"aloha!");
+    }
     [super viewDidLoad];
     
 

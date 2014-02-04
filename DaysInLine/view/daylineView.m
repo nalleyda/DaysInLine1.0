@@ -145,6 +145,7 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     
     UILabel *lifeLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2+20+18, frame.origin.y+40, frame.size.width/2-40-18, 26)];
+    
     lifeLabel.text = @"生活";
     lifeLabel.textAlignment = NSTextAlignmentCenter;
     lifeLabel.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -158,16 +159,18 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     UILabel *moodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, bottom_y - MOOD_BOTTOM_GAP, 40, 26)];
     moodLabel.text = @"心情";
+    moodLabel.backgroundColor = [UIColor clearColor];
     moodLabel.font = [UIFont systemFontOfSize:14.0];
     moodLabel.textAlignment = NSTextAlignmentCenter;
-    moodLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    moodLabel.layer.borderColor = [UIColor clearColor].CGColor;
     moodLabel.layer.borderWidth = 2.0;
     
     UILabel *growthLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, bottom_y - GROWTH_BOTTOM_GAP, 40, 26)];
     growthLabel.text = @"成长";
     growthLabel.font = [UIFont systemFontOfSize:14.0];
+    growthLabel.backgroundColor = [UIColor clearColor];
     growthLabel.textAlignment = NSTextAlignmentCenter;
-    growthLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    growthLabel.layer.borderColor = [UIColor clearColor].CGColor;
     growthLabel.layer.borderWidth = 2.0;
  
   

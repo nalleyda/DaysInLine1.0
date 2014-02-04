@@ -58,6 +58,8 @@
 {
     
        [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundHome.png"]];
 /*
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         self.view.clipsToBounds = YES;
