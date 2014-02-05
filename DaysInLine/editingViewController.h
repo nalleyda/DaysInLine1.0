@@ -60,6 +60,7 @@
 @property double expendFinal;
 @property NSMutableArray *tags;
 @property NSString *selectedTags;
+@property NSString *imageName;
 @property (strong, nonatomic) NSString *remindData;
 //@property (strong, nonatomic) NSString *oldLabel;
 

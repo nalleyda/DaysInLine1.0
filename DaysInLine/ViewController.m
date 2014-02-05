@@ -937,6 +937,7 @@
     NSNumber *income;
     NSNumber *expend;
     NSString *remind;
+    NSString *photo;
     NSString *oldLabel;
    // NSArray *tagToDraw = [[NSArray alloc] init];
  
@@ -949,7 +950,7 @@
     sqlite3_stmt *statement;
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[startArea intValue]];
+        NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,startTime,endTime,income,expend,label,remind,photoDir from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[startArea intValue]];
         const char *queryEventstatment = [queryEvent UTF8String];
         if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
             if (sqlite3_step(statement)==SQLITE_ROW) {
@@ -1020,6 +1021,14 @@
                     NSLog(@"nsstring_mdfy  is %@",remind);
                 }
                 
+                char *photo_mdfy = (char *)sqlite3_column_text(statement, 10);
+                if (photo_mdfy == nil) {
+                    photo = @"";
+                } else {
+                    photo = [[NSString alloc] initWithUTF8String:photo_mdfy];
+                    
+                    NSLog(@"photo is %@",photo);
+                }
             }
             
         }
@@ -1053,6 +1062,12 @@
     [(UILabel*)[my_modifyViewController.view viewWithTag:104] setText:endTime];
     [(UIButton*)[my_modifyViewController.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
     [(UIButton*)[my_modifyViewController.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:photo];
+    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+    UIImageView *imageView = (UIImageView*)[my_modifyViewController.view viewWithTag:107];
+    [imageView setImage: savedImage];
+    
     my_modifyViewController.incomeFinal = [income doubleValue];
     my_modifyViewController.expendFinal = [expend doubleValue];
     [self.drawLabelDelegate drawTag:oldLabel];

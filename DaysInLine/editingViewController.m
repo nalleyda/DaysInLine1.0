@@ -79,6 +79,7 @@ bool haveSaved;
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
     self.mainText = (UITextView *)[self.view viewWithTag:106];
+    self.imageView = (UIImageView *) [self.view viewWithTag:107];
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
     
     
@@ -282,14 +283,13 @@ bool haveSaved;
 #pragma mark - 保存图片至沙盒
 - (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
-    
     NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
-    // 获取沙盒目录
     
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    // 获取沙盒目录
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                          stringByAppendingPathComponent:imageName];
     
     // 将图片写入文件
-    
     [imageData writeToFile:fullPath atomically:NO];
 }
 
@@ -300,13 +300,16 @@ bool haveSaved;
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     
-    [self saveImage:image withName:@"currentImage.png"];
+    NSString *UUID = [[NSUUID UUID] UUIDString];
+    NSString *name = [NSString stringWithFormat:@"%@.png", UUID];
     
-    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
+    [self saveImage:image withName: name];
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
     
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     [self.imageView setImage:savedImage];
-    self.imageView.tag = 100;
+    self.imageName = name;
 }
 
 -(void)moneyTapped
@@ -618,7 +621,7 @@ bool haveSaved;
                         sqlite3_bind_text(statementInsert,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                         //  sqlite3_bind_int(statement,11, 0);
                         sqlite3_bind_int(statementInsert,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
-                        sqlite3_bind_text(statementInsert,13, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_text(statementInsert,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                         if (sqlite3_step(statementInsert)==SQLITE_DONE) {
                             NSLog(@"innsert event okssssssssssscollect");
@@ -931,7 +934,7 @@ bool haveSaved;
                         sqlite3_bind_text(statement,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                         //  sqlite3_bind_int(statement,11, 0);
                         sqlite3_bind_int(statement,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
-                        sqlite3_bind_text(statement,13, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_text(statement,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                             if (sqlite3_step(statement)==SQLITE_DONE) {
                             NSLog(@"innsert event okqqqqqq");
@@ -976,7 +979,7 @@ bool haveSaved;
                             sqlite3_bind_text(statement,8, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_text(statement,9, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_int(statement,10, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
-                            sqlite3_bind_text(statement,11, [@"photo directory" UTF8String], -1, SQLITE_TRANSIENT);
+                            sqlite3_bind_text(statement,11, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_int(statement,12, modifyEventId);
                             
                             if (sqlite3_step(statement)==SQLITE_DONE) {
