@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="editingViewController">
@@ -12,6 +12,7 @@
                 <outlet property="addTagButton" destination="0WL-AF-KdO" id="Txc-OR-WdI"/>
                 <outlet property="deleteButton" destination="PTi-KT-iw5" id="vCh-e2-dra"/>
                 <outlet property="endTimeButton" destination="4ua-p1-azQ" id="2ZB-JT-rMq"/>
+                <outlet property="imageView" destination="0d2-mh-V0H" id="kIz-WL-T9e"/>
                 <outlet property="mainText" destination="ZEV-5t-kIE" id="qMw-aS-WwA"/>
                 <outlet property="moneyButton" destination="ak2-GO-nui" id="U2x-QY-Kjo"/>
                 <outlet property="photoButton" destination="uUl-Hg-KmG" id="t57-wG-p8d"/>
@@ -178,6 +179,10 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0d2-mh-V0H">
+                    <rect key="frame" x="40" y="212" width="240" height="218"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
