@@ -1063,6 +1063,7 @@
     [(UIButton*)[my_modifyViewController.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
     [(UIButton*)[my_modifyViewController.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
     
+    my_modifyViewController.imageName = photo;
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:photo];
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
     UIImageView *imageView = (UIImageView*)[my_modifyViewController.view viewWithTag:107];
@@ -1329,6 +1330,7 @@
     NSNumber *income;
     NSNumber *expend;
     NSString *remind;
+    NSString *photo;
     NSString *oldLabel;
     
     const char *dbpath = [databasePath UTF8String];
@@ -1395,7 +1397,7 @@
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,date,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",eventid];
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,date,startTime,endTime,income,expend,label,remind,photoDir from event where eventID=\"%d\"",eventid];
                 const char *queryEventstatment = [queryEvent UTF8String];
                 if  (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                     while  (sqlite3_step(statement)==SQLITE_ROW) {
@@ -1474,6 +1476,15 @@
                             
                             NSLog(@"nsstring_mdfy  is %@",remind);
                         }
+                        
+                        char *photo_mdfy = (char *)sqlite3_column_text(statement, 11);
+                        if (photo_mdfy == nil) {
+                            photo = @"";
+                        } else {
+                            photo = [[NSString alloc] initWithUTF8String:photo_mdfy];
+                            
+                            NSLog(@"photo is %@",photo);
+                        }
                     }
                     
                 }
@@ -1511,6 +1522,13 @@
             [(UILabel*)[my_selectEvent.view viewWithTag:104] setText:endTime];
             [(UIButton*)[my_selectEvent.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
             [(UIButton*)[my_selectEvent.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
+            
+            my_selectEvent.imageName = photo;
+            NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:photo];
+            UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+            UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:107];
+            [imageView setImage: savedImage];
+            
             my_selectEvent.incomeFinal = [income doubleValue];
             my_selectEvent.expendFinal = [expend doubleValue];
             [self.drawLabelDelegate drawTag:oldLabel];
@@ -1534,7 +1552,7 @@
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,date,startTime,endTime,income,expend,label,remind from event where eventID=\"%d\"",collectEventid];
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT eventID,type,title,mainText,date,startTime,endTime,income,expend,label,remind,photoDir from event where eventID=\"%d\"",collectEventid];
                 const char *queryEventstatment = [queryEvent UTF8String];
                 if  (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                     while  (sqlite3_step(statement)==SQLITE_ROW) {
@@ -1614,6 +1632,16 @@
                             
                             NSLog(@"nsstring_mdfy  is %@",remind);
                         }
+                        
+                        char *photo_mdfy = (char *)sqlite3_column_text(statement, 11);
+                        if (photo_mdfy == nil) {
+                            photo = @"";
+                        } else {
+                            photo = [[NSString alloc] initWithUTF8String:photo_mdfy];
+                            
+                            NSLog(@"photo is %@",photo);
+                        }
+                        
                     }
                     
                 }
@@ -1654,6 +1682,13 @@
             [(UILabel*)[my_collectEvent.view viewWithTag:104] setText:endTime];
             [(UIButton*)[my_collectEvent.view viewWithTag:101] setTitle:@"" forState:UIControlStateNormal];
             [(UIButton*)[my_collectEvent.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
+            
+            my_collectEvent.imageName = photo;
+            NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:photo];
+            UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+            UIImageView *imageView = (UIImageView*)[my_collectEvent.view viewWithTag:107];
+            [imageView setImage: savedImage];
+            
             my_collectEvent.incomeFinal = [income doubleValue];
             my_collectEvent.expendFinal = [expend doubleValue];
             [self.drawLabelDelegate drawTag:oldLabel];
