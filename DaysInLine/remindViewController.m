@@ -28,6 +28,15 @@ UIDatePicker *remindTimePicker2;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+            self.remindMode.frame = CGRectMake(44, 48, 230, 43);
+            
+            NSLog(@"remind7!!!!");
+        }else{
+            self.remindMode.frame = CGRectMake(44, 28, 230, 43);
+        }
+
     }
     return self;
 }
@@ -36,6 +45,7 @@ UIDatePicker *remindTimePicker2;
 {
     [super viewDidLoad];
   //  self.view.backgroundColor = [UIColor clearColor];
+   
     self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
     self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
     //按日期设置提醒时间的视图

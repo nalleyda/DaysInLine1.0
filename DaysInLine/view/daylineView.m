@@ -30,7 +30,6 @@ const int GROWTH_BOTTOM_GAP = 50;
         
         
         
-        
         [self addSubview:self.my_scoller];
 
     }

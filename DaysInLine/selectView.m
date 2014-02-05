@@ -17,10 +17,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:frame];
+        UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         
         rightBackground.image = [UIImage imageNamed:@"rightBackground.png"];
+        
+        [self addSubview:rightBackground];
+        [self sendSubviewToBack:rightBackground];
 
+       
         
         NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期查询",@"按标签查询", nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
@@ -28,6 +32,8 @@
         [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+10, 200, 35)];
         self.selectMode.selectedSegmentIndex= 0;
         [self.selectMode addTarget:self action:@selector(selectValueChanged:) forControlEvents:UIControlEventValueChanged];
+        
+        self.selectMode.backgroundColor = [UIColor clearColor];
         [self addSubview:self.selectMode];
         
         self.goInThatDay= [UIButton buttonWithType:UIButtonTypeCustom];
@@ -41,12 +47,14 @@
 
         //按日期查询视图
         self.dateView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
+         self.dateView.backgroundColor = [UIColor clearColor];
 
         self.tagView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
        // self.tagView.backgroundColor = [UIColor grayColor];
         
         self.calendar = [[CKCalendarView alloc] initWithStartDay:startSunday];
         self.calendar.frame = CGRectMake(0, 0, self.frame.size.width-20, (self.frame.size.height-150)/2);
+        //self.calendar.backgroundColor = [UIColor clearColor];
         [self.dateView addSubview:self.calendar];
 
         self.backgroundColor = [UIColor whiteColor];
@@ -58,6 +66,7 @@
         NSLog(@"frame:%f",self.eventsTable.frame.origin.y);
         [self.eventsTable setEditing:NO];
       //  self.eventsTable.backgroundColor = [UIColor grayColor];
+        self.eventsTable.backgroundColor = [UIColor clearColor];
         [self.dateView addSubview:self.eventsTable];
         
         

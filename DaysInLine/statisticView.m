@@ -20,6 +20,7 @@
         
         UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.origin.y+30, self.frame.size.width-20, 30) ];
         tips.text = @"请选择想要分析的时间段：";
+        tips.backgroundColor = [UIColor clearColor];
         
         [self addSubview:tips];
         

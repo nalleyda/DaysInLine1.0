@@ -24,6 +24,17 @@
    
         self.collectionTable.tag = 3;
         self.collectionTable.rowHeight = 48;
+        self.collectionTable.backgroundColor = [UIColor clearColor];
+        UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        
+        rightBackground.image = [UIImage imageNamed:@"rightBackground.png"];
+        
+        [self addSubview:rightBackground];
+        [self sendSubviewToBack:rightBackground];
+
+       // self.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"rightBackground.png"]];
+        
+
         
         [self addSubview:self.collectionTable];
     }
