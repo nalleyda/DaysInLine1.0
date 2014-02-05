@@ -15,9 +15,13 @@
 @property (strong ,nonatomic) UITableView *alltagTable;
 @property (strong ,nonatomic) UITableView *eventInTagTable;
 @property (strong ,nonatomic)  UISegmentedControl *selectMode;
+@property (strong ,nonatomic)  UISearchBar *my_searchBar;
+@property (strong ,nonatomic) UITableView *eventInSearchTable;
 
 @property (strong,nonatomic) UIView *dateView;
 @property (strong,nonatomic) UIView *tagView;
+@property (strong,nonatomic) UIView *keyWordView;
+
 @property (strong,nonatomic) UIButton *goInThatDay;
 @property (strong,nonatomic) UIButton *returnToTags;
 

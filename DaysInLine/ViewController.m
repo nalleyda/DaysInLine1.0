@@ -19,7 +19,7 @@
 #import "globalVars.h"
 
 
-@interface ViewController ()<CKCalendarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<CKCalendarDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (nonatomic,weak) UIImageView *background;
 @property (nonatomic,weak) homeView *homePage;
@@ -134,6 +134,9 @@ bool selectedDayRedrawDone;
     self.my_select.alltagTable.dataSource = self;
     self.my_select.eventInTagTable.delegate = self;
     self.my_select.eventInTagTable.dataSource = self;
+    self.my_select.my_searchBar.delegate = self;
+    self.my_select.eventInSearchTable.delegate = self;
+    self.my_select.eventInSearchTable.dataSource = self;
     self.my_collect.collectionTable.delegate = self;
     self.my_collect.collectionTable.dataSource = self;
     [self.homePage addSubview:self.my_dayline];
@@ -1347,7 +1350,7 @@ bool selectedDayRedrawDone;
     const char *dbpath = [databasePath UTF8String];
 
     
-   // tag:0为按日期查询界面中的列表，1为查询界面中的tag列表，2为点击某一tag之后的所有事件列表，3为收藏中的列表
+   // tag:0为按日期查询界面中的列表，1为查询界面中的tag列表，2为点击某一tag之后的所有事件列表，3为收藏中的列表，4为关键字查询的列表
     switch (tableView.tag) {
         case 0:
             
@@ -1802,5 +1805,25 @@ bool selectedDayRedrawDone;
     
 }
 
+
+#pragma mark - 实现取消按钮的方法
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"您点击了取消按钮");
+    [searchBar resignFirstResponder]; // 丢弃第一使用者
+}
+#pragma mark - 实现键盘上Search按钮的方法
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    NSLog(@"您点击了键盘上的Search按钮");
+}
+#pragma mark - 实现监听开始输入的方法
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+    NSLog(@"开始输入搜索内容");
+    return YES;
+}
+#pragma mark - 实现监听输入完毕的方法
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
+    NSLog(@"输入完毕");
+    return YES;
+}
 
 @end

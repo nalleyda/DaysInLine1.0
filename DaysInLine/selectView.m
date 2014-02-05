@@ -26,7 +26,7 @@
 
        
         
-        NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期查询",@"按标签查询", nil];
+        NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期",@"按标签",@"关键字",nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
         
         [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+10, 200, 35)];
@@ -51,6 +51,9 @@
 
         self.tagView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
        // self.tagView.backgroundColor = [UIColor grayColor];
+        self.keyWordView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
+        
+        
         
         self.calendar = [[CKCalendarView alloc] initWithStartDay:startSunday];
         self.calendar.frame = CGRectMake(0, 0, self.frame.size.width-20, (self.frame.size.height-150)/2);
@@ -73,11 +76,12 @@
         //按标签查询视图
         self.alltagTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, self.frame.size.height-170)];
       //  [self.alltagTable setIndicatorStyle:UIScrollViewIndicatorStyleBlack];
-
+        self.alltagTable.backgroundColor = [UIColor clearColor];
         self.alltagTable.tag = 1;
                // self.alltagTable.rowHeight = 34;
         self.eventInTagTable= [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, self.frame.size.height-170)];
         self.eventInTagTable.tag = 2;
+        self.eventInTagTable.backgroundColor = [UIColor clearColor];
        // self.alltagTable.backgroundColor = [UIColor yellowColor];
         [self.tagView addSubview:self.alltagTable];
 
@@ -97,7 +101,21 @@
         [self.dateView addSubview:self.goInThatDay];
         [self addSubview:self.dateView];
         
-    
+    //按关键字查询视图
+        
+        self.my_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, 40)];
+        self.my_searchBar.tintColor = [UIColor clearColor];
+        self.my_searchBar.barStyle = UIBarStyleBlackOpaque;
+        self.my_searchBar.placeholder = @"请输入：";
+        self.my_searchBar.showsCancelButton = YES;
+        
+        self.eventInSearchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width-30, self.frame.size.height-150)];
+        self.eventInSearchTable.backgroundColor = [UIColor clearColor];
+        self.eventInSearchTable.tag = 4;
+        
+        [self.keyWordView addSubview:self.my_searchBar];
+        [self.keyWordView addSubview:self.eventInSearchTable];
+        //[self addSubview:self.keyWordView];
         // Initialization code
     }
     return self;
@@ -111,15 +129,16 @@
     [self.alltagTable reloadData];
     
     if (myUISegmentedControl.selectedSegmentIndex == 0) {
-        if (self.tagView) {
+        if (self.tagView ) {
             [self.tagView removeFromSuperview];
             [self addSubview:self.dateView];
             
             
         }
-        else if(self.dateView){
+        if(self.keyWordView){
+            [self.keyWordView removeFromSuperview];
+            [self addSubview:self.dateView];
             
-            return;
         }
         
         
@@ -133,10 +152,29 @@
             
             
         }
-        else if(self.tagView){
+        if(self.keyWordView){
+            [self.keyWordView removeFromSuperview];
             
-            return;
+            [self addSubview:self.tagView];
+            
         }
+        
+    }
+    else if(myUISegmentedControl.selectedSegmentIndex == 2){
+        if (self.dateView) {
+            [self.dateView removeFromSuperview];
+            
+            [self addSubview:self.keyWordView];
+            
+            
+        }
+        if(self.tagView){
+            [self.tagView removeFromSuperview];
+            
+            [self addSubview:self.keyWordView];
+           
+        }
+
         
     }
     
