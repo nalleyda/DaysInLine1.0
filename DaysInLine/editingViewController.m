@@ -94,6 +94,7 @@ bool haveSaved;
     [self.addTagButton addTarget:self action:@selector(addTagTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.deleteButton addTarget:self action:@selector(deleteTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.addCollectionButton addTarget:self action:@selector(addCollectTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.photoButton addTarget:self action:@selector(photoTapped) forControlEvents:UIControlEventTouchUpInside];
     
     
     
@@ -255,8 +256,58 @@ bool haveSaved;
 }
 */
 
+-(void) photoTapped
+{
+    UIActionSheet *sheet;
+    
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择"
+                                             delegate:self
+                                    cancelButtonTitle:nil
+                               destructiveButtonTitle:@"取消"
+                                    otherButtonTitles:@"拍照", @"从相册选择", nil];
+    } else {
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择"
+                                            delegate:self
+                                   cancelButtonTitle:nil
+                              destructiveButtonTitle:@"取消"
+                                   otherButtonTitles:@"从相册选择", nil];
+    }
+    sheet.tag = 255;
+    [sheet showInView:self.view];
+}
 
+#pragma mark - 保存图片至沙盒
+- (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    
+    NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
+    // 获取沙盒目录
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:imageName];
+    
+    // 将图片写入文件
+    
+    [imageData writeToFile:fullPath atomically:NO];
+}
 
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+	[picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    [self saveImage:image withName:@"currentImage.png"];
+    
+    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"currentImage.png"];
+    
+    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+    [self.imageView setImage:savedImage];
+    self.imageView.tag = 100;
+}
 
 -(void)moneyTapped
 {
@@ -1177,7 +1228,38 @@ bool haveSaved;
         
     }
 
-	
+    if (actionSheet.tag == 255) {
+        NSUInteger sourceType = 0;
+
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            switch (buttonIndex) {
+                case 0:
+                    // 取消
+                    return;
+                case 1:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 2:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+            }
+        } else {
+            if (buttonIndex == 0) {
+                return;
+            } else {
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        imagePickerController.delegate = self;
+        imagePickerController.allowsEditing = YES;
+        imagePickerController.sourceType = sourceType;
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    }
 }
 
 - (IBAction)endEditing:(id)sender {

@@ -23,7 +23,10 @@
     UIActionSheetDelegate,
     UITextFieldDelegate,
     UITableViewDelegate,
-    UITableViewDataSource> {
+    UITableViewDataSource,
+    UIActionSheetDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate> {
     sqlite3 *dataBase;
     NSString *databasePath;
     NSNumber *startTimeNum;
@@ -43,6 +46,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *startTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *endTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
 @property (strong, nonatomic) CustomIOS7AlertView *moneyAlert;
