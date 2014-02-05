@@ -17,6 +17,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:frame];
+        
+        rightBackground.image = [UIImage imageNamed:@"rightBackground.png"];
+
+        
         NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期查询",@"按标签查询", nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
         

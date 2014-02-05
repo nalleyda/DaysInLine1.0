@@ -99,7 +99,7 @@ bool selectedDayRedrawDone;
     
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         
-        CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+10, self.view.frame.size.width-85, self.view.frame.size.height-10 );
+        CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
             
         NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
             

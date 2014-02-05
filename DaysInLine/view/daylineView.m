@@ -81,7 +81,7 @@ const int GROWTH_BOTTOM_GAP = 50;
     int bottom_y = frame.origin.y + frame.size.height;
     for (int i=0; i<5; i++) {
         UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [starButton setFrame:CGRectMake(65+i*30, bottom_y - GROWTH_BOTTOM_GAP, 25, 25)];
+        [starButton setFrame:CGRectMake(65+i*30, bottom_y - MOOD_BOTTOM_GAP, 25, 25)];
         [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
         [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
         starButton.tag = i;
@@ -91,7 +91,7 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     for (int i=0; i<5; i++) {
         UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [starButton setFrame:CGRectMake(65+i*30, bottom_y - MOOD_BOTTOM_GAP, 25, 25)];
+        [starButton setFrame:CGRectMake(65+i*30, bottom_y - GROWTH_BOTTOM_GAP, 25, 25)];
         
         [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
         [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
