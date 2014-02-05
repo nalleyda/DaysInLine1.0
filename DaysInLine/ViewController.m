@@ -53,6 +53,9 @@
 
 @implementation ViewController
 
+bool todayRedrawDone;
+
+bool selectedDayRedrawDone;
 
 - (void)viewDidLoad
 {
@@ -377,7 +380,11 @@
                     NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
                     
-                    [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
+                    if (!todayRedrawDone) {
+                        [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
+                        todayRedrawDone = YES;
+
+                    }
                     
                     if ([evtType intValue]==0) {
                         for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
@@ -633,7 +640,11 @@
                 NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
                 NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
                 
-                [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
+                if (!selectedDayRedrawDone) {
+                    [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];                    selectedDayRedrawDone = YES;
+                    
+                }
+             
                 
                 if ([evtType intValue]==0) {
                     for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {

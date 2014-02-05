@@ -64,6 +64,7 @@ UILabel *labelTime[NR_TIME_LABEL];
         labelTime[i] = [[UILabel alloc] initWithFrame:
                         CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
         labelTime[i].font = [UIFont systemFontOfSize:14.0];
+        labelTime[i].backgroundColor = [UIColor clearColor];
         labelTime[i].text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
         labelTime[i].tag = TIME_LABEL_TAG_BASE + i;
         [self addSubview: labelTime[i]];
@@ -124,10 +125,10 @@ UILabel *labelTime[NR_TIME_LABEL];
     NSLog(@"in draw the typ is : %@",eventType);
     UIButton *eventButton;
     if ([eventType intValue] == 0) {
-         eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-32, height)];
+         eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-30, height)];
     }
     else if ([eventType intValue] == 1) {
-        eventButton = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width)/2+25, start, (self.frame.size.width)/2-32, height)];
+        eventButton = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width)/2+25, start, (self.frame.size.width)/2-30, height)];
     }
    
     eventButton.tag =[eventType intValue]*1000 + [startNum intValue]/30;
@@ -149,7 +150,7 @@ UILabel *labelTime[NR_TIME_LABEL];
     
     [self addSubview:eventButton];
      NSLog(@"redraw000");
-    [self setNeedsDisplay];
+   // [self setNeedsDisplay];
     
 }
 

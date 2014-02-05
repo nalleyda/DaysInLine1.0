@@ -26,7 +26,7 @@ const int GROWTH_BOTTOM_GAP = 50;
         [self drawButtons:frame];
         
         
-        self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.frame.size.width-1.5, self.bounds.size.height-220)];
+        self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(0,110, self.frame.size.width, self.bounds.size.height-220)];
         
         
         
@@ -105,10 +105,11 @@ const int GROWTH_BOTTOM_GAP = 50;
     //self.dateNow.backgroundColor = [UIColor blueColor];
    // self.dateNow.text = modifyDate;
     self.dateNow.font = [UIFont systemFontOfSize:18.0];
-    self.dateNow.layer.borderColor = [UIColor blackColor].CGColor;
+    self.dateNow.backgroundColor = [UIColor clearColor];
+   // self.dateNow.layer.borderColor = [UIColor blackColor].CGColor;
     self.dateNow.layer.borderWidth = 1.0;
     self.dateNow.textAlignment = NSTextAlignmentCenter;
-    self.dateNow.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.dateNow.layer.borderColor = [UIColor clearColor].CGColor;
    // self.dateNow.layer.borderWidth = 2.0;
     [self addSubview:self.dateNow];
     
@@ -139,16 +140,18 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     UILabel *workLabel = [[UILabel alloc] initWithFrame:CGRectMake(20+36, frame.origin.y+40, frame.size.width/2-40-18, 26)];
     workLabel.text = @"工作";
+    workLabel.backgroundColor = [UIColor clearColor];
     workLabel.textAlignment = NSTextAlignmentCenter;
-    workLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    workLabel.layer.borderColor = [UIColor clearColor].CGColor;
     workLabel.layer.borderWidth = 2.0;
     
     
     UILabel *lifeLabel = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2+20+18, frame.origin.y+40, frame.size.width/2-40-18, 26)];
     
     lifeLabel.text = @"生活";
+    lifeLabel.backgroundColor = [UIColor clearColor];
     lifeLabel.textAlignment = NSTextAlignmentCenter;
-    lifeLabel.layer.borderColor = [UIColor whiteColor].CGColor;
+    lifeLabel.layer.borderColor = [UIColor clearColor].CGColor;
     lifeLabel.layer.borderWidth = 2.0;
     
     
