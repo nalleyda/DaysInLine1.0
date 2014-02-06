@@ -1914,10 +1914,16 @@ bool selectedDayRedrawDone;
             [(UIButton*)[my_selectEvent.view viewWithTag:102] setTitle:@"" forState:UIControlStateNormal];
             
             my_selectEvent.imageName = photo;
-            NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:photo];
-            UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-            UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:107];
-            [imageView setImage: savedImage];
+            if (![photo isEqualToString:@""]) {
+                NSArray *images = [photo componentsSeparatedByString:@";"];
+                for (int i = 0; i < [images count]; i++) {
+                    NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+                                          stringByAppendingPathComponent:[images objectAtIndex:i]];
+                    UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
+                    UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    [imageView setImage: savedImage];
+                }
+            }
             
             my_selectEvent.incomeFinal = [income doubleValue];
             my_selectEvent.expendFinal = [expend doubleValue];
