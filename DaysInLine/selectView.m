@@ -105,9 +105,9 @@
         
         self.my_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, 40)];
         self.my_searchBar.tintColor = [UIColor clearColor];
-        self.my_searchBar.barStyle = UIBarStyleBlackOpaque;
+        self.my_searchBar.barStyle = UIBarStyleDefault;
         self.my_searchBar.placeholder = @"请输入：";
-        self.my_searchBar.showsCancelButton = YES;
+        self.my_searchBar.showsCancelButton =YES;
         
         self.eventInSearchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width-30, self.frame.size.height-150)];
         self.eventInSearchTable.backgroundColor = [UIColor clearColor];
