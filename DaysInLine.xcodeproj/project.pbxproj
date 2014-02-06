@@ -23,6 +23,7 @@
 		0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B929ED018154B94008E1726 /* buttonInScroll.m */; };
 		0B942F861896720A002864B8 /* statisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B942F841896720A002864B8 /* statisticViewController.m */; };
 		0B942F871896720A002864B8 /* statisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B942F851896720A002864B8 /* statisticViewController.xib */; };
+		0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B96F9E918A3CD4600E625AA /* Main1.storyboard */; };
 		0B9A53CF1812274D0085FFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53CE1812274D0085FFD7 /* Foundation.framework */; };
 		0B9A53D11812274D0085FFD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53D01812274D0085FFD7 /* CoreGraphics.framework */; };
 		0B9A53D31812274D0085FFD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53D21812274D0085FFD7 /* UIKit.framework */; };
@@ -97,6 +98,8 @@
 		0B942F831896720A002864B8 /* statisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statisticViewController.h; sourceTree = "<group>"; };
 		0B942F841896720A002864B8 /* statisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = statisticViewController.m; sourceTree = "<group>"; };
 		0B942F851896720A002864B8 /* statisticViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statisticViewController.xib; sourceTree = "<group>"; };
+		0B96F9EA18A3CD4600E625AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main1.storyboard; sourceTree = "<group>"; };
+		0B96F9EE18A3CDD300E625AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		0B9726041870516100787BE9 /* drawTagDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawTagDelegate.h; sourceTree = "<group>"; };
 		0B9A53CB1812274D0085FFD7 /* DaysInLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DaysInLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B9A53CE1812274D0085FFD7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -241,6 +244,7 @@
 				0BD700881813AC26004FCBE2 /* data */,
 				0B9A53DD1812274D0085FFD7 /* AppDelegate.h */,
 				0B9A53DE1812274D0085FFD7 /* AppDelegate.m */,
+				0B96F9E918A3CD4600E625AA /* Main1.storyboard */,
 				0B929ED918156730008E1726 /* controller */,
 				0BD700871813AC06004FCBE2 /* view */,
 				0B9A53E61812274D0085FFD7 /* Images.xcassets */,
@@ -453,6 +457,7 @@
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
 				0B942F871896720A002864B8 /* statisticViewController.xib in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
+				0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */,
 				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +514,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0B96F9E918A3CD4600E625AA /* Main1.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0B96F9EA18A3CD4600E625AA /* Base */,
+				0B96F9EE18A3CDD300E625AA /* en */,
+			);
+			name = Main1.storyboard;
+			sourceTree = "<group>";
+		};
 		0B9A53D71812274D0085FFD7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
