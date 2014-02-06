@@ -46,9 +46,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *startTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *endTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
+@property (strong, nonatomic) IBOutlet NSMutableArray *imageView;
 @property (strong, nonatomic) CustomIOS7AlertView *moneyAlert;
 @property (strong, nonatomic) CustomIOS7AlertView *tagAlert;
 

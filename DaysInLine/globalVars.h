@@ -16,4 +16,7 @@ NSString *modifyDate;
 int modifying;
 int modifyEventId;
 
+#define NR_IMAGEVIEW 5
+#define IMAGEVIEW_TAG_BASE 200
+
 #endif

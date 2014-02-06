@@ -18,6 +18,7 @@
 
 @implementation editingViewController
 
+
 bool flag;
 NSString *oldRemindDate;
 bool firstInmoney;
@@ -79,7 +80,12 @@ bool haveSaved;
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
     self.mainText = (UITextView *)[self.view viewWithTag:106];
-    self.imageView = (UIImageView *) [self.view viewWithTag:107];
+    
+    self.imageView = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
+    for (int i = 0; i < NR_IMAGEVIEW; i++) {
+        self.imageView[i] = (UIImageView *) [self.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+    }
+    
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
     
     
@@ -308,8 +314,14 @@ bool haveSaved;
     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:name];
     
     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-    [self.imageView setImage:savedImage];
-    self.imageName = name;
+    int index = 0;
+    if ([self.imageName isEqualToString:@""] || self.imageName == nil) {
+        self.imageName = name;
+    } else {
+        self.imageName = [NSString stringWithFormat:@"%@;%@", self.imageName, name];
+        index = [[self.imageName componentsSeparatedByString:@";"] count] - 1;
+    }
+    [[self.imageView objectAtIndex:index] setImage:savedImage];
 }
 
 -(void)moneyTapped
