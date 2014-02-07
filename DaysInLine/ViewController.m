@@ -49,7 +49,10 @@
 @property(nonatomic, strong) NSMutableArray *collectEventStart;
 @property(nonatomic, strong) NSMutableArray *collectEventEnd;
 
+@property(nonatomic, strong) NSArray *cellBackground;
+
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellinCollection;
+
 
 @end
 
@@ -76,7 +79,7 @@ bool selectedDayRedrawDone;
     }
 */
 
-
+    
 	// Do any additional setup after loading the view, typically from a nib.
     self.allTags = [[NSMutableArray alloc] init];
     self.EventsInTag = [[NSMutableArray alloc] init];
@@ -86,11 +89,13 @@ bool selectedDayRedrawDone;
     self.EventsIDInSearch = [[NSMutableArray alloc] init];
     
     self.collectEvent = [[NSMutableArray alloc] init];
-      self.collectEventTitle = [[NSMutableArray alloc] init];
-      self.collectEventTag = [[NSMutableArray alloc] init];
-      self.collectEventDate = [[NSMutableArray alloc] init];
-      self.collectEventStart = [[NSMutableArray alloc] init];
-      self.collectEventEnd = [[NSMutableArray alloc] init];
+    self.collectEventTitle = [[NSMutableArray alloc] init];
+    self.collectEventTag = [[NSMutableArray alloc] init];
+    self.collectEventDate = [[NSMutableArray alloc] init];
+    self.collectEventStart = [[NSMutableArray alloc] init];
+    self.collectEventEnd = [[NSMutableArray alloc] init];
+    
+    self.cellBackground = [[NSArray alloc] initWithObjects:@"cell1-1",@"cell2-1",@"cell3-1",@"cell4-1", nil];
     
     homeView *my_homeView = [[homeView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:my_homeView];
@@ -171,6 +176,7 @@ bool selectedDayRedrawDone;
     [formater setDateFormat:@"yyyy-MM-dd"];
     self.today= [formater stringFromDate:curDate];
     NSLog(@"!!!!!!!%@",self.today);
+    
     
     
     //创建或打开数据库
@@ -1339,7 +1345,9 @@ bool selectedDayRedrawDone;
                 NSLog(@"%@,%@,%@,%@",self.collectEventTitle[row4],self.collectEventTag[row4],self.collectEventDate[row4],self.collectEventStart[row4]);
             
                 UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 215, 48)];
-                imageView.image = [UIImage imageNamed:@"cell1-4.png"];
+                
+                
+                imageView.image = [UIImage imageNamed:self.cellBackground[arc4random()%4]];
                 
                 
                 cell_4.backgroundView = imageView;
