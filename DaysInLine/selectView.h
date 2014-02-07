@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CKCalendarView.h"
 
-@interface selectView : UIView
+@interface selectView : UIView  <UITextFieldDelegate,UISearchBarDelegate>
 @property (strong ,nonatomic) CKCalendarView *calendar ;
 @property (strong ,nonatomic) UITableView *eventsTable;
 @property (strong ,nonatomic) UITableView *alltagTable;

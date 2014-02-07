@@ -1337,6 +1337,13 @@ bool selectedDayRedrawDone;
             //设置文本
             if (row4<self.collectEvent.count) {
                 NSLog(@"%@,%@,%@,%@",self.collectEventTitle[row4],self.collectEventTag[row4],self.collectEventDate[row4],self.collectEventStart[row4]);
+            
+                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 215, 48)];
+                imageView.image = [UIImage imageNamed:@"cell1-4.png"];
+                
+                
+                cell_4.backgroundView = imageView;
+                
                 ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
                 //NSLog(@"%@",self.collectEventTitle[row4]);
                 ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
@@ -2026,6 +2033,9 @@ bool selectedDayRedrawDone;
     }
     
 }
+
+
+
 
 
 #pragma mark - 实现取消按钮的方法

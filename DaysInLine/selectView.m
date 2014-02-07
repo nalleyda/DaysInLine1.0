@@ -17,6 +17,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
+        [self addGestureRecognizer:tap];
+        
         UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         
         rightBackground.image = [UIImage imageNamed:@"rightBackground.png"];
@@ -180,7 +183,19 @@
     
 }
 
-
+-(void)dismissKeyboard {
+    NSLog(@"6666655555");
+    NSArray *subviews = [self.keyWordView subviews];
+    for (id objInput in subviews) {
+        if ([objInput isKindOfClass:[UISearchBar class]]) {
+            UISearchBar *theTextField = objInput;
+            if ([objInput isFirstResponder]) {
+                [theTextField resignFirstResponder];
+            }
+        }
+        
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.
