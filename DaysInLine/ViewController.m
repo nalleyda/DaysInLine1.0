@@ -268,6 +268,7 @@ bool selectedDayRedrawDone;
     sqlite3_close(dataBase);
     
     
+
     
     
     CGRect rect=[[UIScreen mainScreen] bounds];
@@ -1348,13 +1349,13 @@ bool selectedDayRedrawDone;
                 
                 
                 imageView.image = [UIImage imageNamed:self.cellBackground[arc4random()%4]];
-                
+                cell_4.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 cell_4.backgroundView = imageView;
                 
                 ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
                 //NSLog(@"%@",self.collectEventTitle[row4]);
-                ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
+               // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
                 ((UILabel *)[cell_4.contentView viewWithTag:3]).text = self.collectEventDate[row4];
                 ((UILabel *)[cell_4.contentView viewWithTag:4]).text =[NSString stringWithFormat:@"%@-%@",self.collectEventStart[row4],self.collectEventEnd[row4]];
                 

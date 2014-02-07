@@ -17,8 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
-        [self addGestureRecognizer:tap];
+        
+        
         
         UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         
@@ -32,7 +32,7 @@
         NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期",@"按标签",@"关键字",nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
         
-        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+10, 200, 35)];
+        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+20, 200, 35)];
         self.selectMode.selectedSegmentIndex= 0;
         [self.selectMode addTarget:self action:@selector(selectValueChanged:) forControlEvents:UIControlEventValueChanged];
         
@@ -53,10 +53,12 @@
          self.dateView.backgroundColor = [UIColor clearColor];
 
         self.tagView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
-       // self.tagView.backgroundColor = [UIColor grayColor];
+
         self.keyWordView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
         
-        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
+        [self.keyWordView addGestureRecognizer:tap];
+
         
         self.calendar = [[CKCalendarView alloc] initWithStartDay:startSunday];
         self.calendar.frame = CGRectMake(0, 0, self.frame.size.width-20, (self.frame.size.height-150)/2);
@@ -110,7 +112,7 @@
         self.my_searchBar.tintColor = [UIColor clearColor];
         self.my_searchBar.barStyle = UIBarStyleDefault;
         self.my_searchBar.placeholder = @"请输入：";
-        self.my_searchBar.showsCancelButton =YES;
+        self.my_searchBar.showsCancelButton =NO;
         
         self.eventInSearchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width-30, self.frame.size.height-150)];
         self.eventInSearchTable.backgroundColor = [UIColor clearColor];
@@ -183,6 +185,8 @@
     
 }
 
+
+
 -(void)dismissKeyboard {
     NSLog(@"6666655555");
     NSArray *subviews = [self.keyWordView subviews];
@@ -196,6 +200,8 @@
         
     }
 }
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.
