@@ -41,6 +41,7 @@
 @property(nonatomic, strong) NSMutableArray *EventsIDInTag;
 @property(nonatomic, strong) NSMutableArray *EventsIDInSearch;
 @property(nonatomic, strong) NSString *dateToSelect;
+@property(nonatomic, strong) NSString *pickAdate;
 
 @property(nonatomic, strong) NSMutableArray *collectEvent;
 @property(nonatomic, strong) NSMutableArray *collectEventTitle;
@@ -61,6 +62,7 @@
 bool todayRedrawDone;
 
 bool selectedDayRedrawDone;
+int collectNum;
 
 - (void)viewDidLoad
 {
@@ -577,12 +579,10 @@ bool selectedDayRedrawDone;
         lifeArea[i] = 0;
     }
     
-    [self.my_select setHidden:YES];
+    
     [self.my_dayline setHidden:YES];
     
-    if (self.my_selectDay.hidden) {
-        [self.my_selectDay setHidden:NO];
-    }
+
   
     
    // self.my_selectScoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
@@ -600,110 +600,163 @@ bool selectedDayRedrawDone;
     [self.my_selectDay.addMoreLife addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.my_selectDay.addMoreWork addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    //获取将要查询的日期
+  
     if ([self.today isEqualToString: self.dateToSelect]) {
         [self todayTapped];
         NSLog(@"now======selected");
         
     }
     else{
-        modifyDate = self.dateToSelect;
-        self.my_selectDay.dateNow.text = modifyDate;
         
-        sqlite3_stmt *statement;
-        const char *dbpath = [databasePath UTF8String];
-        //查看当天是否已经有数据
-        
-        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-            NSString *queryStar = [NSString stringWithFormat:@"SELECT mood,growth from DAYTABLE where DATE=\"%@\"",modifyDate];
-            const char *queryStarstatement = [queryStar UTF8String];
-            if (sqlite3_prepare_v2(dataBase, queryStarstatement, -1, &statement, NULL)==SQLITE_OK) {
-                if (sqlite3_step(statement)==SQLITE_ROW) {
-                    //当天数据已经存在，则取出数据还原界面
-                    int moodNum = sqlite3_column_int(statement, 0);
-                    for (int i = 0; i<=moodNum-1; i++) {
-                        [[self.my_selectDay.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                    }
-                    for (int j = moodNum; j<5; j++) {
-                        [[self.my_selectDay.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                    }
-                    
-                    
-                    int growthNum = sqlite3_column_int(statement, 1);
-                    for (int i = 0; i<=growthNum-1; i++) {
-                        [[self.my_selectDay.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                    }
-                    for (int j = growthNum; j<5; j++) {
-                        [[self.my_selectDay.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                    }
-                    
-                }
-                
-            }
-            else{
-                NSLog(@"Error in select:%s",sqlite3_errmsg(dataBase));
-                
-            }
-            sqlite3_finalize(statement);
+        //获取将要查询的日期
+        if (!self.dateToSelect) {
+            NSLog(@"没选日期！");
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出错啦！"
+                                                            message:@"请先选择要查看的日期"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
             
-            if (!selectedDayRedrawDone) {
-                
-                
-                NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,title,startTime,endTime from event where DATE=\"%@\"",modifyDate];
-                const char *queryEventstatement = [queryEventButton UTF8String];
-                if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
-                    while (sqlite3_step(statement)==SQLITE_ROW) {
-                        //当天已有事件存在，则取出数据还原界面
-                        NSString *title;
-                        NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
-                        char *ttl = (char *)sqlite3_column_text(statement, 1);
-                        NSLog(@"char is %s",ttl);
-                        if (ttl == nil) {
-                            title = @"";
-                        }else {
-                            title = [[NSString alloc] initWithUTF8String:ttl];
-                            NSLog(@"nsstring  is %@",title);
-                        }
-                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
-                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
-                        
-                        
-                        [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
-                        
-                        
-                        if ([evtType intValue]==0) {
-                            for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
-                                workArea[i] = 1;
-                                NSLog(@"seized work area is :%d",i);
-                            }
-                        }else if([evtType intValue]==1){
-                            for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
-                                lifeArea[i] = 1;
-                                NSLog(@"seized work area is :%d",i);
-                            }
-                        }else{
-                            NSLog(@"事件类型有误！");
-                        }
-                        
-                    }
-                    
-                }
-                
-                sqlite3_finalize(statement);
-                selectedDayRedrawDone = YES;
-                
-            }
+            [ alert  show];
         }
-        
-        
-        
-        
+      /*  else if (!self.dateToSelect)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出错啦！"
+                                                            message:@"您选择的日期没有记录"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+            
+            [ alert  show];
+            
+        }
+       */
         else {
-            NSLog(@"数据库打开失败");
+            [self.my_select setHidden:YES];
+            [self.my_selectDay setHidden:NO];
             
+            modifyDate = self.dateToSelect;
+            self.my_selectDay.dateNow.text = modifyDate;
+            
+            sqlite3_stmt *statement;
+            const char *dbpath = [databasePath UTF8String];
+            //查看当天是否已经有数据
+            
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                NSString *queryStar = [NSString stringWithFormat:@"SELECT mood,growth from DAYTABLE where DATE=\"%@\"",modifyDate];
+                const char *queryStarstatement = [queryStar UTF8String];
+                if (sqlite3_prepare_v2(dataBase, queryStarstatement, -1, &statement, NULL)==SQLITE_OK) {
+                    if (sqlite3_step(statement)==SQLITE_ROW) {
+                        //当天数据已经存在，则取出数据还原界面
+                        int moodNum = sqlite3_column_int(statement, 0);
+                        for (int i = 0; i<=moodNum-1; i++) {
+                            [[self.my_selectDay.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                        }
+                        for (int j = moodNum; j<5; j++) {
+                            [[self.my_selectDay.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                        }
+                        
+                        
+                        int growthNum = sqlite3_column_int(statement, 1);
+                        for (int i = 0; i<=growthNum-1; i++) {
+                            [[self.my_selectDay.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                        }
+                        for (int j = growthNum; j<5; j++) {
+                            [[self.my_selectDay.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                        }
+                        
+                    }
+                    else {
+                        // 插入当天的数据
+                        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
+                        
+                        //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+                        const char *insertsatement = [insertSql UTF8String];
+                        sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
+                        sqlite3_bind_text(statement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_int(statement, 2, 0);
+                        sqlite3_bind_int(statement, 3, 0);
+                        
+                        
+                        if (sqlite3_step(statement)==SQLITE_DONE) {
+                            NSLog(@"innsert today ok");
+                            NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
+                            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                            NSDate *dateWithNewEvent = [dateFormatter dateFromString:modifyDate];
+
+                            [self.HasEventsDates addObject:dateWithNewEvent];
+                        }
+                        else {
+                            NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                        }
+                        
+                    }
+                }
+                
+                else{
+                    NSLog(@"Error in select:%s",sqlite3_errmsg(dataBase));
+                    
+                }
+                sqlite3_finalize(statement);
+                
+                if (!selectedDayRedrawDone) {
+                    
+                    
+                    NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,title,startTime,endTime from event where DATE=\"%@\"",modifyDate];
+                    const char *queryEventstatement = [queryEventButton UTF8String];
+                    if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
+                        while (sqlite3_step(statement)==SQLITE_ROW) {
+                            //当天已有事件存在，则取出数据还原界面
+                            NSString *title;
+                            NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                            char *ttl = (char *)sqlite3_column_text(statement, 1);
+                            NSLog(@"char is %s",ttl);
+                            if (ttl == nil) {
+                                title = @"";
+                            }else {
+                                title = [[NSString alloc] initWithUTF8String:ttl];
+                                NSLog(@"nsstring  is %@",title);
+                            }
+                            NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
+                            NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
+                            
+                            
+                            [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
+                            
+                            
+                            if ([evtType intValue]==0) {
+                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                    workArea[i] = 1;
+                                    NSLog(@"seized work area is :%d",i);
+                                }
+                            }else if([evtType intValue]==1){
+                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                    lifeArea[i] = 1;
+                                    NSLog(@"seized work area is :%d",i);
+                                }
+                            }else{
+                                NSLog(@"事件类型有误！");
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                    sqlite3_finalize(statement);
+                    selectedDayRedrawDone = YES;
+                    
+                }
+            }
+            
+            
+            
+            
+            else {
+                NSLog(@"数据库打开失败");
+                
+            }
+            sqlite3_close(dataBase);
         }
-        sqlite3_close(dataBase);
-        
     }
 }
 
@@ -1167,14 +1220,17 @@ bool selectedDayRedrawDone;
     NSString *titleDetail;
     NSString *LabelIntable;
 
+   
     [self.tableRight removeAllObjects];
     [self.tableLeft removeAllObjects];
+    
     NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
     [formater setDateFormat:@"yyyy-MM-dd"];
-    if ([self dateHasEvents:date]) {
+     self.dateToSelect = [formater stringFromDate:date];
+   /* if ([self dateHasEvents:date]) {
         self.dateToSelect = [formater stringFromDate:date];
         NSLog(@"%@",self.dateToSelect);
-        
+    */
         sqlite3_stmt *statement;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
@@ -1222,7 +1278,7 @@ bool selectedDayRedrawDone;
         }
         sqlite3_close(dataBase);
         
-    }
+    
     [self.my_select.eventsTable reloadData];
 }
 
@@ -1347,11 +1403,14 @@ bool selectedDayRedrawDone;
             
                 UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 215, 48)];
                 
-                
-                imageView.image = [UIImage imageNamed:self.cellBackground[arc4random()%4]];
+            
+                imageView.image = [UIImage imageNamed:self.cellBackground[collectNum%4]];
+                collectNum++;
                 cell_4.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-                cell_4.backgroundView = imageView;
+                [cell_4 addSubview:imageView];
+                [cell_4 sendSubviewToBack:imageView];
+               // cell_4.backgroundView = imageView;
                 
                 ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
                 //NSLog(@"%@",self.collectEventTitle[row4]);

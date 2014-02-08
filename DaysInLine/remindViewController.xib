@@ -46,7 +46,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="0.46936782525510201" green="0.46936782525510201" blue="0.46936782525510201" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.82029038899999995" green="0.98403889649999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <inset key="insetFor6xAndEarlier" minX="0.0" minY="-25" maxX="0.0" maxY="25"/>

@@ -39,6 +39,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;
 @property (weak, nonatomic) IBOutlet UIButton *moneyButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *deleteTagButton;
+@property (weak, nonatomic) IBOutlet UIButton *addNewTagButton;
+@property (weak, nonatomic) IBOutlet UIButton *finishDeleteButton;
+
 @property (weak, nonatomic) IBOutlet UIButton *addAchieveButton;
 @property (weak, nonatomic) IBOutlet UIButton *addCollectionButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;

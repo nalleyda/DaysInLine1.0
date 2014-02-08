@@ -141,6 +141,14 @@ bool haveSaved;
     [addButton addTarget:self action:@selector(addButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     UIButton *deleteButton =(UIButton *)[tmpCustomView viewWithTag:605];
     [deleteButton addTarget:self action:@selector(deleteButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *finishButton =(UIButton *)[tmpCustomView viewWithTag:606];
+    [finishButton addTarget:self action:@selector(finishButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    self.deleteTagButton = deleteButton;
+    self.addNewTagButton = addButton;
+    self.finishDeleteButton = finishButton;
+    [self.finishDeleteButton setHidden:YES];
+    
     self.tagTable.delegate = self;
     self.tagTable.dataSource = self;
     self.tagTable.allowsMultipleSelection = YES;
@@ -177,6 +185,10 @@ bool haveSaved;
 -(void)deleteButtonTapped
 {
     [self.tagTable setEditing:YES animated:YES];
+    [self.addNewTagButton setHidden:YES];
+    [self.deleteTagButton setHidden:YES];
+    [self.finishDeleteButton setHidden:NO];
+    
 }
 
 -(void)okTagTapped
@@ -215,6 +227,13 @@ bool haveSaved;
    [self.tagAlert close];
 }
 
+-(void)finishButtonTapped
+{
+    [self.tagTable setEditing:NO animated:YES];
+    [self.addNewTagButton setHidden:NO];
+    [self.deleteTagButton setHidden:NO];
+    [self.finishDeleteButton setHidden:YES];
+}
 
 -(void)remindTapped
 {

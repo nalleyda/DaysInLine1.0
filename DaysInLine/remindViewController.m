@@ -44,13 +44,14 @@ UIDatePicker *remindTimePicker2;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-  //  self.view.backgroundColor = [UIColor clearColor];
+    //self.view.backgroundColor = [UIColor clearColor];
    
     self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
     self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
     //按日期设置提醒时间的视图
     
-    //self.viewDate.backgroundColor = [UIColor greenColor];
+    //self.viewInterval.backgroundColor = [UIColor clearColor];
+   // self.viewDate.backgroundColor = [UIColor clearColor];
     remindDatePicker = [[UIDatePicker alloc] init] ;
     remindTimePicker = [[UIDatePicker alloc] init] ;
     remindTimePicker2 = [[UIDatePicker alloc] init] ;
@@ -58,11 +59,16 @@ UIDatePicker *remindTimePicker2;
     remindDatePicker.datePickerMode = UIDatePickerModeDate;
     remindDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-20, 30);
     remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, 75);
+    
+    remindDatePicker.transform = CGAffineTransformMakeScale(0.65, 0.55);
+
     [self.viewDate addSubview:remindDatePicker];
     
     remindTimePicker.datePickerMode = UIDatePickerModeTime;
     remindTimePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
     remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 240);
+    remindTimePicker.transform = CGAffineTransformMakeScale(0.65, 0.55);
+    
      [self.viewDate addSubview:remindTimePicker];
     
     
@@ -93,6 +99,8 @@ UIDatePicker *remindTimePicker2;
     remindTimePicker2.datePickerMode = UIDatePickerModeTime;
     remindTimePicker2.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
     remindTimePicker2.center = CGPointMake(self.view.frame.size.width/2, 220);
+    remindTimePicker2.transform = CGAffineTransformMakeScale(0.65, 0.55);
+    
     [self.viewInterval addSubview:remindTimePicker2];
     
    

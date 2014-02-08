@@ -32,7 +32,7 @@
         NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期",@"按标签",@"关键字",nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
         
-        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+20, 200, 35)];
+        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+18, 200, 30)];
         self.selectMode.selectedSegmentIndex= 0;
         [self.selectMode addTarget:self action:@selector(selectValueChanged:) forControlEvents:UIControlEventValueChanged];
         
@@ -56,8 +56,7 @@
 
         self.keyWordView = [[UIView alloc] initWithFrame:CGRectMake(10,frame.origin.y+55,self.frame.size.width-20, self.frame.size.height-55)];
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
-        [self.keyWordView addGestureRecognizer:tap];
+
 
         
         self.calendar = [[CKCalendarView alloc] initWithStartDay:startSunday];
@@ -67,7 +66,7 @@
 
         self.backgroundColor = [UIColor whiteColor];
       
-        self.eventsTable =[[UITableView alloc] initWithFrame: CGRectMake(0, (self.frame.size.height)/2-15, self.frame.size.width-20, (self.frame.size.height-150)/2-20)];
+        self.eventsTable =[[UITableView alloc] initWithFrame: CGRectMake(0, (self.frame.size.height)/2-10, self.frame.size.width-20, (self.frame.size.height-150)/2-20)];
 
         self.eventsTable.rowHeight = 34;
         self.eventsTable.tag = 0;
@@ -120,6 +119,12 @@
         
         [self.keyWordView addSubview:self.my_searchBar];
         [self.keyWordView addSubview:self.eventInSearchTable];
+
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
+        tap.delegate = self;
+        [self.keyWordView addGestureRecognizer:tap];
+        
+
         //[self addSubview:self.keyWordView];
         // Initialization code
     }
@@ -201,6 +206,15 @@
     }
 }
 
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gesture shouldReceiveTouch:(UITouch *)touch
+{
+    //Assuming your table view is a direct subview of the gesture recognizer's view
+    BOOL isInsideTableView = CGRectContainsPoint(self.eventInSearchTable.frame, [touch locationInView:gesture.view]);
+    if (isInsideTableView && ![self.my_searchBar isFirstResponder])
+        return NO;
+    
+    return YES;
+}
 
 
 /*
