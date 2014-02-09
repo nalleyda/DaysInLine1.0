@@ -74,5 +74,5 @@
 @property (weak, nonatomic) NSObject <reloadTableDelegate> *reloadDelegate;
 //@property (weak, nonatomic) NSObject <addTagDelegate> *addTagDataDelegate;
 - (IBAction)endEditing:(id)sender;
-
+-(void)pictureTapped:(UIButton *)sender;
 @end

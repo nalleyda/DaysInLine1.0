@@ -87,14 +87,11 @@ bool haveSaved;
     }
     self.imageViewButton = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
     for (int j = 0; j<NR_IMAGEVIEW; j++) {
-        self.imageViewButton[j] = [[UIButton alloc] init];
-        UIImageView *smallView=self.imageView[j];
-        if (smallView.image ) {
-            [[self.imageViewButton objectAtIndex:j] setFrame:[[self.imageView objectAtIndex:j] frame]];
-            [self.view addSubview:[self.imageViewButton objectAtIndex:j]];
-            [[self.imageViewButton objectAtIndex:j] setTag:j];
-            [[self.imageViewButton objectAtIndex:j] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
-        }
+        self.imageViewButton[j] = [[UIButton alloc] initWithFrame:[[self.imageView objectAtIndex:j] frame]];
+        [[self.imageViewButton objectAtIndex:j] setTag:IMAGEBUTTON_TAG_BASE+j];
+        [self.view addSubview:self.imageViewButton[j]];
+  
+        
     }
     
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
@@ -352,14 +349,16 @@ bool haveSaved;
     [[self.imageView objectAtIndex:index] setImage:savedImage];
     //button for every imageView
     
-    [[self.imageViewButton objectAtIndex:index] setFrame:[[self.imageView objectAtIndex:index] frame]];
-    [self.view addSubview:[self.imageViewButton objectAtIndex:index]];
-    [[self.imageViewButton objectAtIndex:index] setTag:index];
+    //[[self.imageViewButton objectAtIndex:index] setFrame:[[self.imageView objectAtIndex:index] frame]];
+   // [self.view addSubview:[self.imageViewButton objectAtIndex:index]];
+   // [[self.imageViewButton objectAtIndex:index] setTag:index+IMAGEBUTTON_TAG_BASE];
+    NSLog(@"button tag is :%d",((UIButton *)self.imageViewButton[index]).tag );
     [[self.imageViewButton objectAtIndex:index] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)pictureTapped:(UIButton *)sender
 {
+
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"photoView" owner:self options:nil];
     
     UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-100,self.view.frame.size.height/2-50,200, 100)];
@@ -397,7 +396,7 @@ bool haveSaved;
     checkPhotoController *my_bigPhoto = [[checkPhotoController alloc] initWithNibName:@"checkPhotoController" bundle:nil];
     my_bigPhoto.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
-    UIImageView *bigView = self.imageView[sender.tag];
+    UIImageView *bigView = self.imageView[sender.tag-IMAGEBUTTON_TAG_BASE];
     my_bigPhoto.fullPhoto.image = bigView.image;
     
     

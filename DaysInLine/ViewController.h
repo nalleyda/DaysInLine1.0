@@ -11,7 +11,7 @@
 #import "redrawButtonDelegate.h"
 #import "drawTagDelegate.h"
 #import "reloadTableDelegate.h"
-//#import "addTagDelegate.h"
+
 
 @class homeView;
 @class daylineView;
@@ -24,4 +24,5 @@
 }
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
 @property (weak, nonatomic) NSObject <drawTagDelegate> *drawLabelDelegate;
+
 @end
