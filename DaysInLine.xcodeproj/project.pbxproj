@@ -64,6 +64,9 @@
 		0BD700861813ABFB004FCBE2 /* homeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD700851813ABFB004FCBE2 /* homeView.m */; };
 		0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008A1813BC66004FCBE2 /* daylineView.m */; };
 		0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
+		0BE6C65118A778CA007769D8 /* photoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6C65018A778CA007769D8 /* photoView.xib */; };
+		0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6C65318A7BC52007769D8 /* checkPhotoController.m */; };
+		0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */; };
 		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
 		13ED7A85189E844E002F669C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13ED7A84189E844E002F669C /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -158,6 +161,10 @@
 		0BD7008C1814242C004FCBE2 /* dayLineScoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dayLineScoller.h; sourceTree = "<group>"; };
 		0BD7008D1814242C004FCBE2 /* dayLineScoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dayLineScoller.m; sourceTree = "<group>"; };
 		0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindDataDelegate.h; sourceTree = "<group>"; };
+		0BE6C65018A778CA007769D8 /* photoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = photoView.xib; sourceTree = "<group>"; };
+		0BE6C65218A7BC52007769D8 /* checkPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkPhotoController.h; sourceTree = "<group>"; };
+		0BE6C65318A7BC52007769D8 /* checkPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkPhotoController.m; sourceTree = "<group>"; };
+		0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = checkPhotoController.xib; sourceTree = "<group>"; };
 		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 		13ED7A84189E844E002F669C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -210,6 +217,8 @@
 				0B8F0D90186422F300FD1264 /* remindViewController.m */,
 				0B942F831896720A002864B8 /* statisticViewController.h */,
 				0B942F841896720A002864B8 /* statisticViewController.m */,
+				0BE6C65218A7BC52007769D8 /* checkPhotoController.h */,
+				0BE6C65318A7BC52007769D8 /* checkPhotoController.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -338,6 +347,8 @@
 				0BA02C6E186B094E00563857 /* tagView.xib */,
 				0B942F851896720A002864B8 /* statisticViewController.xib */,
 				0B00AC53187D849400427F35 /* collectCell.xib */,
+				0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */,
+				0BE6C65018A778CA007769D8 /* photoView.xib */,
 				0B929ECF18154B94008E1726 /* buttonInScroll.h */,
 				0B929ED018154B94008E1726 /* buttonInScroll.m */,
 				0B9009E11877DDA6008D3799 /* selectView.h */,
@@ -455,10 +466,12 @@
 				0B9A53E71812274D0085FFD7 /* Images.xcassets in Resources */,
 				0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */,
 				0BA61BDD18A27715000B7163 /* 按键5.png in Resources */,
+				0BE6C65118A778CA007769D8 /* photoView.xib in Resources */,
 				0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */,
 				0B9009DE1877D791008D3799 /* left_arrow@2x.png in Resources */,
 				0BA61BD318A25108000B7163 /* star2.png in Resources */,
 				0BAE55B0185B7B1700695F0E /* editView.png in Resources */,
+				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
 				0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */,
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
@@ -514,6 +527,7 @@
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,
 				0B9009E31877DDA6008D3799 /* selectView.m in Sources */,
 				0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */,
+				0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */,
 				0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */,
 				0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */,
 			);

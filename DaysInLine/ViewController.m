@@ -1163,6 +1163,8 @@ int collectNum;
                                   stringByAppendingPathComponent:[images objectAtIndex:i]];
             UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
             UIImageView *imageView = (UIImageView*)[my_modifyViewController.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+        
+            
             [imageView setImage: savedImage];
         }
     }
@@ -1411,7 +1413,7 @@ int collectNum;
                 [cell_4 addSubview:imageView];
                 [cell_4 sendSubviewToBack:imageView];
                // cell_4.backgroundView = imageView;
-                
+                cell_4.backgroundColor = [UIColor clearColor];
                 ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
                 //NSLog(@"%@",self.collectEventTitle[row4]);
                // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];

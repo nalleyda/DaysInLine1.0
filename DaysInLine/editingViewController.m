@@ -85,12 +85,21 @@ bool haveSaved;
     for (int i = 0; i < NR_IMAGEVIEW; i++) {
         self.imageView[i] = (UIImageView *) [self.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
     }
+    self.imageViewButton = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
+    for (int j = 0; j<NR_IMAGEVIEW; j++) {
+        self.imageViewButton[j] = [[UIButton alloc] init];
+        UIImageView *smallView=self.imageView[j];
+        if (smallView.image ) {
+            [[self.imageViewButton objectAtIndex:j] setFrame:[[self.imageView objectAtIndex:j] frame]];
+            [self.view addSubview:[self.imageViewButton objectAtIndex:j]];
+            [[self.imageViewButton objectAtIndex:j] setTag:j];
+            [[self.imageViewButton objectAtIndex:j] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
     
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
     
-    
-    
-
+   
 	// Do any additional setup after loading the view.
     [self.startTimeButton addTarget:self action:@selector(startTimeTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.endTimeButton addTarget:self action:@selector(endTimeTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -289,13 +298,13 @@ bool haveSaved;
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择"
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"请选择"
                                              delegate:self
                                     cancelButtonTitle:nil
                                destructiveButtonTitle:@"取消"
                                     otherButtonTitles:@"拍照", @"从相册选择", nil];
     } else {
-        sheet = [[UIActionSheet alloc] initWithTitle:@"选择"
+        sheet = [[UIActionSheet alloc] initWithTitle:@"请选择"
                                             delegate:self
                                    cancelButtonTitle:nil
                               destructiveButtonTitle:@"取消"
@@ -341,6 +350,71 @@ bool haveSaved;
         index = [[self.imageName componentsSeparatedByString:@";"] count] - 1;
     }
     [[self.imageView objectAtIndex:index] setImage:savedImage];
+    //button for every imageView
+    
+    [[self.imageViewButton objectAtIndex:index] setFrame:[[self.imageView objectAtIndex:index] frame]];
+    [self.view addSubview:[self.imageViewButton objectAtIndex:index]];
+    [[self.imageViewButton objectAtIndex:index] setTag:index];
+    [[self.imageViewButton objectAtIndex:index] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)pictureTapped:(UIButton *)sender
+{
+    NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"photoView" owner:self options:nil];
+    
+    UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-100,self.view.frame.size.height/2-50,200, 100)];
+    
+    tmpCustomView = [nib objectAtIndex:0];
+    // NSLog(@"tag 3 is: %@",self.tags[3]);
+    
+    // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
+    UIButton *checkButton =(UIButton *)[tmpCustomView viewWithTag:1];
+    checkButton.tag = sender.tag;
+    [checkButton addTarget:self action:@selector(checkButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *removeButton =(UIButton *)[tmpCustomView viewWithTag:2];
+    removeButton.tag = sender.tag;
+    [removeButton addTarget:self action:@selector(removeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
+    //[alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+    alert.tag = 10;
+    
+    [alert setContainerView:tmpCustomView];
+    
+    self.checkAlert = alert;
+    
+    [alert show];
+
+}
+
+-(void)checkButtonTapped:(UIButton *)sender
+{
+    NSLog(@"查看图片");
+    [self.checkAlert close];
+    
+    checkPhotoController *my_bigPhoto = [[checkPhotoController alloc] initWithNibName:@"checkPhotoController" bundle:nil];
+    my_bigPhoto.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    UIImageView *bigView = self.imageView[sender.tag];
+    my_bigPhoto.fullPhoto.image = bigView.image;
+    
+    
+    
+    [(UIImageView *)[my_bigPhoto.view viewWithTag:1] setImage:bigView.image ];
+    
+
+    
+    [self presentViewController:my_bigPhoto animated:YES completion:Nil ];
+
+    
+    
+}
+
+-(void)removeButtonTapped:(UIButton *)sender
+{
+    NSLog(@"移除图片");
 }
 
 -(void)moneyTapped

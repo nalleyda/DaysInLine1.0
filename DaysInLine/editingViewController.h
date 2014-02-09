@@ -13,6 +13,7 @@
 #import "drawTagDelegate.h"
 #import "reloadTableDelegate.h"
 #import "CustomIOS7AlertView.h"
+#import "checkPhotoController.h"
 //#import "addTagDelegate.h"
 
 
@@ -53,9 +54,10 @@
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
 @property (strong, nonatomic) IBOutlet NSMutableArray *imageView;
+@property (strong, nonatomic) IBOutlet NSMutableArray *imageViewButton;
 @property (strong, nonatomic) CustomIOS7AlertView *moneyAlert;
 @property (strong, nonatomic) CustomIOS7AlertView *tagAlert;
-
+@property (strong, nonatomic) CustomIOS7AlertView *checkAlert;
 @property (weak, nonatomic) IBOutlet UITableView *tagTable;
 @property (weak, nonatomic) IBOutlet UITextView *mainText;
 @property (weak, nonatomic) IBOutlet UITextField *theme;
