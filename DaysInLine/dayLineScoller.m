@@ -138,14 +138,14 @@ UILabel *labelTime[NR_TIME_LABEL];
     eventButton.layer.masksToBounds = YES;
     eventButton.layer.cornerRadius = 1.0;
     
-    eventButton.backgroundColor = [UIColor clearColor];
+    eventButton.backgroundColor = [UIColor colorWithRed:244 green:245 blue:246 alpha:1.0];
     eventButton.layer.borderWidth = 1.0;
     
     
     [eventButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     eventButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     
-    eventButton.layer.borderColor = [UIColor blackColor].CGColor;
+    eventButton.layer.borderColor = [UIColor grayColor].CGColor;
     [eventButton setTitle:title forState:UIControlStateNormal];
     
     [eventButton addTarget:self action:@selector(eventModify:) forControlEvents:UIControlEventTouchUpInside];

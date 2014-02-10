@@ -76,10 +76,19 @@ bool haveSaved;
     
     self.startTimeButton =(UIButton *)[self.view viewWithTag:101];
     self.endTimeButton =(UIButton *)[self.view viewWithTag:102];
+    self.startTimeButton.layer.borderWidth = 1.0;
+    self.startTimeButton.layer.borderColor = [UIColor blackColor].CGColor;
+    
+    //self.startTimeButton.layer.borderColor = [UIColor clearColor].CGColor;
+    self.startTimeButton.layer.borderColor = [UIColor clearColor].CGColor;
     self.startLabel = (UILabel *)[self.view viewWithTag:103];
+  
+    //self.startLabel.layer.borderWidth = 1;
+    
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
     self.mainText = (UITextView *)[self.view viewWithTag:106];
+   // self.mainText =[[UITextView alloc] initWithFrame: CGRectMake(50, 260, 200, 200)];
     
     self.imageView = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
     for (int i = 0; i < NR_IMAGEVIEW; i++) {
@@ -130,7 +139,7 @@ bool haveSaved;
 {
     selected = [[NSMutableArray alloc] init];
    
-    
+    [self dismissKeyboard];
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"tagView" owner:self options:nil];
     
     UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width/2, 372)];
@@ -199,7 +208,8 @@ bool haveSaved;
 
 -(void)okTagTapped
 {
-    
+    //[self.mainText setFrame:CGRectMake(55, 240, 200, 200)];
+    NSLog(@"width is :%.2f",self.mainText.frame.size.width);
     NSMutableString *choices = [[NSMutableString alloc] init];
     NSLog(@"count is %d",tagLabels.count);
     for (int i = 0 ; i< tagLabels.count ; i++) {
@@ -210,7 +220,7 @@ bool haveSaved;
     if (selected.count > 0) {
         for (int i = 0; i < selected.count; i++) {
             [choices appendFormat:@"%@,",selected[i]];
-            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(280, 150+30*i, self.view.frame.size.width-280, 20)];
+            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 150+30*i, self.view.frame.size.width-265, 20)];
             tag.text = selected[i];
             [tagLabels addObject:tag];
             [self.view addSubview:tag];

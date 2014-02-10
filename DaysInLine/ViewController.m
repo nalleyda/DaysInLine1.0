@@ -1671,9 +1671,9 @@ int collectNum;
             editingViewController *my_selectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_selectEvent;
             my_selectEvent.reloadDelegate = self;
-            if(self.my_dayline.hidden == NO){
+            if([self.today isEqualToString:dateGoesIn]){
                 my_selectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
-            }else if (self.my_selectDay.hidden == NO){
+            }else {
                 my_selectEvent.drawBtnDelegate = self.my_selectDay.my_scoller;
             }
             //  my_modifyViewController.addTagDataDelegate = self;
@@ -1837,11 +1837,15 @@ int collectNum;
             editingViewController *my_collectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_collectEvent;
             my_collectEvent.reloadDelegate = self;
-            if(self.my_dayline.hidden == NO){
+         
+            if ([self.today isEqualToString: dateInCollect]) {
                 my_collectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
-            }else if (self.my_selectDay.hidden == NO){
+            }else{
+            
                 my_collectEvent.drawBtnDelegate = self.my_selectDay.my_scoller;
+
             }
+            
             //  my_modifyViewController.addTagDataDelegate = self;
             my_collectEvent.tags = self.allTags;
             
