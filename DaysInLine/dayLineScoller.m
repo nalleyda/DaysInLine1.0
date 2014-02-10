@@ -50,6 +50,8 @@ UILabel *labelTime[NR_TIME_LABEL];
 
 - (void)drawRect:(CGRect)rect
 {
+    
+    
 
     for (int i = 0; i <= NR_TIME_LABEL; i++) {
         

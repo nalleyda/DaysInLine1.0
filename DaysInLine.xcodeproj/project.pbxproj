@@ -54,7 +54,6 @@
 		0BA61BED18A28876000B7163 /* 按键1-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BEC18A28876000B7163 /* 按键1-2.png */; };
 		0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BEE18A28880000B7163 /* 按键4-2.png */; };
 		0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BF018A28887000B7163 /* 按键5-2.png */; };
-		0BAE55B0185B7B1700695F0E /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE55AC185B7B1700695F0E /* editView.png */; };
 		0BAE55B1185B7B1700695F0E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BAE55AD185B7B1700695F0E /* icon.png */; };
 		0BBED40A18A68AFA00B47E53 /* cell1-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40618A68AFA00B47E53 /* cell1-1.png */; };
 		0BBED40B18A68AFA00B47E53 /* cell2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40718A68AFA00B47E53 /* cell2-1.png */; };
@@ -67,6 +66,7 @@
 		0BE6C65118A778CA007769D8 /* photoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6C65018A778CA007769D8 /* photoView.xib */; };
 		0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6C65318A7BC52007769D8 /* checkPhotoController.m */; };
 		0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */; };
+		0BF933F018A9092E00C6EA81 /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF933EF18A9092E00C6EA81 /* editView.png */; };
 		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
 		13ED7A85189E844E002F669C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13ED7A84189E844E002F669C /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -145,7 +145,6 @@
 		0BA61BEC18A28876000B7163 /* 按键1-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键1-2.png"; sourceTree = "<group>"; };
 		0BA61BEE18A28880000B7163 /* 按键4-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键4-2.png"; sourceTree = "<group>"; };
 		0BA61BF018A28887000B7163 /* 按键5-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键5-2.png"; sourceTree = "<group>"; };
-		0BAE55AC185B7B1700695F0E /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
 		0BAE55AD185B7B1700695F0E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		0BB629D31829233B00D9B859 /* redrawButtonDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = redrawButtonDelegate.h; sourceTree = "<group>"; };
 		0BB629D418293F3C00D9B859 /* globalVars.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = globalVars.h; sourceTree = "<group>"; };
@@ -165,6 +164,7 @@
 		0BE6C65218A7BC52007769D8 /* checkPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = checkPhotoController.h; sourceTree = "<group>"; };
 		0BE6C65318A7BC52007769D8 /* checkPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkPhotoController.m; sourceTree = "<group>"; };
 		0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = checkPhotoController.xib; sourceTree = "<group>"; };
+		0BF933EF18A9092E00C6EA81 /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
 		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 		13ED7A84189E844E002F669C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -302,8 +302,8 @@
 				0BA61BD818A27715000B7163 /* 按键5.png */,
 				0BA61BF018A28887000B7163 /* 按键5-2.png */,
 				0BA61BE618A28293000B7163 /* rightBackground.png */,
-				0BAE55AC185B7B1700695F0E /* editView.png */,
 				0BAE55AD185B7B1700695F0E /* icon.png */,
+				0BF933EF18A9092E00C6EA81 /* editView.png */,
 				0B9A53D61812274D0085FFD7 /* DaysInLine-Info.plist */,
 				0B9A53D71812274D0085FFD7 /* InfoPlist.strings */,
 				0B9A53DA1812274D0085FFD7 /* main.m */,
@@ -470,7 +470,6 @@
 				0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */,
 				0B9009DE1877D791008D3799 /* left_arrow@2x.png in Resources */,
 				0BA61BD318A25108000B7163 /* star2.png in Resources */,
-				0BAE55B0185B7B1700695F0E /* editView.png in Resources */,
 				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
 				0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */,
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
@@ -492,6 +491,7 @@
 				0BA61BDC18A27715000B7163 /* 按键4.png in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
+				0BF933F018A9092E00C6EA81 /* editView.png in Resources */,
 				0B942F871896720A002864B8 /* statisticViewController.xib in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
 				0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */,
