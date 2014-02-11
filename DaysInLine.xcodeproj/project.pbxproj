@@ -23,6 +23,7 @@
 		0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B929ED018154B94008E1726 /* buttonInScroll.m */; };
 		0B942F861896720A002864B8 /* statisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B942F841896720A002864B8 /* statisticViewController.m */; };
 		0B942F871896720A002864B8 /* statisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B942F851896720A002864B8 /* statisticViewController.xib */; };
+		0B954E9C18AA5E8700BAA09B /* 按键1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B954E9B18AA5E8700BAA09B /* 按键1.png */; };
 		0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B96F9E918A3CD4600E625AA /* Main1.storyboard */; };
 		0B9A53CF1812274D0085FFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53CE1812274D0085FFD7 /* Foundation.framework */; };
 		0B9A53D11812274D0085FFD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53D01812274D0085FFD7 /* CoreGraphics.framework */; };
@@ -43,7 +44,6 @@
 		0BA18F6D187C41B700ADBB01 /* collectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BA18F6C187C41B700ADBB01 /* collectionView.m */; };
 		0BA61BD218A25108000B7163 /* star1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BD018A25108000B7163 /* star1.png */; };
 		0BA61BD318A25108000B7163 /* star2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BD118A25108000B7163 /* star2.png */; };
-		0BA61BD918A27715000B7163 /* 按键1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BD418A27715000B7163 /* 按键1.png */; };
 		0BA61BDA18A27715000B7163 /* 按键2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BD518A27715000B7163 /* 按键2.png */; };
 		0BA61BDB18A27715000B7163 /* 按键3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BD618A27715000B7163 /* 按键3.png */; };
 		0BA61BDC18A27715000B7163 /* 按键4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BA61BD718A27715000B7163 /* 按键4.png */; };
@@ -122,6 +122,7 @@
 		0B942F831896720A002864B8 /* statisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statisticViewController.h; sourceTree = "<group>"; };
 		0B942F841896720A002864B8 /* statisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = statisticViewController.m; sourceTree = "<group>"; };
 		0B942F851896720A002864B8 /* statisticViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statisticViewController.xib; sourceTree = "<group>"; };
+		0B954E9B18AA5E8700BAA09B /* 按键1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键1.png"; sourceTree = "<group>"; };
 		0B96F9EA18A3CD4600E625AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		0B96F9EE18A3CDD300E625AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		0B9726041870516100787BE9 /* drawTagDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawTagDelegate.h; sourceTree = "<group>"; };
@@ -151,7 +152,6 @@
 		0BA18F6C187C41B700ADBB01 /* collectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = collectionView.m; sourceTree = "<group>"; };
 		0BA61BD018A25108000B7163 /* star1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star1.png; sourceTree = "<group>"; };
 		0BA61BD118A25108000B7163 /* star2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star2.png; sourceTree = "<group>"; };
-		0BA61BD418A27715000B7163 /* 按键1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键1.png"; sourceTree = "<group>"; };
 		0BA61BD518A27715000B7163 /* 按键2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键2.png"; sourceTree = "<group>"; };
 		0BA61BD618A27715000B7163 /* 按键3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键3.png"; sourceTree = "<group>"; };
 		0BA61BD718A27715000B7163 /* 按键4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键4.png"; sourceTree = "<group>"; };
@@ -342,7 +342,7 @@
 				0BA61BD018A25108000B7163 /* star1.png */,
 				0BA61BD118A25108000B7163 /* star2.png */,
 				0BD7008218139338004FCBE2 /* backgroundHome.png */,
-				0BA61BD418A27715000B7163 /* 按键1.png */,
+				0B954E9B18AA5E8700BAA09B /* 按键1.png */,
 				0BA61BEC18A28876000B7163 /* 按键1-2.png */,
 				0BA61BD518A27715000B7163 /* 按键2.png */,
 				0BA61BE218A2808E000B7163 /* 按键2-2.png */,
@@ -536,11 +536,11 @@
 				0BBED40A18A68AFA00B47E53 /* cell1-1.png in Resources */,
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
 				0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */,
-				0BA61BD918A27715000B7163 /* 按键1.png in Resources */,
 				0BBED40B18A68AFA00B47E53 /* cell2-1.png in Resources */,
 				0B9009DF1877D791008D3799 /* right_arrow.png in Resources */,
 				0BA61BE718A28293000B7163 /* rightBackground.png in Resources */,
 				0BB08A7B18A9F41D00DE111E /* tagBtn2.png in Resources */,
+				0B954E9C18AA5E8700BAA09B /* 按键1.png in Resources */,
 				0BAE55B1185B7B1700695F0E /* icon.png in Resources */,
 				0BA61BEB18A2886B000B7163 /* 按键3-2.png in Resources */,
 				0BA61BDB18A27715000B7163 /* 按键3.png in Resources */,
