@@ -1182,12 +1182,12 @@ int collectNum;
             NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
                                   stringByAppendingPathComponent:[images objectAtIndex:i]];
             UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-            UIImageView *imageView = (UIImageView*)[my_modifyViewController.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
-            UIButton *imageButton = (UIButton *)[my_modifyViewController.view viewWithTag:IMAGEBUTTON_TAG_BASE+i];
-            imageButton.tag = IMAGEBUTTON_TAG_BASE+i;
+           // UIButton *imageView = (UIButton*)[my_modifyViewController.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+            UIButton *imageButton = (UIButton *)[my_modifyViewController.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+            imageButton.tag = IMAGEVIEW_TAG_BASE+i;
             [imageButton addTarget:my_modifyViewController action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
           
-            [imageView setImage: savedImage];
+            [imageButton setImage:savedImage forState:UIControlStateNormal ];
         }
     }
     
@@ -1697,12 +1697,11 @@ int collectNum;
                     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
                                           stringByAppendingPathComponent:[images objectAtIndex:i]];
                     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-                    UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
-                    UIButton *imageButton = (UIButton *)[my_selectEvent.view viewWithTag:IMAGEBUTTON_TAG_BASE+i];
-                    imageButton.tag = IMAGEBUTTON_TAG_BASE+i;
+                   // UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    UIButton *imageButton = (UIButton *)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    imageButton.tag = IMAGEVIEW_TAG_BASE+i;
                     [imageButton addTarget:my_selectEvent action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    [imageView setImage: savedImage];
-                }
+                    [imageButton  setImage:savedImage forState:UIControlStateNormal];                }
             }
             
             my_selectEvent.incomeFinal = [income doubleValue];
@@ -1870,11 +1869,11 @@ int collectNum;
                     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
                                           stringByAppendingPathComponent:[images objectAtIndex:i]];
                     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-                    UIImageView *imageView = (UIImageView*)[my_collectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
-                    UIButton *imageButton = (UIButton *)[my_collectEvent.view viewWithTag:IMAGEBUTTON_TAG_BASE+i];
-                    imageButton.tag = IMAGEBUTTON_TAG_BASE+i;
+                   // UIImageView *imageView = (UIImageView*)[my_collectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    UIButton *imageButton = (UIButton *)[my_collectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    imageButton.tag = IMAGEVIEW_TAG_BASE+i;
                     [imageButton addTarget:my_collectEvent action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    [imageView setImage: savedImage];
+                    [imageButton  setImage:savedImage forState:UIControlStateNormal];
                 }
             }
             
@@ -2030,11 +2029,11 @@ int collectNum;
                     NSString *fullPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
                                           stringByAppendingPathComponent:[images objectAtIndex:i]];
                     UIImage *savedImage = [[UIImage alloc] initWithContentsOfFile:fullPath];
-                    UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
-                    UIButton *imageButton = (UIButton *)[my_selectEvent.view viewWithTag:IMAGEBUTTON_TAG_BASE+i];
-                    imageButton.tag = IMAGEBUTTON_TAG_BASE+i;
+                   // UIImageView *imageView = (UIImageView*)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    UIButton *imageButton = (UIButton *)[my_selectEvent.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+                    imageButton.tag = IMAGEVIEW_TAG_BASE+i;
                     [imageButton addTarget:my_selectEvent action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
-                    [imageView setImage: savedImage];
+                    [imageButton  setImage:savedImage forState:UIControlStateNormal];
                 }
             }
             

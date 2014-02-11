@@ -78,9 +78,12 @@ bool haveSaved;
     self.endTimeButton =(UIButton *)[self.view viewWithTag:102];
     self.startTimeButton.layer.borderWidth = 1.0;
     self.startTimeButton.layer.borderColor = [UIColor blackColor].CGColor;
+    self.endTimeButton.layer.borderWidth = 1.0;
+    self.endTimeButton.layer.borderColor = [UIColor blackColor].CGColor;
     
     //self.startTimeButton.layer.borderColor = [UIColor clearColor].CGColor;
     self.startTimeButton.layer.borderColor = [UIColor clearColor].CGColor;
+    self.endTimeButton.layer.borderColor = [UIColor clearColor].CGColor;
     self.startLabel = (UILabel *)[self.view viewWithTag:103];
   
     //self.startLabel.layer.borderWidth = 1;
@@ -90,17 +93,32 @@ bool haveSaved;
     self.mainText = (UITextView *)[self.view viewWithTag:106];
    // self.mainText =[[UITextView alloc] initWithFrame: CGRectMake(50, 260, 200, 200)];
     
-    self.imageView = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
-    for (int i = 0; i < NR_IMAGEVIEW; i++) {
-        self.imageView[i] = (UIImageView *) [self.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
+    
+    //self.imageView = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
+    
+    //self.imageViewButton = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
+  /*  for (int i = 0; i < NR_IMAGEVIEW; i++) {
+        self.imageViewButton[i] = (UIImageView *) [self.view viewWithTag:IMAGEVIEW_TAG_BASE+i];
     }
+   */
     self.imageViewButton = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
     for (int j = 0; j<NR_IMAGEVIEW; j++) {
-        self.imageViewButton[j] = [[UIButton alloc] initWithFrame:[[self.imageView objectAtIndex:j] frame]];
-        [[self.imageViewButton objectAtIndex:j] setTag:IMAGEBUTTON_TAG_BASE+j];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+
+            self.imageViewButton[j] = [[UIButton alloc] initWithFrame:CGRectMake(15+60*j, 370, 50, 50)];
+            
+            NSLog(@"ios7!!!!");
+        }else{
+            
+         self.imageViewButton[j] = [[UIButton alloc] initWithFrame:CGRectMake(15+60*j, 350, 50, 50)];
+        }
+        
+
+       
+        [[self.imageViewButton objectAtIndex:j] setTag:IMAGEVIEW_TAG_BASE+j];
         [self.view addSubview:self.imageViewButton[j]];
   
-        NSLog(@"frame: x:%f , y:%f , width: %f , hei: %f",[[self.imageView objectAtIndex:j] frame].origin.x,[[self.imageView objectAtIndex:j] frame].origin.y,[[self.imageView objectAtIndex:j] frame].size.width,[[self.imageView objectAtIndex:j] frame].size.height);
+        NSLog(@"frame: x:%f , y:%f , width: %f , hei: %f",[[self.imageViewButton objectAtIndex:j] frame].origin.x,[[self.imageViewButton objectAtIndex:j] frame].origin.y,[[self.imageViewButton objectAtIndex:j] frame].size.width,[[self.imageViewButton objectAtIndex:j] frame].size.height);
     }
     
     
@@ -147,6 +165,9 @@ bool haveSaved;
     UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width/2, 372)];
     
     tmpCustomView = [nib objectAtIndex:0];
+    UITableView *tabletest =(UITableView *)[tmpCustomView viewWithTag:601];
+    
+    NSLog(@"%f",tabletest.rowHeight);
    // NSLog(@"tag 3 is: %@",self.tags[3]);
     
    // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
@@ -304,23 +325,37 @@ bool haveSaved;
 {
     UIActionSheet *sheet;
     
-    // 判断是否支持相机
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        sheet  = [[UIActionSheet alloc] initWithTitle:@"请选择"
-                                             delegate:self
-                                    cancelButtonTitle:nil
-                               destructiveButtonTitle:@"取消"
-                                    otherButtonTitles:@"拍照", @"从相册选择", nil];
-    } else {
-        sheet = [[UIActionSheet alloc] initWithTitle:@"请选择"
-                                            delegate:self
-                                   cancelButtonTitle:nil
-                              destructiveButtonTitle:@"取消"
-                                   otherButtonTitles:@"从相册选择", nil];
+    if (((UIButton *)self.imageViewButton[4]).imageView.image ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"照片数量达到上限！"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+      
+        
+        [ alert  show];
+
     }
-    sheet.tag = 255;
-    [sheet showInView:self.view];
+    else {
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            sheet  = [[UIActionSheet alloc] initWithTitle:@"请选择"
+                                                 delegate:self
+                                        cancelButtonTitle:nil
+                                   destructiveButtonTitle:@"取消"
+                                        otherButtonTitles:@"拍照", @"从相册选择", nil];
+        } else {
+            sheet = [[UIActionSheet alloc] initWithTitle:@"请选择"
+                                                delegate:self
+                                       cancelButtonTitle:nil
+                                  destructiveButtonTitle:@"取消"
+                                       otherButtonTitles:@"从相册选择", nil];
+        }
+        sheet.tag = 255;
+        [sheet showInView:self.view];
+    }
 }
 
 #pragma mark - 保存图片至沙盒
@@ -358,13 +393,14 @@ bool haveSaved;
         self.imageName = [NSString stringWithFormat:@"%@;%@", self.imageName, name];
         index = [[self.imageName componentsSeparatedByString:@";"] count] - 1;
     }
-    [[self.imageView objectAtIndex:index] setImage:savedImage];
+   // [[self.imageView objectAtIndex:index] setImage:savedImage];
     //button for every imageView
     
     //[[self.imageViewButton objectAtIndex:index] setFrame:[[self.imageView objectAtIndex:index] frame]];
    // [self.view addSubview:[self.imageViewButton objectAtIndex:index]];
    // [[self.imageViewButton objectAtIndex:index] setTag:index+IMAGEBUTTON_TAG_BASE];
-    NSLog(@"button tag is :%d",((UIButton *)self.imageViewButton[index]).tag );
+  //  NSLog(@"button tag is :%d",((UIButton *)self.imageViewButton[index]).tag );
+    [[self.imageViewButton objectAtIndex:index] setImage:savedImage forState:UIControlStateNormal];
     [[self.imageViewButton objectAtIndex:index] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
 
 }
@@ -409,12 +445,13 @@ bool haveSaved;
     checkPhotoController *my_bigPhoto = [[checkPhotoController alloc] initWithNibName:@"checkPhotoController" bundle:nil];
     my_bigPhoto.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
-    UIImageView *bigView = self.imageView[sender.tag-IMAGEBUTTON_TAG_BASE];
-    my_bigPhoto.fullPhoto.image = bigView.image;
+    UIButton *bigView = self.imageViewButton[sender.tag-IMAGEVIEW_TAG_BASE];
+    
+    my_bigPhoto.fullPhoto.image = bigView.imageView.image;
     
     
     
-    [(UIImageView *)[my_bigPhoto.view viewWithTag:1] setImage:bigView.image ];
+    [(UIImageView *)[my_bigPhoto.view viewWithTag:1] setImage:bigView.imageView.image ];
     
 
     

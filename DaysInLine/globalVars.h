@@ -18,6 +18,6 @@ int modifyEventId;
 
 #define NR_IMAGEVIEW 5
 #define IMAGEVIEW_TAG_BASE 200
-#define IMAGEBUTTON_TAG_BASE 300
+//#define IMAGEBUTTON_TAG_BASE 300
 
 #endif

@@ -83,11 +83,13 @@ const int GROWTH_BOTTOM_GAP = 50;
     self.addMoreWork = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreWork setFrame:CGRectMake(70, self.frame.origin.y+75, 32, 32)];
     [self.addMoreWork setImage: [UIImage imageNamed:@"addBtn.png"] forState:UIControlStateNormal];
+    self.addMoreWork.tintColor = [UIColor darkGrayColor];
     self.addMoreWork.tag = 0;
     
     self.addMoreLife = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreLife setFrame:CGRectMake(172, self.frame.origin.y+75, 32, 32)];
     [self.addMoreLife setImage: [UIImage imageNamed:@"addBtn.png"] forState:UIControlStateNormal];
+    self.addMoreLife.tintColor = [UIColor lightGrayColor];
     self.addMoreLife.tag = 1;
     
     [self addSubview:self.addMoreWork];
