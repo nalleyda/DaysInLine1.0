@@ -100,8 +100,9 @@ bool haveSaved;
         [[self.imageViewButton objectAtIndex:j] setTag:IMAGEBUTTON_TAG_BASE+j];
         [self.view addSubview:self.imageViewButton[j]];
   
-        
+        NSLog(@"frame: x:%f , y:%f , width: %f , hei: %f",[[self.imageView objectAtIndex:j] frame].origin.x,[[self.imageView objectAtIndex:j] frame].origin.y,[[self.imageView objectAtIndex:j] frame].size.width,[[self.imageView objectAtIndex:j] frame].size.height);
     }
+    
     
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
     
@@ -110,6 +111,7 @@ bool haveSaved;
     [self.startTimeButton addTarget:self action:@selector(startTimeTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.endTimeButton addTarget:self action:@selector(endTimeTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.saveButton addTarget:self action:@selector(saveTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.saveButton setImage:[UIImage imageNamed:@"saveBtn2.png"] forState:UIControlStateHighlighted];
     [self.returnButton addTarget:self action:@selector(returnTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.moneyButton addTarget:self action:@selector(moneyTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.remindButton addTarget:self action:@selector(remindTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -364,6 +366,7 @@ bool haveSaved;
    // [[self.imageViewButton objectAtIndex:index] setTag:index+IMAGEBUTTON_TAG_BASE];
     NSLog(@"button tag is :%d",((UIButton *)self.imageViewButton[index]).tag );
     [[self.imageViewButton objectAtIndex:index] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 -(void)pictureTapped:(UIButton *)sender

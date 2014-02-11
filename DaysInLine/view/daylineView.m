@@ -39,17 +39,31 @@ const int GROWTH_BOTTOM_GAP = 50;
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
+   /* CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
+    float lengths[] = {10,5};
     
-    CGContextSetLineWidth(context, 1.0f); //设置线的宽度 为1个像素
+    CGContextSetLineDash(context, 0, lengths, 2);  //画虚线
+    CGContextMoveToPoint(context,36+5, self.frame.origin.y+70);    //开始画线
+    CGContextAddLineToPoint(context, self.frame.size.width, self.frame.origin.y+70);
+    CGContextStrokePath(context);
+    
+    CGContextSetLineDash(context, 0, lengths, 2);
+    CGContextMoveToPoint(context, self.frame.size.width/2+18+0.1, self.frame.origin.y+40);
+    CGContextAddLineToPoint(context, self.frame.size.width/2+18+0.1, self.frame.size.height-100);
+    CGContextStrokePath(context);
+   */
+    CGContextSetLineWidth(context, 0.25f); //设置线的宽度 为1个像素
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
     CGContextMoveToPoint(context,36+5, self.frame.origin.y+70);
     CGContextAddLineToPoint(context, self.frame.size.width, self.frame.origin.y+70);
     CGContextStrokePath(context);
     
-    CGContextSetLineWidth(context, 1.5f); //设置线的宽度 为1.5个像素
+    CGContextSetLineWidth(context, 0.25f); //设置线的宽度 为1.5个像素
     CGContextMoveToPoint(context, self.frame.size.width/2+18+0.1, self.frame.origin.y+40);
     CGContextAddLineToPoint(context, self.frame.size.width/2+18+0.1, self.frame.size.height-100);
     CGContextStrokePath(context);
+
+  
 }
 
 
@@ -68,10 +82,12 @@ const int GROWTH_BOTTOM_GAP = 50;
 */
     self.addMoreWork = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreWork setFrame:CGRectMake(70, self.frame.origin.y+75, 32, 32)];
+    [self.addMoreWork setImage: [UIImage imageNamed:@"addBtn.png"] forState:UIControlStateNormal];
     self.addMoreWork.tag = 0;
     
     self.addMoreLife = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreLife setFrame:CGRectMake(172, self.frame.origin.y+75, 32, 32)];
+    [self.addMoreLife setImage: [UIImage imageNamed:@"addBtn.png"] forState:UIControlStateNormal];
     self.addMoreLife.tag = 1;
     
     [self addSubview:self.addMoreWork];
