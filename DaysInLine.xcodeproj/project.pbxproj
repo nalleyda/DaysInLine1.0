@@ -24,6 +24,11 @@
 		0B93EC4718AB422600F871C4 /* 色点.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC4618AB422600F871C4 /* 色点.png */; };
 		0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B93EC4918ABA5EE00F871C4 /* customButton.m */; };
 		0B93EC5418ABB1C000F871C4 /* addBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5318ABB1C000F871C4 /* addBtn.png */; };
+		0B93EC5A18ABD06A00F871C4 /* 日期角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5518ABD06A00F871C4 /* 日期角标.png */; };
+		0B93EC5B18ABD06A00F871C4 /* editView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5618ABD06A00F871C4 /* editView@2x.png */; };
+		0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */; };
+		0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5818ABD06A00F871C4 /* addTapped.png */; };
+		0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */; };
 		0B942F861896720A002864B8 /* statisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B942F841896720A002864B8 /* statisticViewController.m */; };
 		0B942F871896720A002864B8 /* statisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B942F851896720A002864B8 /* statisticViewController.xib */; };
 		0B954E9C18AA5E8700BAA09B /* 按键1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B954E9B18AA5E8700BAA09B /* 按键1.png */; };
@@ -125,6 +130,11 @@
 		0B93EC4818ABA5ED00F871C4 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
 		0B93EC4918ABA5EE00F871C4 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
 		0B93EC5318ABB1C000F871C4 /* addBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addBtn.png; sourceTree = "<group>"; };
+		0B93EC5518ABD06A00F871C4 /* 日期角标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "日期角标.png"; path = "../日期角标.png"; sourceTree = "<group>"; };
+		0B93EC5618ABD06A00F871C4 /* editView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editView@2x.png"; sourceTree = "<group>"; };
+		0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightBackground@2x.png"; sourceTree = "<group>"; };
+		0B93EC5818ABD06A00F871C4 /* addTapped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addTapped.png; sourceTree = "<group>"; };
+		0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundHome@2x.png"; sourceTree = "<group>"; };
 		0B942F831896720A002864B8 /* statisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statisticViewController.h; sourceTree = "<group>"; };
 		0B942F841896720A002864B8 /* statisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = statisticViewController.m; sourceTree = "<group>"; };
 		0B942F851896720A002864B8 /* statisticViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statisticViewController.xib; sourceTree = "<group>"; };
@@ -241,6 +251,7 @@
 				0B9009D91877D791008D3799 /* left_arrow@2x.png */,
 				0B9009DA1877D791008D3799 /* right_arrow.png */,
 				0B9009DB1877D791008D3799 /* right_arrow@2x.png */,
+				0B93EC5518ABD06A00F871C4 /* 日期角标.png */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -271,6 +282,7 @@
 				0BBED40918A68AFA00B47E53 /* cell4-1.png */,
 				0B93EC4618AB422600F871C4 /* 色点.png */,
 				0B93EC5318ABB1C000F871C4 /* addBtn.png */,
+				0B93EC5818ABD06A00F871C4 /* addTapped.png */,
 				0BB08A6218A9F41D00DE111E /* tagBtn.png */,
 				0BB08A6318A9F41D00DE111E /* photoBtn.png */,
 				0BB08A6418A9F41D00DE111E /* remindBtn.png */,
@@ -348,6 +360,7 @@
 				0BA61BD018A25108000B7163 /* star1.png */,
 				0BA61BD118A25108000B7163 /* star2.png */,
 				0BD7008218139338004FCBE2 /* backgroundHome.png */,
+				0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */,
 				0B954E9B18AA5E8700BAA09B /* 按键1.png */,
 				0BA61BEC18A28876000B7163 /* 按键1-2.png */,
 				0BA61BD518A27715000B7163 /* 按键2.png */,
@@ -359,8 +372,10 @@
 				0BA61BD818A27715000B7163 /* 按键5.png */,
 				0BA61BF018A28887000B7163 /* 按键5-2.png */,
 				0BA61BE618A28293000B7163 /* rightBackground.png */,
+				0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */,
 				0BAE55AD185B7B1700695F0E /* icon.png */,
 				0BF933EF18A9092E00C6EA81 /* editView.png */,
+				0B93EC5618ABD06A00F871C4 /* editView@2x.png */,
 				0B9A53D61812274D0085FFD7 /* DaysInLine-Info.plist */,
 				0B9A53D71812274D0085FFD7 /* InfoPlist.strings */,
 				0B9A53DA1812274D0085FFD7 /* main.m */,
@@ -521,6 +536,7 @@
 				0B9A5406181230990085FFD7 /* Default.png in Resources */,
 				0BA61BD218A25108000B7163 /* star1.png in Resources */,
 				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
+				0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */,
 				0BA61BDA18A27715000B7163 /* 按键2.png in Resources */,
 				0B9A53E71812274D0085FFD7 /* Images.xcassets in Resources */,
 				0BB08A7C18A9F41D00DE111E /* remindBtn2.png in Resources */,
@@ -532,6 +548,7 @@
 				0B9009DE1877D791008D3799 /* left_arrow@2x.png in Resources */,
 				0BB08A7818A9F41D00DE111E /* returnBtn.png in Resources */,
 				0BB08A8118A9F41D00DE111E /* deleteBtn2.png in Resources */,
+				0B93EC5B18ABD06A00F871C4 /* editView@2x.png in Resources */,
 				0BA61BD318A25108000B7163 /* star2.png in Resources */,
 				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
 				0BB08A7418A9F41D00DE111E /* photoBtn.png in Resources */,
@@ -556,10 +573,13 @@
 				0BA61BED18A28876000B7163 /* 按键1-2.png in Resources */,
 				0BA61BE318A2808E000B7163 /* 按键2-2.png in Resources */,
 				0BB08A7F18A9F41D00DE111E /* returnBtn2.png in Resources */,
+				0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */,
 				0BB08A7618A9F41D00DE111E /* collectionBtn.png in Resources */,
 				0B00AC54187D849400427F35 /* collectCell.xib in Resources */,
+				0B93EC5A18ABD06A00F871C4 /* 日期角标.png in Resources */,
 				0BA61BDC18A27715000B7163 /* 按键4.png in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
+				0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
 				0BF933F018A9092E00C6EA81 /* editView.png in Resources */,
 				0B93EC4718AB422600F871C4 /* 色点.png in Resources */,
