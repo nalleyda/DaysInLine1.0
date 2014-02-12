@@ -355,7 +355,8 @@ int collectNum;
                     }
                     
                 }
-                else {
+                /*
+                 else {
                     // 插入当天的数据
                     NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
                     
@@ -375,6 +376,7 @@ int collectNum;
                     }
                     
                 }
+                 */
                 
             }
             else{
@@ -446,72 +448,120 @@ int collectNum;
 {
     
     const char *dbpath = [databasePath UTF8String];
+    
+    
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        
-        
-        if (sender.tag <100) {
-            if (self.my_dayline.hidden == NO) {
-                for (int i = 0; i<=sender.tag; i++) {
-                    
-                    
-                    [[self.my_dayline.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                }
-                for (int j = sender.tag+1; j<5; j++) {
-                    [[self.my_dayline.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                }
-            }else if(self.my_selectDay.hidden == NO){
-                for (int i = 0; i<=sender.tag; i++) {
-                    
-                    
-                    [[self.my_selectDay.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                }
-                for (int j = sender.tag+1; j<5; j++) {
-                    [[self.my_selectDay.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                }
-            }
-            //数据库更新
+        sqlite3_stmt *findStatement;
+        sqlite3_stmt *dayStatement;
+        NSString *queryDay = [NSString stringWithFormat:@"SELECT * from DAYTABLE where DATE=\"%@\"",modifyDate];
+        NSLog(@"%@000000",modifyDate);
+        const char *queryDayStatement = [queryDay UTF8String];
+        if (sqlite3_prepare_v2(dataBase, queryDayStatement, -1, &findStatement, NULL)==SQLITE_OK) {
             
-            sqlite3_stmt *stmt;
-            //如果已经存在并且已登陆，则修改状态值
-            const char *Update="update DAYTABLE set MOOD=?where date=?";
-            if (sqlite3_prepare_v2(dataBase, Update, -1, &stmt, NULL)!=SQLITE_OK) {
-                NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+            if(sqlite3_step(findStatement)==SQLITE_ROW)
+            {
+                
+               
+            }else {
+                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
+                
+                //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+                const char *insertsatement = [insertSql UTF8String];
+                sqlite3_prepare_v2(dataBase, insertsatement, -1, &dayStatement, NULL);
+                sqlite3_bind_text(dayStatement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_bind_int(dayStatement, 2, 0);
+                sqlite3_bind_int(dayStatement, 3, 0);
+                
+                
+                if (sqlite3_step(dayStatement)==SQLITE_DONE) {
+                    NSLog(@"innsert today ok");
+                    
+                    NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+
+                    NSDate *dateUnconvert = [dateFormatter dateFromString:modifyDate];
+                    [self.HasEventsDates addObject:dateUnconvert];
+
+                }
+                else {
+                    NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                }
+                
+                sqlite3_finalize(dayStatement);
+                
             }
-            sqlite3_bind_int(stmt, 1, sender.tag+1);
-            sqlite3_bind_text(stmt, 2, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_step(stmt);
-            sqlite3_finalize(stmt);
             
-        }
-        else
-        {
-            if (self.my_dayline.hidden == NO) {
-                for (int i = 0; i<=sender.tag-100; i++) {
-                    [[self.my_dayline.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+            if (sender.tag <100) {
+                if (self.my_dayline.hidden == NO) {
+                    for (int i = 0; i<=sender.tag; i++) {
+                        
+                        
+                        [[self.my_dayline.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                    }
+                    for (int j = sender.tag+1; j<5; j++) {
+                        [[self.my_dayline.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                    }
+                }else if(self.my_selectDay.hidden == NO){
+                    for (int i = 0; i<=sender.tag; i++) {
+                        
+                        
+                        [[self.my_selectDay.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                    }
+                    for (int j = sender.tag+1; j<5; j++) {
+                        [[self.my_selectDay.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                    }
                 }
-                for (int j = sender.tag-99; j<5; j++) {
-                    [[self.my_dayline.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                //数据库更新
+                
+                sqlite3_stmt *stmt;
+                //如果已经存在并且已登陆，则修改状态值
+                const char *Update="update DAYTABLE set MOOD=?where date=?";
+                if (sqlite3_prepare_v2(dataBase, Update, -1, &stmt, NULL)!=SQLITE_OK) {
+                    NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
                 }
-            }else if (self.my_selectDay.hidden ==NO){
-                for (int i = 0; i<=sender.tag-100; i++) {
-                    [[self.my_selectDay.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                }
-                for (int j = sender.tag-99; j<5; j++) {
-                    [[self.my_selectDay.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                }
+                sqlite3_bind_int(stmt, 1, sender.tag+1);
+                sqlite3_bind_text(stmt, 2, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_step(stmt);
+                sqlite3_finalize(stmt);
+                
             }
-            //数据库更新
-            sqlite3_stmt *stmt;
-            //如果已经存在并且已登陆，则修改状态值
-            const char *Update="update DAYTABLE set growth=?where date=?";
-            if (sqlite3_prepare_v2(dataBase, Update, -1, &stmt, NULL)!=SQLITE_OK) {
-                NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+            else
+            {
+                if (self.my_dayline.hidden == NO) {
+                    for (int i = 0; i<=sender.tag-100; i++) {
+                        [[self.my_dayline.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                    }
+                    for (int j = sender.tag-99; j<5; j++) {
+                        [[self.my_dayline.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                    }
+                }else if (self.my_selectDay.hidden ==NO){
+                    for (int i = 0; i<=sender.tag-100; i++) {
+                        [[self.my_selectDay.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                    }
+                    for (int j = sender.tag-99; j<5; j++) {
+                        [[self.my_selectDay.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                    }
+                }
+                //数据库更新
+                sqlite3_stmt *stmt;
+                //如果已经存在并且已登陆，则修改状态值
+                const char *Update="update DAYTABLE set growth=?where date=?";
+                if (sqlite3_prepare_v2(dataBase, Update, -1, &stmt, NULL)!=SQLITE_OK) {
+                    NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+                }
+                sqlite3_bind_int(stmt, 1, sender.tag-99);
+                sqlite3_bind_text(stmt, 2, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_step(stmt);
+                sqlite3_finalize(stmt);
             }
-            sqlite3_bind_int(stmt, 1, sender.tag-99);
-            sqlite3_bind_text(stmt, 2, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_step(stmt);
-            sqlite3_finalize(stmt);
+            
+
+            
+           
         }
+                sqlite3_finalize(findStatement);
+        
+
     }
     else {
         NSLog(@"数据库打开失败");
@@ -536,6 +586,7 @@ int collectNum;
 
    // my_editingViewController.addTagDataDelegate = self;
     my_editingViewController.tags = self.allTags;
+    my_editingViewController.HasEvtDates = self.HasEventsDates;
 
     modifying = 0;
     
@@ -684,6 +735,7 @@ int collectNum;
                         }
                         
                     }
+                    /*
                     else {
                         // 插入当天的数据
                         NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
@@ -704,11 +756,14 @@ int collectNum;
 
                             [self.HasEventsDates addObject:dateWithNewEvent];
                         }
+                    
                         else {
                             NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
                         }
-                        
-                    }
+                     
+                      }
+                     */
+                    
                 }
                 
                 else{
@@ -1164,6 +1219,7 @@ int collectNum;
     }
 
     my_modifyViewController.tags = self.allTags;
+    my_modifyViewController.HasEvtDates = self.HasEventsDates;
     
         
     //将该事件还原现使出来
@@ -1230,6 +1286,9 @@ int collectNum;
 - (void)calendar:(CKCalendarView *)calendar configureDateItem:(CKDateItem *)dateItem forDate:(NSDate *)date {
  
     // TODO: play with the coloring if we want to...
+    
+  
+    
     if ([self dateHasEvents:date]) {
         dateItem.backgroundColor = [UIColor redColor];
         dateItem.textColor = [UIColor whiteColor];
@@ -1245,6 +1304,7 @@ int collectNum;
     NSString *titleDetail;
     NSString *LabelIntable;
 
+    NSLog(@"date:%@",self.HasEventsDates);
    
     [self.tableRight removeAllObjects];
     [self.tableLeft removeAllObjects];
@@ -1678,6 +1738,7 @@ int collectNum;
             }
             //  my_modifyViewController.addTagDataDelegate = self;
             my_selectEvent.tags = self.allTags;
+            my_selectEvent.HasEvtDates = self.HasEventsDates;
             
                         
             
@@ -1847,6 +1908,7 @@ int collectNum;
             
             //  my_modifyViewController.addTagDataDelegate = self;
             my_collectEvent.tags = self.allTags;
+            my_collectEvent.HasEvtDates = self.HasEventsDates;
             
             
             
@@ -2010,6 +2072,7 @@ int collectNum;
            
             //  my_modifyViewController.addTagDataDelegate = self;
             my_selectEvent.tags = self.allTags;
+            my_selectEvent.HasEvtDates = self.HasEventsDates;
             
             
             

@@ -68,6 +68,8 @@
 @property NSString *selectedTags;
 @property NSString *imageName;
 @property (strong, nonatomic) NSString *remindData;
+
+@property NSMutableArray *HasEvtDates;
 //@property (strong, nonatomic) NSString *oldLabel;
 
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;

@@ -12,6 +12,7 @@
 int workArea[48] ;
 int lifeArea[48] ;
 NSString *modifyDate;
+//BOOL hasTheDay;
 
 int modifying;
 int modifyEventId;

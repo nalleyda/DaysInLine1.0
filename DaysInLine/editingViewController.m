@@ -850,6 +850,61 @@ bool haveSaved;
                                                   otherButtonTitles:nil];
             
             [ alert  show];
+            const char *dbpath = [databasePath UTF8String];
+            
+            
+            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                sqlite3_stmt *findStatement;
+                sqlite3_stmt *dayStatement;
+                NSString *queryDay = [NSString stringWithFormat:@"SELECT DATE from DAYTABLE where DATE=\"%@\"",modifyDate];
+                const char *queryDayStatement = [queryDay UTF8String];
+                if (sqlite3_prepare_v2(dataBase, queryDayStatement, -1, &findStatement, NULL)==SQLITE_OK) {
+                    
+                    if(sqlite3_step(findStatement)==SQLITE_ROW)
+                    {
+                    }else {
+                        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
+                        
+                        //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+                        const char *insertsatement = [insertSql UTF8String];
+                        sqlite3_prepare_v2(dataBase, insertsatement, -1, &dayStatement, NULL);
+                        sqlite3_bind_text(dayStatement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                        sqlite3_bind_int(dayStatement, 2, 0);
+                        sqlite3_bind_int(dayStatement, 3, 0);
+                        
+                        
+                        if (sqlite3_step(dayStatement)==SQLITE_DONE) {
+                            NSLog(@"innsert today ok");
+                            
+                            NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
+                            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                            
+                            NSDate *dateUnconvert = [dateFormatter dateFromString:modifyDate];
+                            [self.HasEvtDates addObject:dateUnconvert];
+                        }
+                        else {
+                            NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                        }
+                        
+                        sqlite3_finalize(dayStatement);
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+                
+                sqlite3_finalize(findStatement);
+            }
+            else{
+                NSLog(@"数据库打开失败");
+                
+            }
+            
+            sqlite3_close(dataBase);
+            
+
             
         }
     }
@@ -1150,6 +1205,7 @@ bool haveSaved;
                         sqlite3_finalize(statement);
                     }
                     
+                    
                     else {
                         NSLog(@"数据库打开失败");
                         
@@ -1272,6 +1328,62 @@ bool haveSaved;
     }
     
     [self.reloadDelegate reloadTable];
+    
+    
+    const char *dbpath = [databasePath UTF8String];
+
+    
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        sqlite3_stmt *findStatement;
+        sqlite3_stmt *dayStatement;
+        NSString *queryDay = [NSString stringWithFormat:@"SELECT DATE from DAYTABLE where DATE=\"%@\"",modifyDate];
+        const char *queryDayStatement = [queryDay UTF8String];
+        if (sqlite3_prepare_v2(dataBase, queryDayStatement, -1, &findStatement, NULL)==SQLITE_OK) {
+            
+            if(sqlite3_step(findStatement)==SQLITE_ROW)
+            {
+            }else {
+                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
+                
+                //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+                const char *insertsatement = [insertSql UTF8String];
+                sqlite3_prepare_v2(dataBase, insertsatement, -1, &dayStatement, NULL);
+                sqlite3_bind_text(dayStatement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_bind_int(dayStatement, 2, 0);
+                sqlite3_bind_int(dayStatement, 3, 0);
+                
+                
+                if (sqlite3_step(dayStatement)==SQLITE_DONE) {
+                    NSLog(@"innsert today ok");
+                    
+                    NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    
+                    NSDate *dateUnconvert = [dateFormatter dateFromString:modifyDate];
+                    [self.HasEvtDates addObject:dateUnconvert];
+                }
+                else {
+                    NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                }
+                
+                sqlite3_finalize(dayStatement);
+                
+            }
+
+
+           
+        }
+        
+        
+        sqlite3_finalize(findStatement);
+    }
+    else{
+        NSLog(@"数据库打开失败");
+        
+    }
+    
+    sqlite3_close(dataBase);
+
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
