@@ -62,6 +62,10 @@ const int GROWTH_BOTTOM_GAP = 50;
     CGContextMoveToPoint(context, self.frame.size.width/2+18+0.1, self.frame.origin.y+40);
     CGContextAddLineToPoint(context, self.frame.size.width/2+18+0.1, self.frame.size.height-100);
     CGContextStrokePath(context);
+    
+  //  CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetAllowsAntialiasing(context, true);
+    CGContextSetShouldAntialias(context, true);
 
   
 }
@@ -201,6 +205,9 @@ const int GROWTH_BOTTOM_GAP = 50;
     [self addSubview:moodLabel];
     [self addSubview:growthLabel];
 }
+
+
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.

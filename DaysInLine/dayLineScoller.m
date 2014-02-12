@@ -89,7 +89,7 @@ UILabel *labelTime[NR_TIME_LABEL];
             
             for (UIView *curView in self.subviews) {
                 NSLog(@"button tag is : %d",curView.tag);
-                if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/30) {
+                if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/15) {
                     NSLog(@"find it!!!!");
                     [curView removeFromSuperview];
                     NSLog(@"removed it :%d!!!!",curView.tag);
@@ -106,12 +106,13 @@ UILabel *labelTime[NR_TIME_LABEL];
     NSLog(@"redraw");
     
     int h = self.contentSize.height;
-    double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h + TIME_LABEL_HEIGHT / 2;
-    double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h + TIME_LABEL_HEIGHT / 2;
+    double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h +7;//+ TIME_LABEL_HEIGHT / 2;
+    double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h +7;//+ TIME_LABEL_HEIGHT / 2;
     double height = end - start;
-    if (height<15) {
+   /* if (height<15) {
         height=15;
     }
+    */
     
     
     NSLog(@"start:%f,height:%f,longth:%d",start,end-start,h);
@@ -133,7 +134,7 @@ UILabel *labelTime[NR_TIME_LABEL];
         eventButton = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width)/2+21, start, (self.frame.size.width)/2-25, height)];
     }
    
-    eventButton.tag =[eventType intValue]*1000 + [startNum intValue]/30;
+    eventButton.tag =[eventType intValue]*1000 + [startNum intValue]/15;
     // 设置圆角半径
     eventButton.layer.masksToBounds = YES;
     eventButton.layer.cornerRadius = 1.0;

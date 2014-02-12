@@ -556,7 +556,7 @@ bool haveSaved;
 
 	datePicker.tag = 201;
 	datePicker.datePickerMode = UIDatePickerModeTime;
-    [datePicker setMinuteInterval:30];
+    [datePicker setMinuteInterval:15];
     
     /* set to 24h format */
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"NL"];
@@ -578,7 +578,7 @@ bool haveSaved;
 	UIDatePicker *datePicker = [[UIDatePicker alloc] init] ;
 	datePicker.tag = 202;
 	datePicker.datePickerMode = UIDatePickerModeTime;
-    [datePicker setMinuteInterval:30];
+    [datePicker setMinuteInterval:15];
     
     /* set to 24h format */
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"NL"];
@@ -699,7 +699,7 @@ bool haveSaved;
                 startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
                 endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
                 
-                for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                     if([self.eventType intValue]==0 && workArea[i] == 1)
                     {
                         flag=YES;
@@ -730,12 +730,12 @@ bool haveSaved;
                     NSLog(@"the old start is :%d",[oldStartNum intValue]);
                     [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
                     if ([self.eventType intValue]==0) {
-                        for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                        for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                             workArea[i] = 1;
                             NSLog(@"seized work area is :%d",i);
                         }
                     }else if([self.eventType intValue]==1){
-                        for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                        for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                             lifeArea[i] = 1;
                             NSLog(@"seized life area is :%d",i);
                         }
@@ -774,7 +774,7 @@ bool haveSaved;
                         sqlite3_bind_text(statementInsert,10, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_text(statementInsert,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                         //  sqlite3_bind_int(statement,11, 0);
-                        sqlite3_bind_int(statementInsert,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
+                        sqlite3_bind_int(statementInsert,12, [self.eventType intValue]*1000+[startTimeNum intValue]/15);
                         sqlite3_bind_text(statementInsert,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                         if (sqlite3_step(statementInsert)==SQLITE_DONE) {
@@ -791,7 +791,7 @@ bool haveSaved;
                         
                         
                         
-                        NSString *queryEventID = [NSString stringWithFormat:@"SELECT eventID from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[self.eventType intValue]*1000+[startTimeNum intValue]/30];
+                        NSString *queryEventID = [NSString stringWithFormat:@"SELECT eventID from event where DATE=\"%@\" and startArea=\"%d\"",modifyDate,[self.eventType intValue]*1000+[startTimeNum intValue]/15];
                         const char *queryEventIDstatement = [queryEventID UTF8String];
                         if (sqlite3_prepare_v2(dataBase, queryEventIDstatement, -1, &statementSelect, NULL)==SQLITE_OK) {
                             if (sqlite3_step(statementSelect)==SQLITE_ROW) {
@@ -953,12 +953,12 @@ bool haveSaved;
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
                     
                     if ([self.eventType intValue] == 0) {
-                        for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                        for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                             workArea[i] = 0;
                             NSLog(@"release work area is :%d",i);
                         }
                     }else if([self.eventType intValue] == 1){
-                        for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                        for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                             lifeArea[i] = 0;
                             NSLog(@"release life area is :%d",i);
                         }
@@ -1022,7 +1022,7 @@ bool haveSaved;
             startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
             endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
             
-            for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+            for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                 if([self.eventType intValue]==0 && workArea[i] == 1)
                 {
                     flag=YES;
@@ -1064,13 +1064,14 @@ bool haveSaved;
                             oldStartNum = startTm;
                             NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
                             
+                            NSLog(@"end:%d",[endTm intValue]);
                             if ([self.eventType intValue] == 0) {
-                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     workArea[i] = 1;
                                     NSLog(@"seize work area is :%d",i);
                                 }
                             }else if([self.eventType intValue] == 1){
-                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     lifeArea[i] = 1;
                                     NSLog(@"seize life area is :%d",i);
                                 }
@@ -1097,12 +1098,12 @@ bool haveSaved;
                 NSLog(@"the old start is :%d",[oldStartNum intValue]);
                 [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
                 if ([self.eventType intValue]==0) {
-                    for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                    for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                         workArea[i] = 1;
                         NSLog(@"seized work area is :%d",i);
                     }
                 }else if([self.eventType intValue]==1){
-                    for (int i = [startTimeNum intValue]/30; i <= [endTimeNum intValue]/30; i++) {
+                    for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                         lifeArea[i] = 1;
                         NSLog(@"seized life area is :%d",i);
                     }
@@ -1142,7 +1143,7 @@ bool haveSaved;
                         sqlite3_bind_text(statement,10, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                         sqlite3_bind_text(statement,11, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
                         //  sqlite3_bind_int(statement,11, 0);
-                        sqlite3_bind_int(statement,12, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
+                        sqlite3_bind_int(statement,12, [self.eventType intValue]*1000+[startTimeNum intValue]/15);
                         sqlite3_bind_text(statement,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                             if (sqlite3_step(statement)==SQLITE_DONE) {
@@ -1187,7 +1188,7 @@ bool haveSaved;
                             
                             sqlite3_bind_text(statement,8, [self.selectedTags UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_text(statement,9, [self.remindData UTF8String], -1, SQLITE_TRANSIENT);
-                            sqlite3_bind_int(statement,10, [self.eventType intValue]*1000+[startTimeNum intValue]/30);
+                            sqlite3_bind_int(statement,10, [self.eventType intValue]*1000+[startTimeNum intValue]/15);
                             sqlite3_bind_text(statement,11, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                             sqlite3_bind_int(statement,12, modifyEventId);
                             
@@ -1657,12 +1658,12 @@ bool haveSaved;
                             NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
                             
                             if ([self.eventType intValue] == 0) {
-                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     workArea[i] = 0;
                                     NSLog(@"release work area is :%d",i);
                                 }
                             }else if([self.eventType intValue] == 1){
-                                for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                                for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     lifeArea[i] = 0;
                                     NSLog(@"release life area is :%d",i);
                                 }

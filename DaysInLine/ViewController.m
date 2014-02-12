@@ -410,12 +410,12 @@ int collectNum;
                         
                         
                         if ([evtType intValue]==0) {
-                            for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                            for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                 workArea[i] = 1;
                                 NSLog(@"seized work area is :%d",i);
                             }
                         }else if([evtType intValue]==1){
-                            for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                            for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                 lifeArea[i] = 1;
                                 NSLog(@"seized work area is :%d",i);
                             }
@@ -798,12 +798,12 @@ int collectNum;
                         
                         
                         if ([evtType intValue]==0) {
-                            for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                            for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                 workArea[i] = 1;
                                 NSLog(@"seized work area is :%d",i);
                             }
                         }else if([evtType intValue]==1){
-                            for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                            for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                 lifeArea[i] = 1;
                                 NSLog(@"seized work area is :%d",i);
                             }
@@ -1047,12 +1047,12 @@ int collectNum;
                 
                 
                 if ([evtType intValue]==0) {
-                    for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                    for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                         workArea[i] = 1;
                         NSLog(@"seized work area is :%d",i);
                     }
                 }else if([evtType intValue]==1){
-                    for (int i = [startTm intValue]/30; i <= [endTm intValue]/30; i++) {
+                    for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                         lifeArea[i] = 1;
                         NSLog(@"seized work area is :%d",i);
                     }
