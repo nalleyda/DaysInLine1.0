@@ -146,7 +146,20 @@ UILabel *labelTime[NR_TIME_LABEL];
     eventButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
     
     eventButton.layer.borderColor = [UIColor grayColor].CGColor;
-    [eventButton setTitle:title forState:UIControlStateNormal];
+    //[eventButton setTitle:title forState:UIControlStateNormal];
+    UILabel *labelInButton = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, eventButton.frame.size.width-24, eventButton.frame.size.height)];
+    NSString *titleFinal = [NSString stringWithFormat:@"%@   \n",title];
+    labelInButton.text = titleFinal;
+    labelInButton.font = [UIFont systemFontOfSize:10.0];
+    labelInButton.backgroundColor = [UIColor clearColor];
+    labelInButton.textAlignment = NSTextAlignmentCenter;
+    labelInButton.layer.borderColor = [UIColor clearColor].CGColor;
+
+    [eventButton addSubview:labelInButton];
+    
+    UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(4, 3, 10, 10)];
+    [imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
+    [eventButton addSubview:imageInButton];
     
     [eventButton addTarget:self action:@selector(eventModify:) forControlEvents:UIControlEventTouchUpInside];
     
