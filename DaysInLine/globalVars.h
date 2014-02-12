@@ -9,8 +9,8 @@
 #ifndef DaysInLine_globalVars_h
 #define DaysInLine_globalVars_h
 
-int workArea[48] ;
-int lifeArea[48] ;
+int workArea[96] ;
+int lifeArea[96] ;
 NSString *modifyDate;
 //BOOL hasTheDay;
 

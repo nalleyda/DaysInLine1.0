@@ -66,7 +66,7 @@
         [my_analyseButton setImage:[UIImage imageNamed:@"按键4-2.png"] forState:UIControlStateHighlighted];
         self.analyseButton = my_analyseButton;
         
-        UIButton *my_exitButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 354, 67, 67)];
+        customButton *my_exitButton = [[customButton alloc] initWithFrame:CGRectMake(11, 354, 67, 67)];
         //my_exitButton.backgroundColor = [UIColor brownColor];
         //[my_exitButton setTitle:@"退出" forState:UIControlStateNormal];
         [my_exitButton setImage:[UIImage imageNamed:@"按键5.png"] forState:UIControlStateNormal];

@@ -19,7 +19,7 @@
 
 @implementation dayLineScoller
 
-const int TIME_LABEL_SPACE  = 30;
+const int TIME_LABEL_SPACE  = 50;
 const int TIME_LABEL_WIDTH  = 40;
 const int TIME_LABEL_HEIGHT = 20;
 const int NR_TIME_LABEL = 24;
@@ -109,8 +109,8 @@ UILabel *labelTime[NR_TIME_LABEL];
     double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h + TIME_LABEL_HEIGHT / 2;
     double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h + TIME_LABEL_HEIGHT / 2;
     double height = end - start;
-    if (height<15.6) {
-        height=15.6;
+    if (height<15) {
+        height=15;
     }
     
     
@@ -127,10 +127,10 @@ UILabel *labelTime[NR_TIME_LABEL];
     NSLog(@"in draw the typ is : %@",eventType);
     UIButton *eventButton;
     if ([eventType intValue] == 0) {
-         eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-30, height)];
+         eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-24, height)];
     }
     else if ([eventType intValue] == 1) {
-        eventButton = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width)/2+25, start, (self.frame.size.width)/2-30, height)];
+        eventButton = [[UIButton alloc] initWithFrame:CGRectMake((self.frame.size.width)/2+21, start, (self.frame.size.width)/2-25, height)];
     }
    
     eventButton.tag =[eventType intValue]*1000 + [startNum intValue]/30;
@@ -138,16 +138,16 @@ UILabel *labelTime[NR_TIME_LABEL];
     eventButton.layer.masksToBounds = YES;
     eventButton.layer.cornerRadius = 1.0;
     
-    eventButton.backgroundColor = [UIColor colorWithRed:244 green:245 blue:246 alpha:1.0];
-    eventButton.layer.borderWidth = 1.0;
-    
+    eventButton.backgroundColor = [UIColor colorWithRed:244/255.0f green:245/255.0f blue:246/255.0f alpha:1.0];
+    eventButton.layer.borderWidth = 0.5f;
+    eventButton.layer.borderColor = [UIColor lightGrayColor].CGColor;
+
     
     [eventButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    eventButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
+    eventButton.titleLabel.font = [UIFont systemFontOfSize:11.0];
     
-    eventButton.layer.borderColor = [UIColor grayColor].CGColor;
-    //[eventButton setTitle:title forState:UIControlStateNormal];
-    UILabel *labelInButton = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, eventButton.frame.size.width-24, eventButton.frame.size.height)];
+       //[eventButton setTitle:title forState:UIControlStateNormal];
+    UILabel *labelInButton = [[UILabel alloc] initWithFrame:CGRectMake(13, 0, eventButton.frame.size.width-20, eventButton.frame.size.height)];
     NSString *titleFinal = [NSString stringWithFormat:@"%@   \n",title];
     labelInButton.text = titleFinal;
     labelInButton.font = [UIFont systemFontOfSize:10.0];
@@ -157,7 +157,7 @@ UILabel *labelTime[NR_TIME_LABEL];
 
     [eventButton addSubview:labelInButton];
     
-    UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(4, 3, 10, 10)];
+    UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(3, (eventButton.frame.size.height-10)/2, 8, 8)];
     [imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
     [eventButton addSubview:imageInButton];
     

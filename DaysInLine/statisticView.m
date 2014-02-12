@@ -37,7 +37,7 @@
         self.dateStart.datePickerMode = UIDatePickerModeDate;
         self.dateStart.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2-100);
         
-        self.dateStart.transform = CGAffineTransformMakeScale(0.65, 0.55);
+        self.dateStart.transform = CGAffineTransformMakeScale(0.55, 0.55);
         [self addSubview:self.dateStart];
         
         
@@ -46,7 +46,7 @@
         self.dateEnd.datePickerMode = UIDatePickerModeDate;
         self.dateEnd.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2+80);
         
-        self.dateEnd.transform = CGAffineTransformMakeScale(0.65, 0.55);
+        self.dateEnd.transform = CGAffineTransformMakeScale(0.55, 0.55);
         [self addSubview:self.dateEnd];
         
         
