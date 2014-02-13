@@ -1408,7 +1408,7 @@ int collectNum;
     UITableViewCell *cell_1 = [tableView dequeueReusableCellWithIdentifier:@"selectEvent"];
     UITableViewCell *cell_2 = [tableView dequeueReusableCellWithIdentifier:@"selectTags"];
     UITableViewCell *cell_3 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInTag"];
-    UITableViewCell *cell_4 = [tableView dequeueReusableCellWithIdentifier:@"CustomXibCellIdentifier"];
+    UITableViewCell *cell_4 = [tableView dequeueReusableCellWithIdentifier:@"collectCell"];
     UITableViewCell *cell_5 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInSearch"];
     switch (tableView.tag) {
         case 0:
@@ -1491,7 +1491,7 @@ int collectNum;
             
                 imageView.image = [UIImage imageNamed:self.cellBackground[collectNum%4]];
                 collectNum++;
-                cell_4.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell_4.selectionStyle = UITableViewCellSelectionStyleDefault;
                 
                 [cell_4 addSubview:imageView];
                 [cell_4 sendSubviewToBack:imageView];
