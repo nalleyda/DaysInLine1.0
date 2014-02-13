@@ -92,6 +92,7 @@
         self.selectedBackgroundColor = UIColorFromRGB(0x88B6DB);
         self.textColor = UIColorFromRGB(0x393B40);
         self.selectedTextColor = UIColorFromRGB(0xF2F2F2);
+        self.selectedImage = nil;
     }
     return self;
 }
@@ -297,7 +298,8 @@
         CKDateItem *item = [[CKDateItem alloc] init];
         if ([self _dateIsToday:dateButton.date]) {
             item.textColor = UIColorFromRGB(0xF2F2F2);
-            item.backgroundColor = [UIColor lightGrayColor];
+          //  item.backgroundColor = [UIColor lightGrayColor];
+            item.backgroundColor =[UIColor colorWithRed:255/255.0f green:142/255.0f blue:74/255.0f alpha:1.0f];
         } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
             item.textColor = [UIColor lightGrayColor];
         }
@@ -312,6 +314,11 @@
         } else {
             [dateButton setTitleColor:item.textColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.backgroundColor;
+            [dateButton setBackgroundImage:item.selectedImage forState:UIControlStateNormal];
+        }
+        
+        if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
+            [dateButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal] ;
         }
 
         dateButton.frame = [self _calculateDayCellFrame:date];

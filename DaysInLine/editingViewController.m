@@ -419,6 +419,16 @@ bool haveSaved;
     UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-100,self.view.frame.size.height/2-50,200, 100)];
     
     tmpCustomView = [nib objectAtIndex:0];
+    
+    UIImageView *checkPhotoImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tmpCustomView.frame.size.width, tmpCustomView.frame.size.height)];
+    
+    checkPhotoImage.image = [UIImage imageNamed:@"photoAlert.png"];
+    checkPhotoImage.layer.borderWidth = 0.0f;
+    checkPhotoImage.layer.borderColor = [UIColor clearColor].CGColor;
+    tmpCustomView.layer.borderWidth = 0.0f;
+    tmpCustomView.layer.borderColor = [UIColor clearColor].CGColor;
+    [tmpCustomView addSubview:checkPhotoImage];
+    [tmpCustomView sendSubviewToBack:checkPhotoImage];
     // NSLog(@"tag 3 is: %@",self.tags[3]);
     
     // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
@@ -430,9 +440,15 @@ bool haveSaved;
     removeButton.tag = sender.tag;
     [removeButton addTarget:self action:@selector(removeButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *returnInPhotoCheckButton =(UIButton *)[tmpCustomView viewWithTag:3];
+    returnInPhotoCheckButton.tag = sender.tag;
+    [returnInPhotoCheckButton addTarget:self action:@selector(returnInPhotoCheck:) forControlEvents:UIControlEventTouchUpInside];
+  
     
     CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
-    //[alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+    [alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+    alert.layer.borderWidth = 0.0f;
+    alert.layer.borderColor = [UIColor clearColor].CGColor;
     alert.tag = 10;
     
     [alert setContainerView:tmpCustomView];
@@ -470,6 +486,13 @@ bool haveSaved;
 -(void)removeButtonTapped:(UIButton *)sender
 {
     NSLog(@"移除图片");
+}
+
+-(void)returnInPhotoCheck:(UIButton *)sender
+{
+  
+    [self.checkAlert close];
+    
 }
 
 -(void)moneyTapped

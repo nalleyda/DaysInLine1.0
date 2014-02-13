@@ -14,7 +14,7 @@
 
 const static CGFloat kCustomIOS7AlertViewDefaultButtonHeight       = 50;
 const static CGFloat kCustomIOS7AlertViewDefaultButtonSpacerHeight = 1;
-const static CGFloat kCustomIOS7AlertViewCornerRadius              = 7;
+const static CGFloat kCustomIOS7AlertViewCornerRadius              = 0;
 const static CGFloat kCustomIOS7MotionEffectExtent                 = 10.0;
 
 @implementation CustomIOS7AlertView

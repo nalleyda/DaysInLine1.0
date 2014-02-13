@@ -1290,8 +1290,9 @@ int collectNum;
   
     
     if ([self dateHasEvents:date]) {
-        dateItem.backgroundColor = [UIColor redColor];
-        dateItem.textColor = [UIColor whiteColor];
+        //dateItem.backgroundColor = [UIColor redColor];
+        dateItem.selectedImage = [UIImage imageNamed:@"日期角标.png"];
+        dateItem.textColor = [UIColor blackColor];
     }
 }
 
@@ -1399,6 +1400,7 @@ int collectNum;
     
 }
 
+
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -1475,39 +1477,47 @@ int collectNum;
         
         case 3:
 
-            if(cell_4==nil){
-                cell_4 = [[[NSBundle mainBundle]loadNibNamed:@"collectCell" owner:self options:nil] lastObject];//加载nib文件
-                
-            }
-            
-         
+        {
             NSUInteger row4=[indexPath row];
-            //设置文本
-            if (row4<self.collectEvent.count) {
-                NSLog(@"%@,%@,%@,%@",self.collectEventTitle[row4],self.collectEventTag[row4],self.collectEventDate[row4],self.collectEventStart[row4]);
             
-                UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 215, 48)];
+                if(cell_4==nil){
+                    cell_4 = [[[NSBundle mainBundle]loadNibNamed:@"collectCell" owner:self options:nil] lastObject];//加载nib文件
+                    
+                }
                 
-            
-                imageView.image = [UIImage imageNamed:self.cellBackground[collectNum%4]];
-                collectNum++;
-                cell_4.selectionStyle = UITableViewCellSelectionStyleDefault;
                 
-                [cell_4 addSubview:imageView];
-                [cell_4 sendSubviewToBack:imageView];
-               // cell_4.backgroundView = imageView;
-                cell_4.backgroundColor = [UIColor clearColor];
-                ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
-                //NSLog(@"%@",self.collectEventTitle[row4]);
-               // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
-                ((UILabel *)[cell_4.contentView viewWithTag:3]).text = self.collectEventDate[row4];
-                ((UILabel *)[cell_4.contentView viewWithTag:4]).text =[NSString stringWithFormat:@"%@-%@",self.collectEventStart[row4],self.collectEventEnd[row4]];
                 
-            }
+                //设置文本
+                if (row4<self.collectEvent.count) {
+                    NSLog(@"%@,%@,%@,%@",self.collectEventTitle[row4],self.collectEventTag[row4],self.collectEventDate[row4],self.collectEventStart[row4]);
+                    
+                    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 215, 48)];
+                    
+                    
+                    imageView.image = [UIImage imageNamed:self.cellBackground[collectNum%4]];
+                    collectNum++;
+                    cell_4.selectionStyle = UITableViewCellSelectionStyleDefault;
+                    
+                    [cell_4 addSubview:imageView];
+                    [cell_4 sendSubviewToBack:imageView];
+                    // cell_4.backgroundView = imageView;
+                    cell_4.backgroundColor = [UIColor clearColor];
+                    ((UILabel *)[cell_4.contentView viewWithTag:1]).text = self.collectEventTitle[row4];
+                    //NSLog(@"%@",self.collectEventTitle[row4]);
+                    // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
+                    ((UILabel *)[cell_4.contentView viewWithTag:3]).text = self.collectEventDate[row4];
+                    ((UILabel *)[cell_4.contentView viewWithTag:4]).text =[NSString stringWithFormat:@"%@-%@",self.collectEventStart[row4],self.collectEventEnd[row4]];
+                    
+                }
+            UIView *bgColorView = [[UIView alloc] init];
+            bgColorView.backgroundColor = [UIColor clearColor];
+            //bgColorView.layer.cornerRadius = 7;
+            bgColorView.layer.masksToBounds = YES;
+            [cell_4 setSelectedBackgroundView:bgColorView];
             
             cell = cell_4;
             break;
-            
+        }
         case 4:
             
             if (!cell_5)
