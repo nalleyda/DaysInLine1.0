@@ -103,17 +103,23 @@ bool haveSaved;
    */
     self.imageViewButton = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
     for (int j = 0; j<NR_IMAGEVIEW; j++) {
+        int x = 15+60*j;
+        int y = 350;
+        int width = 50;
+        int height = 50;
+        
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-
-            self.imageViewButton[j] = [[UIButton alloc] initWithFrame:CGRectMake(15+60*j, 370, 50, 50)];
-            
             NSLog(@"ios7!!!!");
-        }else{
-            
-         self.imageViewButton[j] = [[UIButton alloc] initWithFrame:CGRectMake(15+60*j, 350, 50, 50)];
+            y += 20;
         }
         
-
+        /* fit for 4-inch screen */
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            y += 80;
+        }
+        
+        self.imageViewButton[j] = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
        
         [[self.imageViewButton objectAtIndex:j] setTag:IMAGEVIEW_TAG_BASE+j];
         [self.view addSubview:self.imageViewButton[j]];
