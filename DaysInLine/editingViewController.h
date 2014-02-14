@@ -43,6 +43,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteTagButton;
 @property (weak, nonatomic) IBOutlet UIButton *addNewTagButton;
 @property (weak, nonatomic) IBOutlet UIButton *finishDeleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *okInTag;
+@property (weak, nonatomic) IBOutlet UIButton *cancelInTag;
 
 @property (weak, nonatomic) IBOutlet UIButton *addAchieveButton;
 @property (weak, nonatomic) IBOutlet UIButton *addCollectionButton;

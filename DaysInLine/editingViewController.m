@@ -168,12 +168,22 @@ bool haveSaved;
     [self dismissKeyboard];
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"tagView" owner:self options:nil];
     
-    UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 65, self.view.bounds.size.width/2, 372)];
+    UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 0 , 300, 211)];
     
     tmpCustomView = [nib objectAtIndex:0];
-    UITableView *tabletest =(UITableView *)[tmpCustomView viewWithTag:601];
     
-    NSLog(@"%f",tabletest.rowHeight);
+    UIImageView *imageInTag = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 211)];
+    
+    [tmpCustomView addSubview:imageInTag];
+    [tmpCustomView sendSubviewToBack:imageInTag];
+    
+    imageInTag.image = [UIImage imageNamed:@"tagAlert.png"];
+    
+    UITableView *tabletest =(UITableView *)[tmpCustomView viewWithTag:601];
+    tabletest.backgroundColor = [UIColor clearColor];
+    tabletest.rowHeight = 40;
+   // tabletest.layer.borderColor = [UIColor clearColor].CGColor;
+    NSLog(@"row:%f",tabletest.rowHeight);
    // NSLog(@"tag 3 is: %@",self.tags[3]);
     
    // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
@@ -188,6 +198,9 @@ bool haveSaved;
     
     UIButton *finishButton =(UIButton *)[tmpCustomView viewWithTag:606];
     [finishButton addTarget:self action:@selector(finishButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.okInTag = okButton;
+    self.cancelInTag = cancelButton;
     self.deleteTagButton = deleteButton;
     self.addNewTagButton = addButton;
     self.finishDeleteButton = finishButton;
@@ -231,6 +244,8 @@ bool haveSaved;
     [self.tagTable setEditing:YES animated:YES];
     [self.addNewTagButton setHidden:YES];
     [self.deleteTagButton setHidden:YES];
+    [self.okInTag setHidden:YES];
+    [self.cancelInTag setHidden:YES];
     [self.finishDeleteButton setHidden:NO];
     
 }
@@ -277,7 +292,10 @@ bool haveSaved;
     [self.tagTable setEditing:NO animated:YES];
     [self.addNewTagButton setHidden:NO];
     [self.deleteTagButton setHidden:NO];
+    [self.okInTag setHidden:NO];
+    [self.cancelInTag setHidden:NO];
     [self.finishDeleteButton setHidden:YES];
+    
 }
 
 -(void)remindTapped
@@ -1837,10 +1855,11 @@ bool haveSaved;
         
     }
     NSUInteger row=[indexPath row];
-    
+    cell.backgroundColor = [UIColor clearColor];
     //设置文本
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.text =[self.tags objectAtIndex :row];
+    
     
     return cell;
 }
@@ -1909,6 +1928,9 @@ bool haveSaved;
         
     }
    
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0;
 }
 
 
