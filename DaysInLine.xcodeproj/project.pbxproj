@@ -21,23 +21,29 @@
 		0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B916CFC1816BB2200B3F41D /* editingViewController.m */; };
 		0B928730183A300400AB69BB /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B92872F183A300400AB69BB /* libsqlite3.dylib */; };
 		0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B929ED018154B94008E1726 /* buttonInScroll.m */; };
+		0B92BE2018B09E97003AE50C /* addBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE1E18B09E97003AE50C /* addBtn.png */; };
+		0B92BE2318B0ADF0003AE50C /* 日期角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2218B0ADF0003AE50C /* 日期角标.png */; };
+		0B92BE2918B0B56E003AE50C /* 按键1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2818B0B56E003AE50C /* 按键1.png */; };
+		0B92BE3218B0C4F3003AE50C /* photoAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2A18B0C4F3003AE50C /* photoAlert.png */; };
+		0B92BE3318B0C4F3003AE50C /* tagAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2B18B0C4F3003AE50C /* tagAlert.png */; };
+		0B92BE3418B0C4F3003AE50C /* returnInAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2C18B0C4F3003AE50C /* returnInAlert.png */; };
+		0B92BE3518B0C4F3003AE50C /* searchInAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2D18B0C4F3003AE50C /* searchInAlert.png */; };
+		0B92BE3618B0C4F3003AE50C /* okInAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2E18B0C4F3003AE50C /* okInAlert.png */; };
+		0B92BE3718B0C4F3003AE50C /* cancelInAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE2F18B0C4F3003AE50C /* cancelInAlert.png */; };
+		0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE3018B0C4F3003AE50C /* addInAlert.png */; };
+		0B92BE3918B0C4F3003AE50C /* deleteInAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE3118B0C4F3003AE50C /* deleteInAlert.png */; };
+		0B92BE3B18B0C75D003AE50C /* 299x62按键.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE3A18B0C75D003AE50C /* 299x62按键.png */; };
 		0B93EC4718AB422600F871C4 /* 色点.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC4618AB422600F871C4 /* 色点.png */; };
 		0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B93EC4918ABA5EE00F871C4 /* customButton.m */; };
-		0B93EC5418ABB1C000F871C4 /* addBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5318ABB1C000F871C4 /* addBtn.png */; };
-		0B93EC5A18ABD06A00F871C4 /* 日期角标.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5518ABD06A00F871C4 /* 日期角标.png */; };
 		0B93EC5B18ABD06A00F871C4 /* editView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5618ABD06A00F871C4 /* editView@2x.png */; };
 		0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */; };
 		0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5818ABD06A00F871C4 /* addTapped.png */; };
 		0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */; };
 		0B942F861896720A002864B8 /* statisticViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B942F841896720A002864B8 /* statisticViewController.m */; };
 		0B942F871896720A002864B8 /* statisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B942F851896720A002864B8 /* statisticViewController.xib */; };
-		0B954E9C18AA5E8700BAA09B /* 按键1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B954E9B18AA5E8700BAA09B /* 按键1.png */; };
 		0B9597EC18AD1191002923AF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597EB18AD1191002923AF /* Default-568h@2x.png */; };
 		0B9597F218AD211B002923AF /* OkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597ED18AD211B002923AF /* OkButton.png */; };
 		0B9597F318AD211B002923AF /* cancelButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597EE18AD211B002923AF /* cancelButton.png */; };
-		0B9597F418AD211B002923AF /* deleteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597EF18AD211B002923AF /* deleteButton.png */; };
-		0B9597F518AD211B002923AF /* tagAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597F018AD211B002923AF /* tagAlert.png */; };
-		0B9597F618AD211B002923AF /* photoAlert.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597F118AD211B002923AF /* photoAlert.png */; };
 		0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B96F9E918A3CD4600E625AA /* Main1.storyboard */; };
 		0B9A53CF1812274D0085FFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53CE1812274D0085FFD7 /* Foundation.framework */; };
 		0B9A53D11812274D0085FFD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53D01812274D0085FFD7 /* CoreGraphics.framework */; };
@@ -131,11 +137,21 @@
 		0B92872F183A300400AB69BB /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		0B929ECF18154B94008E1726 /* buttonInScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonInScroll.h; sourceTree = "<group>"; };
 		0B929ED018154B94008E1726 /* buttonInScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buttonInScroll.m; sourceTree = "<group>"; };
+		0B92BE1E18B09E97003AE50C /* addBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addBtn.png; sourceTree = "<group>"; };
+		0B92BE2218B0ADF0003AE50C /* 日期角标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "日期角标.png"; sourceTree = "<group>"; };
+		0B92BE2818B0B56E003AE50C /* 按键1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键1.png"; sourceTree = "<group>"; };
+		0B92BE2A18B0C4F3003AE50C /* photoAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoAlert.png; sourceTree = "<group>"; };
+		0B92BE2B18B0C4F3003AE50C /* tagAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagAlert.png; sourceTree = "<group>"; };
+		0B92BE2C18B0C4F3003AE50C /* returnInAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = returnInAlert.png; sourceTree = "<group>"; };
+		0B92BE2D18B0C4F3003AE50C /* searchInAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchInAlert.png; sourceTree = "<group>"; };
+		0B92BE2E18B0C4F3003AE50C /* okInAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = okInAlert.png; sourceTree = "<group>"; };
+		0B92BE2F18B0C4F3003AE50C /* cancelInAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancelInAlert.png; sourceTree = "<group>"; };
+		0B92BE3018B0C4F3003AE50C /* addInAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addInAlert.png; sourceTree = "<group>"; };
+		0B92BE3118B0C4F3003AE50C /* deleteInAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteInAlert.png; sourceTree = "<group>"; };
+		0B92BE3A18B0C75D003AE50C /* 299x62按键.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "299x62按键.png"; sourceTree = "<group>"; };
 		0B93EC4618AB422600F871C4 /* 色点.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "色点.png"; sourceTree = "<group>"; };
 		0B93EC4818ABA5ED00F871C4 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
 		0B93EC4918ABA5EE00F871C4 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
-		0B93EC5318ABB1C000F871C4 /* addBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addBtn.png; sourceTree = "<group>"; };
-		0B93EC5518ABD06A00F871C4 /* 日期角标.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "日期角标.png"; path = "../日期角标.png"; sourceTree = "<group>"; };
 		0B93EC5618ABD06A00F871C4 /* editView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editView@2x.png"; sourceTree = "<group>"; };
 		0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightBackground@2x.png"; sourceTree = "<group>"; };
 		0B93EC5818ABD06A00F871C4 /* addTapped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addTapped.png; sourceTree = "<group>"; };
@@ -143,13 +159,9 @@
 		0B942F831896720A002864B8 /* statisticViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = statisticViewController.h; sourceTree = "<group>"; };
 		0B942F841896720A002864B8 /* statisticViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = statisticViewController.m; sourceTree = "<group>"; };
 		0B942F851896720A002864B8 /* statisticViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statisticViewController.xib; sourceTree = "<group>"; };
-		0B954E9B18AA5E8700BAA09B /* 按键1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "按键1.png"; sourceTree = "<group>"; };
 		0B9597EB18AD1191002923AF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0B9597ED18AD211B002923AF /* OkButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = OkButton.png; sourceTree = "<group>"; };
 		0B9597EE18AD211B002923AF /* cancelButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancelButton.png; sourceTree = "<group>"; };
-		0B9597EF18AD211B002923AF /* deleteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteButton.png; sourceTree = "<group>"; };
-		0B9597F018AD211B002923AF /* tagAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagAlert.png; sourceTree = "<group>"; };
-		0B9597F118AD211B002923AF /* photoAlert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoAlert.png; sourceTree = "<group>"; };
 		0B96F9EA18A3CD4600E625AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		0B96F9EE18A3CDD300E625AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		0B9726041870516100787BE9 /* drawTagDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = drawTagDelegate.h; sourceTree = "<group>"; };
@@ -261,7 +273,7 @@
 				0B9009D91877D791008D3799 /* left_arrow@2x.png */,
 				0B9009DA1877D791008D3799 /* right_arrow.png */,
 				0B9009DB1877D791008D3799 /* right_arrow@2x.png */,
-				0B93EC5518ABD06A00F871C4 /* 日期角标.png */,
+				0B92BE2218B0ADF0003AE50C /* 日期角标.png */,
 			);
 			path = resources;
 			sourceTree = "<group>";
@@ -290,9 +302,10 @@
 				0BBED40718A68AFA00B47E53 /* cell2-1.png */,
 				0BBED40818A68AFA00B47E53 /* cell3-1.png */,
 				0BBED40918A68AFA00B47E53 /* cell4-1.png */,
+				0B92BE3A18B0C75D003AE50C /* 299x62按键.png */,
 				0B93EC4618AB422600F871C4 /* 色点.png */,
-				0B93EC5318ABB1C000F871C4 /* addBtn.png */,
 				0B93EC5818ABD06A00F871C4 /* addTapped.png */,
+				0B92BE1E18B09E97003AE50C /* addBtn.png */,
 				0BB08A6218A9F41D00DE111E /* tagBtn.png */,
 				0BB08A6318A9F41D00DE111E /* photoBtn.png */,
 				0BB08A6418A9F41D00DE111E /* remindBtn.png */,
@@ -311,9 +324,14 @@
 				0BB08A7118A9F41D00DE111E /* saveBtn2.png */,
 				0B9597ED18AD211B002923AF /* OkButton.png */,
 				0B9597EE18AD211B002923AF /* cancelButton.png */,
-				0B9597EF18AD211B002923AF /* deleteButton.png */,
-				0B9597F018AD211B002923AF /* tagAlert.png */,
-				0B9597F118AD211B002923AF /* photoAlert.png */,
+				0B92BE2A18B0C4F3003AE50C /* photoAlert.png */,
+				0B92BE2B18B0C4F3003AE50C /* tagAlert.png */,
+				0B92BE2C18B0C4F3003AE50C /* returnInAlert.png */,
+				0B92BE2D18B0C4F3003AE50C /* searchInAlert.png */,
+				0B92BE2E18B0C4F3003AE50C /* okInAlert.png */,
+				0B92BE2F18B0C4F3003AE50C /* cancelInAlert.png */,
+				0B92BE3018B0C4F3003AE50C /* addInAlert.png */,
+				0B92BE3118B0C4F3003AE50C /* deleteInAlert.png */,
 			);
 			name = parts;
 			sourceTree = "<group>";
@@ -376,7 +394,7 @@
 				0BA61BD118A25108000B7163 /* star2.png */,
 				0BD7008218139338004FCBE2 /* backgroundHome.png */,
 				0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */,
-				0B954E9B18AA5E8700BAA09B /* 按键1.png */,
+				0B92BE2818B0B56E003AE50C /* 按键1.png */,
 				0BA61BEC18A28876000B7163 /* 按键1-2.png */,
 				0BA61BD518A27715000B7163 /* 按键2.png */,
 				0BA61BE218A2808E000B7163 /* 按键2-2.png */,
@@ -549,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9A5406181230990085FFD7 /* Default.png in Resources */,
+				0B92BE2318B0ADF0003AE50C /* 日期角标.png in Resources */,
 				0BA61BD218A25108000B7163 /* star1.png in Resources */,
 				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
 				0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */,
@@ -558,6 +577,7 @@
 				0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */,
 				0BA61BDD18A27715000B7163 /* 按键5.png in Resources */,
 				0BB08A7518A9F41D00DE111E /* remindBtn.png in Resources */,
+				0B92BE2018B09E97003AE50C /* addBtn.png in Resources */,
 				0BE6C65118A778CA007769D8 /* photoView.xib in Resources */,
 				0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */,
 				0B9009DE1877D791008D3799 /* left_arrow@2x.png in Resources */,
@@ -567,6 +587,7 @@
 				0BA61BD318A25108000B7163 /* star2.png in Resources */,
 				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
 				0BB08A7418A9F41D00DE111E /* photoBtn.png in Resources */,
+				0B92BE3418B0C4F3003AE50C /* returnInAlert.png in Resources */,
 				0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */,
 				0BB08A7318A9F41D00DE111E /* tagBtn.png in Resources */,
 				0BB08A8218A9F41D00DE111E /* saveBtn2.png in Resources */,
@@ -574,33 +595,36 @@
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
 				0BBED40A18A68AFA00B47E53 /* cell1-1.png in Resources */,
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
+				0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */,
+				0B92BE3618B0C4F3003AE50C /* okInAlert.png in Resources */,
 				0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */,
 				0BBED40B18A68AFA00B47E53 /* cell2-1.png in Resources */,
 				0B9009DF1877D791008D3799 /* right_arrow.png in Resources */,
-				0B9597F418AD211B002923AF /* deleteButton.png in Resources */,
-				0B9597F618AD211B002923AF /* photoAlert.png in Resources */,
 				0BA61BE718A28293000B7163 /* rightBackground.png in Resources */,
 				0BB08A7B18A9F41D00DE111E /* tagBtn2.png in Resources */,
-				0B954E9C18AA5E8700BAA09B /* 按键1.png in Resources */,
+				0B92BE2918B0B56E003AE50C /* 按键1.png in Resources */,
+				0B92BE3218B0C4F3003AE50C /* photoAlert.png in Resources */,
 				0BAE55B1185B7B1700695F0E /* icon.png in Resources */,
 				0BA61BEB18A2886B000B7163 /* 按键3-2.png in Resources */,
 				0BA61BDB18A27715000B7163 /* 按键3.png in Resources */,
+				0B92BE3518B0C4F3003AE50C /* searchInAlert.png in Resources */,
 				0B9597F318AD211B002923AF /* cancelButton.png in Resources */,
 				0BBED40D18A68AFA00B47E53 /* cell4-1.png in Resources */,
+				0B92BE3318B0C4F3003AE50C /* tagAlert.png in Resources */,
 				0BA61BED18A28876000B7163 /* 按键1-2.png in Resources */,
 				0BA61BE318A2808E000B7163 /* 按键2-2.png in Resources */,
 				0BB08A7F18A9F41D00DE111E /* returnBtn2.png in Resources */,
 				0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */,
 				0BB08A7618A9F41D00DE111E /* collectionBtn.png in Resources */,
 				0B00AC54187D849400427F35 /* collectCell.xib in Resources */,
-				0B93EC5A18ABD06A00F871C4 /* 日期角标.png in Resources */,
 				0BA61BDC18A27715000B7163 /* 按键4.png in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
+				0B92BE3B18B0C75D003AE50C /* 299x62按键.png in Resources */,
+				0B92BE3918B0C4F3003AE50C /* deleteInAlert.png in Resources */,
 				0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
 				0BF933F018A9092E00C6EA81 /* editView.png in Resources */,
 				0B9597F218AD211B002923AF /* OkButton.png in Resources */,
-				0B9597F518AD211B002923AF /* tagAlert.png in Resources */,
 				0B93EC4718AB422600F871C4 /* 色点.png in Resources */,
 				0B942F871896720A002864B8 /* statisticViewController.xib in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
@@ -609,7 +633,7 @@
 				0B9597EC18AD1191002923AF /* Default-568h@2x.png in Resources */,
 				0BB08A7D18A9F41D00DE111E /* photoBtn2.png in Resources */,
 				0BB08A7918A9F41D00DE111E /* saveBtn.png in Resources */,
-				0B93EC5418ABB1C000F871C4 /* addBtn.png in Resources */,
+				0B92BE3718B0C4F3003AE50C /* cancelInAlert.png in Resources */,
 				0BB08A7E18A9F41D00DE111E /* moneyBtn2.png in Resources */,
 				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 				0BB08A8018A9F41D00DE111E /* collectionBtn2.png in Resources */,
@@ -732,7 +756,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -765,6 +789,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

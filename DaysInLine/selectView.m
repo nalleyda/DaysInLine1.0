@@ -41,10 +41,11 @@
         
         self.goInThatDay= [UIButton buttonWithType:UIButtonTypeCustom];
         self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, frame.size.height-100, 120, 30);
+        [self.goInThatDay setBackgroundImage:[UIImage imageNamed: @"299x62按键.png"] forState:UIControlStateNormal];
         [self.goInThatDay setTitle:@"回顾当日" forState:UIControlStateNormal];
         
-        self.goInThatDay.layer.borderColor = [UIColor blackColor].CGColor;
-        self.goInThatDay.layer.borderWidth = 1.0;
+       // self.goInThatDay.layer.borderColor = [UIColor blackColor].CGColor;
+       // self.goInThatDay.layer.borderWidth = 1.0;
         [self.goInThatDay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
 
@@ -135,7 +136,7 @@
 -(void)selectValueChanged:(id)sender
 {
     UISegmentedControl *myUISegmentedControl=(UISegmentedControl *)sender;
-    NSLog(@"!!!!!!%d",myUISegmentedControl.selectedSegmentIndex);
+    NSLog(@"!!!!!!%ld",(long)myUISegmentedControl.selectedSegmentIndex);
     [self.alltagTable reloadData];
     
     if (myUISegmentedControl.selectedSegmentIndex == 0) {

@@ -112,7 +112,7 @@ UIDatePicker *remindTimePicker2;
 -(void)valueChanged:(id)sender
 {
     UISegmentedControl *myUISegmentedControl=(UISegmentedControl *)sender;
-    NSLog(@"!!!!!!%d",myUISegmentedControl.selectedSegmentIndex);
+    NSLog(@"!!!!!!%ld",(long)myUISegmentedControl.selectedSegmentIndex);
     if (myUISegmentedControl.selectedSegmentIndex == 0) {
         if (self.viewInterval) {
             [self.viewInterval removeFromSuperview];

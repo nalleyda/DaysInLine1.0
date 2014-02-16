@@ -78,7 +78,7 @@
 - (void)setDate:(NSDate *)date {
     _date = date;
     NSDateComponents *comps = [self.calendar components:NSDayCalendarUnit|NSMonthCalendarUnit fromDate:date];
-    [self setTitle:[NSString stringWithFormat:@"%d", comps.day] forState:UIControlStateNormal];
+    [self setTitle:[NSString stringWithFormat:@"%ld", (long)comps.day] forState:UIControlStateNormal];
 }
 
 @end
@@ -93,6 +93,7 @@
         self.textColor = UIColorFromRGB(0x393B40);
         self.selectedTextColor = UIColorFromRGB(0xF2F2F2);
         self.selectedImage = nil;
+        self.borderColor = nil;
     }
     return self;
 }
@@ -297,9 +298,19 @@
         dateButton.date = date;
         CKDateItem *item = [[CKDateItem alloc] init];
         if ([self _dateIsToday:dateButton.date]) {
-            item.textColor = UIColorFromRGB(0xF2F2F2);
+          //  item.textColor = UIColorFromRGB(0xF2F2F2);
           //  item.backgroundColor = [UIColor lightGrayColor];
-            item.backgroundColor =[UIColor colorWithRed:255/255.0f green:142/255.0f blue:74/255.0f alpha:1.0f];
+          //  item.backgroundColor =[UIColor colorWithRed:255/255.0f green:142/255.0f blue:74/255.0f alpha:1.0f];
+           // item.borderColor =[UIColor colorWithRed:241/255.0f green:99/255.0f blue:105/255.0f alpha:1.0f];
+            //[dateButton setImage:[UIImage imageNamed: @"todayPoint.png"] forState:UIControlStateNormal];
+            
+//            [dateButton setDate:date];
+            UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(12, 21, 5, 5)];
+            [imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
+            dateButton.titleLabel.textColor = UIColorFromRGB(0xF2F2F2);
+            [dateButton addSubview:imageInButton];
+
+
         } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
             item.textColor = [UIColor lightGrayColor];
         }
@@ -311,9 +322,11 @@
         if (self.selectedDate && [self date:self.selectedDate isSameDayAsDate:date]) {
             [dateButton setTitleColor:item.selectedTextColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.selectedBackgroundColor;
-        } else {
+                  }
+        else {
             [dateButton setTitleColor:item.textColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.backgroundColor;
+
             [dateButton setBackgroundImage:item.selectedImage forState:UIControlStateNormal];
         }
         

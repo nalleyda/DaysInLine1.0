@@ -52,7 +52,7 @@ bool haveSaved;
 {
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
         self.edgesForExtendedLayout = UIRectEdgeBottom;
-        NSLog(@"aloha!");
+        //NSLog(@"aloha!");
     }
     [super viewDidLoad];
     
@@ -61,7 +61,7 @@ bool haveSaved;
     //self.incomeFinal=0.0f;
     firstInmoney = NO;
     //self.remindData = nil;
-    NSLog(@"<<<<<%@>>>>>",self.remindData);
+    //NSLog(@"<<<<<%@>>>>>",self.remindData);
     tagLabels = [[NSMutableArray alloc] init];
     self.selectedTags = [[NSMutableString alloc] init];
 
@@ -109,7 +109,7 @@ bool haveSaved;
         int height = 50;
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-            NSLog(@"ios7!!!!");
+            //NSLog(@"ios7!!!!");
             y += 20;
         }
         
@@ -124,7 +124,7 @@ bool haveSaved;
         [[self.imageViewButton objectAtIndex:j] setTag:IMAGEVIEW_TAG_BASE+j];
         [self.view addSubview:self.imageViewButton[j]];
   
-        NSLog(@"frame: x:%f , y:%f , width: %f , hei: %f",[[self.imageViewButton objectAtIndex:j] frame].origin.x,[[self.imageViewButton objectAtIndex:j] frame].origin.y,[[self.imageViewButton objectAtIndex:j] frame].size.width,[[self.imageViewButton objectAtIndex:j] frame].size.height);
+        //NSLog(@"frame: x:%f , y:%f , width: %f , hei: %f",[[self.imageViewButton objectAtIndex:j] frame].origin.x,[[self.imageViewButton objectAtIndex:j] frame].origin.y,[[self.imageViewButton objectAtIndex:j] frame].size.width,[[self.imageViewButton objectAtIndex:j] frame].size.height);
     }
     
     
@@ -151,7 +151,7 @@ bool haveSaved;
     self.endTimeButton.layer.borderWidth = 3.5;
     self.endTimeButton.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    NSLog(@"type is:%@ ~~~~~",self.eventType);
+    //NSLog(@"type is:%@ ~~~~~",self.eventType);
     
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
@@ -177,16 +177,27 @@ bool haveSaved;
     [tmpCustomView addSubview:imageInTag];
     [tmpCustomView sendSubviewToBack:imageInTag];
     
+    
     imageInTag.image = [UIImage imageNamed:@"tagAlert.png"];
     
-    UITableView *tabletest =(UITableView *)[tmpCustomView viewWithTag:601];
-    tabletest.backgroundColor = [UIColor clearColor];
-    tabletest.rowHeight = 40;
+
+    
+    
+
    // tabletest.layer.borderColor = [UIColor clearColor].CGColor;
-    NSLog(@"row:%f",tabletest.rowHeight);
-   // NSLog(@"tag 3 is: %@",self.tags[3]);
+ //   //NSLog(@"row:%f",tabletest.rowHeight);
+   // //NSLog(@"tag 3 is: %@",self.tags[3]);
     
    // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
+    
+    UITableView *tagTable = [[UITableView alloc] initWithFrame:CGRectMake(16, 0, 264, 142)];
+    tagTable.backgroundColor = [UIColor clearColor];
+    tagTable.rowHeight = 36;
+    [tmpCustomView addSubview:tagTable];
+
+    self.tagTable = tagTable;
+    
+    
     UIButton *okButton =(UIButton *)[tmpCustomView viewWithTag:602];
     [okButton addTarget:self action:@selector(okTagTapped) forControlEvents:UIControlEventTouchUpInside];
     UIButton *cancelButton =(UIButton *)[tmpCustomView viewWithTag:603];
@@ -218,6 +229,7 @@ bool haveSaved;
     [alert setContainerView:tmpCustomView];
    
     self.tagAlert = alert;
+     
     
     [alert show];
 
@@ -253,9 +265,9 @@ bool haveSaved;
 -(void)okTagTapped
 {
     //[self.mainText setFrame:CGRectMake(55, 240, 200, 200)];
-    NSLog(@"width is :%.2f",self.mainText.frame.size.width);
+    //NSLog(@"width is :%.2f",self.mainText.frame.size.width);
     NSMutableString *choices = [[NSMutableString alloc] init];
-    NSLog(@"count is %d",tagLabels.count);
+    //NSLog(@"count is %lu",(unsigned long)tagLabels.count);
     for (int i = 0 ; i< tagLabels.count ; i++) {
         UILabel * oldTag = [tagLabels objectAtIndex:i];
         [oldTag removeFromSuperview];
@@ -272,7 +284,7 @@ bool haveSaved;
         }
 
         self.selectedTags = [choices substringToIndex:(choices.length-1)];
-        NSLog(@"OK   tapped---->:%@",self.selectedTags);
+        //NSLog(@"OK   tapped---->:%@",self.selectedTags);
 
     }
     else
@@ -304,7 +316,7 @@ bool haveSaved;
     my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     my_remind.setRemindDelegate = self;
-    NSLog(@"<<<<<%@>>>>>2",self.remindData);
+    //NSLog(@"<<<<<%@>>>>>2",self.remindData);
     oldRemindDate = self.remindData;
 
     [self presentViewController:my_remind animated:YES completion:Nil ];
@@ -415,7 +427,7 @@ bool haveSaved;
         self.imageName = name;
     } else {
         self.imageName = [NSString stringWithFormat:@"%@;%@", self.imageName, name];
-        index = [[self.imageName componentsSeparatedByString:@";"] count] - 1;
+        index = (int)[[self.imageName componentsSeparatedByString:@";"] count] - 1;
     }
    // [[self.imageView objectAtIndex:index] setImage:savedImage];
     //button for every imageView
@@ -423,7 +435,7 @@ bool haveSaved;
     //[[self.imageViewButton objectAtIndex:index] setFrame:[[self.imageView objectAtIndex:index] frame]];
    // [self.view addSubview:[self.imageViewButton objectAtIndex:index]];
    // [[self.imageViewButton objectAtIndex:index] setTag:index+IMAGEBUTTON_TAG_BASE];
-  //  NSLog(@"button tag is :%d",((UIButton *)self.imageViewButton[index]).tag );
+  //  //NSLog(@"button tag is :%d",((UIButton *)self.imageViewButton[index]).tag );
     [[self.imageViewButton objectAtIndex:index] setImage:savedImage forState:UIControlStateNormal];
     [[self.imageViewButton objectAtIndex:index] addTarget:self action:@selector(pictureTapped:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -447,7 +459,7 @@ bool haveSaved;
     tmpCustomView.layer.borderColor = [UIColor clearColor].CGColor;
     [tmpCustomView addSubview:checkPhotoImage];
     [tmpCustomView sendSubviewToBack:checkPhotoImage];
-    // NSLog(@"tag 3 is: %@",self.tags[3]);
+    // //NSLog(@"tag 3 is: %@",self.tags[3]);
     
     // UITableView *tagTable = (UITableView *)[tmpCustomView viewWithTag:601];
     UIButton *checkButton =(UIButton *)[tmpCustomView viewWithTag:1];
@@ -479,7 +491,7 @@ bool haveSaved;
 
 -(void)checkButtonTapped:(UIButton *)sender
 {
-    NSLog(@"查看图片");
+    //NSLog(@"查看图片");
     [self.checkAlert close];
     
     checkPhotoController *my_bigPhoto = [[checkPhotoController alloc] initWithNibName:@"checkPhotoController" bundle:nil];
@@ -503,7 +515,8 @@ bool haveSaved;
 
 -(void)removeButtonTapped:(UIButton *)sender
 {
-    NSLog(@"移除图片");
+    //NSLog(@"移除图片");
+    
 }
 
 -(void)returnInPhotoCheck:(UIButton *)sender
@@ -523,7 +536,7 @@ bool haveSaved;
     UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height/3)];
 
     tmpCustomView = [nib objectAtIndex:0];
-    NSLog(@"enable is : %d",tmpCustomView.userInteractionEnabled);
+    //NSLog(@"enable is : %d",tmpCustomView.userInteractionEnabled);
     [tmpCustomView setUserInteractionEnabled:YES];
     UITextField * income = (UITextField *)[tmpCustomView viewWithTag:501];
     UITextField * outcome = (UITextField *)[tmpCustomView viewWithTag:502];
@@ -548,7 +561,7 @@ bool haveSaved;
                     
                     income_mdfy = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement, 0)];
                     expend_mdfy = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement, 1)];
-                    NSLog(@"AAAAAAA%@",income_mdfy);
+                    //NSLog(@"AAAAAAA%@",income_mdfy);
                     
                     
                 }
@@ -557,7 +570,7 @@ bool haveSaved;
             sqlite3_finalize(statement);
         }
         else {
-            NSLog(@"数据库打开失败");
+            //NSLog(@"数据库打开失败");
             
         }
         sqlite3_close(dataBase);
@@ -677,10 +690,10 @@ bool haveSaved;
                         
                         [ alert  show];
                         
-                        NSLog(@"innsert collect ok   in modifying   collect");
+                        //NSLog(@"innsert collect ok   in modifying   collect");
                     }
                     else {
-                        NSLog(@"Error while insert collect in modifying :%s",sqlite3_errmsg(dataBase));
+                        //NSLog(@"Error while insert collect in modifying :%s",sqlite3_errmsg(dataBase));
                     }
                     
                     
@@ -689,13 +702,13 @@ bool haveSaved;
                 
                 
             }else{
-                NSLog(@"wwwwwwwwwwww!!!!!!!!!~~");
+                //NSLog(@"wwwwwwwwwwww!!!!!!!!!~~");
             }
             sqlite3_finalize(stmtIfcollect);
             sqlite3_finalize(stmtInsertCollect);
             
         } else {
-            NSLog(@"数据库打开失败");
+            //NSLog(@"数据库打开失败");
             
         }
         
@@ -774,20 +787,20 @@ bool haveSaved;
                     
                 }
                 else{
-                    NSLog(@"the old start is :%d",[oldStartNum intValue]);
+                    //NSLog(@"the old start is :%d",[oldStartNum intValue]);
                     [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
                     if ([self.eventType intValue]==0) {
                         for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                             workArea[i] = 1;
-                            NSLog(@"seized work area is :%d",i);
+                            //NSLog(@"seized work area is :%d",i);
                         }
                     }else if([self.eventType intValue]==1){
                         for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                             lifeArea[i] = 1;
-                            NSLog(@"seized life area is :%d",i);
+                            //NSLog(@"seized life area is :%d",i);
                         }
                     }else{
-                        NSLog(@"事件类型有误！");
+                        //NSLog(@"事件类型有误！");
                     }
                     
                     //在数据库中存储该事件
@@ -825,10 +838,10 @@ bool haveSaved;
                         sqlite3_bind_text(statementInsert,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                         if (sqlite3_step(statementInsert)==SQLITE_DONE) {
-                            NSLog(@"innsert event okssssssssssscollect");
+                            //NSLog(@"innsert event okssssssssssscollect");
                         }
                         else {
-                            NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
+                            //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                         }
                         
                         sqlite3_finalize(statementInsert);
@@ -851,7 +864,7 @@ bool haveSaved;
                         }
                         
                         else{
-                            NSLog(@"wwwwwwwwwwww!!!!!1");
+                            //NSLog(@"wwwwwwwwwwww!!!!!1");
                         }
                         sqlite3_finalize(statementSelect);
                         
@@ -864,10 +877,10 @@ bool haveSaved;
                             sqlite3_bind_int(statementCollect,1, eventIdNow);
                             
                             if (sqlite3_step(statementCollect)==SQLITE_DONE) {
-                                NSLog(@"innsert collect okssssssssssscollect");
+                                //NSLog(@"innsert collect okssssssssssscollect");
                             }
                             else {
-                                NSLog(@"Error while insert collect:%s",sqlite3_errmsg(dataBase));
+                                //NSLog(@"Error while insert collect:%s",sqlite3_errmsg(dataBase));
                             }
                             
                             sqlite3_finalize(statementCollect);
@@ -876,13 +889,13 @@ bool haveSaved;
                         }
                         else
                         {
-                            NSLog(@"未能正确录入该事件，时间ID没有正确填充！！！！！！！");
+                            //NSLog(@"未能正确录入该事件，时间ID没有正确填充！！！！！！！");
                         }
                         
                     }
                     
                     else {
-                        NSLog(@"数据库打开失败");
+                        //NSLog(@"数据库打开失败");
                         
                     }
                     
@@ -921,7 +934,7 @@ bool haveSaved;
                         
                         
                         if (sqlite3_step(dayStatement)==SQLITE_DONE) {
-                            NSLog(@"innsert today ok");
+                            //NSLog(@"innsert today ok");
                             
                             NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
                             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -930,7 +943,7 @@ bool haveSaved;
                             [self.HasEvtDates addObject:dateUnconvert];
                         }
                         else {
-                            NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                            //NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
                         }
                         
                         sqlite3_finalize(dayStatement);
@@ -945,7 +958,7 @@ bool haveSaved;
                 sqlite3_finalize(findStatement);
             }
             else{
-                NSLog(@"数据库打开失败");
+                //NSLog(@"数据库打开失败");
                 
             }
             
@@ -962,7 +975,7 @@ bool haveSaved;
 -(void)deleteTapped
 {
    
-    NSLog(@"delete！！！！！！！！");
+    //NSLog(@"delete！！！！！！！！");
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                     message:@"确定删除该事项吗"
@@ -979,7 +992,7 @@ bool haveSaved;
 -(void)saveTapped
 {
     NSNumber *oldStartNum;
-    NSLog(@"<<<<<%@>>>>>3",self.remindData);
+    //NSLog(@"<<<<<%@>>>>>3",self.remindData);
     
 
     
@@ -987,14 +1000,14 @@ bool haveSaved;
         sqlite3_stmt *statement;
         const char *dbpath = [databasePath UTF8String];
         if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-            NSLog(@"before select event ID");
+            //NSLog(@"before select event ID");
             NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
             
             const char *queryEventstatment = [queryEvent UTF8String];
             if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                 if (sqlite3_step(statement)==SQLITE_ROW) {
                     //找到当前修改的事件，取出数据，并清零对应的Area。
-                    NSLog(@"After select event ID");
+                    //NSLog(@"After select event ID");
                     NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
                     oldStartNum = startTm;
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
@@ -1002,12 +1015,12 @@ bool haveSaved;
                     if ([self.eventType intValue] == 0) {
                         for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                             workArea[i] = 0;
-                            NSLog(@"release work area is :%d",i);
+                            //NSLog(@"release work area is :%d",i);
                         }
                     }else if([self.eventType intValue] == 1){
                         for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                             lifeArea[i] = 0;
-                            NSLog(@"release life area is :%d",i);
+                            //NSLog(@"release life area is :%d",i);
                         }
                     }
                     
@@ -1017,7 +1030,7 @@ bool haveSaved;
             sqlite3_finalize(statement);
         }
         else {
-            NSLog(@"数据库打开失败");
+            //NSLog(@"数据库打开失败");
             
         }
         sqlite3_close(dataBase);
@@ -1027,7 +1040,7 @@ bool haveSaved;
     
     flag=NO;
 
-    NSLog(@"hello!");
+    //NSLog(@"hello!");
     if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                         message:@"请输入事件起始和结束时间"
@@ -1099,28 +1112,28 @@ bool haveSaved;
                 sqlite3_stmt *statement;
                 const char *dbpath = [databasePath UTF8String];
                 if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                    NSLog(@"before select event ID");
+                    //NSLog(@"before select event ID");
                     NSString *queryEvent = [NSString stringWithFormat:@"SELECT startTime,endTime from event where eventID=\"%d\"",modifyEventId];
                     
                     const char *queryEventstatment = [queryEvent UTF8String];
                     if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                         if (sqlite3_step(statement)==SQLITE_ROW) {
                             //找到当前修改的事件，取出数据，将对应的Area设置为1。
-                            NSLog(@"After select event ID");
+                            //NSLog(@"After select event ID");
                             NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
                             oldStartNum = startTm;
                             NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
                             
-                            NSLog(@"end:%d",[endTm intValue]);
+                            //NSLog(@"end:%d",[endTm intValue]);
                             if ([self.eventType intValue] == 0) {
                                 for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     workArea[i] = 1;
-                                    NSLog(@"seize work area is :%d",i);
+                                    //NSLog(@"seize work area is :%d",i);
                                 }
                             }else if([self.eventType intValue] == 1){
                                 for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     lifeArea[i] = 1;
-                                    NSLog(@"seize life area is :%d",i);
+                                    //NSLog(@"seize life area is :%d",i);
                                 }
                             }
                             
@@ -1142,20 +1155,20 @@ bool haveSaved;
 
                 
                 
-                NSLog(@"the old start is :%d",[oldStartNum intValue]);
+                //NSLog(@"the old start is :%d",[oldStartNum intValue]);
                 [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
                 if ([self.eventType intValue]==0) {
                     for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                         workArea[i] = 1;
-                        NSLog(@"seized work area is :%d",i);
+                        //NSLog(@"seized work area is :%d",i);
                     }
                 }else if([self.eventType intValue]==1){
                     for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
                         lifeArea[i] = 1;
-                        NSLog(@"seized life area is :%d",i);
+                        //NSLog(@"seized life area is :%d",i);
                     }
                 }else{
-                    NSLog(@"事件类型有误！");
+                    //NSLog(@"事件类型有误！");
                 }
                 
           
@@ -1194,17 +1207,17 @@ bool haveSaved;
                         sqlite3_bind_text(statement,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                             if (sqlite3_step(statement)==SQLITE_DONE) {
-                            NSLog(@"innsert event okqqqqqq");
+                            //NSLog(@"innsert event okqqqqqq");
                             }
                             else {
-                            NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
+                            //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                             }
                        
                         sqlite3_finalize(statement);
                     }
                     
                     else {
-                        NSLog(@"数据库打开失败");
+                        //NSLog(@"数据库打开失败");
                         
                     }
                     sqlite3_close(dataBase);
@@ -1240,22 +1253,22 @@ bool haveSaved;
                             sqlite3_bind_int(statement,12, modifyEventId);
                             
                             if (sqlite3_step(statement)==SQLITE_DONE) {
-                                NSLog(@"innsert event okwwwwwwww");
+                                //NSLog(@"innsert event okwwwwwwww");
                             }
                             else {
-                                NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
+                                //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                             }
                         }
                         else {
                             
-                             NSLog(@"modified event44");
+                             //NSLog(@"modified event44");
                         }
                         sqlite3_finalize(statement);
                     }
                     
                     
                     else {
-                        NSLog(@"数据库打开失败");
+                        //NSLog(@"数据库打开失败");
                         
                     }
                     sqlite3_close(dataBase);
@@ -1298,7 +1311,7 @@ bool haveSaved;
                 
                 //NSDate *now=[NSDate new];
                 notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
-                NSLog(@"%d",interval);
+                //NSLog(@"%d",interval);
                 notification.timeZone=[NSTimeZone defaultTimeZone];
              
                 //notification.alertBody=@"TIME！";
@@ -1318,17 +1331,17 @@ bool haveSaved;
     }
     else if(modifying == 1)
     {
-        NSLog(@"~~~~~~~~%@",self.remindData);
+        //NSLog(@"~~~~~~~~%@",self.remindData);
         if (![self.remindData isEqualToString:@""]) {
             
             
             NSArray * allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
             
             for (UILocalNotification * localNotification in allLocalNotification) {
-                NSLog(@"%@",localNotification.userInfo);
+                //NSLog(@"%@",localNotification.userInfo);
                 NSString * alarmValue=[localNotification.userInfo objectForKey:oldRemindDate];
                 if ([oldRemindDate isEqualToString:alarmValue]) {
-                    NSLog(@"666666666666");
+                    //NSLog(@"666666666666");
                     [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
                 }
             }
@@ -1359,7 +1372,7 @@ bool haveSaved;
                 
                 //NSDate *now=[NSDate new];
                 notification.fireDate=[NSDate dateWithTimeIntervalSinceNow:interval];
-                NSLog(@"%d",interval);
+                //NSLog(@"%d",interval);
                 notification.timeZone=[NSTimeZone defaultTimeZone];
                 
                 //notification.alertBody=@"TIME！";
@@ -1402,7 +1415,7 @@ bool haveSaved;
                 
                 
                 if (sqlite3_step(dayStatement)==SQLITE_DONE) {
-                    NSLog(@"innsert today ok");
+                    //NSLog(@"innsert today ok");
                     
                     NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
                     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -1411,7 +1424,7 @@ bool haveSaved;
                     [self.HasEvtDates addObject:dateUnconvert];
                 }
                 else {
-                    NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                    //NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
                 }
                 
                 sqlite3_finalize(dayStatement);
@@ -1426,7 +1439,7 @@ bool haveSaved;
         sqlite3_finalize(findStatement);
     }
     else{
-        NSLog(@"数据库打开失败");
+        //NSLog(@"数据库打开失败");
         
     }
     
@@ -1444,7 +1457,7 @@ bool haveSaved;
     self.incomeFinal=[incomeText doubleValue];
     NSString *outcomeText = outcome.text;
     self.expendFinal=[outcomeText doubleValue];
-    NSLog(@"BBBBBBBBB%f",self.incomeFinal);
+    //NSLog(@"BBBBBBBBB%f",self.incomeFinal);
    
     [self.moneyAlert close];
     //[income resignFirstResponder];
@@ -1538,7 +1551,7 @@ bool haveSaved;
         NSArray *startTime = [timestart componentsSeparatedByString:@":"];
         int hour = [startTime[0] intValue];
         int minite = [startTime[1] intValue];
-        NSLog(@"hour:%d,minite:%d",hour,minite);
+        //NSLog(@"hour:%d,minite:%d",hour,minite);
 */
         
         
@@ -1613,13 +1626,13 @@ bool haveSaved;
 
 - (void)willPresentAlertView:(UIAlertView *)myAlertView {
     if (myAlertView.tag == 0) {
-        NSLog(@"Alert0000000000");
+        //NSLog(@"Alert0000000000");
         myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width, self.view.bounds.size.height/3);
 
     }
     else if(myAlertView.tag == 1){
         
-        NSLog(@"Alert111111111");
+        //NSLog(@"Alert111111111");
         myAlertView.frame = CGRectMake(0, 65, self.view.bounds.size.width/2, 372);
         
     }
@@ -1629,7 +1642,7 @@ bool haveSaved;
     if (alertView.tag == 3) {
         if (buttonIndex == 1) {
         UITextField *tf=[alertView textFieldAtIndex:0];
-            NSLog(@"new tag is : %@",tf.text);
+            //NSLog(@"new tag is : %@",tf.text);
             const char *dbpath = [databasePath UTF8String];
             sqlite3_stmt *statement;
             
@@ -1643,12 +1656,12 @@ bool haveSaved;
                 sqlite3_bind_text(statement,1, [tf.text UTF8String], -1, SQLITE_TRANSIENT);
                 
                 if (sqlite3_step(statement)==SQLITE_DONE) {
-                    NSLog(@"innsert tag ok");
+                    //NSLog(@"innsert tag ok");
                 [self.tags addObject:tf.text];
                // [self.addTagDataDelegate addTagData:tf.text];
                 }
                 else {
-                    NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
+                    //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                     UIAlertView *tagNotUnique = [[UIAlertView alloc]
                                     initWithTitle:@"Attention"
                                     message:@"This tag is already exist!"
@@ -1664,7 +1677,7 @@ bool haveSaved;
             }
             
             else {
-                NSLog(@"数据库打开失败");
+                //NSLog(@"数据库打开失败");
                 
             }
             sqlite3_close(dataBase);
@@ -1673,10 +1686,10 @@ bool haveSaved;
             
 
 
-            NSLog(@"点击了确定按钮");
+            //NSLog(@"点击了确定按钮");
         }
         else {
-            NSLog(@"点击了取消按钮");
+            //NSLog(@"点击了取消按钮");
         }
     }
     if (alertView.tag == 4) {
@@ -1699,7 +1712,7 @@ bool haveSaved;
                     if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                         if (sqlite3_step(statement)==SQLITE_ROW) {
                             //找到当前修改的事件，取出数据，并清零对应的Area。
-                            NSLog(@"After select event ID");
+                            //NSLog(@"After select event ID");
                             NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
                             oldStartNum = startTm;
                             NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];
@@ -1707,19 +1720,19 @@ bool haveSaved;
                             if ([self.eventType intValue] == 0) {
                                 for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     workArea[i] = 0;
-                                    NSLog(@"release work area is :%d",i);
+                                    //NSLog(@"release work area is :%d",i);
                                 }
                             }else if([self.eventType intValue] == 1){
                                 for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                                     lifeArea[i] = 0;
-                                    NSLog(@"release life area is :%d",i);
+                                    //NSLog(@"release life area is :%d",i);
                                 }
                             }
                             
                         }
                         
                     }
-                    NSLog(@"the old start is :%d",[oldStartNum intValue]);
+                    //NSLog(@"the old start is :%d",[oldStartNum intValue]);
                     [self.drawBtnDelegate redrawButton:nil:nil:nil:self.eventType:oldStartNum];
                     
                     //删除收藏表中的数据，如果没有，也执行，只是没有删除任何行。
@@ -1731,11 +1744,11 @@ bool haveSaved;
                     sqlite3_bind_int(statement_2, 1, modifyEventId);
                     
                     if (sqlite3_step(statement_2)==SQLITE_DONE) {
-                        NSLog(@"delete event from collection ok");
+                        //NSLog(@"delete event from collection ok");
                         
                     }
                     else {
-                        NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
+                        //NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
                         
                     }
                     
@@ -1748,7 +1761,7 @@ bool haveSaved;
                     sqlite3_bind_int(statement_1, 1, modifyEventId);
                     
                     if (sqlite3_step(statement_1)==SQLITE_DONE) {
-                        NSLog(@"delete event ok");
+                        //NSLog(@"delete event ok");
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                                         message:@"成功删除该事项"
                                                                        delegate:nil
@@ -1764,7 +1777,7 @@ bool haveSaved;
                         
                     }
                     else {
-                        NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
+                        //NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
                         
                     }
                     
@@ -1777,11 +1790,11 @@ bool haveSaved;
                 }
                 
                 else {
-                    NSLog(@"数据库打开失败");
+                    //NSLog(@"数据库打开失败");
                     
                 }
                 sqlite3_close(dataBase);
-                NSLog(@"事项删除完毕！！！！！！") ;
+                //NSLog(@"事项删除完毕！！！！！！") ;
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                                 message:@"该事件尚未保存，无须删除"
@@ -1807,7 +1820,7 @@ bool haveSaved;
 -(void)setRemindData:(NSString *)date :(NSString *)time
 {
     self.remindData = [NSString stringWithFormat:@"%@,%@",date,time];
-    NSLog(@"%@",self.remindData);
+    //NSLog(@"%@",self.remindData);
     
     
 }
@@ -1816,7 +1829,7 @@ bool haveSaved;
 
 -(void) drawTag:(NSString *)oldTags
 {
-    NSLog(@"old label is :%@",oldTags);
+    //NSLog(@"old label is :%@",oldTags);
     self.selectedTags = oldTags;
     
     NSArray *tagToDraw = [oldTags componentsSeparatedByString:@","];
@@ -1839,7 +1852,7 @@ bool haveSaved;
 #pragma mark tavleView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //  NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
+    //  //NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
     return self.tags.count;
 }
 
@@ -1847,10 +1860,10 @@ bool haveSaved;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tagcell"];
     if (!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"tagcell"];
         
         
     }
@@ -1869,7 +1882,7 @@ bool haveSaved;
     NSUInteger row=[indexPath row];
  
     [selected addObject:[self.tags objectAtIndex:row]];
-    NSLog(@"select---->:%@",selected);
+    //NSLog(@"select---->:%@",selected);
 
     
 
@@ -1883,11 +1896,11 @@ bool haveSaved;
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
-     NSLog(@"Deselect---->:%@",selected);
+     //NSLog(@"Deselect---->:%@",selected);
 
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"here!!!!!!!!!");
+    //NSLog(@"here!!!!!!!!!");
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         const char *dbpath = [databasePath UTF8String];
@@ -1904,19 +1917,19 @@ bool haveSaved;
             
             
             if (sqlite3_step(statement)==SQLITE_DONE) {
-                NSLog(@"delete tag ok");
+                //NSLog(@"delete tag ok");
                 [self.tags removeObject:[self.tags objectAtIndex:indexPath.row]];
                
             }
             else {
-                NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
+                //NSLog(@"Error while delete tag:%s",sqlite3_errmsg(dataBase));
                 
             }
             sqlite3_finalize(statement);
         }
         
         else {
-            NSLog(@"数据库打开失败");
+            //NSLog(@"数据库打开失败");
             
         }
         sqlite3_close(dataBase);
@@ -1929,9 +1942,10 @@ bool haveSaved;
     }
    
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 0;
-}
+
+
+
+
 
 
 @end

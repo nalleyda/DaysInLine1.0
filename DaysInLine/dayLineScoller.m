@@ -37,7 +37,7 @@ UILabel *labelTime[NR_TIME_LABEL];
         CGSize newSize = CGSizeMake(self.frame.size.width, NR_TIME_LABEL*TIME_LABEL_SPACE);
         [self setContentOffset:CGPointMake(0, 6 * TIME_LABEL_SPACE)]; /* scroller initially stay at 6:00 */
         [self setContentSize:newSize];
-        NSLog(@"***************%f",self.frame.size.height);
+        //NSLog(@"***************%f",self.frame.size.height);
         
      //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
      //   [self addSubview:self.btnInScroll];
@@ -53,7 +53,7 @@ UILabel *labelTime[NR_TIME_LABEL];
     
     
 
-    for (int i = 0; i <= NR_TIME_LABEL; i++) {
+    for (int i = 0; i < NR_TIME_LABEL; i++) {
         
         /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
          buttonWorks1.backgroundColor = [UIColor blueColor];
@@ -82,17 +82,17 @@ UILabel *labelTime[NR_TIME_LABEL];
 {
     
    //enentType:0为工作事件，1为生活事件 startNum=nil时为删除该事件。
-    NSLog(@"drawing begin");
+    //NSLog(@"drawing begin");
     if (oldStartNum) {
         if ([self.subviews count] > 0) {
-            NSLog(@"finding the right button:%d",[oldStartNum intValue]);
+            //NSLog(@"finding the right button:%d",[oldStartNum intValue]);
             
             for (UIView *curView in self.subviews) {
-                NSLog(@"button tag is : %d",curView.tag);
+                //NSLog(@"button tag is : %ld",(long)curView.tag);
                 if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/15) {
-                    NSLog(@"find it!!!!");
+                    //NSLog(@"find it!!!!");
                     [curView removeFromSuperview];
-                    NSLog(@"removed it :%d!!!!",curView.tag);
+                    //NSLog(@"removed it :%ld!!!!",(long)curView.tag);
                 }
                 
             }
@@ -103,11 +103,11 @@ UILabel *labelTime[NR_TIME_LABEL];
     }
     
     
-    NSLog(@"redraw");
+    //NSLog(@"redraw");
     
     int h = self.contentSize.height;
-    double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h +7;//+ TIME_LABEL_HEIGHT / 2;
-    double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h +7;//+ TIME_LABEL_HEIGHT / 2;
+    double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h +5;//+ TIME_LABEL_HEIGHT / 2;
+    double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h +5;//+ TIME_LABEL_HEIGHT / 2;
     double height = end - start;
    /* if (height<15) {
         height=15;
@@ -115,7 +115,7 @@ UILabel *labelTime[NR_TIME_LABEL];
     */
     
     
-    NSLog(@"start:%f,height:%f,longth:%d",start,end-start,h);
+    //NSLog(@"start:%f,height:%f,longth:%d",start,end-start,h);
   /*
     UIButton *eventButton = [UIButton buttonWithType:UIButtonTypeSystem];
     [eventButton setFrame:CGRectMake(40, start, self.frame.size.width/2-28, height)];
@@ -125,7 +125,7 @@ UILabel *labelTime[NR_TIME_LABEL];
     eventButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
    */
  
-    NSLog(@"in draw the typ is : %@",eventType);
+    //NSLog(@"in draw the typ is : %@",eventType);
     UIButton *eventButton;
     if ([eventType intValue] == 0) {
          eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-24, height)];
@@ -158,14 +158,14 @@ UILabel *labelTime[NR_TIME_LABEL];
 
     [eventButton addSubview:labelInButton];
     
-    UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(3, (eventButton.frame.size.height-10)/2, 8, 8)];
+    UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(3, (eventButton.frame.size.height-8)/2, 8, 8)];
     [imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
     [eventButton addSubview:imageInButton];
     
     [eventButton addTarget:self action:@selector(eventModify:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:eventButton];
-     NSLog(@"redraw000");
+     //NSLog(@"redraw000");
    // [self setNeedsDisplay];
     
 }

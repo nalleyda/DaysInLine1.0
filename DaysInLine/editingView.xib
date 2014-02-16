@@ -40,7 +40,7 @@
                     <state key="highlighted" image="saveBtn2.png"/>
                 </button>
                 <button opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ak2-GO-nui">
-                    <rect key="frame" x="236" y="17" width="37" height="37"/>
+                    <rect key="frame" x="236" y="20" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="moneyBtn.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,7 +49,7 @@
                     <state key="highlighted" image="moneyBtn2.png"/>
                 </button>
                 <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUl-Hg-KmG">
-                    <rect key="frame" x="173" y="17" width="37" height="37"/>
+                    <rect key="frame" x="173" y="20" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="37" id="kqq-kt-5I6"/>
@@ -60,7 +60,7 @@
                     <state key="highlighted" image="photoBtn2.png"/>
                 </button>
                 <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0WL-AF-KdO">
-                    <rect key="frame" x="47" y="17" width="37" height="37"/>
+                    <rect key="frame" x="47" y="20" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="37" id="95G-58-rpe"/>
@@ -71,7 +71,7 @@
                     <state key="highlighted" image="tagBtn2.png"/>
                 </button>
                 <button opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ST-zX-g5s">
-                    <rect key="frame" x="110" y="17" width="37" height="37"/>
+                    <rect key="frame" x="110" y="20" width="37" height="37"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="37" id="2Xo-hf-1c7"/>
@@ -184,6 +184,7 @@
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="leading" secondItem="9ST-zX-g5s" secondAttribute="trailing" constant="26" id="5BI-tK-3Yk"/>
                 <constraint firstItem="adU-64-2xG" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" id="6zo-TK-ApM"/>
                 <constraint firstItem="d6A-NF-qtA" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" constant="20" symbolic="YES" id="7GC-Jp-phX"/>
+                <constraint firstItem="tpe-fm-0n4" firstAttribute="top" secondItem="ZEV-5t-kIE" secondAttribute="bottom" constant="77" id="8R5-ck-0HO"/>
                 <constraint firstItem="0WL-AF-KdO" firstAttribute="top" secondItem="9ST-zX-g5s" secondAttribute="top" id="8kX-Sn-6cM"/>
                 <constraint firstItem="lJu-sb-EtN" firstAttribute="leading" secondItem="cG5-Ig-cVN" secondAttribute="trailing" constant="27" id="A9M-em-Wp0"/>
                 <constraint firstAttribute="bottom" secondItem="tpe-fm-0n4" secondAttribute="bottom" constant="11" id="BBl-sg-3fP"/>
@@ -205,12 +206,12 @@
                 <constraint firstItem="ksZ-1h-47g" firstAttribute="trailing" secondItem="ak2-GO-nui" secondAttribute="trailing" id="NwM-Hs-QSf"/>
                 <constraint firstItem="0WL-AF-KdO" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" constant="47" id="OM4-7R-6uH"/>
                 <constraint firstItem="ksZ-1h-47g" firstAttribute="leading" secondItem="ak2-GO-nui" secondAttribute="leading" id="P1n-5r-ROO"/>
-                <constraint firstItem="0WL-AF-KdO" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="17" id="S5Y-3q-7DK"/>
+                <constraint firstItem="0WL-AF-KdO" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="20" id="S5Y-3q-7DK"/>
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="bottom" secondItem="9ST-zX-g5s" secondAttribute="bottom" id="SDH-QV-BHr"/>
                 <constraint firstAttribute="trailing" secondItem="4ua-p1-azQ" secondAttribute="trailing" constant="20" symbolic="YES" id="Sfe-k8-oyL"/>
                 <constraint firstItem="zxP-Np-Ufk" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" constant="43" id="VfJ-OA-Tke"/>
                 <constraint firstItem="4ua-p1-azQ" firstAttribute="leading" secondItem="cG5-Ig-cVN" secondAttribute="trailing" constant="13" id="XgR-Ok-UIr"/>
-                <constraint firstItem="d6A-NF-qtA" firstAttribute="top" secondItem="0WL-AF-KdO" secondAttribute="bottom" constant="17" id="XwP-xX-5Wg"/>
+                <constraint firstItem="d6A-NF-qtA" firstAttribute="top" secondItem="0WL-AF-KdO" secondAttribute="bottom" constant="14" id="XwP-xX-5Wg"/>
                 <constraint firstItem="cG5-Ig-cVN" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="77" id="Yu3-gN-kgD"/>
                 <constraint firstItem="tpe-fm-0n4" firstAttribute="trailing" secondItem="0WL-AF-KdO" secondAttribute="trailing" id="YyN-5V-9uy"/>
                 <constraint firstItem="d6A-NF-qtA" firstAttribute="leading" secondItem="HXi-cd-CSi" secondAttribute="leading" id="a8j-3R-NzP"/>
@@ -221,7 +222,6 @@
                 <constraint firstAttribute="bottom" secondItem="adU-64-2xG" secondAttribute="bottom" id="ekI-FX-oEs"/>
                 <constraint firstItem="lJu-sb-EtN" firstAttribute="baseline" secondItem="HXi-cd-CSi" secondAttribute="baseline" id="fyc-Qr-e3h"/>
                 <constraint firstAttribute="trailing" secondItem="jnF-cr-2Iy" secondAttribute="trailing" constant="24" id="gQf-Vw-Lwt"/>
-                <constraint firstItem="tpe-fm-0n4" firstAttribute="top" secondItem="ZEV-5t-kIE" secondAttribute="bottom" constant="77" id="hBS-EH-1zj"/>
                 <constraint firstItem="HXi-cd-CSi" firstAttribute="top" secondItem="lJu-sb-EtN" secondAttribute="top" id="iMA-fl-gqj"/>
                 <constraint firstItem="NNr-Va-2MU" firstAttribute="top" secondItem="tpe-fm-0n4" secondAttribute="top" id="kfa-Qc-YnS"/>
                 <constraint firstItem="adU-64-2xG" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" id="ne3-cJ-Ccu"/>
