@@ -170,7 +170,7 @@ int collectNum;
     [self.my_analyse setHidden:YES];
     
     //初始化全局数据
-    for (int i=0; i<48; i++) {
+    for (int i=0; i<96; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -290,8 +290,8 @@ int collectNum;
 
 -(void)todayTapped
 {
-
-    for (int i=0; i<48; i++) {
+    
+    for (int i=0; i<96; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
@@ -304,144 +304,150 @@ int collectNum;
     if (self.my_dayline.hidden) {
         [self.my_dayline setHidden:NO];
     }
-  
-        
-        
-       // self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
-        
-        self.my_dayline.my_scoller.modifyEvent_delegate = self;
-        self.drawBtnDelegate = self.my_dayline.my_scoller;
-        
-        
-        
-     //   [self.my_dayline addSubview:self.my_scoller];
-        
-        for (int i = 0; i<10; i++) {
-            [[self.my_dayline.starArray objectAtIndex:i] addTarget:self action:@selector(starTapped:) forControlEvents:UIControlEventTouchUpInside];
-        }
-        [self.my_dayline.addMoreLife addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [self.my_dayline.addMoreWork addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
-        
-        //获取当前日期
     
-        sqlite3_stmt *statement;
-        
-        modifyDate = self.today;
-        self.my_dayline.dateNow.text = modifyDate;
-        const char *dbpath = [databasePath UTF8String];
-        //查看当天是否已经有数据
-        
-        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-            NSString *queryStar = [NSString stringWithFormat:@"SELECT mood,growth from DAYTABLE where DATE=\"%@\"",modifyDate];
-            const char *queryStarstatement = [queryStar UTF8String];
-            if (sqlite3_prepare_v2(dataBase, queryStarstatement, -1, &statement, NULL)==SQLITE_OK) {
-                if (sqlite3_step(statement)==SQLITE_ROW) {
-                    //当天数据已经存在，则取出数据还原界面
-                    int moodNum = sqlite3_column_int(statement, 0);
-                    for (int i = 0; i<=moodNum-1; i++) {
-                        [[self.my_dayline.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                    }
-                    for (int j = moodNum; j<5; j++) {
-                        [[self.my_dayline.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                    }
-                    
-                    
-                    int growthNum = sqlite3_column_int(statement, 1);
-                    for (int i = 0; i<=growthNum-1; i++) {
-                        [[self.my_dayline.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
-                    }
-                    for (int j = growthNum; j<5; j++) {
-                        [[self.my_dayline.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
-                    }
-                    
+    
+    
+    // self.my_scoller = [[dayLineScoller alloc] initWithFrame:CGRectMake(1,110, self.view.frame.size.width-86.3, self.view.bounds.size.height-220)];
+    
+    self.my_dayline.my_scoller.modifyEvent_delegate = self;
+    self.drawBtnDelegate = self.my_dayline.my_scoller;
+    
+    
+    
+    //   [self.my_dayline addSubview:self.my_scoller];
+    
+    for (int i = 0; i<10; i++) {
+        [[self.my_dayline.starArray objectAtIndex:i] addTarget:self action:@selector(starTapped:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.my_dayline.addMoreLife addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_dayline.addMoreWork addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
+    
+    //获取当前日期
+    
+    NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
+    
+    NSDate *curDate = [NSDate date];//获取当前日期
+    [formater setDateFormat:@"yyyy-MM-dd"];
+    self.today= [formater stringFromDate:curDate];
+    
+    
+    sqlite3_stmt *statement;
+    modifyDate = self.today;
+    self.my_dayline.dateNow.text = modifyDate;
+    const char *dbpath = [databasePath UTF8String];
+    //查看当天是否已经有数据
+    
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        NSString *queryStar = [NSString stringWithFormat:@"SELECT mood,growth from DAYTABLE where DATE=\"%@\"",modifyDate];
+        const char *queryStarstatement = [queryStar UTF8String];
+        if (sqlite3_prepare_v2(dataBase, queryStarstatement, -1, &statement, NULL)==SQLITE_OK) {
+            if (sqlite3_step(statement)==SQLITE_ROW) {
+                //当天数据已经存在，则取出数据还原界面
+                int moodNum = sqlite3_column_int(statement, 0);
+                for (int i = 0; i<=moodNum-1; i++) {
+                    [[self.my_dayline.starArray objectAtIndex:i] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
                 }
-                /*
-                 else {
-                    // 插入当天的数据
-                    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
-                    
-                    //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
-                    const char *insertsatement = [insertSql UTF8String];
-                    sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
-                    sqlite3_bind_text(statement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
-                    sqlite3_bind_int(statement, 2, 0);
-                    sqlite3_bind_int(statement, 3, 0);
-                    
-                    
-                    if (sqlite3_step(statement)==SQLITE_DONE) {
-                        NSLog(@"innsert today ok");
-                    }
-                    else {
-                        NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
-                    }
-                    
+                for (int j = moodNum; j<5; j++) {
+                    [[self.my_dayline.starArray objectAtIndex:j] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
                 }
-                 */
+                
+                
+                int growthNum = sqlite3_column_int(statement, 1);
+                for (int i = 0; i<=growthNum-1; i++) {
+                    [[self.my_dayline.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
+                }
+                for (int j = growthNum; j<5; j++) {
+                    [[self.my_dayline.starArray objectAtIndex:j+5] setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
+                }
                 
             }
-            else{
-                NSLog(@"Error in select:%s",sqlite3_errmsg(dataBase));
+            /*
+             else {
+             // 插入当天的数据
+             NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
+             
+             //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+             const char *insertsatement = [insertSql UTF8String];
+             sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
+             sqlite3_bind_text(statement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+             sqlite3_bind_int(statement, 2, 0);
+             sqlite3_bind_int(statement, 3, 0);
+             
+             
+             if (sqlite3_step(statement)==SQLITE_DONE) {
+             NSLog(@"innsert today ok");
+             }
+             else {
+             NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+             }
+             
+             }
+             */
+            
+        }
+        else{
+            NSLog(@"Error in select:%s",sqlite3_errmsg(dataBase));
+            
+        }
+        
+        
+        sqlite3_finalize(statement);
+        if (!todayRedrawDone) {
+            NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,title,startTime,endTime from event where DATE=\"%@\"",modifyDate];
+            const char *queryEventstatement = [queryEventButton UTF8String];
+            if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
+                while (sqlite3_step(statement)==SQLITE_ROW) {
+                    //当天已有事件存在，则取出数据还原界面
+                    NSString *title;
+                    NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
+                    char *ttl = (char *)sqlite3_column_text(statement, 1);
+                    NSLog(@"char is %s",ttl);
+                    if (ttl == nil) {
+                        title = @"";
+                    }else {
+                        title = [[NSString alloc] initWithUTF8String:ttl];
+                        NSLog(@"nsstring  is %@",title);
+                    }
+                    NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
+                    NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
+                    
+                    
+                    [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
+                    
+                    
+                    if ([evtType intValue]==0) {
+                        for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
+                            workArea[i] = 1;
+                            NSLog(@"seized work area is :%d",i);
+                        }
+                    }else if([evtType intValue]==1){
+                        for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
+                            lifeArea[i] = 1;
+                            NSLog(@"seized work area is :%d",i);
+                        }
+                    }else{
+                        NSLog(@"事件类型有误！");
+                    }
+                    
+                }
                 
             }
             
-          
-                sqlite3_finalize(statement);
-            if (!todayRedrawDone) {
-                NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,title,startTime,endTime from event where DATE=\"%@\"",modifyDate];
-                const char *queryEventstatement = [queryEventButton UTF8String];
-                if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
-                    while (sqlite3_step(statement)==SQLITE_ROW) {
-                        //当天已有事件存在，则取出数据还原界面
-                        NSString *title;
-                        NSNumber *evtType = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 0)];
-                        char *ttl = (char *)sqlite3_column_text(statement, 1);
-                        NSLog(@"char is %s",ttl);
-                        if (ttl == nil) {
-                            title = @"";
-                        }else {
-                            title = [[NSString alloc] initWithUTF8String:ttl];
-                            NSLog(@"nsstring  is %@",title);
-                        }
-                        NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
-                        NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
-                        
-                        
-                        [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
-                        
-                        
-                        if ([evtType intValue]==0) {
-                            for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
-                                workArea[i] = 1;
-                                NSLog(@"seized work area is :%d",i);
-                            }
-                        }else if([evtType intValue]==1){
-                            for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
-                                lifeArea[i] = 1;
-                                NSLog(@"seized work area is :%d",i);
-                            }
-                        }else{
-                            NSLog(@"事件类型有误！");
-                        }
-                        
-                    }
-                    
-                }
-                
-                sqlite3_finalize(statement);
-                todayRedrawDone = YES;
-                
-            }
-        }
- 
-
-        
-        else {
-            NSLog(@"数据库打开失败");
+            sqlite3_finalize(statement);
+            todayRedrawDone = YES;
             
         }
-        sqlite3_close(dataBase);
-         
-     
+    }
+    
+    
+    
+    else {
+        NSLog(@"数据库打开失败");
+        
+    }
+    sqlite3_close(dataBase);
+    
+    
 }
 
 -(void)starTapped:(UIButton*)sender
@@ -664,7 +670,7 @@ int collectNum;
         
         
         
-        for (int i=0; i<48; i++) {
+        for (int i=0; i<96; i++) {
             workArea[i] = 0;
             lifeArea[i] = 0;
         }
@@ -1015,7 +1021,7 @@ int collectNum;
 -(void)seizeArea:(NSString *)date
 {
     
-    for (int i=0; i<48; i++) {
+    for (int i=0; i<96; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }

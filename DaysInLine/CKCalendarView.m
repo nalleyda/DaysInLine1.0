@@ -117,6 +117,8 @@
 @property (nonatomic, strong) NSCalendar *calendar;
 @property(nonatomic, assign) CGFloat cellWidth;
 
+@property(nonatomic, strong) UIImageView *imageInButton;
+
 @end
 
 @implementation CKCalendarView
@@ -133,6 +135,11 @@
 
 - (void)_init:(CKCalendarStartDay)firstDay {
     self.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    self.imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(12, 21, 5, 5)];
+    [self.imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
+
+    
     [self.calendar setLocale:[NSLocale currentLocale]];
 
     self.cellWidth = DEFAULT_CELL_WIDTH;
@@ -208,6 +215,7 @@
     for (NSInteger i = 1; i <= 42; i++) {
         DateButton *dateButton = [DateButton buttonWithType:UIButtonTypeCustom];
         dateButton.calendar = self.calendar;
+         dateButton.tag = 0;
         [dateButton addTarget:self action:@selector(_dateButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [dateButtons addObject:dateButton];
     }
@@ -263,6 +271,7 @@
     self.prevButton.frame = CGRectMake(BUTTON_MARGIN, 0, 48, 38);
     self.nextButton.frame = CGRectMake(self.bounds.size.width - 48 - BUTTON_MARGIN, 0, 48, 38);
 
+
     self.calendarContainer.frame = CGRectMake(CALENDAR_MARGIN, CGRectGetMaxY(self.titleLabel.frame), containerWidth, containerHeight);
     self.daysHeader.frame = CGRectMake(0, 0, self.calendarContainer.frame.size.width, DAYS_HEADER_HEIGHT);
 
@@ -274,6 +283,9 @@
 
     for (DateButton *dateButton in self.dateButtons) {
         dateButton.date = nil;
+ 
+        [self.imageInButton removeFromSuperview];
+        
         [dateButton removeFromSuperview];
     }
 
@@ -305,10 +317,11 @@
             //[dateButton setImage:[UIImage imageNamed: @"todayPoint.png"] forState:UIControlStateNormal];
             
 //            [dateButton setDate:date];
-            UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(12, 21, 5, 5)];
-            [imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
+        // UIImageView *imageInButton = [[UIImageView alloc] initWithFrame:CGRectMake(12, 21, 5, 5)];
+        //    [imageInButton setImage: [UIImage  imageNamed:@"色点.png"]];
             dateButton.titleLabel.textColor = UIColorFromRGB(0xF2F2F2);
-            [dateButton addSubview:imageInButton];
+            [dateButton addSubview:self.imageInButton];
+            dateButton.tag = 1;
 
 
         } else if (!self.onlyShowCurrentMonth && [self _compareByMonth:date toDate:self.monthShowing] != NSOrderedSame) {
@@ -322,10 +335,13 @@
         if (self.selectedDate && [self date:self.selectedDate isSameDayAsDate:date]) {
             [dateButton setTitleColor:item.selectedTextColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.selectedBackgroundColor;
+            
+            
                   }
         else {
             [dateButton setTitleColor:item.textColor forState:UIControlStateNormal];
             dateButton.backgroundColor = item.backgroundColor;
+            
 
             [dateButton setBackgroundImage:item.selectedImage forState:UIControlStateNormal];
         }
