@@ -839,6 +839,8 @@ int collectNum;
     NSString *eventEnd;
     NSString *eventTag;
     
+    collectNum = 0;
+    
     [self.my_select setHidden:YES];
     [self.my_dayline setHidden:YES];
     [self.my_selectDay setHidden:YES];
@@ -1162,13 +1164,11 @@ int collectNum;
                 expend = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,7)];
                 
                 char *oldTags = (char *)sqlite3_column_text(statement, 8);
-                if (oldTags == nil) {
-                    oldLabel = @"";
-                }else {
+ 
                     oldLabel = [[NSString alloc] initWithUTF8String:oldTags];
                     
                     NSLog(@"nsstring_old labels  is %@",oldLabel);
-                }
+                
 
                 
                 char *remind_mdfy = (char *)sqlite3_column_text(statement, 9);

@@ -536,6 +536,14 @@ bool haveSaved;
     UIView *tmpCustomView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height/3)];
 
     tmpCustomView = [nib objectAtIndex:0];
+    
+    UIImageView *imageInMoney = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300, 211)];
+    
+    [tmpCustomView addSubview:imageInMoney];
+    [tmpCustomView sendSubviewToBack:imageInMoney];
+    
+    
+    imageInMoney.image = [UIImage imageNamed:@"tagAlert.png"];
     //NSLog(@"enable is : %d",tmpCustomView.userInteractionEnabled);
     [tmpCustomView setUserInteractionEnabled:YES];
     UITextField * income = (UITextField *)[tmpCustomView viewWithTag:501];
@@ -1829,22 +1837,28 @@ bool haveSaved;
 
 -(void) drawTag:(NSString *)oldTags
 {
-    //NSLog(@"old label is :%@",oldTags);
-    self.selectedTags = oldTags;
     
-    NSArray *tagToDraw = [oldTags componentsSeparatedByString:@","];
-    if (tagToDraw.count > 0) {
-        for (int i = 0; i < tagToDraw.count; i++) {
-            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(280, 150+30*i, self.view.frame.size.width-280, 20)];
-            tag.text = tagToDraw[i];
-            [tagLabels addObject:tag];
-            [self.view addSubview:tag];
+    if (![oldTags isEqualToString:@"" ] ) {
+        
+        
+        //NSLog(@"old label is :%@",oldTags);
+        self.selectedTags = oldTags;
+        
+        NSArray *tagToDraw = [oldTags componentsSeparatedByString:@","];
+        NSLog(@"tagToDraw.count = %d",tagToDraw.count );
+        if (tagToDraw.count > 0) {
+            for (int i = 0; i < tagToDraw.count; i++) {
+                UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(280, 150+30*i, self.view.frame.size.width-280, 20)];
+                tag.text = tagToDraw[i];
+               
+                [tagLabels addObject:tag];
+                [self.view addSubview:tag];
+                
+            }
             
         }
         
     }
-    
-
     
 }
 

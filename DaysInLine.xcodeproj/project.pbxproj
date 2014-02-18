@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0B00AC54187D849400427F35 /* collectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B00AC53187D849400427F35 /* collectCell.xib */; };
+		0B2B2F7918B3A49D00B7EA83 /* 照片背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */; };
+		0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
@@ -118,6 +120,8 @@
 
 /* Begin PBXFileReference section */
 		0B00AC53187D849400427F35 /* collectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = collectCell.xib; sourceTree = "<group>"; };
+		0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照片背景.png"; sourceTree = "<group>"; };
+		0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景.png"; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
 		0B2C3339185B7CEE00CB2763 /* moneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moneyView.xib; sourceTree = "<group>"; };
 		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				0BBED40718A68AFA00B47E53 /* cell2-1.png */,
 				0BBED40818A68AFA00B47E53 /* cell3-1.png */,
 				0BBED40918A68AFA00B47E53 /* cell4-1.png */,
+				0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */,
+				0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */,
 				0B92BE3A18B0C75D003AE50C /* 299x62按键.png */,
 				0B93EC4618AB422600F871C4 /* 色点.png */,
 				0B93EC5818ABD06A00F871C4 /* addTapped.png */,
@@ -567,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9A5406181230990085FFD7 /* Default.png in Resources */,
+				0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */,
 				0B92BE2318B0ADF0003AE50C /* 日期角标.png in Resources */,
 				0BA61BD218A25108000B7163 /* star1.png in Resources */,
 				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
@@ -597,6 +604,7 @@
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
 				0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */,
 				0B92BE3618B0C4F3003AE50C /* okInAlert.png in Resources */,
+				0B2B2F7918B3A49D00B7EA83 /* 照片背景.png in Resources */,
 				0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */,
 				0BBED40B18A68AFA00B47E53 /* cell2-1.png in Resources */,
 				0B9009DF1877D791008D3799 /* right_arrow.png in Resources */,
@@ -800,10 +808,13 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
 				INFOPLIST_FILE = "DaysInLine/DaysInLine-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -815,10 +826,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
 				INFOPLIST_FILE = "DaysInLine/DaysInLine-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

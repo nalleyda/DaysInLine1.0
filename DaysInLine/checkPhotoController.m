@@ -27,7 +27,14 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.fullPhoto.backgroundColor = [UIColor blackColor];
+    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [backImage setImage:[UIImage imageNamed:@"照片背景.png"]];
+    
+    [self.view addSubview:backImage];
+    [self.view sendSubviewToBack:backImage];
+    
+    
+   // self.fullPhoto.backgroundColor = [UIColor blackColor];
     self.fullPhoto.ContentMode = UIViewContentModeScaleAspectFit;
     
 }

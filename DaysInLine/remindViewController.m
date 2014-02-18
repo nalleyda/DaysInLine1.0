@@ -45,6 +45,12 @@ UIDatePicker *remindTimePicker2;
 {
     [super viewDidLoad];
     //self.view.backgroundColor = [UIColor clearColor];
+    
+    UIImageView *backgrd=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-20)];
+    [backgrd setImage:[UIImage imageNamed:@"提醒背景.png"]];
+    
+    [self.view addSubview:backgrd];
+    [self.view sendSubviewToBack:backgrd];
    
     self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
     self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
@@ -68,6 +74,7 @@ UIDatePicker *remindTimePicker2;
     remindTimePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
     remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 240);
     remindTimePicker.transform = CGAffineTransformMakeScale(0.65, 0.55);
+    
     
      [self.viewDate addSubview:remindTimePicker];
     
@@ -209,7 +216,12 @@ UIDatePicker *remindTimePicker2;
     [self.setRemindDelegate setRemindData:self.remindDate :self.remindTime ];
     
 
-
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:@"您已成功添加事件提醒"
+                                                   delegate:nil
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
 
     
     NSLog(@"self.remindDate = %@,,,,,, self.remindTime = %@",self.remindDate,self.remindTime);
