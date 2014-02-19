@@ -11,8 +11,9 @@
 
 @interface remindViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *remindMode;
-- (IBAction)remindOkButton:(UIButton *)sender;
-- (IBAction)remindCancelButton:(id)sender;
+
+@property (strong, nonatomic)  UIButton *returnButton;
+@property (strong, nonatomic)  UIButton *okButton;
 
 @property (strong, nonatomic) NSString *remindDate;
 @property (strong, nonatomic) NSString *remindTime;

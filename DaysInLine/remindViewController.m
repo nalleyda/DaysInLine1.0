@@ -13,6 +13,8 @@
 
 @property (strong,nonatomic) UIView *viewDate;
 @property (strong,nonatomic) UIView *viewInterval;
+@property (strong,nonatomic) UILabel *setTimeLabel;
+@property (strong,nonatomic) UILabel *setTimeLabel2;
 
 @end
 
@@ -52,8 +54,26 @@ UIDatePicker *remindTimePicker2;
     [self.view addSubview:backgrd];
     [self.view sendSubviewToBack:backgrd];
    
-    self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
-    self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-150)];
+    self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
+  //  self.viewDate.backgroundColor = [UIColor greenColor];
+    self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
+    
+    self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(50, self.view.frame.size.height-240, self.view.frame.size.width-80, 30)];
+    self.setTimeLabel.textColor = [UIColor blackColor];
+    self.setTimeLabel.backgroundColor = [UIColor clearColor];
+   // self.setTimeLabel2 = self.setTimeLabel;
+    
+    self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(50, self.view.frame.size.height-240, self.view.frame.size.width-80, 30)];
+    self.setTimeLabel2.textColor = [UIColor blackColor];
+    self.setTimeLabel2.backgroundColor = [UIColor clearColor];
+    
+    if (self.remindDate) {
+        self.setTimeLabel.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        self.setTimeLabel2.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+    }
+    
+   // [self.view addSubview:self.setTimeLabel];
+    
     //按日期设置提醒时间的视图
     
     //self.viewInterval.backgroundColor = [UIColor clearColor];
@@ -72,15 +92,34 @@ UIDatePicker *remindTimePicker2;
     
     remindTimePicker.datePickerMode = UIDatePickerModeTime;
     remindTimePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
-    remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 240);
+    remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 180);
     remindTimePicker.transform = CGAffineTransformMakeScale(0.65, 0.55);
     
     
      [self.viewDate addSubview:remindTimePicker];
     
+
+    
     
     [self.remindMode addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     self.remindMode.selectedSegmentIndex= 0;
+    
+    self.returnButton = [[UIButton alloc] initWithFrame:CGRectMake(remindDatePicker.frame.origin.x, self.view.frame.size.height-100, 40, 40)];
+    self.okButton = [[UIButton alloc] initWithFrame:CGRectMake(240 , self.view.frame.size.height-100, 40, 40)];
+    
+    [self.okButton setImage:[UIImage imageNamed:@"okInAlert.png"] forState:UIControlStateNormal];
+    [self.returnButton setImage:[UIImage imageNamed:@"returnInAlert.png"] forState:UIControlStateNormal];
+    
+    [self.okButton addTarget:self action:@selector(remindOkButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.returnButton addTarget:self action:@selector(remindCancelButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    [self.view addSubview:self.okButton];
+    [self.view addSubview:self.returnButton];
+    
+    
+    [self.viewDate addSubview:self.setTimeLabel];
+    
     [self.view addSubview:self.viewDate];
 
     //按间隔设置提醒时间的视图
@@ -105,10 +144,13 @@ UIDatePicker *remindTimePicker2;
     [self.viewInterval addSubview:dayslabel];
     remindTimePicker2.datePickerMode = UIDatePickerModeTime;
     remindTimePicker2.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
-    remindTimePicker2.center = CGPointMake(self.view.frame.size.width/2, 220);
+    remindTimePicker2.center = CGPointMake(self.view.frame.size.width/2, 180);
     remindTimePicker2.transform = CGAffineTransformMakeScale(0.65, 0.55);
     
+    
+    [self.viewInterval addSubview:self.setTimeLabel2];
     [self.viewInterval addSubview:remindTimePicker2];
+   
     
    
     
@@ -198,6 +240,11 @@ UIDatePicker *remindTimePicker2;
         formatter.dateFormat = @"H:mm";
         self.remindTime = [formatter stringFromDate:remindTimePicker.date];
         
+
+        self.setTimeLabel.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        self.setTimeLabel2.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        
+      
     
     }
     else if(self.remindMode.selectedSegmentIndex == 1)
@@ -212,25 +259,28 @@ UIDatePicker *remindTimePicker2;
         self.remindTime = [formatter stringFromDate:remindTimePicker2.date];
         
         
+        self.setTimeLabel.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        self.setTimeLabel2.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        
+        
     }
-    [self.setRemindDelegate setRemindData:self.remindDate :self.remindTime ];
-    
 
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                    message:@"您已成功添加事件提醒"
-                                                   delegate:nil
-                                          cancelButtonTitle:@"确定"
-                                          otherButtonTitles:nil];
-    [alert show];
 
     
     NSLog(@"self.remindDate = %@,,,,,, self.remindTime = %@",self.remindDate,self.remindTime);
-    [self dismissViewControllerAnimated:YES completion:nil];
+   // [self dismissViewControllerAnimated:YES completion:nil];
 
 
 }
 
 - (IBAction)remindCancelButton:(id)sender {
+    if (self.remindDate) {
+ 
+    
+    [self.setRemindDelegate setRemindData:self.remindDate :self.remindTime ];
+    
+
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

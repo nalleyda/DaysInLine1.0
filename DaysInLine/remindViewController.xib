@@ -25,47 +25,9 @@
                         <segment title="按间隔提醒"/>
                     </segments>
                 </segmentedControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60C-J3-o4m">
-                    <rect key="frame" x="40" y="389" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="wbZ-uW-eet"/>
-                    </constraints>
-                    <state key="normal" title="取消" image="returnInAlert.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="remindCancelButton:" destination="-1" eventType="touchUpInside" id="rm2-g0-Ftb"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VG-Ty-Hye">
-                    <rect key="frame" x="240" y="389" width="40" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="CEc-2r-5eQ"/>
-                        <constraint firstAttribute="height" constant="40" id="XKb-Qu-gN2"/>
-                    </constraints>
-                    <state key="normal" title="确定" image="okInAlert.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="remindOkButton:" destination="-1" eventType="touchUpInside" id="PZ1-fI-d19"/>
-                    </connections>
-                </button>
             </subviews>
-            <constraints>
-                <constraint firstItem="4VG-Ty-Hye" firstAttribute="bottom" secondItem="60C-J3-o4m" secondAttribute="bottom" id="0Kn-uS-b6R"/>
-                <constraint firstAttribute="trailing" secondItem="4VG-Ty-Hye" secondAttribute="trailing" constant="40" id="5oj-vO-hfp"/>
-                <constraint firstAttribute="bottom" secondItem="4VG-Ty-Hye" secondAttribute="bottom" constant="51" id="Z6L-Zs-5hL"/>
-                <constraint firstItem="60C-J3-o4m" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="40" id="hQa-FO-iaZ"/>
-                <constraint firstItem="4VG-Ty-Hye" firstAttribute="top" secondItem="60C-J3-o4m" secondAttribute="top" id="l3m-Tt-XDG"/>
-            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <inset key="insetFor6xAndEarlier" minX="0.0" minY="-25" maxX="0.0" maxY="25"/>
         </view>
     </objects>
-    <resources>
-        <image name="okInAlert.png" width="70" height="70"/>
-        <image name="returnInAlert.png" width="70" height="70"/>
-    </resources>
 </document>

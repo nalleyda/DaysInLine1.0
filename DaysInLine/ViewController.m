@@ -31,7 +31,7 @@
 @property (nonatomic,strong) collectionView *my_collect;
 @property (nonatomic,strong) statisticView *my_analyse;
 @property (nonatomic,strong) NSString *today;
-@property (nonatomic,strong) NSString *lastDay;
+@property (nonatomic,strong) NSString *lastToday;
 @property (nonatomic,strong) NSMutableArray *allTags;
 @property(nonatomic, strong) NSMutableArray *HasEventsDates;
 
@@ -290,20 +290,87 @@ int collectNum;
 
 -(void)todayTapped
 {
-    
     for (int i=0; i<96; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
     }
+
+    //获取当前日期
     
-    [self.my_select setHidden:YES];
-    [self.my_selectDay setHidden:YES];
-    [self.my_collect setHidden:YES];
-    [self.my_analyse setHidden:YES];
+    NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
     
-    if (self.my_dayline.hidden) {
-        [self.my_dayline setHidden:NO];
+    NSDate *curDate = [NSDate date];//获取当前日期
+    [formater setDateFormat:@"yyyy-MM-dd"];
+    self.today= [formater stringFromDate:curDate];
+    
+    
+    sqlite3_stmt *statement;
+    modifyDate = self.today;
+    if (!self.lastToday) {
+        self.lastToday = self.today;
+        [self.my_select setHidden:YES];
+        [self.my_selectDay setHidden:YES];
+        [self.my_collect setHidden:YES];
+        [self.my_analyse setHidden:YES];
+        
+        if (self.my_dayline.hidden) {
+            [self.my_dayline setHidden:NO];
+        }
+        
     }
+    else{
+        
+        if ([self.today isEqualToString: self.lastToday]) {
+            [self.my_select setHidden:YES];
+            [self.my_selectDay setHidden:YES];
+            [self.my_collect setHidden:YES];
+            [self.my_analyse setHidden:YES];
+            
+            if (self.my_dayline.hidden) {
+                [self.my_dayline setHidden:NO];
+            }
+            
+        }
+        else
+        {
+            [self.my_dayline removeFromSuperview];
+            if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+                
+                CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
+                
+                NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
+                
+                self.my_dayline = [[daylineView alloc] initWithFrame:frame7];
+                NSLog(@"ios7!!!!");
+            }else{
+                
+                CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+                
+                NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
+                
+                self.my_dayline = [[daylineView alloc] initWithFrame:frame];
+                
+            }
+            [self.homePage addSubview:self.my_dayline];
+            [self.my_select setHidden:YES];
+            [self.my_selectDay setHidden:YES];
+            [self.my_collect setHidden:YES];
+            [self.my_analyse setHidden:YES];
+            
+            if (self.my_dayline.hidden) {
+                [self.my_dayline setHidden:NO];
+            }
+            
+            
+            
+            
+            self.lastToday = self.today;
+        }
+        
+    }
+    
+
+    
     
     
     
@@ -322,17 +389,7 @@ int collectNum;
     [self.my_dayline.addMoreLife addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.my_dayline.addMoreWork addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
     
-    //获取当前日期
-    
-    NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
-    
-    NSDate *curDate = [NSDate date];//获取当前日期
-    [formater setDateFormat:@"yyyy-MM-dd"];
-    self.today= [formater stringFromDate:curDate];
-    
-    
-    sqlite3_stmt *statement;
-    modifyDate = self.today;
+
     self.my_dayline.dateNow.text = modifyDate;
     const char *dbpath = [databasePath UTF8String];
     //查看当天是否已经有数据

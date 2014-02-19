@@ -60,6 +60,9 @@ bool haveSaved;
     
     //self.incomeFinal=0.0f;
     firstInmoney = NO;
+    if (modifying == 0) {
+        self.remindData = @"";
+    }
     //self.remindData = nil;
     //NSLog(@"<<<<<%@>>>>>",self.remindData);
     tagLabels = [[NSMutableArray alloc] init];
@@ -239,7 +242,7 @@ bool haveSaved;
     UIAlertView* addSelection;
     
     addSelection = [[UIAlertView alloc]
-                    initWithTitle:@"Add tag"
+                    initWithTitle:@"请输入标签"
                     message:nil
                     delegate:self
                     cancelButtonTitle:@"取消"
@@ -318,6 +321,14 @@ bool haveSaved;
     my_remind.setRemindDelegate = self;
     //NSLog(@"<<<<<%@>>>>>2",self.remindData);
     oldRemindDate = self.remindData;
+    if (![oldRemindDate isEqualToString:@""]) {
+        
+        NSArray *remindDate = [oldRemindDate componentsSeparatedByString:@","];
+        my_remind.remindDate = remindDate[0];
+        my_remind.remindTime = remindDate[1];
+
+        
+    }
 
     [self presentViewController:my_remind animated:YES completion:Nil ];
     
@@ -1293,7 +1304,7 @@ bool haveSaved;
     NSDate *now = [[NSDate alloc] init];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     if (modifying == 0) {
-        if (self.remindData) {
+        if (![self.remindData isEqualToString:@""]) {
             NSArray *remindDate = [self.remindData componentsSeparatedByString:@","];
             NSString *date = remindDate[0];
             NSString *time = remindDate[1];
@@ -1324,8 +1335,13 @@ bool haveSaved;
              
                 //notification.alertBody=@"TIME！";
                 
+                notification.alertAction = @"打开";  //提示框按钮
+                notification.hasAction = YES; //是否显示额外的按钮，为no时alertAction消失
+                
+                notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
+                
                 notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
-                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
+                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:@"value1",@"key1",nil];
  
                 [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
                 
@@ -1385,8 +1401,13 @@ bool haveSaved;
                 
                 //notification.alertBody=@"TIME！";
                 
+                notification.alertAction = @"打开";  //提示框按钮
+                notification.hasAction = YES; //是否显示额外的按钮，为no时alertAction消失
+                
+                notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
+                
                 notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
-                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:self.remindData,self.remindData,nil];
+                notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:@"value1",@"key1",nil];
                 
                 [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
              
@@ -1649,51 +1670,53 @@ bool haveSaved;
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == 3) {
         if (buttonIndex == 1) {
-        UITextField *tf=[alertView textFieldAtIndex:0];
-            //NSLog(@"new tag is : %@",tf.text);
-            const char *dbpath = [databasePath UTF8String];
-            sqlite3_stmt *statement;
+            UITextField *tf=[alertView textFieldAtIndex:0];
             
-            if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+            if (![tf.text isEqualToString:@""]) {
+                //NSLog(@"new tag is : %@",tf.text);
+                const char *dbpath = [databasePath UTF8String];
+                sqlite3_stmt *statement;
                 
-                // 插入当天的数据
-                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO TAG(tagName) VALUES(?)"];
-                
-                const char *insertsatement = [insertSql UTF8String];
-                sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
-                sqlite3_bind_text(statement,1, [tf.text UTF8String], -1, SQLITE_TRANSIENT);
-                
-                if (sqlite3_step(statement)==SQLITE_DONE) {
-                    //NSLog(@"innsert tag ok");
-                [self.tags addObject:tf.text];
-               // [self.addTagDataDelegate addTagData:tf.text];
+                if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+                    
+                    // 插入当天的数据
+                    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO TAG(tagName) VALUES(?)"];
+                    
+                    const char *insertsatement = [insertSql UTF8String];
+                    sqlite3_prepare_v2(dataBase, insertsatement, -1, &statement, NULL);
+                    sqlite3_bind_text(statement,1, [tf.text UTF8String], -1, SQLITE_TRANSIENT);
+                    
+                    if (sqlite3_step(statement)==SQLITE_DONE) {
+                        //NSLog(@"innsert tag ok");
+                        [self.tags addObject:tf.text];
+                        // [self.addTagDataDelegate addTagData:tf.text];
+                    }
+                    else {
+                        //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
+                        UIAlertView *tagNotUnique = [[UIAlertView alloc]
+                                                     initWithTitle:@"Attention"
+                                                     message:@"This tag is already exist!"
+                                                     delegate:nil
+                                                     cancelButtonTitle:@"确定"
+                                                     otherButtonTitles:nil];
+                        
+                        
+                        [tagNotUnique show];
+                        
+                    }
+                    sqlite3_finalize(statement);
                 }
+                
                 else {
-                    //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
-                    UIAlertView *tagNotUnique = [[UIAlertView alloc]
-                                    initWithTitle:@"Attention"
-                                    message:@"This tag is already exist!"
-                                    delegate:nil
-                                    cancelButtonTitle:@"确定"
-                                    otherButtonTitles:nil];
+                    //NSLog(@"数据库打开失败");
                     
-                    
-                    [tagNotUnique show];
-
                 }
-                sqlite3_finalize(statement);
-            }
-            
-            else {
-                //NSLog(@"数据库打开失败");
+                sqlite3_close(dataBase);
+                
+                [self.tagTable reloadData];
                 
             }
-            sqlite3_close(dataBase);
             
-            [self.tagTable reloadData];
-            
-
-
             //NSLog(@"点击了确定按钮");
         }
         else {
