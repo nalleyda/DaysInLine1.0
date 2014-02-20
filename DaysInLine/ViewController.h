@@ -11,12 +11,13 @@
 #import "redrawButtonDelegate.h"
 #import "drawTagDelegate.h"
 #import "reloadTableDelegate.h"
+#import "setMainTextDelegate.h"
 
 
 @class homeView;
 @class daylineView;
 
-@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate>
+@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate>
 {
     sqlite3 *dataBase;
     NSString *databasePath;

@@ -43,6 +43,7 @@
 @property(nonatomic, strong) NSMutableArray *EventsIDInSearch;
 @property(nonatomic, strong) NSString *dateToSelect;
 @property(nonatomic, strong) NSString *pickAdate;
+@property(nonatomic, strong) NSString *textInMain;
 
 @property(nonatomic, strong) NSMutableArray *collectEvent;
 @property(nonatomic, strong) NSMutableArray *collectEventTitle;
@@ -637,6 +638,22 @@ int collectNum;
 
 -(void)eventTapped:(UIButton *)sender
 {
+    NSString *startTime;
+    NSString *endTime;
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *now;
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    now=[NSDate date];
+    comps = [calendar components:unitFlags fromDate:now];
+    
+   int hour = [comps hour];
+    
+    startTime = [NSString stringWithFormat:@"%02d:00",hour];
+    endTime = [NSString stringWithFormat:@"%02d:00",hour];
+    
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
         my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
 
@@ -650,6 +667,9 @@ int collectNum;
    // my_editingViewController.addTagDataDelegate = self;
     my_editingViewController.tags = self.allTags;
     my_editingViewController.HasEvtDates = self.HasEventsDates;
+    
+    [(UILabel*)[my_editingViewController.view viewWithTag:103] setText:startTime];
+    [(UILabel*)[my_editingViewController.view viewWithTag:104] setText:endTime];
 
     modifying = 0;
     
@@ -1196,6 +1216,7 @@ int collectNum;
                     NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
                 }
                 
+                self.textInMain = [NSString stringWithString:mainTxt_mdfy];
                 
                 NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,4)];
                int start = [startTm intValue];
@@ -1264,6 +1285,8 @@ int collectNum;
 
     
     my_modifyViewController.reloadDelegate = self;
+    my_modifyViewController.setTextDelegate = self;
+    
     if(self.my_dayline.hidden == NO){
         my_modifyViewController.drawBtnDelegate = self.my_dayline.my_scoller;
     }else if (self.my_selectDay.hidden == NO){
@@ -1717,6 +1740,8 @@ int collectNum;
                             NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
                         }
                         
+                        self.textInMain = [NSString stringWithString:mainTxt_mdfy];
+                        
                         char *date_mdfy = (char *)sqlite3_column_text(statement, 4);
                         NSLog(@"date_mdfy is %s",date_mdfy);
                         if (date_mdfy == nil) {
@@ -1796,6 +1821,8 @@ int collectNum;
             editingViewController *my_selectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_selectEvent;
             my_selectEvent.reloadDelegate = self;
+            my_selectEvent.setTextDelegate = self;
+            
             if([self.today isEqualToString:dateGoesIn]){
                 my_selectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
             }else {
@@ -1881,6 +1908,8 @@ int collectNum;
                             NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
                         }
                         
+                        self.textInMain = [NSString stringWithString:mainTxt_mdfy];
+                        
                         char *date_mdfy = (char *)sqlite3_column_text(statement, 4);
                         NSLog(@"date_mdfy is %s",date_mdfy);
                         if (date_mdfy == nil) {
@@ -1962,6 +1991,7 @@ int collectNum;
             editingViewController *my_collectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_collectEvent;
             my_collectEvent.reloadDelegate = self;
+            my_collectEvent.setTextDelegate = self;
          
             if ([self.today isEqualToString: dateInCollect]) {
                 my_collectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
@@ -2054,6 +2084,8 @@ int collectNum;
                             NSLog(@"nsstring_mdfy  is %@",mainTxt_mdfy);
                         }
                         
+                        self.textInMain = [NSString stringWithString:mainTxt_mdfy];
+                        
                         char *date_mdfy = (char *)sqlite3_column_text(statement, 4);
                         NSLog(@"date_mdfy is %s",date_mdfy);
                         if (date_mdfy == nil) {
@@ -2133,6 +2165,8 @@ int collectNum;
             editingViewController *my_selectEvent = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
             self.drawLabelDelegate = my_selectEvent;
             my_selectEvent.reloadDelegate = self;
+            my_selectEvent.setTextDelegate = self;
+            
             my_selectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
            
             //  my_modifyViewController.addTagDataDelegate = self;
@@ -2337,6 +2371,13 @@ int collectNum;
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
     NSLog(@"输入完毕");
     return YES;
+}
+
+#pragma mark -设置正文内容
+
+-(void)setMainText:(UITextView *)mainText
+{
+   [mainText setText:self.textInMain];
 }
 
 @end

@@ -122,14 +122,14 @@
                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6A-NF-qtA">
                     <rect key="frame" x="20" y="71" width="120" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="输入开始时间">
+                    <state key="normal">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ua-p1-azQ">
                     <rect key="frame" x="180" y="71" width="120" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="输入结束时间">
+                    <state key="normal">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -151,7 +151,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="106" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="点击输入... ..." translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-5t-kIE">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="106" contentMode="scaleToFill" keyboardDismissMode="onDrag" text="点击输入......" translatesAutoresizingMaskIntoConstraints="NO" id="ZEV-5t-kIE">
                     <rect key="frame" x="40" y="155" width="220" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.93899473852040816" green="0.93899473852040816" blue="0.93899473852040816" alpha="1" colorSpace="calibratedRGB"/>
@@ -228,6 +228,7 @@
                 <constraint firstItem="lJu-sb-EtN" firstAttribute="baseline" secondItem="HXi-cd-CSi" secondAttribute="baseline" id="fyc-Qr-e3h"/>
                 <constraint firstAttribute="trailing" secondItem="jnF-cr-2Iy" secondAttribute="trailing" constant="24" id="gQf-Vw-Lwt"/>
                 <constraint firstItem="HXi-cd-CSi" firstAttribute="top" secondItem="lJu-sb-EtN" secondAttribute="top" id="iMA-fl-gqj"/>
+                <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="4ua-p1-azQ" secondAttribute="bottom" constant="9" id="joj-Tm-IcR"/>
                 <constraint firstItem="NNr-Va-2MU" firstAttribute="top" secondItem="tpe-fm-0n4" secondAttribute="top" id="kfa-Qc-YnS"/>
                 <constraint firstItem="adU-64-2xG" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" id="ne3-cJ-Ccu"/>
                 <constraint firstItem="ak2-GO-nui" firstAttribute="leading" secondItem="uUl-Hg-KmG" secondAttribute="trailing" constant="26" id="phq-Fl-PKa"/>

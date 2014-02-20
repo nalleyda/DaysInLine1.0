@@ -120,6 +120,7 @@
 
 /* Begin PBXFileReference section */
 		0B00AC53187D849400427F35 /* collectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = collectCell.xib; sourceTree = "<group>"; };
+		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
 		0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照片背景.png"; sourceTree = "<group>"; };
 		0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景.png"; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
@@ -482,6 +483,7 @@
 				0BE1BC031866EAE000E59CC7 /* remindDataDelegate.h */,
 				0B9726041870516100787BE9 /* drawTagDelegate.h */,
 				0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */,
+				0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */,
 			);
 			name = data;
 			sourceTree = "<group>";

@@ -94,7 +94,17 @@ bool haveSaved;
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
     self.mainText = (UITextView *)[self.view viewWithTag:106];
-   // self.mainText =[[UITextView alloc] initWithFrame: CGRectMake(50, 260, 200, 200)];
+    [self.setTextDelegate setMainText:self.mainText];
+    self.mainText.delegate = self;
+    
+    if ([self.mainText.text isEqualToString:@"点击输入......"]) {
+        self.mainText.textColor = [UIColor lightGrayColor];
+    }else
+    {
+        self.mainText.textColor = [UIColor blackColor];
+   
+    }
+    // self.mainText =[[UITextView alloc] initWithFrame: CGRectMake(50, 260, 200, 200)];
     
     
     //self.imageView = [[NSMutableArray alloc] initWithCapacity:NR_IMAGEVIEW];
@@ -1642,6 +1652,13 @@ bool haveSaved;
     if (!textField.window.isKeyWindow) {
         [textField.window makeKeyAndVisible];
     }
+    if (textField.tag == 501 || textField.tag == 502) {
+        
+        
+        if ([textField.text isEqualToString:@"0.00"]) {
+            textField.text = @"";
+        }
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -1886,7 +1903,7 @@ bool haveSaved;
 }
 
 
-#pragma mark tavleView Delegate
+#pragma mark tableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //  //NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
@@ -1980,9 +1997,37 @@ bool haveSaved;
    
 }
 
+#pragma mark TextView delegate
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"点击输入......"]) {
+        textView.text = @"";
+    }
+    textView.textColor = [UIColor blackColor]; //optional
+
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"点击输入......";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
+}
 
 
 
-
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if ([textField.text isEqualToString:@""]) {
+        textField.text = @"0.00";
+       
+    }
+    [textField resignFirstResponder];
+    
+}
 
 @end

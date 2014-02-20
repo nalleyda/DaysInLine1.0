@@ -14,6 +14,7 @@
 #import "reloadTableDelegate.h"
 #import "CustomIOS7AlertView.h"
 #import "checkPhotoController.h"
+#import "setMainTextDelegate.h"
 //#import "addTagDelegate.h"
 
 
@@ -22,6 +23,7 @@
     remindDataDelegate,
     drawTagDelegate,
     UIActionSheetDelegate,
+    UITextViewDelegate,
     UITextFieldDelegate,
     UITableViewDelegate,
     UITableViewDataSource,
@@ -76,6 +78,7 @@
 
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
 @property (weak, nonatomic) NSObject <reloadTableDelegate> *reloadDelegate;
+@property (weak, nonatomic) NSObject <setMainTextDelegate> *setTextDelegate;
 //@property (weak, nonatomic) NSObject <addTagDelegate> *addTagDataDelegate;
 - (IBAction)endEditing:(id)sender;
 -(void)pictureTapped:(UIButton *)sender;
