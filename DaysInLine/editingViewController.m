@@ -93,7 +93,11 @@ bool haveSaved;
     
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
-    self.mainText = (UITextView *)[self.view viewWithTag:106];
+    self.mainText = [[UITextView alloc] initWithFrame:CGRectMake(40, 155, 220, 200)];
+    UILabel *extend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 20, 200)];
+    [self.view addSubview:extend];
+    [self.view addSubview:self.mainText];
+    self.mainText.tag = 106;
     [self.setTextDelegate setMainText:self.mainText];
     self.mainText.delegate = self;
     

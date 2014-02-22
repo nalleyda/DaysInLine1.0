@@ -650,13 +650,17 @@ int collectNum;
     comps = [calendar components:unitFlags fromDate:now];
     
    int hour = [comps hour];
-    
+
     startTime = [NSString stringWithFormat:@"%02d:00",hour];
-    endTime = [NSString stringWithFormat:@"%02d:00",hour];
+    endTime = [NSString stringWithFormat:@"%02d:45",hour];
+    
+    self.textInMain = @"点击输入......";
     
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
         my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
 
+      my_editingViewController.setTextDelegate = self;
+    
     NSLog(@"type is:%@",my_editingViewController.eventType);
     if(self.my_dayline.hidden == NO){
         my_editingViewController.drawBtnDelegate = self.my_dayline.my_scoller;
