@@ -2061,13 +2061,13 @@ bool haveSaved;
     NSLog(@"-->info:%@",info);
     CGRect keyboardFrame;
     [[info objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     NSValue *animationDurValue = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
     NSTimeInterval animationDuration;
     //    copy value
     [animationDurValue getValue:&animationDuration];
     
-    
+    // self.mainText.frame = CGRectMake(self.mainText.frame.origin.x, self.mainText.frame.origin.y, self.mainText.frame.size.width/2, self.mainText.frame.size.height/2);
     
     //    让键盘弹起的时候添加一个动画
     [UIView beginAnimations:@"animal" context:nil];

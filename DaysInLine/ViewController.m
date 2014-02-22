@@ -1078,6 +1078,17 @@ int collectNum;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     formatter.dateFormat = @"yyyy-MM-dd";
     
+    if ([self.my_analyse.dateStart.date compare: self.my_analyse.dateEnd.date] ==NSOrderedDescending) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出错啦！"
+                                                        message:@"统计起始日期大于终止日期"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        
+        [ alert  show];
+        return;
+    }
+    
     NSString *start = [formatter stringFromDate:self.my_analyse.dateStart.date];
     NSString *end = [formatter stringFromDate:self.my_analyse.dateEnd.date];
     //时区偏移
