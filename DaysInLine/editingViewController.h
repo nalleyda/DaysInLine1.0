@@ -48,6 +48,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *okInTag;
 @property (weak, nonatomic) IBOutlet UIButton *cancelInTag;
 
+@property (weak, nonatomic) IBOutlet UIButton *exitButton;//虚拟键盘回收键
+
 @property (weak, nonatomic) IBOutlet UIButton *addAchieveButton;
 @property (weak, nonatomic) IBOutlet UIButton *addCollectionButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;

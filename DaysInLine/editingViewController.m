@@ -171,7 +171,22 @@ bool haveSaved;
     [self.view addGestureRecognizer:tap];
     
     
+    //为虚拟键盘添加收回按钮
+    self.exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.exitButton setImage:[UIImage imageNamed:@"returnInAlert.png"] forState:UIControlStateNormal];
+    CGRect exitBtFrame = CGRectMake(self.view.frame.size.width-48, self.view.frame.size.height , 48.0f, 30.0f);
+    
+    [self.exitButton setFrame:exitBtFrame];
+    
+    
+    [self.view addSubview:self.exitButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardDidShow:) name:UIKeyboardWillShowNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
+    
+      NSLog(@"mainText frame1:%.2f",self.mainText.frame.size.height);
 }
 
 -(void)addTagTapped
@@ -2006,7 +2021,18 @@ bool haveSaved;
     }
     textView.textColor = [UIColor blackColor]; //optional
 
+    
+    NSLog(@"mainText frame3:%.2f",textView.frame.size.height);
+   // self.mainText.contentInset=UIEdgeInsetsMake(0, 0,kbSize.height, 0);
+
+    
+    textView.frame=CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, (textView.frame.size.height-10)/2);
+    
+    NSLog(@"mainText frame4:%.2f",textView.frame.size.height);
+    
     [textView becomeFirstResponder];
+    
+     NSLog(@"mainText frame5:%.2f",textView.frame.size.height);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
@@ -2015,9 +2041,100 @@ bool haveSaved;
         textView.text = @"点击输入......";
         textView.textColor = [UIColor lightGrayColor]; //optional
     }
+    
+          NSLog(@"mainText frame3:%.2f",textView.frame.size.height);
+    
+    [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, (textView.frame.size.height*2)+10)];
+    
+      NSLog(@"mainText frame4:%.2f",textView.frame.size.height);
+    
     [textView resignFirstResponder];
 }
 
+- (void)handleKeyboardDidShow:(NSNotification *)notification
+{
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    
+    
+    
+    NSDictionary *info = [notification userInfo];
+    NSLog(@"-->info:%@",info);
+    CGRect keyboardFrame;
+    [[info objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey]CGRectValue].size;
+    NSValue *animationDurValue = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    //    copy value
+    [animationDurValue getValue:&animationDuration];
+    
+    
+    
+    //    让键盘弹起的时候添加一个动画
+    [UIView beginAnimations:@"animal" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    CGFloat distanceToMove = kbSize.height;
+    NSLog(@"---->动态键盘高度:%f",distanceToMove);
+    [self adjustPanelsWithKeyBordHeight:distanceToMove];
+    [UIView commitAnimations];
+    self.exitButton.hidden=NO;
+    [self.exitButton addTarget:self action:@selector(cancelBackKeyboard) forControlEvents:UIControlEventTouchDown];
+    
+
+ 
+    
+    
+}
+
+
+- (void)handleKeyboardWillHide:(NSNotification *)notification
+{
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+        NSLog(@"mainText frame2:%.2f",self.mainText.frame.size.height);
+    NSDictionary *info = [notification userInfo];
+    CGRect keyboardFrame;
+    [[info objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:&keyboardFrame];
+    NSValue *animationDurValue = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval animationDuration;
+    //   把animationDurvalue 值拷贝到animationDuration中
+    [animationDurValue getValue:&animationDuration];
+    
+    [UIView beginAnimations:@"animal" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    
+    if (self.exitButton) {
+        
+        CGRect exitBtFrame = CGRectMake(self.view.frame.size.width - 48, self.view.frame.size.height, 48.0f, 30.0f);
+        self.exitButton.frame = exitBtFrame;
+        [self.view addSubview:self.exitButton];
+        
+    }
+    [UIView commitAnimations];
+    
+}
+
+-(void)adjustPanelsWithKeyBordHeight:(float) height
+{
+    
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    if (self.exitButton) {
+        
+        CGRect exitBtFrame = CGRectMake(self.view.frame.size.width - 48, self.view.frame.size.height - height-30, 48.0f, 30.0f);
+        self.exitButton.frame = exitBtFrame;
+        
+        [self.view addSubview:self.exitButton];
+        
+        
+    }
+    
+}
+
+-(void)cancelBackKeyboard
+{
+    [self.mainText resignFirstResponder];
+    [self.theme resignFirstResponder];
+}
 
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
