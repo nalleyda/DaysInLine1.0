@@ -94,8 +94,22 @@ SystemSoundID soundObject;
     
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
-    self.mainText = [[UITextView alloc] initWithFrame:CGRectMake(40, 155, 220, 200)];
-    UILabel *extend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 20, 200)];
+    
+    int mainText_Height = 180;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        //NSLog(@"ios7!!!!");
+        mainText_Height += 20;
+    }
+    
+    /* fit for 4-inch screen */
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        mainText_Height += 80;
+    }
+
+    
+    self.mainText = [[UITextView alloc] initWithFrame:CGRectMake(40, 155, 220, mainText_Height)];
+    UILabel *extend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 20, mainText_Height)];
     [self.view addSubview:extend];
     [self.view addSubview:self.mainText];
     self.mainText.tag = 106;
@@ -177,9 +191,25 @@ SystemSoundID soundObject;
     
     
     //为虚拟键盘添加收回按钮
+
+    
+    int y = self.view.frame.size.height ;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        //NSLog(@"ios7!!!!");
+        y += 20;
+    }
+    
+    /* fit for 4-inch screen */
+   // CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        y += 80;
+    }
+    
+    
     self.exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.exitButton setImage:[UIImage imageNamed:@"returnInAlert.png"] forState:UIControlStateNormal];
-    CGRect exitBtFrame = CGRectMake(self.view.frame.size.width-48, self.view.frame.size.height , 48.0f, 30.0f);
+    CGRect exitBtFrame = CGRectMake(self.view.frame.size.width-48, y, 48.0f, 30.0f);
     
     [self.exitButton setFrame:exitBtFrame];
     
@@ -2141,7 +2171,19 @@ SystemSoundID soundObject;
    // self.mainText.contentInset=UIEdgeInsetsMake(0, 0,kbSize.height, 0);
 
     
-    textView.frame=CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, (textView.frame.size.height-10)/2);
+    int mainText_Height = 180;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        //NSLog(@"ios7!!!!");
+        mainText_Height += 20;
+    }
+    
+    /* fit for 4-inch screen */
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        mainText_Height += 80;
+    }
+    
+    textView.frame=CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, (mainText_Height-100));
     
     NSLog(@"mainText frame4:%.2f",textView.frame.size.height);
     
@@ -2159,7 +2201,20 @@ SystemSoundID soundObject;
     
           NSLog(@"mainText frame3:%.2f",textView.frame.size.height);
     
-    [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, (textView.frame.size.height*2)+10)];
+    int mainText_Height = 180;
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        //NSLog(@"ios7!!!!");
+        mainText_Height += 20;
+    }
+    
+    /* fit for 4-inch screen */
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        mainText_Height += 80;
+    }
+    
+    
+    [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, mainText_Height)];
     
       NSLog(@"mainText frame4:%.2f",textView.frame.size.height);
     
