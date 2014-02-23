@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		0B00AC54187D849400427F35 /* collectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B00AC53187D849400427F35 /* collectCell.xib */; };
+		0B25F88618B9E9E00025B0CB /* cancelSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88218B9E9E00025B0CB /* cancelSound.wav */; };
+		0B25F88718B9E9E00025B0CB /* editSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88318B9E9E00025B0CB /* editSound.wav */; };
+		0B25F88818B9E9E00025B0CB /* mainSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88418B9E9E00025B0CB /* mainSound.wav */; };
+		0B25F88918B9E9E00025B0CB /* okSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88518B9E9E00025B0CB /* okSound.wav */; };
+		0B25F88B18B9EC520025B0CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B25F88A18B9EC520025B0CB /* AVFoundation.framework */; };
+		0B25F88D18B9EE130025B0CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */; };
+		0B25F88F18B9F0E90025B0CB /* goEdit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88E18B9F0E90025B0CB /* goEdit.mp3 */; };
 		0B2B2F7918B3A49D00B7EA83 /* 照片背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */; };
 		0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
@@ -47,7 +54,6 @@
 		0B9597F218AD211B002923AF /* OkButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597ED18AD211B002923AF /* OkButton.png */; };
 		0B9597F318AD211B002923AF /* cancelButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9597EE18AD211B002923AF /* cancelButton.png */; };
 		0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B96F9E918A3CD4600E625AA /* Main1.storyboard */; };
-		0B9A53CF1812274D0085FFD7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53CE1812274D0085FFD7 /* Foundation.framework */; };
 		0B9A53D11812274D0085FFD7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53D01812274D0085FFD7 /* CoreGraphics.framework */; };
 		0B9A53D31812274D0085FFD7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53D21812274D0085FFD7 /* UIKit.framework */; };
 		0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B9A53D71812274D0085FFD7 /* InfoPlist.strings */; };
@@ -121,6 +127,13 @@
 /* Begin PBXFileReference section */
 		0B00AC53187D849400427F35 /* collectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = collectCell.xib; sourceTree = "<group>"; };
 		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
+		0B25F88218B9E9E00025B0CB /* cancelSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cancelSound.wav; sourceTree = "<group>"; };
+		0B25F88318B9E9E00025B0CB /* editSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = editSound.wav; sourceTree = "<group>"; };
+		0B25F88418B9E9E00025B0CB /* mainSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mainSound.wav; sourceTree = "<group>"; };
+		0B25F88518B9E9E00025B0CB /* okSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = okSound.wav; sourceTree = "<group>"; };
+		0B25F88A18B9EC520025B0CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		0B25F88E18B9F0E90025B0CB /* goEdit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = goEdit.mp3; sourceTree = "<group>"; };
 		0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照片背景.png"; sourceTree = "<group>"; };
 		0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景.png"; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
@@ -251,10 +264,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B25F88D18B9EE130025B0CB /* AudioToolbox.framework in Frameworks */,
+				0B25F88B18B9EC520025B0CB /* AVFoundation.framework in Frameworks */,
 				0B928730183A300400AB69BB /* libsqlite3.dylib in Frameworks */,
 				0B9A53D11812274D0085FFD7 /* CoreGraphics.framework in Frameworks */,
 				0B9A53D31812274D0085FFD7 /* UIKit.framework in Frameworks */,
-				0B9A53CF1812274D0085FFD7 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +353,11 @@
 				0B92BE2F18B0C4F3003AE50C /* cancelInAlert.png */,
 				0B92BE3018B0C4F3003AE50C /* addInAlert.png */,
 				0B92BE3118B0C4F3003AE50C /* deleteInAlert.png */,
+				0B25F88E18B9F0E90025B0CB /* goEdit.mp3 */,
+				0B25F88218B9E9E00025B0CB /* cancelSound.wav */,
+				0B25F88318B9E9E00025B0CB /* editSound.wav */,
+				0B25F88418B9E9E00025B0CB /* mainSound.wav */,
+				0B25F88518B9E9E00025B0CB /* okSound.wav */,
 			);
 			name = parts;
 			sourceTree = "<group>";
@@ -366,6 +385,8 @@
 		0B9A53CD1812274D0085FFD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */,
+				0B25F88A18B9EC520025B0CB /* AVFoundation.framework */,
 				0B92872F183A300400AB69BB /* libsqlite3.dylib */,
 				0B9A53CE1812274D0085FFD7 /* Foundation.framework */,
 				0B9A53D01812274D0085FFD7 /* CoreGraphics.framework */,
@@ -575,8 +596,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B9A5406181230990085FFD7 /* Default.png in Resources */,
+				0B25F88918B9E9E00025B0CB /* okSound.wav in Resources */,
 				0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */,
 				0B92BE2318B0ADF0003AE50C /* 日期角标.png in Resources */,
+				0B25F88F18B9F0E90025B0CB /* goEdit.mp3 in Resources */,
+				0B25F88818B9E9E00025B0CB /* mainSound.wav in Resources */,
 				0BA61BD218A25108000B7163 /* star1.png in Resources */,
 				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
 				0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */,
@@ -602,6 +626,7 @@
 				0BB08A8218A9F41D00DE111E /* saveBtn2.png in Resources */,
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
+				0B25F88718B9E9E00025B0CB /* editSound.wav in Resources */,
 				0BBED40A18A68AFA00B47E53 /* cell1-1.png in Resources */,
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
 				0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */,
@@ -630,6 +655,7 @@
 				0BA61BDC18A27715000B7163 /* 按键4.png in Resources */,
 				0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */,
 				0B92BE3B18B0C75D003AE50C /* 299x62按键.png in Resources */,
+				0B25F88618B9E9E00025B0CB /* cancelSound.wav in Resources */,
 				0B92BE3918B0C4F3003AE50C /* deleteInAlert.png in Resources */,
 				0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,

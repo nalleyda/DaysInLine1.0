@@ -61,6 +61,8 @@
 
 @implementation ViewController
 
+
+SystemSoundID soundFileObject;
 bool todayRedrawDone;
 
 bool selectedDayRedrawDone;
@@ -274,12 +276,14 @@ int collectNum;
     sqlite3_close(dataBase);
     
     
-
+    CFBundleRef mainbundle=CFBundleGetMainBundle();
+   // SystemSoundID soundFileObject;
+    //获得声音文件URL
+    CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("editSound"),CFSTR("wav"),NULL);
+    //创建system sound 对象
+    AudioServicesCreateSystemSoundID(soundfileurl, &soundFileObject);
     
-    
-    CGRect rect=[[UIScreen mainScreen] bounds];
-    NSLog(@"x:%f,y:%f\nwidth%f,height%f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
-    
+  
 
        
 }
@@ -291,6 +295,18 @@ int collectNum;
 
 -(void)todayTapped
 {
+    //play sound
+    
+    
+
+    //播放
+    if (soundSwitch) {
+        
+    
+    AudioServicesPlaySystemSound(soundFileObject);
+    }
+
+    
     for (int i=0; i<96; i++) {
         workArea[i] = 0;
         lifeArea[i] = 0;
@@ -638,6 +654,18 @@ int collectNum;
 
 -(void)eventTapped:(UIButton *)sender
 {
+    
+    //播放
+    if (soundSwitch) {
+        
+    CFBundleRef mainbundle=CFBundleGetMainBundle();
+     SystemSoundID soundObject;
+    //获得声音文件URL
+    CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+    //创建system sound 对象
+    AudioServicesCreateSystemSoundID(soundfileurl, &soundObject);
+    AudioServicesPlaySystemSound(soundObject);
+    }
     NSString *startTime;
     NSString *endTime;
     
@@ -685,6 +713,12 @@ int collectNum;
 
 -(void)selectTapped
 {
+    
+    if (soundSwitch) {
+        
+        
+        AudioServicesPlaySystemSound(soundFileObject);
+    }
     
     [self.my_selectDay setHidden:YES];
     [self.my_dayline setHidden:YES];
@@ -909,6 +943,14 @@ int collectNum;
 
 -(void)treasureTapped
 {
+    
+    //播放
+    if (soundSwitch) {
+        
+        
+        AudioServicesPlaySystemSound(soundFileObject);
+    }
+    
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
     sqlite3_stmt *stateQueryEvent;
@@ -1057,6 +1099,14 @@ int collectNum;
 
 -(void)analyseTapped
 {
+    
+    //播放
+    if (soundSwitch) {
+        
+        
+        AudioServicesPlaySystemSound(soundFileObject);
+    }
+    
     //UIDatePicker *remindDatePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-20, 30)] ;
     
     [self.my_dayline setHidden:YES];

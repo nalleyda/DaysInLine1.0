@@ -24,6 +24,7 @@ NSString *oldRemindDate;
 bool firstInmoney;
 bool moveON;
 bool haveSaved;
+SystemSoundID soundObject;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -190,11 +191,26 @@ bool haveSaved;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 
     
-      NSLog(@"mainText frame1:%.2f",self.mainText.frame.size.height);
+      
+    
+    CFBundleRef mainbundle=CFBundleGetMainBundle();
+
+    //获得声音文件URL
+    CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("editSound"),CFSTR("wav"),NULL);
+    //创建system sound 对象
+    AudioServicesCreateSystemSoundID(soundfileurl, &soundObject);
+ 
+
+    
 }
 
 -(void)addTagTapped
 {
+    if (soundSwitch) {
+           AudioServicesPlaySystemSound(soundObject);
+    }
+    
+    
     selected = [[NSMutableArray alloc] init];
    
     [self dismissKeyboard];
@@ -344,6 +360,10 @@ bool haveSaved;
 
 -(void)remindTapped
 {
+    if (soundSwitch) {
+        AudioServicesPlaySystemSound(soundObject);
+    }
+    
     remindViewController *my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController" bundle:nil];
     my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
@@ -399,6 +419,10 @@ bool haveSaved;
 
 -(void) photoTapped
 {
+    if (soundSwitch) {
+        AudioServicesPlaySystemSound(soundObject);
+    }
+    
     UIActionSheet *sheet;
     
     if (((UIButton *)self.imageViewButton[4]).imageView.image ) {
@@ -556,6 +580,73 @@ bool haveSaved;
 -(void)removeButtonTapped:(UIButton *)sender
 {
     //NSLog(@"移除图片");
+    [self.checkAlert close];
+   
+      NSLog(@"1num:%d,content:%@",self.imageViewButton.count,self.imageViewButton[0]);
+    
+   
+    NSMutableArray *imageNames = [NSMutableArray arrayWithArray:[self.imageName componentsSeparatedByString:@";"]];
+    
+     self.imageName =@"";
+    
+   
+    NSLog(@"imaggeNames:%@",imageNames);
+
+    UIButton *toBeRemoved = self.imageViewButton[sender.tag-IMAGEVIEW_TAG_BASE];
+    [self.imageViewButton removeObjectAtIndex:(sender.tag-IMAGEVIEW_TAG_BASE) ];
+    [toBeRemoved removeFromSuperview];
+    
+    
+    int y = 350;
+    int width = 50;
+    int height = 50;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        //NSLog(@"ios7!!!!");
+        y += 20;
+    }
+    
+    /* fit for 4-inch screen */
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        y += 80;
+    }
+    
+
+    
+    NSLog(@"2num:%d,content:%@",self.imageViewButton.count,self.imageViewButton[0]);
+    
+    for (int j = sender.tag-IMAGEVIEW_TAG_BASE; j<NR_IMAGEVIEW-1; j++) {
+        int x = 15+60*j;
+        
+        UIButton *moveButton = self.imageViewButton[j];
+        
+        [moveButton setFrame:CGRectMake(x, y, width, height)];
+        [self.imageViewButton[j] setTag:IMAGEVIEW_TAG_BASE+j];
+        
+    }
+        NSLog(@"3num:%d,content:%@",self.imageViewButton.count,self.imageViewButton[0]);
+    
+        self.imageViewButton[4] = [[UIButton alloc] initWithFrame:CGRectMake(15+60*4, y, width, height)];
+        
+        [[self.imageViewButton objectAtIndex:4] setTag:IMAGEVIEW_TAG_BASE+4];
+        [self.view addSubview:self.imageViewButton[4]];
+    NSLog(@"4num:%d,content:%@",self.imageViewButton.count,self.imageViewButton[0]);
+
+
+    [imageNames removeObjectAtIndex:(sender.tag-IMAGEVIEW_TAG_BASE)];
+    if (imageNames.count > 0 ) {
+        self.imageName = imageNames[0];
+        for (int k = 1; k<imageNames.count; k++) {
+            self.imageName = [NSString stringWithFormat:@"%@;%@", self.imageName, imageNames[k]];
+
+        }
+    }
+    
+
+    
+    
+    
     
 }
 
@@ -568,6 +659,10 @@ bool haveSaved;
 
 -(void)moneyTapped
 {
+    if (soundSwitch) {
+        AudioServicesPlaySystemSound(soundObject);
+    }
+    
     NSNumber *income_mdfy;
     NSNumber *expend_mdfy;
     
@@ -697,6 +792,8 @@ bool haveSaved;
 
 -(void)addCollectTapped
 {
+    
+    
     //先判断当前事件是否已经保存过，如果时新增事件，先保存再加入收藏夹。
     int eventIdNow=-1;
     
@@ -836,6 +933,12 @@ bool haveSaved;
                 }
                 else{
                     //NSLog(@"the old start is :%d",[oldStartNum intValue]);
+                    
+                    NSLog(@"text!!!!:%@",self.theme.text);
+                    if (!self.theme.text||[self.theme.text isEqualToString:@""]) {
+                        self.theme.text = @"无主题";
+                    }
+                    
                     [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
                     if ([self.eventType intValue]==0) {
                         for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
@@ -1201,6 +1304,10 @@ bool haveSaved;
             }
             else{
 
+                NSLog(@"text!!!!:%@",self.theme.text);
+                if (!self.theme.text||[self.theme.text isEqualToString:@""]) {
+                    self.theme.text = @"无主题";
+                }
                 
                 
                 //NSLog(@"the old start is :%d",[oldStartNum intValue]);
@@ -1529,6 +1636,10 @@ bool haveSaved;
 
 -(void)returnTapped
 {
+    if (soundSwitch) {
+        AudioServicesPlaySystemSound(soundObject);
+    }
+    
     if (haveSaved) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

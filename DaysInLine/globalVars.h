@@ -17,6 +17,8 @@ NSString *modifyDate;
 int modifying;
 int modifyEventId;
 
+BOOL soundSwitch;
+
 #define NR_IMAGEVIEW 5
 #define IMAGEVIEW_TAG_BASE 200
 //#define IMAGEBUTTON_TAG_BASE 300
