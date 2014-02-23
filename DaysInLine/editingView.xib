@@ -10,7 +10,7 @@
                 <outlet property="addCollectionButton" destination="NNr-Va-2MU" id="j7A-Di-qFv"/>
                 <outlet property="addTagButton" destination="0WL-AF-KdO" id="Txc-OR-WdI"/>
                 <outlet property="deleteButton" destination="PTi-KT-iw5" id="vCh-e2-dra"/>
-                <outlet property="endTimeButton" destination="4ua-p1-azQ" id="2ZB-JT-rMq"/>
+                <outlet property="endTimeButton" destination="KEE-i0-aAA" id="tU9-GJ-u26"/>
                 <outlet property="moneyButton" destination="ak2-GO-nui" id="U2x-QY-Kjo"/>
                 <outlet property="photoButton" destination="uUl-Hg-KmG" id="t57-wG-p8d"/>
                 <outlet property="remindButton" destination="9ST-zX-g5s" id="njA-7x-4Hd"/>
@@ -125,7 +125,7 @@
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ua-p1-azQ">
+                <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEE-i0-aAA">
                     <rect key="frame" x="180" y="71" width="120" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal">
@@ -171,7 +171,6 @@
             <constraints>
                 <constraint firstItem="ak2-GO-nui" firstAttribute="leading" secondItem="uUl-Hg-KmG" secondAttribute="trailing" constant="26" id="1Mg-vP-dB9"/>
                 <constraint firstItem="9ST-zX-g5s" firstAttribute="bottom" secondItem="0WL-AF-KdO" secondAttribute="bottom" id="2Pf-Tc-4jO"/>
-                <constraint firstAttribute="trailing" secondItem="4ua-p1-azQ" secondAttribute="trailing" constant="20" symbolic="YES" id="3QC-45-qWV"/>
                 <constraint firstItem="cG5-Ig-cVN" firstAttribute="leading" secondItem="HXi-cd-CSi" secondAttribute="trailing" constant="30" id="550-qK-geJ"/>
                 <constraint firstAttribute="trailing" secondItem="adU-64-2xG" secondAttribute="trailing" constant="-3" id="5Qt-Dj-Kx0"/>
                 <constraint firstItem="lJu-sb-EtN" firstAttribute="top" secondItem="HXi-cd-CSi" secondAttribute="top" id="5pS-YM-nQt"/>
@@ -181,7 +180,6 @@
                 <constraint firstItem="0WL-AF-KdO" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="20" symbolic="YES" id="7pf-Nv-5uM"/>
                 <constraint firstAttribute="trailing" secondItem="ak2-GO-nui" secondAttribute="trailing" constant="47" id="9rl-I4-UDk"/>
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="HXi-cd-CSi" secondAttribute="bottom" constant="11" id="BFD-pH-Zht"/>
-                <constraint firstItem="d6A-NF-qtA" firstAttribute="top" secondItem="4ua-p1-azQ" secondAttribute="top" id="BY3-Dg-Zre"/>
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="top" secondItem="9ST-zX-g5s" secondAttribute="top" id="BbL-XD-iT8"/>
                 <constraint firstItem="d6A-NF-qtA" firstAttribute="top" secondItem="0WL-AF-KdO" secondAttribute="bottom" constant="14" id="CJ6-Ft-2qQ"/>
                 <constraint firstItem="tpe-fm-0n4" firstAttribute="top" secondItem="NNr-Va-2MU" secondAttribute="top" id="Ckq-nT-2k7"/>
@@ -189,9 +187,7 @@
                 <constraint firstItem="ksZ-1h-47g" firstAttribute="trailing" secondItem="ak2-GO-nui" secondAttribute="trailing" id="Ekk-FR-yAv"/>
                 <constraint firstItem="zxP-Np-Ufk" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" constant="43" id="GDj-yC-rpq"/>
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="leading" secondItem="zxP-Np-Ufk" secondAttribute="trailing" constant="11" id="Gr5-XH-QaP"/>
-                <constraint firstItem="4ua-p1-azQ" firstAttribute="leading" secondItem="cG5-Ig-cVN" secondAttribute="trailing" constant="13" id="HoF-xe-4bz"/>
                 <constraint firstItem="9ST-zX-g5s" firstAttribute="trailing" secondItem="NNr-Va-2MU" secondAttribute="trailing" id="MLq-Wx-I8z"/>
-                <constraint firstItem="d6A-NF-qtA" firstAttribute="baseline" secondItem="4ua-p1-azQ" secondAttribute="baseline" id="NqA-HF-bUP"/>
                 <constraint firstItem="PTi-KT-iw5" firstAttribute="top" secondItem="NNr-Va-2MU" secondAttribute="top" id="Ogf-Ap-NTp"/>
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="bottom" secondItem="ak2-GO-nui" secondAttribute="bottom" id="Snw-3y-aFv"/>
                 <constraint firstItem="9ST-zX-g5s" firstAttribute="leading" secondItem="0WL-AF-KdO" secondAttribute="trailing" constant="26" id="UCM-Tv-VGg"/>
@@ -233,7 +229,6 @@
         <image name="deleteBtn2.png" width="74" height="74"/>
         <image name="editView.png" width="640" height="960"/>
         <image name="moneyBtn.png" width="74" height="74"/>
-        <image name="moneyBtn2.png" width="74" height="74"/>
         <image name="moneyBtn2.png" width="74" height="74"/>
         <image name="photoBtn.png" width="74" height="74"/>
         <image name="photoBtn2.png" width="74" height="74"/>

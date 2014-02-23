@@ -15,6 +15,7 @@
 		0B25F88B18B9EC520025B0CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B25F88A18B9EC520025B0CB /* AVFoundation.framework */; };
 		0B25F88D18B9EE130025B0CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */; };
 		0B25F88F18B9F0E90025B0CB /* goEdit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88E18B9F0E90025B0CB /* goEdit.mp3 */; };
+		0B25F89218BA3ACD0025B0CB /* settingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B25F89118BA3ACD0025B0CB /* settingView.m */; };
 		0B2B2F7918B3A49D00B7EA83 /* 照片背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */; };
 		0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
@@ -134,6 +135,8 @@
 		0B25F88A18B9EC520025B0CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0B25F88E18B9F0E90025B0CB /* goEdit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = goEdit.mp3; sourceTree = "<group>"; };
+		0B25F89018BA3ACD0025B0CB /* settingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = settingView.h; sourceTree = "<group>"; };
+		0B25F89118BA3ACD0025B0CB /* settingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = settingView.m; sourceTree = "<group>"; };
 		0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "照片背景.png"; sourceTree = "<group>"; };
 		0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景.png"; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
@@ -492,6 +495,8 @@
 				0B9B36491895467600E9151A /* statisticView.m */,
 				0B93EC4818ABA5ED00F871C4 /* customButton.h */,
 				0B93EC4918ABA5EE00F871C4 /* customButton.m */,
+				0B25F89018BA3ACD0025B0CB /* settingView.h */,
+				0B25F89118BA3ACD0025B0CB /* settingView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -700,6 +705,7 @@
 				0BD700861813ABFB004FCBE2 /* homeView.m in Sources */,
 				0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */,
 				0B9A53DF1812274D0085FFD7 /* AppDelegate.m in Sources */,
+				0B25F89218BA3ACD0025B0CB /* settingView.m in Sources */,
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
 				0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */,
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,

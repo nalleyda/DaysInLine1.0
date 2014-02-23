@@ -16,6 +16,7 @@
 #import "collectionView.h"
 #import "statisticView.h"
 #import "statisticViewController.h"
+#import "settingView.h"
 #import "globalVars.h"
 
 
@@ -30,6 +31,7 @@
 @property (nonatomic,strong) selectView *my_select ;
 @property (nonatomic,strong) collectionView *my_collect;
 @property (nonatomic,strong) statisticView *my_analyse;
+@property (nonatomic,strong) settingView *my_setting;
 @property (nonatomic,strong) NSString *today;
 @property (nonatomic,strong) NSString *lastToday;
 @property (nonatomic,strong) NSMutableArray *allTags;
@@ -111,6 +113,7 @@ int collectNum;
     [my_homeView.selectButton addTarget:self action:@selector(selectTapped) forControlEvents:UIControlEventTouchUpInside];
     [my_homeView.treasureButton addTarget:self action:@selector(treasureTapped) forControlEvents:UIControlEventTouchUpInside];
     [my_homeView.analyseButton addTarget:self action:@selector(analyseTapped) forControlEvents:UIControlEventTouchUpInside];
+    [my_homeView.exitButton addTarget:self action:@selector(settingTapped) forControlEvents:UIControlEventTouchUpInside];
 
     
     
@@ -126,6 +129,7 @@ int collectNum;
         self.my_collect = [[collectionView alloc] initWithFrame:frame7];
         self.my_analyse = [[statisticView alloc] initWithFrame:frame7];
         self.my_selectDay = [[daylineView alloc] initWithFrame:frame7];
+      // self.my_setting = [[settingView alloc] initWithFrame:frame7];
 
         NSLog(@"ios7!!!!");
     }else{
@@ -140,6 +144,7 @@ int collectNum;
         self.my_collect = [[collectionView alloc] initWithFrame:frame];
         self.my_analyse = [[statisticView alloc] initWithFrame:frame];
         self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
+       // self.my_setting = [[settingView alloc] initWithFrame:frame];
     }
     
 
@@ -329,6 +334,7 @@ int collectNum;
         [self.my_selectDay setHidden:YES];
         [self.my_collect setHidden:YES];
         [self.my_analyse setHidden:YES];
+        [self.my_setting setHidden:YES];
         
         if (self.my_dayline.hidden) {
             [self.my_dayline setHidden:NO];
@@ -342,6 +348,7 @@ int collectNum;
             [self.my_selectDay setHidden:YES];
             [self.my_collect setHidden:YES];
             [self.my_analyse setHidden:YES];
+            [self.my_setting setHidden:YES];
             
             if (self.my_dayline.hidden) {
                 [self.my_dayline setHidden:NO];
@@ -373,6 +380,7 @@ int collectNum;
             [self.my_selectDay setHidden:YES];
             [self.my_collect setHidden:YES];
             [self.my_analyse setHidden:YES];
+            [self.my_setting setHidden:YES];
             
             if (self.my_dayline.hidden) {
                 [self.my_dayline setHidden:NO];
@@ -724,6 +732,7 @@ int collectNum;
     [self.my_dayline setHidden:YES];
     [self.my_collect setHidden:YES];
     [self.my_analyse setHidden:YES];
+    [self.my_setting setHidden:YES];
     
     if (self.my_select.hidden) {
                // [self.my_select.alltagTable reloadData];
@@ -968,6 +977,7 @@ int collectNum;
     [self.my_dayline setHidden:YES];
     [self.my_selectDay setHidden:YES];
     [self.my_analyse setHidden:YES];
+    [self.my_setting setHidden:YES];
   
     
     [self.collectEvent removeAllObjects];
@@ -1113,6 +1123,7 @@ int collectNum;
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
     [self.my_collect setHidden:YES];
+    [self.my_setting setHidden:YES];
     
     [self.my_analyse.resultButton addTarget:self action:@selector(analyseResultButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
@@ -1159,6 +1170,49 @@ int collectNum;
     [self presentViewController:my_statisticViewController animated:YES completion:Nil ];
     
 
+}
+
+
+-(void)settingTapped
+{
+    
+    
+    [self.my_dayline setHidden:YES];
+    [self.my_select setHidden:YES];
+    [self.my_selectDay setHidden:YES];
+    [self.my_collect setHidden:YES];
+    [self.my_analyse setHidden:YES];
+    
+    if (self.my_setting) {
+        [self.my_setting removeFromSuperview];
+    }
+    
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        
+        CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
+        
+        NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
+        
+        self.my_setting = [[settingView alloc] initWithFrame:frame7];
+        
+        NSLog(@"ios7!!!!");
+    }else{
+        
+        CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+        
+        NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
+    
+        self.my_setting = [[settingView alloc] initWithFrame:frame];
+    }
+    
+    
+    
+
+    self.my_setting.settingTable.delegate = self;
+    self.my_setting.settingTable.dataSource = self;
+
+    [self.homePage addSubview:self.my_setting];
 }
 
 
