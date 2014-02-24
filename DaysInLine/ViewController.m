@@ -751,6 +751,12 @@ int collectNum;
 
 -(void)returnToTagsTapped
 {
+    if (soundSwitch) {
+        
+        
+        AudioServicesPlaySystemSound(soundFileObject);
+    }
+    
     [self.my_select.alltagTable setHidden:NO];
     [self.my_select.eventInTagTable setHidden:YES];
     [self.my_select.returnToTags setHidden:YES];
@@ -760,11 +766,17 @@ int collectNum;
 -(void)goInThatDayTapped
 {
 
-    
-    
-    
-    
-    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_goInDay;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+        AudioServicesPlaySystemSound(soundObject_goInDay);
+    }
+
     
     
     
@@ -1138,6 +1150,17 @@ int collectNum;
 -(void)analyseResultButtonTapped
 {
     
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_goInDay;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+        AudioServicesPlaySystemSound(soundObject_goInDay);
+    }
+    
     
     //  NSTimeZone *zone = [NSTimeZone systemTimeZone];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
@@ -1176,6 +1199,12 @@ int collectNum;
 -(void)settingTapped
 {
     
+    if (soundSwitch) {
+        
+        
+        AudioServicesPlaySystemSound(soundFileObject);
+    }
+    
     
     [self.my_dayline setHidden:YES];
     [self.my_select setHidden:YES];
@@ -1211,10 +1240,20 @@ int collectNum;
 
     self.my_setting.settingTable.delegate = self;
     self.my_setting.settingTable.dataSource = self;
+    
+    [self.my_setting.soundSwitch setOn:soundSwitch animated:YES];
+    NSLog(@"soundSwitch:%hhd",soundSwitch);
+    [self.my_setting.soundSwitch addTarget:self action:@selector(soundSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+
 
     [self.homePage addSubview:self.my_setting];
 }
 
+- (void)soundSwitchChanged:(SevenSwitch *)sender {
+    NSLog(@"Changed value to: %@", sender.on ? @"ON" : @"OFF");
+    sender.on ? (soundSwitch = YES) : (soundSwitch = NO);
+    NSLog(@"now is:%hhd",soundSwitch);
+}
 
 -(void)seizeArea:(NSString *)date
 {
@@ -1296,7 +1335,19 @@ int collectNum;
     NSString *remind;
     NSString *photo;
     NSString *oldLabel;
-   // NSArray *tagToDraw = [[NSArray alloc] init];
+   
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_goInDay;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+        AudioServicesPlaySystemSound(soundObject_goInDay);
+    }
+    
  
     modifying = 1;
     
@@ -1776,6 +1827,17 @@ int collectNum;
             
             break;
         case 1:
+            
+            if (soundSwitch) {
+                
+                CFBundleRef mainbundle=CFBundleGetMainBundle();
+                SystemSoundID soundObject_goInDay;
+                //获得声音文件URL
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                //创建system sound 对象
+                AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+                AudioServicesPlaySystemSound(soundObject_goInDay);
+            }
   
             [self.EventsIDInTag removeAllObjects];
             [self.EventsInTag removeAllObjects];
@@ -1825,6 +1887,18 @@ int collectNum;
             break;
         case 2:
         {
+            
+            if (soundSwitch) {
+                
+                CFBundleRef mainbundle=CFBundleGetMainBundle();
+                SystemSoundID soundObject_goInDay;
+                //获得声音文件URL
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                //创建system sound 对象
+                AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+                AudioServicesPlaySystemSound(soundObject_goInDay);
+            }
+            
             modifying = 1;
             int eventid = [self.EventsIDInTag[row] intValue];
             
@@ -1991,6 +2065,18 @@ int collectNum;
             
         case 3:
         {
+            if (soundSwitch) {
+                
+                CFBundleRef mainbundle=CFBundleGetMainBundle();
+                SystemSoundID soundObject_goInDay;
+                //获得声音文件URL
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                //创建system sound 对象
+                AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+                AudioServicesPlaySystemSound(soundObject_goInDay);
+            }
+            
+            
             NSLog(@"colletcell tapped");
             
             modifying = 1;
@@ -2169,6 +2255,19 @@ int collectNum;
             break;
         case 4:
         {
+            
+            
+            if (soundSwitch) {
+                
+                CFBundleRef mainbundle=CFBundleGetMainBundle();
+                SystemSoundID soundObject_goInDay;
+                //获得声音文件URL
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                //创建system sound 对象
+                AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
+                AudioServicesPlaySystemSound(soundObject_goInDay);
+            }
+            
             modifying = 1;
             int eventid = [self.EventsIDInSearch[row] intValue];
             

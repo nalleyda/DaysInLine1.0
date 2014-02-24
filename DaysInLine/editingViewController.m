@@ -314,6 +314,19 @@ SystemSoundID soundObject;
 }
 -(void)addButtonTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_add;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("addSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_add);
+        AudioServicesPlaySystemSound(soundObject_add);
+    }
+
+    
+    
     UIAlertView* addSelection;
     
     addSelection = [[UIAlertView alloc]
@@ -331,6 +344,21 @@ SystemSoundID soundObject;
 }
 -(void)deleteButtonTapped
 {
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_delete;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("cancelSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_delete);
+        AudioServicesPlaySystemSound(soundObject_delete);
+    }
+
+    
+    
+    
     [self.tagTable setEditing:YES animated:YES];
     [self.addNewTagButton setHidden:YES];
     [self.deleteTagButton setHidden:YES];
@@ -342,6 +370,19 @@ SystemSoundID soundObject;
 
 -(void)okTagTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_ok;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("okSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_ok);
+        AudioServicesPlaySystemSound(soundObject_ok);
+    }
+    
+    
+    
     //[self.mainText setFrame:CGRectMake(55, 240, 200, 200)];
     //NSLog(@"width is :%.2f",self.mainText.frame.size.width);
     NSMutableString *choices = [[NSMutableString alloc] init];
@@ -374,11 +415,36 @@ SystemSoundID soundObject;
 }
 -(void)cancelTagTapped
 {
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_cancel;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("cancelSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_cancel);
+        AudioServicesPlaySystemSound(soundObject_cancel);
+    }
+    
+    
    [self.tagAlert close];
 }
 
 -(void)finishButtonTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_ok;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("okSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_ok);
+        AudioServicesPlaySystemSound(soundObject_ok);
+    }
+    
+    
     [self.tagTable setEditing:NO animated:YES];
     [self.addNewTagButton setHidden:NO];
     [self.deleteTagButton setHidden:NO];
@@ -537,6 +603,18 @@ SystemSoundID soundObject;
 
 -(void)pictureTapped:(UIButton *)sender
 {
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_photo;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_photo);
+        AudioServicesPlaySystemSound(soundObject_photo);
+    }
+    
 
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"photoView" owner:self options:nil];
     
@@ -585,6 +663,18 @@ SystemSoundID soundObject;
 
 -(void)checkButtonTapped:(UIButton *)sender
 {
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_InPhoto;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_InPhoto);
+        AudioServicesPlaySystemSound(soundObject_InPhoto);
+    }
+    
     //NSLog(@"查看图片");
     [self.checkAlert close];
     
@@ -609,6 +699,18 @@ SystemSoundID soundObject;
 
 -(void)removeButtonTapped:(UIButton *)sender
 {
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_photo;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("cancelSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_photo);
+        AudioServicesPlaySystemSound(soundObject_photo);
+    }
+    
     //NSLog(@"移除图片");
     [self.checkAlert close];
    
@@ -672,16 +774,23 @@ SystemSoundID soundObject;
 
         }
     }
-    
-
-    
-    
+ 
     
     
 }
 
 -(void)returnInPhotoCheck:(UIButton *)sender
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_cancel;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("cancelSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_cancel);
+        AudioServicesPlaySystemSound(soundObject_cancel);
+    }
   
     [self.checkAlert close];
     
@@ -779,6 +888,17 @@ SystemSoundID soundObject;
 //tag＝1的actionsheet
 -(void)startTimeTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_time;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_time);
+        AudioServicesPlaySystemSound(soundObject_time);
+    }
+    
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
     
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -802,6 +922,17 @@ SystemSoundID soundObject;
 //tag＝2的actionsheet
 -(void)endTimeTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_time;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_time);
+        AudioServicesPlaySystemSound(soundObject_time);
+    }
+    
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
     
 	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -823,6 +954,18 @@ SystemSoundID soundObject;
 -(void)addCollectTapped
 {
     
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_collect;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("okSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_collect);
+        AudioServicesPlaySystemSound(soundObject_collect);
+    }
+
     
     //先判断当前事件是否已经保存过，如果时新增事件，先保存再加入收藏夹。
     int eventIdNow=-1;
@@ -1155,6 +1298,18 @@ SystemSoundID soundObject;
 
 -(void)deleteTapped
 {
+    
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_dlt;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("cancelSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_dlt);
+        AudioServicesPlaySystemSound(soundObject_dlt);
+    }
+    
    
     //NSLog(@"delete！！！！！！！！");
     
@@ -1172,6 +1327,17 @@ SystemSoundID soundObject;
 
 -(void)saveTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_save;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("okSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_save);
+        AudioServicesPlaySystemSound(soundObject_save);
+    }
+    
     NSNumber *oldStartNum;
     //NSLog(@"<<<<<%@>>>>>3",self.remindData);
     
@@ -1585,67 +1751,81 @@ SystemSoundID soundObject;
     
     [self.reloadDelegate reloadTable];
     
-    
-    const char *dbpath = [databasePath UTF8String];
-
-    
-    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        sqlite3_stmt *findStatement;
-        sqlite3_stmt *dayStatement;
-        NSString *queryDay = [NSString stringWithFormat:@"SELECT DATE from DAYTABLE where DATE=\"%@\"",modifyDate];
-        const char *queryDayStatement = [queryDay UTF8String];
-        if (sqlite3_prepare_v2(dataBase, queryDayStatement, -1, &findStatement, NULL)==SQLITE_OK) {
-            
-            if(sqlite3_step(findStatement)==SQLITE_ROW)
-            {
-            }else {
-                NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
+    if (modifying == 0) {
+        
+        
+        const char *dbpath = [databasePath UTF8String];
+        
+        
+        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+            sqlite3_stmt *findStatement;
+            sqlite3_stmt *dayStatement;
+            NSString *queryDay = [NSString stringWithFormat:@"SELECT DATE from DAYTABLE where DATE=\"%@\"",modifyDate];
+            const char *queryDayStatement = [queryDay UTF8String];
+            if (sqlite3_prepare_v2(dataBase, queryDayStatement, -1, &findStatement, NULL)==SQLITE_OK) {
                 
-                //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
-                const char *insertsatement = [insertSql UTF8String];
-                sqlite3_prepare_v2(dataBase, insertsatement, -1, &dayStatement, NULL);
-                sqlite3_bind_text(dayStatement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
-                sqlite3_bind_int(dayStatement, 2, 0);
-                sqlite3_bind_int(dayStatement, 3, 0);
-                
-                
-                if (sqlite3_step(dayStatement)==SQLITE_DONE) {
-                    //NSLog(@"innsert today ok");
+                if(sqlite3_step(findStatement)==SQLITE_ROW)
+                {
+                }else {
+                    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE,mood,growth) VALUES(?,?,?)"];
                     
-                    NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
-                    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                    //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+                    const char *insertsatement = [insertSql UTF8String];
+                    sqlite3_prepare_v2(dataBase, insertsatement, -1, &dayStatement, NULL);
+                    sqlite3_bind_text(dayStatement, 1, [modifyDate UTF8String], -1, SQLITE_TRANSIENT);
+                    sqlite3_bind_int(dayStatement, 2, 0);
+                    sqlite3_bind_int(dayStatement, 3, 0);
                     
-                    NSDate *dateUnconvert = [dateFormatter dateFromString:modifyDate];
-                    [self.HasEvtDates addObject:dateUnconvert];
-                }
-                else {
-                    //NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                    
+                    if (sqlite3_step(dayStatement)==SQLITE_DONE) {
+                        //NSLog(@"innsert today ok");
+                        
+                        NSDateFormatter *dateFormatter= [[NSDateFormatter alloc] init];
+                        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                        
+                        NSDate *dateUnconvert = [dateFormatter dateFromString:modifyDate];
+                        [self.HasEvtDates addObject:dateUnconvert];
+                    }
+                    else {
+                        //NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                    }
+                    
+                    sqlite3_finalize(dayStatement);
+                    
                 }
                 
-                sqlite3_finalize(dayStatement);
+                
                 
             }
-
-
-           
+            
+            
+            sqlite3_finalize(findStatement);
+        }
+        else{
+            //NSLog(@"数据库打开失败");
+            
         }
         
-        
-        sqlite3_finalize(findStatement);
+        sqlite3_close(dataBase);
     }
-    else{
-        //NSLog(@"数据库打开失败");
-        
-    }
-    
-    sqlite3_close(dataBase);
-
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 
 -(void)okTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_ok;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("okSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_ok);
+        AudioServicesPlaySystemSound(soundObject_ok);
+    }
+    
+    
     UITextField * income = (UITextField *)[self.moneyAlert viewWithTag:501];
     UITextField * outcome = (UITextField *)[self.moneyAlert viewWithTag:502];
     NSString *incomeText = income.text;
@@ -1661,6 +1841,17 @@ SystemSoundID soundObject;
 
 -(void)cancelTapped
 {
+    if (soundSwitch) {
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_cancel;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("cancelSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_cancel);
+        AudioServicesPlaySystemSound(soundObject_cancel);
+    }
+    
     [self.moneyAlert close];
 }
 

@@ -10,7 +10,7 @@
 		0B00AC54187D849400427F35 /* collectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B00AC53187D849400427F35 /* collectCell.xib */; };
 		0B25F88618B9E9E00025B0CB /* cancelSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88218B9E9E00025B0CB /* cancelSound.wav */; };
 		0B25F88718B9E9E00025B0CB /* editSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88318B9E9E00025B0CB /* editSound.wav */; };
-		0B25F88818B9E9E00025B0CB /* mainSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88418B9E9E00025B0CB /* mainSound.wav */; };
+		0B25F88818B9E9E00025B0CB /* addSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88418B9E9E00025B0CB /* addSound.wav */; };
 		0B25F88918B9E9E00025B0CB /* okSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88518B9E9E00025B0CB /* okSound.wav */; };
 		0B25F88B18B9EC520025B0CB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B25F88A18B9EC520025B0CB /* AVFoundation.framework */; };
 		0B25F88D18B9EE130025B0CB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */; };
@@ -112,6 +112,11 @@
 		0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BE6C65318A7BC52007769D8 /* checkPhotoController.m */; };
 		0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */; };
 		0BF933F018A9092E00C6EA81 /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF933EF18A9092E00C6EA81 /* editView.png */; };
+		0BF9EF7718BB8A6D00F38370 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7318BB8A6D00F38370 /* check.png */; };
+		0BF9EF7818BB8A6D00F38370 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7418BB8A6D00F38370 /* check@2x.png */; };
+		0BF9EF7918BB8A6D00F38370 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7518BB8A6D00F38370 /* cross.png */; };
+		0BF9EF7A18BB8A6D00F38370 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7618BB8A6D00F38370 /* cross@2x.png */; };
+		0BF9EF7D18BB8A9400F38370 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */; };
 		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
 /* End PBXBuildFile section */
 
@@ -130,7 +135,7 @@
 		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
 		0B25F88218B9E9E00025B0CB /* cancelSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cancelSound.wav; sourceTree = "<group>"; };
 		0B25F88318B9E9E00025B0CB /* editSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = editSound.wav; sourceTree = "<group>"; };
-		0B25F88418B9E9E00025B0CB /* mainSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mainSound.wav; sourceTree = "<group>"; };
+		0B25F88418B9E9E00025B0CB /* addSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = addSound.wav; sourceTree = "<group>"; };
 		0B25F88518B9E9E00025B0CB /* okSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = okSound.wav; sourceTree = "<group>"; };
 		0B25F88A18B9EC520025B0CB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -258,6 +263,12 @@
 		0BE6C65318A7BC52007769D8 /* checkPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = checkPhotoController.m; sourceTree = "<group>"; };
 		0BE6C65418A7BC52007769D8 /* checkPhotoController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = checkPhotoController.xib; sourceTree = "<group>"; };
 		0BF933EF18A9092E00C6EA81 /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
+		0BF9EF7318BB8A6D00F38370 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		0BF9EF7418BB8A6D00F38370 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
+		0BF9EF7518BB8A6D00F38370 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		0BF9EF7618BB8A6D00F38370 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
+		0BF9EF7B18BB8A9400F38370 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
+		0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
 		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -359,8 +370,12 @@
 				0B25F88E18B9F0E90025B0CB /* goEdit.mp3 */,
 				0B25F88218B9E9E00025B0CB /* cancelSound.wav */,
 				0B25F88318B9E9E00025B0CB /* editSound.wav */,
-				0B25F88418B9E9E00025B0CB /* mainSound.wav */,
+				0B25F88418B9E9E00025B0CB /* addSound.wav */,
 				0B25F88518B9E9E00025B0CB /* okSound.wav */,
+				0BF9EF7318BB8A6D00F38370 /* check.png */,
+				0BF9EF7418BB8A6D00F38370 /* check@2x.png */,
+				0BF9EF7518BB8A6D00F38370 /* cross.png */,
+				0BF9EF7618BB8A6D00F38370 /* cross@2x.png */,
 			);
 			name = parts;
 			sourceTree = "<group>";
@@ -471,6 +486,8 @@
 			children = (
 				0B9009E41877EBE4008D3799 /* CKCalendarView.h */,
 				0B9009E51877EBE4008D3799 /* CKCalendarView.m */,
+				0BF9EF7B18BB8A9400F38370 /* SevenSwitch.h */,
+				0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */,
 				0BD700841813ABFB004FCBE2 /* homeView.h */,
 				0BD700851813ABFB004FCBE2 /* homeView.m */,
 				0BD700891813BC66004FCBE2 /* daylineView.h */,
@@ -605,15 +622,18 @@
 				0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */,
 				0B92BE2318B0ADF0003AE50C /* 日期角标.png in Resources */,
 				0B25F88F18B9F0E90025B0CB /* goEdit.mp3 in Resources */,
-				0B25F88818B9E9E00025B0CB /* mainSound.wav in Resources */,
+				0B25F88818B9E9E00025B0CB /* addSound.wav in Resources */,
 				0BA61BD218A25108000B7163 /* star1.png in Resources */,
 				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
 				0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */,
+				0BF9EF7918BB8A6D00F38370 /* cross.png in Resources */,
+				0BF9EF7A18BB8A6D00F38370 /* cross@2x.png in Resources */,
 				0BA61BDA18A27715000B7163 /* 按键2.png in Resources */,
 				0B9A53E71812274D0085FFD7 /* Images.xcassets in Resources */,
 				0BB08A7C18A9F41D00DE111E /* remindBtn2.png in Resources */,
 				0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */,
 				0BA61BDD18A27715000B7163 /* 按键5.png in Resources */,
+				0BF9EF7818BB8A6D00F38370 /* check@2x.png in Resources */,
 				0BB08A7518A9F41D00DE111E /* remindBtn.png in Resources */,
 				0B92BE2018B09E97003AE50C /* addBtn.png in Resources */,
 				0BE6C65118A778CA007769D8 /* photoView.xib in Resources */,
@@ -653,6 +673,7 @@
 				0B92BE3318B0C4F3003AE50C /* tagAlert.png in Resources */,
 				0BA61BED18A28876000B7163 /* 按键1-2.png in Resources */,
 				0BA61BE318A2808E000B7163 /* 按键2-2.png in Resources */,
+				0BF9EF7718BB8A6D00F38370 /* check.png in Resources */,
 				0BB08A7F18A9F41D00DE111E /* returnBtn2.png in Resources */,
 				0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */,
 				0BB08A7618A9F41D00DE111E /* collectionBtn.png in Resources */,
@@ -706,6 +727,7 @@
 				0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */,
 				0B9A53DF1812274D0085FFD7 /* AppDelegate.m in Sources */,
 				0B25F89218BA3ACD0025B0CB /* settingView.m in Sources */,
+				0BF9EF7D18BB8A9400F38370 /* SevenSwitch.m in Sources */,
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
 				0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */,
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SevenSwitch.h"
 
 @interface settingView : UIView
 
-@property (strong , nonatomic) UISwitch *soundSwitch ;
+@property (strong , nonatomic) SevenSwitch *soundSwitch ;
+@property (strong , nonatomic) SevenSwitch *icloudSwitch ;
+@property (strong , nonatomic) SevenSwitch *daySwitch ;
 @property (strong , nonatomic) UITableView *settingTable;
 @end
