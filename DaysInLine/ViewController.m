@@ -206,6 +206,7 @@ int collectNum;
     NSLog(@"路径：%@",databasePath);
     sqlite3_stmt *statement;
     sqlite3_stmt *statement_1;
+    sqlite3_stmt *statement_2;
     
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
@@ -218,10 +219,13 @@ int collectNum;
         
         NSString *createCollect = @"CREATE TABLE IF NOT EXISTS collection (collectionID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER)";
         
+        NSString *createGlobal = @"CREATE TABLE IF NOT EXISTS globalVar (varName TEXT PRIMARY KEY,value INTEGER)";
+        
         [self execSql:createDayable];
         [self execSql:createEvent];
         [self execSql:createTag];
         [self execSql:createCollect];
+        [self execSql:createGlobal];
     }
     else {
         NSLog(@"数据库打开失败");
@@ -276,6 +280,27 @@ int collectNum;
         // NSLog(@"%@",self.allTags[5]);
     }
     sqlite3_finalize(statement);
+    
+    NSString *soundName = @"soundSwitch";
+    
+    NSString *querySound= [NSString stringWithFormat:@"SELECT value from globalVar where varName=\"%@\"",soundName];
+    const char *querySoundstatement = [querySound UTF8String];
+    if (sqlite3_prepare_v2(dataBase, querySoundstatement, -1, &statement_2, NULL)==SQLITE_OK) {
+        if  (sqlite3_step(statement)==SQLITE_ROW) {
+            //当天数据已经存在，则取出数据还原界面
+            int sound = sqlite3_column_int(statement, 0);
+            soundSwitch = sound;
+            
+        }else{
+            soundSwitch = YES;
+        }
+        
+        //[allTags addObject:nil];
+        // NSLog(@"%@",self.allTags[5]);
+    }
+    sqlite3_finalize(statement_2);
+    
+  
     
     
     sqlite3_close(dataBase);
@@ -1250,8 +1275,58 @@ int collectNum;
 }
 
 - (void)soundSwitchChanged:(SevenSwitch *)sender {
+    
+    
+    sqlite3_stmt *varStatement;
+    sqlite3_stmt *stmt;
+    NSString *soundName = @"soundSwitch";
+    
     NSLog(@"Changed value to: %@", sender.on ? @"ON" : @"OFF");
     sender.on ? (soundSwitch = YES) : (soundSwitch = NO);
+    
+    
+    const char *dbpath = [databasePath UTF8String];
+    
+    
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        
+
+        NSString *insertGlobalVar = [NSString stringWithFormat:@"INSERT INTO globalVar(varName,value) VALUES(?,?)"];
+        
+        //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+        const char *insertVarsatement = [insertGlobalVar UTF8String];
+        sqlite3_prepare_v2(dataBase, insertVarsatement, -1, &varStatement, NULL);
+        sqlite3_bind_text(varStatement,1, [soundName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(varStatement, 2, soundSwitch);
+        
+        
+        if (sqlite3_step(varStatement)==SQLITE_DONE) {
+            NSLog(@"innsert today ok");
+            
+        }
+        else {
+            NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+            //update DAYTABLE set MOOD=?where date=?
+            NSString *updateGlobalVar = [NSString stringWithFormat:@"update globalVar set value=?where varName=?"];
+            if (sqlite3_prepare_v2(dataBase, [updateGlobalVar UTF8String], -1, &stmt, NULL)!=SQLITE_OK) {
+                NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+            }
+            sqlite3_bind_int(stmt, 1, soundSwitch);
+            sqlite3_bind_text(stmt, 2, [soundName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_step(stmt);
+            sqlite3_finalize(stmt);
+
+
+        }
+        
+        sqlite3_finalize(varStatement);
+        sqlite3_close(dataBase);
+        
+        
+        
+    }
+
+
     NSLog(@"now is:%hhd",soundSwitch);
 }
 
