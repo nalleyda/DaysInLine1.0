@@ -8,12 +8,33 @@
 
 #import "AppDelegate.h"
 #import "globalVars.h"
+#import <Frontia/Frontia.h>
+
+
+
+#define APP_KEY @"uF4iGxR6qLmkAeZVDi2S8e8m"
+#define REPORT_ID @"dd3c60ebbf"
+
+#define IosAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    //初始化Frontia
+    [Frontia initWithApiKey:APP_KEY];
+    
+    
+    FrontiaStatistics* statTracker = [Frontia getStatistics];
+    statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
+    statTracker.channelId = @"appstore";//设置您的app的发布渠道
+    statTracker.logStrategy = FrontiaStatLogStrategyCustom;//根据开发者设定的时间间隔接口发送 也可以使用启动时发送策略
+    statTracker.logSendInterval = 1;  //为1时表示发送日志的时间间隔为1小时
+    statTracker.logSendWifiOnly = NO; //是否仅在WIfi情况下发送日志数据
+    statTracker.sessionResumeInterval = 100;//设置应用进入后台再回到前台为同一次session的间隔时间[0~600s],超过600s则设为600s，默认为30s
+    statTracker.shortAppVersion  = IosAppVersion; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+    [statTracker startWithReportId:REPORT_ID];//设置您在mtj网站上添加的app的appkey
 
   
    return YES;

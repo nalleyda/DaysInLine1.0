@@ -10,6 +10,8 @@
 #import "remindViewController.h"
 #import "globalVars.h"
 
+//#import "JSONKit.h"
+#import <Frontia/Frontia.h>
 @interface editingViewController (){
     NSMutableArray *selected;
     NSMutableArray *tagLabels;
@@ -153,7 +155,7 @@ SystemSoundID soundObject;
         
         self.imageViewButton[j] = [[UIButton alloc] initWithFrame:CGRectMake(x, y, width, height)];
        
-        [[self.imageViewButton objectAtIndex:j] setTag:IMAGEVIEW_TAG_BASE+j];
+        [(UIButton *)[self.imageViewButton objectAtIndex:j] setTag:IMAGEVIEW_TAG_BASE+j];
         [self.view addSubview:self.imageViewButton[j]];
   
         //NSLog(@"frame: x:%f , y:%f , width: %f , hei: %f",[[self.imageViewButton objectAtIndex:j] frame].origin.x,[[self.imageViewButton objectAtIndex:j] frame].origin.y,[[self.imageViewButton objectAtIndex:j] frame].size.width,[[self.imageViewButton objectAtIndex:j] frame].size.height);
@@ -233,6 +235,24 @@ SystemSoundID soundObject;
 
     
 }
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    static int times = 0;
+    times++;
+    
+    //  NSString* cName = [NSString stringWithFormat:@"%@",  self.navigationItem.title, nil];
+    //  NSLog(@"current appear tab title %@", cName);
+    [[Frontia getStatistics] pageviewStartWithName:@"editView"];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    // NSString* cName = [NSString stringWithFormat:@"%@", self.navigationItem.title, nil];
+    // NSLog(@"current disappear tab title %@", cName);
+    [[Frontia getStatistics] pageviewEndWithName:@"editView"];
+}
+
 
 -(void)addTagTapped
 {
@@ -754,14 +774,14 @@ SystemSoundID soundObject;
         UIButton *moveButton = self.imageViewButton[j];
         
         [moveButton setFrame:CGRectMake(x, y, width, height)];
-        [self.imageViewButton[j] setTag:IMAGEVIEW_TAG_BASE+j];
+        [(UIButton *)self.imageViewButton[j] setTag:IMAGEVIEW_TAG_BASE+j];
         
     }
         NSLog(@"3num:%d,content:%@",self.imageViewButton.count,self.imageViewButton[0]);
     
         self.imageViewButton[4] = [[UIButton alloc] initWithFrame:CGRectMake(15+60*4, y, width, height)];
         
-        [[self.imageViewButton objectAtIndex:4] setTag:IMAGEVIEW_TAG_BASE+4];
+        [(UIButton *)[self.imageViewButton objectAtIndex:4] setTag:IMAGEVIEW_TAG_BASE+4];
         [self.view addSubview:self.imageViewButton[4]];
     NSLog(@"4num:%d,content:%@",self.imageViewButton.count,self.imageViewButton[0]);
 

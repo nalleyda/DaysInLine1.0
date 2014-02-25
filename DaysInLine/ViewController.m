@@ -19,6 +19,10 @@
 #import "settingView.h"
 #import "globalVars.h"
 
+#import "JSONKit.h"
+#import <Frontia/Frontia.h>
+
+
 
 @interface ViewController ()<CKCalendarDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
@@ -317,6 +321,27 @@ int collectNum;
 
        
 }
+
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    static int times = 0;
+    times++;
+    
+  //  NSString* cName = [NSString stringWithFormat:@"%@",  self.navigationItem.title, nil];
+  //  NSLog(@"current appear tab title %@", cName);
+    [[Frontia getStatistics] pageviewStartWithName:@"mainView"];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+   // NSString* cName = [NSString stringWithFormat:@"%@", self.navigationItem.title, nil];
+   // NSLog(@"current disappear tab title %@", cName);
+    [[Frontia getStatistics] pageviewEndWithName:@"mainView"];
+}
+
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

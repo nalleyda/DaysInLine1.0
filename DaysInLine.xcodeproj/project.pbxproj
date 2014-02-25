@@ -117,6 +117,18 @@
 		0BF9EF7918BB8A6D00F38370 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7518BB8A6D00F38370 /* cross.png */; };
 		0BF9EF7A18BB8A6D00F38370 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7618BB8A6D00F38370 /* cross@2x.png */; };
 		0BF9EF7D18BB8A9400F38370 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */; };
+		0BFD27E418BCE5830016BCE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27E318BCE5830016BCE4 /* SystemConfiguration.framework */; };
+		0BFD27E618BCE58D0016BCE4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27E518BCE58D0016BCE4 /* MessageUI.framework */; };
+		0BFD27E818BCE59A0016BCE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27E718BCE59A0016BCE4 /* QuartzCore.framework */; };
+		0BFD27E918BCE5A90016BCE4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B9A53CE1812274D0085FFD7 /* Foundation.framework */; };
+		0BFD27EB18BCE5BB0016BCE4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27EA18BCE5BB0016BCE4 /* CoreTelephony.framework */; };
+		0BFD27ED18BCE5C60016BCE4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27EC18BCE5C60016BCE4 /* CoreLocation.framework */; };
+		0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */; };
+		0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27F018BCE5F10016BCE4 /* libz.dylib */; };
+		0BFD280818BCE6850016BCE4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD280718BCE6850016BCE4 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0BFD280B18BCF2F20016BCE4 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD280A18BCF2F20016BCE4 /* Frontia.framework */; };
+		0BFD281018BCF3810016BCE4 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD280F18BCF3810016BCE4 /* Frontia.framework */; };
+		0BFD281218BCF4030016BCE4 /* FrontiaSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */; };
 		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +281,18 @@
 		0BF9EF7618BB8A6D00F38370 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		0BF9EF7B18BB8A9400F38370 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
 		0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
+		0BFD27E318BCE5830016BCE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		0BFD27E518BCE58D0016BCE4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0BFD27E718BCE59A0016BCE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0BFD27EA18BCE5BB0016BCE4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		0BFD27EC18BCE5C60016BCE4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		0BFD27F018BCE5F10016BCE4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		0BFD280718BCE6850016BCE4 /* JSONKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
+		0BFD280A18BCF2F20016BCE4 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Frontia.framework; path = "/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs/Frontia.framework"; sourceTree = "<absolute>"; };
+		0BFD280C18BCF33F0016BCE4 /* JSONKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
+		0BFD280F18BCF3810016BCE4 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Frontia.framework; sourceTree = "<group>"; };
+		0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FrontiaSource.bundle; sourceTree = "<group>"; };
 		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,6 +302,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFD280B18BCF2F20016BCE4 /* Frontia.framework in Frameworks */,
+				0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */,
+				0BFD281018BCF3810016BCE4 /* Frontia.framework in Frameworks */,
+				0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */,
+				0BFD27ED18BCE5C60016BCE4 /* CoreLocation.framework in Frameworks */,
+				0BFD27EB18BCE5BB0016BCE4 /* CoreTelephony.framework in Frameworks */,
+				0BFD27E918BCE5A90016BCE4 /* Foundation.framework in Frameworks */,
+				0BFD27E818BCE59A0016BCE4 /* QuartzCore.framework in Frameworks */,
+				0BFD27E618BCE58D0016BCE4 /* MessageUI.framework in Frameworks */,
+				0BFD27E418BCE5830016BCE4 /* SystemConfiguration.framework in Frameworks */,
 				0B25F88D18B9EE130025B0CB /* AudioToolbox.framework in Frameworks */,
 				0B25F88B18B9EC520025B0CB /* AVFoundation.framework in Frameworks */,
 				0B928730183A300400AB69BB /* libsqlite3.dylib in Frameworks */,
@@ -383,6 +417,7 @@
 		0B9A53C21812274D0085FFD7 = {
 			isa = PBXGroup;
 			children = (
+				0BFD27F218BCE65A0016BCE4 /* libs */,
 				134E8AFB189CEC6700C2F805 /* CustomIOS7AlertView */,
 				0B9A53D41812274D0085FFD7 /* DaysInLine */,
 				0B9A53F31812274D0085FFD7 /* DaysInLineTests */,
@@ -403,6 +438,14 @@
 		0B9A53CD1812274D0085FFD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BFD280A18BCF2F20016BCE4 /* Frontia.framework */,
+				0BFD27F018BCE5F10016BCE4 /* libz.dylib */,
+				0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */,
+				0BFD27EC18BCE5C60016BCE4 /* CoreLocation.framework */,
+				0BFD27EA18BCE5BB0016BCE4 /* CoreTelephony.framework */,
+				0BFD27E718BCE59A0016BCE4 /* QuartzCore.framework */,
+				0BFD27E518BCE58D0016BCE4 /* MessageUI.framework */,
+				0BFD27E318BCE5830016BCE4 /* SystemConfiguration.framework */,
 				0B25F88C18B9EE130025B0CB /* AudioToolbox.framework */,
 				0B25F88A18B9EC520025B0CB /* AVFoundation.framework */,
 				0B92872F183A300400AB69BB /* libsqlite3.dylib */,
@@ -531,6 +574,18 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		0BFD27F218BCE65A0016BCE4 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */,
+				0BFD280F18BCF3810016BCE4 /* Frontia.framework */,
+				0BFD280718BCE6850016BCE4 /* JSONKit.m */,
+				0BFD280C18BCF33F0016BCE4 /* JSONKit.h */,
+			);
+			name = libs;
+			path = "../../Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs";
+			sourceTree = "<group>";
+		};
 		134E8AFB189CEC6700C2F805 /* CustomIOS7AlertView */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +703,7 @@
 				0B92BE3418B0C4F3003AE50C /* returnInAlert.png in Resources */,
 				0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */,
 				0BB08A7318A9F41D00DE111E /* tagBtn.png in Resources */,
+				0BFD281218BCF4030016BCE4 /* FrontiaSource.bundle in Resources */,
 				0BB08A8218A9F41D00DE111E /* saveBtn2.png in Resources */,
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
@@ -731,6 +787,7 @@
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
 				0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */,
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,
+				0BFD280818BCE6850016BCE4 /* JSONKit.m in Sources */,
 				0B9009E31877DDA6008D3799 /* selectView.m in Sources */,
 				0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */,
 				0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */,
@@ -868,11 +925,22 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
 				INFOPLIST_FILE = "DaysInLine/DaysInLine-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs/QQ",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs/WB",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -885,11 +953,22 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
 				INFOPLIST_FILE = "DaysInLine/DaysInLine-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs/QQ",
+					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs/WB",
+				);
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
