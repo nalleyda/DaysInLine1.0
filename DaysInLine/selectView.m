@@ -83,9 +83,10 @@
       //  [self.alltagTable setIndicatorStyle:UIScrollViewIndicatorStyleBlack];
         self.alltagTable.backgroundColor = [UIColor clearColor];
         self.alltagTable.tag = 1;
-               // self.alltagTable.rowHeight = 34;
+        self.alltagTable.rowHeight = 42;
         self.eventInTagTable= [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, self.frame.size.height-170)];
         self.eventInTagTable.tag = 2;
+        self.eventInTagTable.rowHeight = 42;
         self.eventInTagTable.backgroundColor = [UIColor clearColor];
        // self.alltagTable.backgroundColor = [UIColor yellowColor];
         [self.tagView addSubview:self.alltagTable];
@@ -117,6 +118,7 @@
         self.eventInSearchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width-30, self.frame.size.height-150)];
         self.eventInSearchTable.backgroundColor = [UIColor clearColor];
         self.eventInSearchTable.tag = 4;
+        self.eventInSearchTable.rowHeight = 42;
         
         [self.keyWordView addSubview:self.my_searchBar];
         [self.keyWordView addSubview:self.eventInSearchTable];

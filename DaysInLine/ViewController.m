@@ -44,7 +44,9 @@
 @property(nonatomic, strong) NSMutableArray *tableLeft;
 @property(nonatomic, strong) NSMutableArray *tableRight;
 @property(nonatomic, strong) NSMutableArray *EventsInTag;
+@property(nonatomic, strong) NSMutableArray *EventDateInTag;
 @property(nonatomic, strong) NSMutableArray *EventsInSearch;
+@property(nonatomic, strong) NSMutableArray *EventDateInSearch;
 @property(nonatomic, strong) NSMutableArray *EventsIDInTag;
 @property(nonatomic, strong) NSMutableArray *EventsIDInSearch;
 @property(nonatomic, strong) NSString *dateToSelect;
@@ -95,9 +97,11 @@ int collectNum;
 	// Do any additional setup after loading the view, typically from a nib.
     self.allTags = [[NSMutableArray alloc] init];
     self.EventsInTag = [[NSMutableArray alloc] init];
+    self.EventDateInTag = [[NSMutableArray alloc] init];
     self.EventsIDInTag = [[NSMutableArray alloc] init];
     
     self.EventsInSearch = [[NSMutableArray alloc] init];
+    self.EventDateInSearch = [[NSMutableArray alloc] init];
     self.EventsIDInSearch = [[NSMutableArray alloc] init];
     
     self.collectEvent = [[NSMutableArray alloc] init];
@@ -1779,15 +1783,16 @@ int collectNum;
             cell = cell_1;
 
             break;
-        case 1:
+        case 1:{
             if (!cell_2)
             {
                 cell_2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectTags"];
                 [cell_2 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 
             }
+           
                 NSUInteger row2=[indexPath row];
-            
+ 
             
                 //设置文本
             if (row2<self.allTags.count) {
@@ -1800,29 +1805,42 @@ int collectNum;
             cell = cell_2;
 
             break;
-        
+        }
         case 2:
-            
-            if (!cell_3)
+        {
+        /*    if (!cell_3)
             {
                 cell_3 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectEventsInTag"];
                 [cell_3 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 
             }
-            
+         */
                 NSUInteger row3=[indexPath row];
+            
+            if(cell_3==nil){
+                cell_3 = [[[NSBundle mainBundle]loadNibNamed:@"selectCell" owner:self options:nil] lastObject];//加载nib文件
+                 [cell_3 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                
+            }
             //设置文本
             if (row3<self.EventsInTag.count) {
+                
+                ((UILabel *)[cell_3.contentView viewWithTag:1]).text = self.EventsInTag[row3];
+               // NSLog(@"%@",self.collectEventTitle[row3]);
+                // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
+                ((UILabel *)[cell_3.contentView viewWithTag:2]).text = self.EventDateInTag[row3];
+
+             /*
                 cell_3.textLabel.text = self.EventsInTag[row3];
                 cell_3.backgroundColor = [UIColor clearColor];
                 NSLog(@"%@",self.EventsInTag[row3]);
-                
+               */ 
             }
             cell = cell_3;
    
             
             break;
-        
+        }
         case 3:
 
         {
@@ -1867,26 +1885,38 @@ int collectNum;
             break;
         }
         case 4:
-            
-            if (!cell_5)
+        {
+         /*   if (!cell_5)
             {
                 cell_5 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectEventsInSearch"];
                 [cell_5 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
                 
             }
-            
+         */
             NSUInteger row5=[indexPath row];
+            
+            
+            if(cell_5==nil){
+                cell_5 = [[[NSBundle mainBundle]loadNibNamed:@"selectCell" owner:self options:nil] lastObject];//加载nib文件
+                [cell_5 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                
+            }
+
             //设置文本
             if (row5<self.EventsInSearch.count) {
-                cell_5.textLabel.text = self.EventsInSearch[row5];
-                cell_5.backgroundColor = [UIColor clearColor];
-                NSLog(@"%@",self.EventsInSearch[row5]);
+                
+                ((UILabel *)[cell_5.contentView viewWithTag:1]).text = self.EventsInSearch[row5];
+                // NSLog(@"%@",self.collectEventTitle[row3]);
+                // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
+                ((UILabel *)[cell_5.contentView viewWithTag:2]).text = self.EventDateInSearch[row5];
+
                 
             }
             cell = cell_5;
             
             
             break;
+        }
         default: cell = nil;
             break;
     }
@@ -1897,12 +1927,14 @@ int collectNum;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSString *evtTitle;
+    NSString *evtDate;
     NSNumber *evtID;
     NSUInteger row=[indexPath row];
     sqlite3_stmt *statement;
     
     
     NSString *title_mdfy;
+    //NSString *date_mdfy;
     NSString *mainTxt_mdfy;
     NSNumber *evtID_mdfy;
     NSNumber *evtType_mdfy;
@@ -1941,8 +1973,9 @@ int collectNum;
   
             [self.EventsIDInTag removeAllObjects];
             [self.EventsInTag removeAllObjects];
+            [self.EventDateInTag removeAllObjects];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID from event where label like'%%%@%%'",self.allTags[row]];
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID,date from event where label like'%%%@%%'",self.allTags[row]];
                 const char *queryEventstatment = [queryEvent UTF8String];
                 if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                     while (sqlite3_step(statement)==SQLITE_ROW) {
@@ -1958,8 +1991,17 @@ int collectNum;
                         
                         evtID = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 1)];
                         
+                        char *date_mdfy = (char *)sqlite3_column_text(statement, 2);
+                        if (date_mdfy == nil) {
+                            evtDate = @"空";
+                        }else {
+                            evtDate = [[NSString alloc] initWithUTF8String:date_mdfy];
+                            
+                        }
+                        
                         [self.EventsInTag addObject:evtTitle];
                         [self.EventsIDInTag addObject:evtID];
+                        [self.EventDateInTag addObject:evtDate];
                     }
                     
                 }
@@ -2634,15 +2676,17 @@ int collectNum;
     
     
     NSString *evtTitle_search;
+    NSString *evtDate_search;
     NSNumber *evtID_search;
     sqlite3_stmt *statement;
     const char *dbpath = [databasePath UTF8String];
     
     [self.EventsIDInSearch removeAllObjects];
     [self.EventsInSearch removeAllObjects];
+    [self.EventDateInSearch removeAllObjects];
 
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-        NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID from event where title like'%%%@%%' or mainText like'%%%@%%'",searchBar.text,searchBar.text];
+        NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID,date from event where title like'%%%@%%' or mainText like'%%%@%%'",searchBar.text,searchBar.text];
         const char *queryEventstatment = [queryEvent UTF8String];
         if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
             while (sqlite3_step(statement)==SQLITE_ROW) {
@@ -2658,8 +2702,17 @@ int collectNum;
                 
                 evtID_search = [[NSNumber alloc] initWithInt:sqlite3_column_int(statement, 1)];
                 
+                char *date_mdfy = (char *)sqlite3_column_text(statement, 2);
+                if (date_mdfy == nil) {
+                    evtDate_search = @"空";
+                }else {
+                    evtDate_search = [[NSString alloc] initWithUTF8String:date_mdfy];
+                    
+                }
+                
                 [self.EventsInSearch addObject:evtTitle_search];
                 [self.EventsIDInSearch addObject:evtID_search];
+                [self.EventDateInSearch addObject:evtDate_search];
             }
             
         }

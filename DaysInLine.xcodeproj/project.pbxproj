@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0B00AC54187D849400427F35 /* collectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B00AC53187D849400427F35 /* collectCell.xib */; };
+		0B0C491418BE31F300B7CF19 /* 统计页面@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C491218BE31F300B7CF19 /* 统计页面@2x.png */; };
+		0B0C491518BE31F300B7CF19 /* 统计页面.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C491318BE31F300B7CF19 /* 统计页面.png */; };
+		0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C491618BE334F00B7CF19 /* selectCell.xib */; };
 		0B25F88618B9E9E00025B0CB /* cancelSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88218B9E9E00025B0CB /* cancelSound.wav */; };
 		0B25F88718B9E9E00025B0CB /* editSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88318B9E9E00025B0CB /* editSound.wav */; };
 		0B25F88818B9E9E00025B0CB /* addSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88418B9E9E00025B0CB /* addSound.wav */; };
@@ -144,6 +147,9 @@
 
 /* Begin PBXFileReference section */
 		0B00AC53187D849400427F35 /* collectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = collectCell.xib; sourceTree = "<group>"; };
+		0B0C491218BE31F300B7CF19 /* 统计页面@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "统计页面@2x.png"; sourceTree = "<group>"; };
+		0B0C491318BE31F300B7CF19 /* 统计页面.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "统计页面.png"; sourceTree = "<group>"; };
+		0B0C491618BE334F00B7CF19 /* selectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectCell.xib; sourceTree = "<group>"; };
 		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
 		0B25F88218B9E9E00025B0CB /* cancelSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cancelSound.wav; sourceTree = "<group>"; };
 		0B25F88318B9E9E00025B0CB /* editSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = editSound.wav; sourceTree = "<group>"; };
@@ -369,6 +375,8 @@
 				0BBED40718A68AFA00B47E53 /* cell2-1.png */,
 				0BBED40818A68AFA00B47E53 /* cell3-1.png */,
 				0BBED40918A68AFA00B47E53 /* cell4-1.png */,
+				0B0C491218BE31F300B7CF19 /* 统计页面@2x.png */,
+				0B0C491318BE31F300B7CF19 /* 统计页面.png */,
 				0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */,
 				0B2B2F7818B3A49D00B7EA83 /* 照片背景.png */,
 				0B92BE3A18B0C75D003AE50C /* 299x62按键.png */,
@@ -557,6 +565,7 @@
 				0B93EC4918ABA5EE00F871C4 /* customButton.m */,
 				0B25F89018BA3ACD0025B0CB /* settingView.h */,
 				0B25F89118BA3ACD0025B0CB /* settingView.m */,
+				0B0C491618BE334F00B7CF19 /* selectCell.xib */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -711,6 +720,7 @@
 				0BBED40A18A68AFA00B47E53 /* cell1-1.png in Resources */,
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
 				0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */,
+				0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */,
 				0B92BE3618B0C4F3003AE50C /* okInAlert.png in Resources */,
 				0B2B2F7918B3A49D00B7EA83 /* 照片背景.png in Resources */,
 				0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */,
@@ -726,6 +736,7 @@
 				0B92BE3518B0C4F3003AE50C /* searchInAlert.png in Resources */,
 				0B9597F318AD211B002923AF /* cancelButton.png in Resources */,
 				0BBED40D18A68AFA00B47E53 /* cell4-1.png in Resources */,
+				0B0C491518BE31F300B7CF19 /* 统计页面.png in Resources */,
 				0B92BE3318B0C4F3003AE50C /* tagAlert.png in Resources */,
 				0BA61BED18A28876000B7163 /* 按键1-2.png in Resources */,
 				0BA61BE318A2808E000B7163 /* 按键2-2.png in Resources */,
@@ -747,6 +758,7 @@
 				0B942F871896720A002864B8 /* statisticViewController.xib in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
 				0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */,
+				0B0C491418BE31F300B7CF19 /* 统计页面@2x.png in Resources */,
 				0BB08A7718A9F41D00DE111E /* moneyBtn.png in Resources */,
 				0B9597EC18AD1191002923AF /* Default-568h@2x.png in Resources */,
 				0BB08A7D18A9F41D00DE111E /* photoBtn2.png in Resources */,

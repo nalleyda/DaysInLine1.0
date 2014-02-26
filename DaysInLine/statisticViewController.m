@@ -41,6 +41,12 @@ double expendAll;
 {
     [super viewDidLoad];
     
+    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [backImage setImage:[UIImage imageNamed:@"统计页面.png"]];
+    
+    [self.view addSubview:backImage];
+    [self.view sendSubviewToBack:backImage];
+    
     //创建或打开数据库
     NSString *docsDir;
     NSArray *dirPaths;
