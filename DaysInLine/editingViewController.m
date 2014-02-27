@@ -1054,6 +1054,8 @@ SystemSoundID soundObject;
         sqlite3_close(dataBase);
         
     }else if (modifying == 0) {
+        
+        flag=NO;
         if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
                                                             message:@"请输入事件起始和结束时间"
