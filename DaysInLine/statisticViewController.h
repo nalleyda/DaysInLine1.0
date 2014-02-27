@@ -8,22 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "sqlite3.h"
+#import "resultView.h"
+
 
 @interface statisticViewController : UIViewController
 {
     sqlite3 *dataBase;
     NSString *databasePath;
+
     
 }
-@property (weak, nonatomic) IBOutlet UILabel *brifeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *moodScore;
-@property (weak, nonatomic) IBOutlet UILabel *growthScore;
 
-@property (weak, nonatomic) IBOutlet UILabel *workTime;
-@property (weak, nonatomic) IBOutlet UILabel *lifeTime;
-@property (weak, nonatomic) IBOutlet UILabel *incomeTotal;
-@property (weak, nonatomic) IBOutlet UILabel *expendTotal;
-- (IBAction)continueButton:(id)sender;
+
+
 
 @property (weak, nonatomic) NSString *startDate;
 @property (weak, nonatomic) NSString *endDate;

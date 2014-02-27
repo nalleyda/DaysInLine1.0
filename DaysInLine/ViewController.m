@@ -1236,10 +1236,18 @@ int collectNum;
     //时区偏移
     //   NSInteger zoneInterval = [zone secondsFromGMTForDate: dateTime];
 
+    statisticViewController *my_statisticViewController;
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+       my_statisticViewController = [[statisticViewController alloc] initWithNibName:@"statisticViewController586" bundle:nil];
+    }else{
+        my_statisticViewController = [[statisticViewController alloc] initWithNibName:@"statisticViewController" bundle:nil];
     
+    }
 
     
-    statisticViewController *my_statisticViewController = [[statisticViewController alloc] initWithNibName:@"statisticViewController" bundle:nil];
+
+   // statisticViewController *my_statisticViewController = [[statisticViewController alloc] initWithNibName:@"statisticViewController" bundle:nil];
     my_statisticViewController.startDate = start;
     my_statisticViewController.endDate = end;
     

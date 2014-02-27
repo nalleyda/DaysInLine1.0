@@ -41,12 +41,32 @@ double expendAll;
 {
     [super viewDidLoad];
     
-    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [backImage setImage:[UIImage imageNamed:@"统计页面.png"]];
+    UIImageView *backImage;
+
     
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        
+        backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        NSLog(@"586height:%.2f",self.view.bounds.size.height);
+        [backImage setImage:[UIImage imageNamed:@"result586.png"]];
+
+
+    }else{
+        backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        NSLog(@"height:%.2f",self.view.bounds.size.height);
+        [backImage setImage:[UIImage imageNamed:@"result.png"]];
+
+    }
+
     [self.view addSubview:backImage];
     [self.view sendSubviewToBack:backImage];
     
+    resultView *my_result = [[resultView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:my_result];
+    
+
+    [my_result.continueButton addTarget:self action:@selector(continueButton:) forControlEvents:UIControlEventTouchUpInside];
     //创建或打开数据库
     NSString *docsDir;
     NSArray *dirPaths;
@@ -128,6 +148,37 @@ double expendAll;
     NSLog(@"{+++++%.2f,%.2f+++++}",moodAverage,growthAverage);
    */
     //填充每一个label，显示数值。
+    
+    int y = self.view.frame.origin.y ;
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+        //NSLog(@"ios7!!!!");
+        y += 5;
+    }
+    
+    /* fit for 4-inch screen */
+//    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        y += 50;
+    }
+    
+    double workOfAll = 0.0f;
+    double lifeOfAll = 0.0f;
+    if ((work_life[1]+work_life[0])>0.001) {
+        
+        workOfAll =work_life[0]/(work_life[1]+work_life[0]);
+        lifeOfAll =work_life[1]/(work_life[1]+work_life[0]);
+        
+    }
+   
+    
+    my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
+    my_result.workingLong.frame = CGRectMake(78,y +107, workOfAll*164 , 11);
+    
+    my_result.lifingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[1]/60];
+    my_result.lifeLong.frame = CGRectMake(78+workOfAll*164,y +107, lifeOfAll*164 , 11);
+    
+  /*
     self.brifeLabel.text = [NSString stringWithFormat:@"本阶段共有%d天的纪录，各项数据为：",days];
     self.moodScore.text = [NSString stringWithFormat:@"%d分",(int)(100*moodAverage/(5*days))];
     self.growthScore.text = [NSString stringWithFormat:@"%d分",(int)(100*growthAverage/(5*days))];
@@ -136,7 +187,7 @@ double expendAll;
 
     self.incomeTotal.text = [NSString stringWithFormat:@"%.2f元",incomeAll];
     self.expendTotal.text = [NSString stringWithFormat:@"%.2f元",expendAll];
-
+*/
 
 
 
