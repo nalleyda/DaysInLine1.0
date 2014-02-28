@@ -59,6 +59,19 @@ SystemSoundID soundObject;
     }
     [super viewDidLoad];
     
+    
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+
+        [self.editBackground setImage:[UIImage imageNamed:@"editView586.png"]];
+        
+        
+    }else{
+
+        [self.editBackground setImage:[UIImage imageNamed:@"editView.png"]];
+        
+    }
 
     
     //self.incomeFinal=0.0f;
@@ -104,7 +117,7 @@ SystemSoundID soundObject;
     }
     
     /* fit for 4-inch screen */
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+   // CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         mainText_Height += 80;
     }

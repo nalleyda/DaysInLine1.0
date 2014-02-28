@@ -27,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="editView.png" translatesAutoresizingMaskIntoConstraints="NO" id="adU-64-2xG">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="adU-64-2xG">
                     <rect key="frame" x="0.0" y="0.0" width="323" height="480"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
@@ -228,9 +228,7 @@
         <image name="collectionBtn2.png" width="74" height="74"/>
         <image name="deleteBtn.png" width="74" height="74"/>
         <image name="deleteBtn2.png" width="74" height="74"/>
-        <image name="editView.png" width="640" height="960"/>
         <image name="moneyBtn.png" width="74" height="74"/>
-        <image name="moneyBtn2.png" width="74" height="74"/>
         <image name="moneyBtn2.png" width="74" height="74"/>
         <image name="photoBtn.png" width="74" height="74"/>
         <image name="photoBtn2.png" width="74" height="74"/>
