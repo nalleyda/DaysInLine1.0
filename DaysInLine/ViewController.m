@@ -294,9 +294,9 @@ int collectNum;
     NSString *querySound= [NSString stringWithFormat:@"SELECT value from globalVar where varName=\"%@\"",soundName];
     const char *querySoundstatement = [querySound UTF8String];
     if (sqlite3_prepare_v2(dataBase, querySoundstatement, -1, &statement_2, NULL)==SQLITE_OK) {
-        if  (sqlite3_step(statement)==SQLITE_ROW) {
+        if  (sqlite3_step(statement_2)==SQLITE_ROW) {
             //当天数据已经存在，则取出数据还原界面
-            int sound = sqlite3_column_int(statement, 0);
+            int sound = sqlite3_column_int(statement_2, 0);
             soundSwitch = sound;
             
         }else{

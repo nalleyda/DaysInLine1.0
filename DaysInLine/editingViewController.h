@@ -38,6 +38,7 @@
     
     
 }
+@property (weak, nonatomic) IBOutlet UIImageView *editBackground;
 @property (weak, nonatomic) IBOutlet UIButton *addTagButton;
 @property (weak, nonatomic) IBOutlet UIButton *remindButton;
 @property (weak, nonatomic) IBOutlet UIButton *photoButton;

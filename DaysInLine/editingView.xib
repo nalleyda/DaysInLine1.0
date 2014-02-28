@@ -10,6 +10,7 @@
                 <outlet property="addCollectionButton" destination="NNr-Va-2MU" id="j7A-Di-qFv"/>
                 <outlet property="addTagButton" destination="0WL-AF-KdO" id="Txc-OR-WdI"/>
                 <outlet property="deleteButton" destination="PTi-KT-iw5" id="vCh-e2-dra"/>
+                <outlet property="editBackground" destination="adU-64-2xG" id="Kyv-hc-vxj"/>
                 <outlet property="endTimeButton" destination="KEE-i0-aAA" id="tU9-GJ-u26"/>
                 <outlet property="moneyButton" destination="ak2-GO-nui" id="U2x-QY-Kjo"/>
                 <outlet property="photoButton" destination="uUl-Hg-KmG" id="t57-wG-p8d"/>
@@ -229,6 +230,7 @@
         <image name="deleteBtn2.png" width="74" height="74"/>
         <image name="editView.png" width="640" height="960"/>
         <image name="moneyBtn.png" width="74" height="74"/>
+        <image name="moneyBtn2.png" width="74" height="74"/>
         <image name="moneyBtn2.png" width="74" height="74"/>
         <image name="photoBtn.png" width="74" height="74"/>
         <image name="photoBtn2.png" width="74" height="74"/>
