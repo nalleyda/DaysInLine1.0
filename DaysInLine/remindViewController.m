@@ -194,6 +194,24 @@ UIDatePicker *remindTimePicker2;
 }
 
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    static int times = 0;
+    times++;
+    
+    //  NSString* cName = [NSString stringWithFormat:@"%@",  self.navigationItem.title, nil];
+    //  NSLog(@"current appear tab title %@", cName);
+    [[Frontia getStatistics] pageviewStartWithName:@"remindView"];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    // NSString* cName = [NSString stringWithFormat:@"%@", self.navigationItem.title, nil];
+    // NSLog(@"current disappear tab title %@", cName);
+    [[Frontia getStatistics] pageviewEndWithName:@"remindView"];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

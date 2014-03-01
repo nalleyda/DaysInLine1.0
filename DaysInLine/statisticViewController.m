@@ -157,61 +157,66 @@ double expendAll;
         y += 50;
     }
     
-    double workOfAll = 0.0f;
-    double lifeOfAll = 0.0f;
-    if ((work_life[1]+work_life[0])>0.001) {
-        
-        workOfAll =work_life[0]/(work_life[1]+work_life[0]);
-        lifeOfAll =work_life[1]/(work_life[1]+work_life[0]);
-        
-    }
-   
     
-    my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
-    my_result.workingLong.frame = CGRectMake(78,y +107, workOfAll*164 , 11);
-    
-    my_result.lifingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[1]/60];
-    my_result.lifeLong.frame = CGRectMake(78+workOfAll*164,y +107, lifeOfAll*164 , 11);
-    
-    my_result.moodLong.frame = CGRectMake(78, y+ 177,210*moodAverage/(5*days), 11);
-    my_result.mood.frame = CGRectMake(2+my_result.moodLong.frame.origin.x+my_result.moodLong.frame.size.width*7/8, my_result.moodLong.frame.origin.y-19, 30, 16) ;
-    my_result.mood.textAlignment = NSTextAlignmentLeft;
-    my_result.mood.text = [NSString stringWithFormat:@"%d%%",(int)(100*moodAverage/(5*days))];
-    
-    my_result.growLong.frame = CGRectMake(78, y+ 222,210*growthAverage/(5*days), 11);
-    my_result.grow.frame = CGRectMake(2+my_result.growLong.frame.origin.x+my_result.growLong.frame.size.width*7/8, my_result.growLong.frame.origin.y-19, 30, 16) ;
-    my_result.grow.textAlignment = NSTextAlignmentLeft;
-    my_result.grow.text = [NSString stringWithFormat:@"%d%%",(int)(100*growthAverage/(5*days))];
-    
-    NSLog(@"income:%.2f",incomeAll);
-     NSLog(@"expend:%.2f",expendAll);
-    if (incomeAll >= expendAll) {
-        my_result.incomingLong.frame = CGRectMake(78, y+ 292,210, 11);
-        my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
-        my_result.incoming.textAlignment = NSTextAlignmentLeft;
-        my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];
+    if (days > 0) {
         
-        
-        my_result.expendingLong.frame = CGRectMake(78, y+ 337,210*expendAll/(incomeAll+0.0001), 11);
-        my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
-        my_result.expending.textAlignment = NSTextAlignmentLeft;
-        my_result.expending.text = [NSString stringWithFormat:@"%.2f",expendAll];
-        
-    }else{
-        
-        my_result.expendingLong.frame = CGRectMake(78, y+ 337,210, 11);
-        my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
-        my_result.expending.textAlignment = NSTextAlignmentLeft;
-        my_result.expending.text = [NSString stringWithFormat:@"%.2f",expendAll];
-        
-        
-        my_result.incomingLong.frame = CGRectMake(78, y+ 292,210*incomeAll/(expendAll+0.0001), 11);
-        my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
-        my_result.incoming.textAlignment = NSTextAlignmentLeft;
-        my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];
-        
-    }
+        double workOfAll = 0.0f;
+        double lifeOfAll = 0.0f;
+        if ((work_life[1]+work_life[0])>0.001) {
+            
+            workOfAll =work_life[0]/(work_life[1]+work_life[0]);
+            lifeOfAll =work_life[1]/(work_life[1]+work_life[0]);
+            
+        }
 
+        
+        my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
+        my_result.workingLong.frame = CGRectMake(78,y +107, workOfAll*164 , 11);
+        
+        my_result.lifingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[1]/60];
+        my_result.lifeLong.frame = CGRectMake(78+workOfAll*164,y +107, lifeOfAll*164 , 11);
+        
+        my_result.moodLong.frame = CGRectMake(78, y+ 177,210*moodAverage/(5*days), 11);
+        my_result.mood.frame = CGRectMake(2+my_result.moodLong.frame.origin.x+my_result.moodLong.frame.size.width*7/8, my_result.moodLong.frame.origin.y-19, 30, 16) ;
+        my_result.mood.textAlignment = NSTextAlignmentLeft;
+        my_result.mood.text = [NSString stringWithFormat:@"%d%%",(int)(100*moodAverage/(5*days))];
+        
+        my_result.growLong.frame = CGRectMake(78, y+ 222,210*growthAverage/(5*days), 11);
+        my_result.grow.frame = CGRectMake(2+my_result.growLong.frame.origin.x+my_result.growLong.frame.size.width*7/8, my_result.growLong.frame.origin.y-19, 30, 16) ;
+        my_result.grow.textAlignment = NSTextAlignmentLeft;
+        my_result.grow.text = [NSString stringWithFormat:@"%d%%",(int)(100*growthAverage/(5*days))];
+        
+        NSLog(@"income:%.2f",incomeAll);
+        NSLog(@"expend:%.2f",expendAll);
+        if (incomeAll >= expendAll) {
+            my_result.incomingLong.frame = CGRectMake(78, y+ 292,210, 11);
+            my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
+            my_result.incoming.textAlignment = NSTextAlignmentLeft;
+            my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];
+            
+            
+            my_result.expendingLong.frame = CGRectMake(78, y+ 337,210*expendAll/(incomeAll+0.0001), 11);
+            my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
+            my_result.expending.textAlignment = NSTextAlignmentLeft;
+            my_result.expending.text = [NSString stringWithFormat:@"%.2f",expendAll];
+            
+        }else{
+            
+            my_result.expendingLong.frame = CGRectMake(78, y+ 337,210, 11);
+            my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
+            my_result.expending.textAlignment = NSTextAlignmentLeft;
+            my_result.expending.text = [NSString stringWithFormat:@"%.2f",expendAll];
+            
+            
+            my_result.incomingLong.frame = CGRectMake(78, y+ 292,210*incomeAll/(expendAll+0.0001), 11);
+            my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
+            my_result.incoming.textAlignment = NSTextAlignmentLeft;
+            my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];
+            
+        }
+    }else{
+        //所选时段没有任何纪录。
+    }
     /*
     self.brifeLabel.text = [NSString stringWithFormat:@"本阶段共有%d天的纪录，各项数据为：",days];
     self.moodScore.text = [NSString stringWithFormat:@"%d分",(int)(100*moodAverage/(5*days))];
@@ -227,6 +232,23 @@ double expendAll;
 
     
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    static int times = 0;
+    times++;
+    
+    //  NSString* cName = [NSString stringWithFormat:@"%@",  self.navigationItem.title, nil];
+    //  NSLog(@"current appear tab title %@", cName);
+    [[Frontia getStatistics] pageviewStartWithName:@"statisticView"];
+}
+
+-(void) viewDidDisappear:(BOOL)animated
+{
+    // NSString* cName = [NSString stringWithFormat:@"%@", self.navigationItem.title, nil];
+    // NSLog(@"current disappear tab title %@", cName);
+    [[Frontia getStatistics] pageviewEndWithName:@"statisticView"];
 }
 
 - (void)didReceiveMemoryWarning

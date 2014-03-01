@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Frontia/Frontia.h>
 
 @interface checkPhotoController : UIViewController
 

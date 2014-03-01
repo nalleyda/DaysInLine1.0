@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "sqlite3.h"
 #import "resultView.h"
+#import <Frontia/Frontia.h>
 
 
 @interface statisticViewController : UIViewController

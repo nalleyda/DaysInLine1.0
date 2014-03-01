@@ -354,11 +354,11 @@ int collectNum;
 
 -(void)todayTapped
 {
-    //play sound
-    
-    
+    [[Frontia getStatistics] logEvent:@"10015" eventLabel:@"todayTap"];
 
-    //播放
+    
+    //play sound
+     //播放
     if (soundSwitch) {
         
     
@@ -589,6 +589,9 @@ int collectNum;
 -(void)starTapped:(UIButton*)sender
 {
     
+    FrontiaStatistics* statTracker = [Frontia getStatistics];
+
+    
     const char *dbpath = [databasePath UTF8String];
     
     
@@ -634,6 +637,9 @@ int collectNum;
             }
             
             if (sender.tag <100) {
+                
+                [statTracker logEvent:@"10001" eventLabel:@"clickMood"];
+                
                 if (self.my_dayline.hidden == NO) {
                     for (int i = 0; i<=sender.tag; i++) {
                         
@@ -669,6 +675,9 @@ int collectNum;
             }
             else
             {
+                
+                [statTracker logEvent:@"10002" eventLabel:@"clickGrowth"];
+
                 if (self.my_dayline.hidden == NO) {
                     for (int i = 0; i<=sender.tag-100; i++) {
                         [[self.my_dayline.starArray objectAtIndex:i+5] setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateNormal];
@@ -716,7 +725,17 @@ int collectNum;
 
 -(void)eventTapped:(UIButton *)sender
 {
+    if (sender.tag ==0) {
+        
+        [[Frontia getStatistics] logEvent:@"10003" eventLabel:@"newWorkEvent"];
+    }else if (sender.tag ==1){
+        [[Frontia getStatistics] logEvent:@"10004" eventLabel:@"newLifeEvent"];
+    }
     
+    
+    NSDate* goInEdit = [NSDate dateWithTimeIntervalSinceNow:0];
+    
+   // NSLog(@"go in edit:%@",goInEdit);
     //播放
     if (soundSwitch) {
         
@@ -747,7 +766,8 @@ int collectNum;
     self.textInMain = @"点击输入......";
     
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
-        my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
+    my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
+    my_editingViewController.justInEdit = goInEdit;
 
       my_editingViewController.setTextDelegate = self;
     
@@ -775,6 +795,9 @@ int collectNum;
 
 -(void)selectTapped
 {
+    
+    [[Frontia getStatistics] logEvent:@"10016" eventLabel:@"selectTap"];
+
     
     if (soundSwitch) {
         
@@ -1019,6 +1042,9 @@ int collectNum;
 -(void)treasureTapped
 {
     
+    [[Frontia getStatistics] logEvent:@"10017" eventLabel:@"collectTap"];
+
+    
     //播放
     if (soundSwitch) {
         
@@ -1176,6 +1202,9 @@ int collectNum;
 -(void)analyseTapped
 {
     
+    [[Frontia getStatistics] logEvent:@"10018" eventLabel:@"statisticTap"];
+
+    
     //播放
     if (soundSwitch) {
         
@@ -1260,6 +1289,9 @@ int collectNum;
 
 -(void)settingTapped
 {
+    
+    [[Frontia getStatistics] logEvent:@"10019" eventLabel:@"settingTap"];
+
     
     if (soundSwitch) {
         
@@ -1564,10 +1596,13 @@ int collectNum;
     editingViewController *my_modifyViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
     self.drawLabelDelegate = my_modifyViewController;
     
+    NSDate* goInEdit = [NSDate dateWithTimeIntervalSinceNow:0];
+    my_modifyViewController.justInEdit = goInEdit;
 
     
     my_modifyViewController.reloadDelegate = self;
     my_modifyViewController.setTextDelegate = self;
+    
     
     if(self.my_dayline.hidden == NO){
         my_modifyViewController.drawBtnDelegate = self.my_dayline.my_scoller;
@@ -2166,6 +2201,11 @@ int collectNum;
             my_selectEvent.reloadDelegate = self;
             my_selectEvent.setTextDelegate = self;
             
+            
+            NSDate* goInEdit = [NSDate dateWithTimeIntervalSinceNow:0];
+            my_selectEvent.justInEdit = goInEdit;
+            
+            
             if([self.today isEqualToString:dateGoesIn]){
                 my_selectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
             }else {
@@ -2348,6 +2388,11 @@ int collectNum;
             my_collectEvent.reloadDelegate = self;
             my_collectEvent.setTextDelegate = self;
          
+            
+            NSDate* goInEdit = [NSDate dateWithTimeIntervalSinceNow:0];
+            my_collectEvent.justInEdit = goInEdit;
+
+            
             if ([self.today isEqualToString: dateInCollect]) {
                 my_collectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
             }else{
@@ -2536,6 +2581,10 @@ int collectNum;
             my_selectEvent.setTextDelegate = self;
             
             my_selectEvent.drawBtnDelegate = self.my_dayline.my_scoller;
+            
+            
+            NSDate* goInEdit = [NSDate dateWithTimeIntervalSinceNow:0];
+            my_selectEvent.justInEdit = goInEdit;
            
             //  my_modifyViewController.addTagDataDelegate = self;
             my_selectEvent.tags = self.allTags;
@@ -2682,7 +2731,8 @@ int collectNum;
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
     NSLog(@"您点击了键盘上的Search按钮");
     
-    
+    [[Frontia getStatistics] logEvent:@"10020" eventLabel:@"searchEvent"];
+
     NSString *evtTitle_search;
     NSString *evtDate_search;
     NSNumber *evtID_search;

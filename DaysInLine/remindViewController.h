@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "remindDataDelegate.h"
+#import <Frontia/Frontia.h>
 
 @interface remindViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UISegmentedControl *remindMode;

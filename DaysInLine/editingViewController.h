@@ -79,7 +79,11 @@
 @property (strong, nonatomic) NSString *remindData;
 
 @property NSMutableArray *HasEvtDates;
-//@property (strong, nonatomic) NSString *oldLabel;
+
+
+//统计时长
+
+@property NSDate *justInEdit;
 
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
 @property (weak, nonatomic) NSObject <reloadTableDelegate> *reloadDelegate;

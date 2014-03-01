@@ -1541,7 +1541,7 @@ SystemSoundID soundObject;
                 }
                 
                 
-                //NSLog(@"the old start is :%d",[oldStartNum intValue]);
+  
                 [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
                 if ([self.eventType intValue]==0) {
                     for (int i = [startTimeNum intValue]/15; i < [endTimeNum intValue]/15; i++) {
@@ -1843,6 +1843,27 @@ SystemSoundID soundObject;
         
         sqlite3_close(dataBase);
     }
+    
+    NSTimeInterval inEdit=[self.justInEdit timeIntervalSince1970];
+  
+    NSDate* finishEdit = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval endEidt=[finishEdit timeIntervalSince1970];
+    
+    NSTimeInterval editInterval=endEidt-inEdit;
+     NSLog(@"editInterval is :%f",editInterval);
+    NSLog(@"editInterval is :%ld",(unsigned long)editInterval);
+  
+    
+    if ([self.eventType intValue]==0) {
+        
+        [[Frontia getStatistics] logEventWithDurationTime:@"10005" eventLabel:@"saveWork" durationTime:(unsigned long)editInterval];
+        
+    }else if([self.eventType intValue]==1){
+        
+        [[Frontia getStatistics] logEventWithDurationTime:@"10006" eventLabel:@"saveLife" durationTime:(unsigned long)editInterval];
+        
+    }
+
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }
