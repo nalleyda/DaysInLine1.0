@@ -46,7 +46,7 @@
 		0B92BE3B18B0C75D003AE50C /* 299x62按键.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE3A18B0C75D003AE50C /* 299x62按键.png */; };
 		0B93EC4718AB422600F871C4 /* 色点.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC4618AB422600F871C4 /* 色点.png */; };
 		0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B93EC4918ABA5EE00F871C4 /* customButton.m */; };
-		0B93EC5B18ABD06A00F871C4 /* editView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5618ABD06A00F871C4 /* editView@2x.png */; };
+		0B93EC5B18ABD06A00F871C4 /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5618ABD06A00F871C4 /* editView.png */; };
 		0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */; };
 		0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5818ABD06A00F871C4 /* addTapped.png */; };
 		0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */; };
@@ -201,7 +201,7 @@
 		0B93EC4618AB422600F871C4 /* 色点.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "色点.png"; sourceTree = "<group>"; };
 		0B93EC4818ABA5ED00F871C4 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
 		0B93EC4918ABA5EE00F871C4 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
-		0B93EC5618ABD06A00F871C4 /* editView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editView@2x.png"; sourceTree = "<group>"; };
+		0B93EC5618ABD06A00F871C4 /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
 		0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightBackground@2x.png"; sourceTree = "<group>"; };
 		0B93EC5818ABD06A00F871C4 /* addTapped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addTapped.png; sourceTree = "<group>"; };
 		0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundHome@2x.png"; sourceTree = "<group>"; };
@@ -525,7 +525,7 @@
 				0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */,
 				0BAE55AD185B7B1700695F0E /* icon.png */,
 				0BF933EF18A9092E00C6EA81 /* editView586@2x.png */,
-				0B93EC5618ABD06A00F871C4 /* editView@2x.png */,
+				0B93EC5618ABD06A00F871C4 /* editView.png */,
 				0B9A53D61812274D0085FFD7 /* DaysInLine-Info.plist */,
 				0B9A53D71812274D0085FFD7 /* InfoPlist.strings */,
 				0B9A53DA1812274D0085FFD7 /* main.m */,
@@ -733,7 +733,7 @@
 				0BB08A7818A9F41D00DE111E /* returnBtn.png in Resources */,
 				0BB08A8118A9F41D00DE111E /* deleteBtn2.png in Resources */,
 				0BF646CD18BF952500159161 /* 心情.png in Resources */,
-				0B93EC5B18ABD06A00F871C4 /* editView@2x.png in Resources */,
+				0B93EC5B18ABD06A00F871C4 /* editView.png in Resources */,
 				0BA61BD318A25108000B7163 /* star2.png in Resources */,
 				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
 				0BB08A7418A9F41D00DE111E /* photoBtn.png in Resources */,

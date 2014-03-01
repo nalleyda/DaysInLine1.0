@@ -273,6 +273,9 @@ SystemSoundID soundObject;
            AudioServicesPlaySystemSound(soundObject);
     }
     
+    [[Frontia getStatistics] logEvent:@"10007" eventLabel:@"tagTap"];
+
+    
     
     selected = [[NSMutableArray alloc] init];
    
@@ -347,6 +350,8 @@ SystemSoundID soundObject;
 }
 -(void)addButtonTapped
 {
+     [[Frontia getStatistics] logEvent:@"10024" eventLabel:@"addTag"];
+    
     if (soundSwitch) {
         
         CFBundleRef mainbundle=CFBundleGetMainBundle();
@@ -414,7 +419,8 @@ SystemSoundID soundObject;
         AudioServicesPlaySystemSound(soundObject_ok);
     }
     
-    
+    [[Frontia getStatistics] logEvent:@"10025" eventLabel:@"tagOK"];
+
     
     //[self.mainText setFrame:CGRectMake(55, 240, 200, 200)];
     //NSLog(@"width is :%.2f",self.mainText.frame.size.width);
@@ -489,6 +495,8 @@ SystemSoundID soundObject;
 
 -(void)remindTapped
 {
+    
+    
     if (soundSwitch) {
         AudioServicesPlaySystemSound(soundObject);
     }
@@ -548,6 +556,8 @@ SystemSoundID soundObject;
 
 -(void) photoTapped
 {
+     [[Frontia getStatistics] logEvent:@"10010" eventLabel:@"takePic"];
+    
     if (soundSwitch) {
         AudioServicesPlaySystemSound(soundObject);
     }
@@ -696,6 +706,7 @@ SystemSoundID soundObject;
 
 -(void)checkButtonTapped:(UIButton *)sender
 {
+     [[Frontia getStatistics] logEvent:@"10011" eventLabel:@"viewPic"];
     
     if (soundSwitch) {
         
@@ -831,6 +842,9 @@ SystemSoundID soundObject;
 
 -(void)moneyTapped
 {
+    
+     [[Frontia getStatistics] logEvent:@"10008" eventLabel:@"moneyTap"];
+    
     if (soundSwitch) {
         AudioServicesPlaySystemSound(soundObject);
     }
@@ -921,6 +935,8 @@ SystemSoundID soundObject;
 //tag＝1的actionsheet
 -(void)startTimeTapped
 {
+     [[Frontia getStatistics] logEvent:@"10022" eventLabel:@"startTimeTap"];
+    
     if (soundSwitch) {
         
         CFBundleRef mainbundle=CFBundleGetMainBundle();
@@ -955,6 +971,8 @@ SystemSoundID soundObject;
 //tag＝2的actionsheet
 -(void)endTimeTapped
 {
+     [[Frontia getStatistics] logEvent:@"10023" eventLabel:@"endTimeTap"];
+    
     if (soundSwitch) {
         
         CFBundleRef mainbundle=CFBundleGetMainBundle();
@@ -987,6 +1005,8 @@ SystemSoundID soundObject;
 -(void)addCollectTapped
 {
     
+    [[Frontia getStatistics] logEvent:@"10013" eventLabel:@"addCollect"];
+
     
     if (soundSwitch) {
         
@@ -1333,6 +1353,8 @@ SystemSoundID soundObject;
 
 -(void)deleteTapped
 {
+    
+     [[Frontia getStatistics] logEvent:@"10012" eventLabel:@"deleteEvent"];
     
     if (soundSwitch) {
         
@@ -2264,6 +2286,9 @@ SystemSoundID soundObject;
     }
     if (alertView.tag == 5) {
         if (buttonIndex == 1) {
+            
+            [[Frontia getStatistics] logEvent:@"10014" eventLabel:@"returnWithoutSave"];
+
             [self dismissViewControllerAnimated:YES completion:nil];
         }
     }

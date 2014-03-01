@@ -239,6 +239,8 @@ UIDatePicker *remindTimePicker2;
 
 - (IBAction)remindOkButton:(UIButton *)sender {
     
+     [[Frontia getStatistics] logEvent:@"10009" eventLabel:@"remindTap"];
+    
    // NSDate *now = [[NSDate alloc] init];
     NSTimeZone *zone = [NSTimeZone systemTimeZone];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
