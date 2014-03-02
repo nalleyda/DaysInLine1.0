@@ -15,6 +15,9 @@
 @interface editingViewController (){
     NSMutableArray *selected;
     NSMutableArray *tagLabels;
+    NSMutableArray *textInlabel;
+    NSMutableArray *beSelected;//判断打开标签后，某cell是否已选
+
 }
 @end
 
@@ -26,6 +29,7 @@ NSString *oldRemindDate;
 bool firstInmoney;
 bool moveON;
 bool haveSaved;
+bool firstInTag;//判断打开标签后，某cell是否已选
 SystemSoundID soundObject;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -82,6 +86,8 @@ SystemSoundID soundObject;
     //self.remindData = nil;
     //NSLog(@"<<<<<%@>>>>>",self.remindData);
     tagLabels = [[NSMutableArray alloc] init];
+    textInlabel = [[NSMutableArray alloc] init];
+    beSelected = [[NSMutableArray alloc] init];
     self.selectedTags = [[NSMutableString alloc] init];
 
     NSString *docsDir;
@@ -278,6 +284,9 @@ SystemSoundID soundObject;
     
     
     selected = [[NSMutableArray alloc] init];
+    firstInTag = YES;
+
+
    
     [self dismissKeyboard];
     NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"tagView" owner:self options:nil];
@@ -352,6 +361,7 @@ SystemSoundID soundObject;
 {
      [[Frontia getStatistics] logEvent:@"10024" eventLabel:@"addTag"];
     
+    [selected removeAllObjects];
     if (soundSwitch) {
         
         CFBundleRef mainbundle=CFBundleGetMainBundle();
@@ -419,6 +429,8 @@ SystemSoundID soundObject;
         AudioServicesPlaySystemSound(soundObject_ok);
     }
     
+    [beSelected removeAllObjects];
+    
     [[Frontia getStatistics] logEvent:@"10025" eventLabel:@"tagOK"];
 
     
@@ -428,18 +440,25 @@ SystemSoundID soundObject;
     //NSLog(@"count is %lu",(unsigned long)tagLabels.count);
     for (int i = 0 ; i< tagLabels.count ; i++) {
         UILabel * oldTag = [tagLabels objectAtIndex:i];
+    
         [oldTag removeFromSuperview];
       
     }
+    [textInlabel removeAllObjects];
+    [tagLabels removeAllObjects];
     if (selected.count > 0) {
         for (int i = 0; i < selected.count; i++) {
             [choices appendFormat:@"%@,",selected[i]];
             UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 150+30*i, self.view.frame.size.width-265, 20)];
             tag.text = selected[i];
             [tagLabels addObject:tag];
+            [textInlabel addObject:tag.text];
+            
             [self.view addSubview:tag];
             
         }
+        
+        NSLog(@"tag num is:%d",tagLabels.count);
 
         self.selectedTags = [choices substringToIndex:(choices.length-1)];
         //NSLog(@"OK   tapped---->:%@",self.selectedTags);
@@ -668,9 +687,9 @@ SystemSoundID soundObject;
     UIImageView *checkPhotoImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, tmpCustomView.frame.size.width, tmpCustomView.frame.size.height)];
     
     checkPhotoImage.image = [UIImage imageNamed:@"photoAlert.png"];
-    checkPhotoImage.layer.borderWidth = 0.0f;
+    checkPhotoImage.layer.borderWidth = 3.0f;
     checkPhotoImage.layer.borderColor = [UIColor clearColor].CGColor;
-    tmpCustomView.layer.borderWidth = 0.0f;
+    tmpCustomView.layer.borderWidth = 3.0f;
     tmpCustomView.layer.borderColor = [UIColor clearColor].CGColor;
     [tmpCustomView addSubview:checkPhotoImage];
     [tmpCustomView sendSubviewToBack:checkPhotoImage];
@@ -2324,6 +2343,7 @@ SystemSoundID soundObject;
                 tag.text = tagToDraw[i];
                
                 [tagLabels addObject:tag];
+                [textInlabel addObject:tag.text];
                 [self.view addSubview:tag];
                 
             }
@@ -2355,20 +2375,73 @@ SystemSoundID soundObject;
     }
     NSUInteger row=[indexPath row];
     cell.backgroundColor = [UIColor clearColor];
+    
+    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell1-1.png"]];
+    UIImageView *clivkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell2-1.png"]];
+    cell.backgroundView = bgImageView;
+    cell.selectedBackgroundView = clivkImageView;
+    
     //设置文本
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.text =[self.tags objectAtIndex :row];
     
     
+    
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
     NSUInteger row=[indexPath row];
+
+    NSNumber *haveSelected = [[NSNumber alloc] initWithBool:NO];
+    
+    if ([textInlabel containsObject:cell.textLabel.text]) {
+        
+        haveSelected = [[NSNumber alloc] initWithBool:YES];
+        
+        [selected addObject:[self.tags objectAtIndex:row]];
+        
+        //  [self tableView:tableView didSelectRowAtIndexPath:indexPath];
+        
+      //  [cell setSelected:YES];
+        cell.highlighted = YES;
+        NSLog(@"selected:%d", cell.selected);
+        
+    }
+    
+    [beSelected insertObject:haveSelected atIndex:row];
+    
+    
+  
+
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+  
+
+    
+    NSUInteger row=[indexPath row];
+    
+    if ([(NSNumber *)[beSelected objectAtIndex:row] boolValue] == YES && firstInTag ==YES) {
+       // [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+        [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
+        firstInTag = NO;
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
+      
+        //theUITableViewCell.highlighted = NO;
+        //theUITableViewCell.selected = NO;
+        
+    }else{
+       // theUITableViewCell.highlighted = YES;
+        [selected addObject:[self.tags objectAtIndex:row]];
+        //NSLog(@"select---->:%@",selected);
+    }
  
-    [selected addObject:[self.tags objectAtIndex:row]];
-    //NSLog(@"select---->:%@",selected);
+
 
     
 
@@ -2381,8 +2454,27 @@ SystemSoundID soundObject;
 
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
-     //NSLog(@"Deselect---->:%@",selected);
+  
+  //  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+   
+  //  NSUInteger row=[indexPath row];
+ /*
+    if ([(NSNumber *)[beSelected objectAtIndex:row] boolValue] == YES) {
+        
+      //  cell.highlighted = YES;
+        [selected addObject:[self.tags objectAtIndex:row]];
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+
+
+        // [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
+
+        
+    }else{
+  */
+        [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
+      //  cell.highlighted = NO;
+        //NSLog(@"Deselect---->:%@",selected);
 
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

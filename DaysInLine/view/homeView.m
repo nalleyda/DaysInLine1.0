@@ -27,7 +27,17 @@
         UIImageView *homeBackground = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
         
         homeBackground.image = [UIImage imageNamed:@"backgroundHome"];
-                                       
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        if (screenBounds.size.height == 568) {
+            
+            [homeBackground setImage:[UIImage imageNamed:@"backgroundHome586.png"]];
+            
+            
+        }else{
+            
+            [homeBackground setImage:[UIImage imageNamed:@"backgroundHome.png"]];
+            
+        }
         
         [self addSubview:homeBackground];
         [self sendSubviewToBack:homeBackground];

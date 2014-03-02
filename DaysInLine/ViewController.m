@@ -528,7 +528,7 @@ int collectNum;
         
         
         sqlite3_finalize(statement);
-        if (!todayRedrawDone) {
+        
             NSString *queryEventButton = [NSString stringWithFormat:@"SELECT type,title,startTime,endTime from event where DATE=\"%@\"",modifyDate];
             const char *queryEventstatement = [queryEventButton UTF8String];
             if (sqlite3_prepare_v2(dataBase, queryEventstatement, -1, &statement, NULL)==SQLITE_OK) {
@@ -546,11 +546,13 @@ int collectNum;
                     }
                     NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
-                    
+                 if (!todayRedrawDone) {   
                     
                     [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
                     
+                    todayRedrawDone = YES;
                     
+                }
                     if ([evtType intValue]==0) {
                         for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                             workArea[i] = 1;
@@ -570,9 +572,7 @@ int collectNum;
             }
             
             sqlite3_finalize(statement);
-            todayRedrawDone = YES;
-            
-        }
+       
     }
     
     

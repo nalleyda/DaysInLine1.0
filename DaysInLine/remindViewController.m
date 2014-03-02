@@ -49,7 +49,19 @@ UIDatePicker *remindTimePicker2;
     //self.view.backgroundColor = [UIColor clearColor];
     
     UIImageView *backgrd=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-20)];
-    [backgrd setImage:[UIImage imageNamed:@"提醒背景.png"]];
+    //[backgrd setImage:[UIImage imageNamed:@"提醒背景.png"]];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+
+    if (screenBounds.size.height == 568) {
+        
+        [backgrd setImage:[UIImage imageNamed:@"提醒背景586.png"]];
+        
+        
+    }else{
+        
+        [backgrd setImage:[UIImage imageNamed:@"提醒背景.png"]];
+        
+    }
     
     [self.view addSubview:backgrd];
     [self.view sendSubviewToBack:backgrd];

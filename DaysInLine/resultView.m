@@ -119,6 +119,7 @@
         
         self.expendingLong = [[UILabel alloc] init];
         self.expendingLong.backgroundColor = [UIColor colorWithRed:251/255.0f green:176/255.0f blue:64/255.0f alpha:1.0f];
+       // [self bringSubviewToFront:self.expendingLong];
         self.expending = [[UILabel alloc] init];
         self.expending.backgroundColor = [UIColor clearColor];
         ///self.mood.textAlignment = NSTextAlignmentRight;

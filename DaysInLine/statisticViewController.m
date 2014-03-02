@@ -190,12 +190,15 @@ double expendAll;
         NSLog(@"expend:%.2f",expendAll);
         if (incomeAll >= expendAll) {
             my_result.incomingLong.frame = CGRectMake(78, y+ 292,210, 11);
+            
             my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
             my_result.incoming.textAlignment = NSTextAlignmentLeft;
             my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];
             
             
             my_result.expendingLong.frame = CGRectMake(78, y+ 337,210*expendAll/(incomeAll+0.0001), 11);
+            
+            [self.view bringSubviewToFront:my_result.expendingLong];
             my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
             my_result.expending.textAlignment = NSTextAlignmentLeft;
             my_result.expending.text = [NSString stringWithFormat:@"%.2f",expendAll];
