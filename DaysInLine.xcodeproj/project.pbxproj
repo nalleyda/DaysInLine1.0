@@ -130,9 +130,7 @@
 		0BFD27ED18BCE5C60016BCE4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27EC18BCE5C60016BCE4 /* CoreLocation.framework */; };
 		0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */; };
 		0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27F018BCE5F10016BCE4 /* libz.dylib */; };
-		0BFD280818BCE6850016BCE4 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD280718BCE6850016BCE4 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0BFD280B18BCF2F20016BCE4 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD280A18BCF2F20016BCE4 /* Frontia.framework */; };
-		0BFD281018BCF3810016BCE4 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD280F18BCF3810016BCE4 /* Frontia.framework */; };
 		0BFD281218BCF4030016BCE4 /* FrontiaSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */; };
 		0BFE899F18C30FC0002F6F67 /* backgroundHome586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE899E18C30FC0002F6F67 /* backgroundHome586@2x.png */; };
 		0BFE89A118C31511002F6F67 /* 提醒背景586.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE89A018C31511002F6F67 /* 提醒背景586.png */; };
@@ -306,10 +304,7 @@
 		0BFD27EC18BCE5C60016BCE4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		0BFD27F018BCE5F10016BCE4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		0BFD280718BCE6850016BCE4 /* JSONKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
 		0BFD280A18BCF2F20016BCE4 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Frontia.framework; path = "/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs/Frontia.framework"; sourceTree = "<absolute>"; };
-		0BFD280C18BCF33F0016BCE4 /* JSONKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
-		0BFD280F18BCF3810016BCE4 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Frontia.framework; sourceTree = "<group>"; };
 		0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FrontiaSource.bundle; sourceTree = "<group>"; };
 		0BFE899E18C30FC0002F6F67 /* backgroundHome586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundHome586@2x.png"; sourceTree = "<group>"; };
 		0BFE89A018C31511002F6F67 /* 提醒背景586.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景586.png"; sourceTree = "<group>"; };
@@ -329,7 +324,6 @@
 			files = (
 				0BFD280B18BCF2F20016BCE4 /* Frontia.framework in Frameworks */,
 				0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */,
-				0BFD281018BCF3810016BCE4 /* Frontia.framework in Frameworks */,
 				0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */,
 				0BFD27ED18BCE5C60016BCE4 /* CoreLocation.framework in Frameworks */,
 				0BFD27EB18BCE5BB0016BCE4 /* CoreTelephony.framework in Frameworks */,
@@ -616,9 +610,6 @@
 			isa = PBXGroup;
 			children = (
 				0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */,
-				0BFD280F18BCF3810016BCE4 /* Frontia.framework */,
-				0BFD280718BCE6850016BCE4 /* JSONKit.m */,
-				0BFD280C18BCF33F0016BCE4 /* JSONKit.h */,
 			);
 			name = libs;
 			path = "../../Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs";
@@ -839,7 +830,6 @@
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
 				0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */,
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,
-				0BFD280818BCE6850016BCE4 /* JSONKit.m in Sources */,
 				0B9009E31877DDA6008D3799 /* selectView.m in Sources */,
 				0BF646C018BF92CC00159161 /* resultView.m in Sources */,
 				0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */,
