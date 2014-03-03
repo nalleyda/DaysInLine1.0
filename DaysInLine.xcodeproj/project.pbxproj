@@ -22,7 +22,6 @@
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
 		0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9118C4C7B8006756FF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		0B6AEF9418C4CA59006756FF /* FrontiaSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9318C4CA59006756FF /* FrontiaSource.bundle */; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
 		0B9009DD1877D791008D3799 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009D81877D791008D3799 /* left_arrow.png */; };
@@ -173,7 +172,6 @@
 		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
 		0B6AEF9018C4C7B8006756FF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
 		0B6AEF9118C4C7B8006756FF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
-		0B6AEF9318C4CA59006756FF /* FrontiaSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FrontiaSource.bundle; sourceTree = "<group>"; };
 		0B8F0D8C18641FA900FD1264 /* remindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController.xib; sourceTree = "<group>"; };
 		0B8F0D8F186422F300FD1264 /* remindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindViewController.h; sourceTree = "<group>"; };
 		0B8F0D90186422F300FD1264 /* remindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remindViewController.m; sourceTree = "<group>"; };
@@ -612,7 +610,6 @@
 		0BFD27F218BCE65A0016BCE4 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				0B6AEF9318C4CA59006756FF /* FrontiaSource.bundle */,
 				0B6AEF9018C4C7B8006756FF /* JSONKit.h */,
 				0B6AEF9118C4C7B8006756FF /* JSONKit.m */,
 			);
@@ -801,7 +798,6 @@
 				0BB08A7E18A9F41D00DE111E /* moneyBtn2.png in Resources */,
 				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 				0BB08A8018A9F41D00DE111E /* collectionBtn2.png in Resources */,
-				0B6AEF9418C4CA59006756FF /* FrontiaSource.bundle in Resources */,
 				0BF646C318BF947100159161 /* result@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
