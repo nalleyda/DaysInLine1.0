@@ -144,6 +144,8 @@ double expendAll;
     NSLog(@"{-----%.2f,%.2f-----}",moodAverage,growthAverage);
 
     
+    my_result.daysCount.text = [NSString stringWithFormat:@"%d",days];
+    
     int y = self.view.frame.origin.y ;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -155,6 +157,9 @@ double expendAll;
 //    CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         y += 50;
+    }else{
+    
+        y-=10;
     }
     
     
@@ -171,17 +176,17 @@ double expendAll;
 
         
         my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
-        my_result.workingLong.frame = CGRectMake(78,y +107, workOfAll*164 , 11);
+        my_result.workingLong.frame = CGRectMake(78,y +150, workOfAll*164 , 11);
         
         my_result.lifingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[1]/60];
-        my_result.lifeLong.frame = CGRectMake(78+workOfAll*164,y +107, lifeOfAll*164 , 11);
+        my_result.lifeLong.frame = CGRectMake(78+workOfAll*164,y +150, lifeOfAll*164 , 11);
         
-        my_result.moodLong.frame = CGRectMake(78, y+ 177,210*moodAverage/(5*days), 11);
+        my_result.moodLong.frame = CGRectMake(78, y+ 212,211*moodAverage/(5*days), 11);
         my_result.mood.frame = CGRectMake(2+my_result.moodLong.frame.origin.x+my_result.moodLong.frame.size.width*7/8, my_result.moodLong.frame.origin.y-19, 30, 16) ;
         my_result.mood.textAlignment = NSTextAlignmentLeft;
         my_result.mood.text = [NSString stringWithFormat:@"%d%%",(int)(100*moodAverage/(5*days))];
         
-        my_result.growLong.frame = CGRectMake(78, y+ 222,210*growthAverage/(5*days), 11);
+        my_result.growLong.frame = CGRectMake(78, y+ 257,211*growthAverage/(5*days), 11);
         my_result.grow.frame = CGRectMake(2+my_result.growLong.frame.origin.x+my_result.growLong.frame.size.width*7/8, my_result.growLong.frame.origin.y-19, 30, 16) ;
         my_result.grow.textAlignment = NSTextAlignmentLeft;
         my_result.grow.text = [NSString stringWithFormat:@"%d%%",(int)(100*growthAverage/(5*days))];
@@ -189,14 +194,14 @@ double expendAll;
         NSLog(@"income:%.2f",incomeAll);
         NSLog(@"expend:%.2f",expendAll);
         if (incomeAll >= expendAll) {
-            my_result.incomingLong.frame = CGRectMake(78, y+ 292,210, 11);
+            my_result.incomingLong.frame = CGRectMake(78, y+ 307,211, 11);
             
             my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
             my_result.incoming.textAlignment = NSTextAlignmentLeft;
             my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];
             
             
-            my_result.expendingLong.frame = CGRectMake(78, y+ 337,210*expendAll/(incomeAll+0.0001), 11);
+            my_result.expendingLong.frame = CGRectMake(78, y+ 352,211*expendAll/(incomeAll+0.0001), 11);
             
             [self.view bringSubviewToFront:my_result.expendingLong];
             my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
@@ -205,13 +210,13 @@ double expendAll;
             
         }else{
             
-            my_result.expendingLong.frame = CGRectMake(78, y+ 337,210, 11);
+            my_result.expendingLong.frame = CGRectMake(78, y+ 352,211, 11);
             my_result.expending.frame = CGRectMake(2+my_result.expendingLong.frame.origin.x+my_result.expendingLong.frame.size.width*3/4, my_result.expendingLong.frame.origin.y-19, 60, 16) ;
             my_result.expending.textAlignment = NSTextAlignmentLeft;
             my_result.expending.text = [NSString stringWithFormat:@"%.2f",expendAll];
             
             
-            my_result.incomingLong.frame = CGRectMake(78, y+ 292,210*incomeAll/(expendAll+0.0001), 11);
+            my_result.incomingLong.frame = CGRectMake(78, y+ 307,211*incomeAll/(expendAll+0.0001), 11);
             my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;
             my_result.incoming.textAlignment = NSTextAlignmentLeft;
             my_result.incoming.text = [NSString stringWithFormat:@"%.2f",incomeAll];

@@ -28,10 +28,14 @@
          CGRect screenBounds = [[UIScreen mainScreen] bounds];
         if (screenBounds.size.height == 568) {
             y += 50;
-        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-60, 80, 50)];
+        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-130, 80, 50)];
+        self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+73, 50, 50)];
+
         }else
         {
+            y-=10;
         self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-100, 80, 50)];
+        self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+83, 50, 50)];
 
         }
         
@@ -42,19 +46,27 @@
         [self addSubview:self.continueButton];
 
         
-        UIImageView *workImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +90, 260    , 30)];
+       // self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+73, 50, 50)];
+        self.daysCount.backgroundColor = [UIColor clearColor];
+        self.daysCount.textAlignment = NSTextAlignmentCenter;
+        self.daysCount.textColor = [UIColor colorWithRed:59/255.0f green:170/255.0f blue:217/255.0f alpha:1.0f];
+        self.daysCount.font = [UIFont systemFontOfSize:20.0];
+        [self addSubview:self.daysCount];
+
+        
+        UIImageView *workImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +133, 260    , 30)];
         [workImage setImage:[UIImage imageNamed:@"工作生活.png"]];
         
         self.workingLong = [[UILabel alloc] init];
         self.workingLong.backgroundColor = [UIColor colorWithRed:97/255.0f green:197/255.0f blue:185/255.0f alpha:1.0f];
-        self.workingTime = [[UILabel alloc] initWithFrame:CGRectMake(80,y +90, 100 , 16)];
+        self.workingTime = [[UILabel alloc] initWithFrame:CGRectMake(80,y +133, 100 , 16)];
         self.workingTime.backgroundColor = [UIColor clearColor];
         self.workingTime.font = [UIFont systemFontOfSize:10.0];
         
         
         self.lifeLong = [[UILabel alloc] init];
         self.lifeLong.backgroundColor = [UIColor colorWithRed:246/255.0f green:235/255.0f blue:127/255.0f alpha:1.0f];
-        self.lifingTime = [[UILabel alloc] initWithFrame:CGRectMake(141,y +90, 100 , 16)];
+        self.lifingTime = [[UILabel alloc] initWithFrame:CGRectMake(141,y +133, 100 , 16)];
         self.lifingTime.backgroundColor = [UIColor clearColor];
         self.lifingTime.textAlignment = NSTextAlignmentRight;
         self.lifingTime.font = [UIFont systemFontOfSize:10.0];
@@ -66,7 +78,7 @@
         [self addSubview:self.workingTime];
         [self addSubview:workImage];
         
-        UIImageView *moodImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +160, 260    , 30)];
+        UIImageView *moodImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +195, 260    , 30)];
         [moodImage setImage:[UIImage imageNamed:@"心情.png"]];
 
         
@@ -84,7 +96,7 @@
         
         [self addSubview:moodImage];
         
-        UIImageView *growImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +205, 260    , 30)];
+        UIImageView *growImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +240, 260    , 30)];
         [growImage setImage:[UIImage imageNamed:@"成长.png"]];
         
         self.growLong = [[UILabel alloc] init];
@@ -100,7 +112,7 @@
         
         [self addSubview:growImage];
         
-        UIImageView *incomeImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +275, 260    , 30)];
+        UIImageView *incomeImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +290, 260    , 30)];
         [incomeImage setImage:[UIImage imageNamed:@"收入.png"]];
         
         self.incomingLong = [[UILabel alloc] init];
@@ -114,7 +126,7 @@
         [self addSubview:self.incomingLong];
         [self addSubview:incomeImage];
         
-        UIImageView *expendImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +320, 260    , 30)];
+        UIImageView *expendImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +335, 260    , 30)];
         [expendImage setImage:[UIImage imageNamed:@"支出.png"]];
         
         self.expendingLong = [[UILabel alloc] init];

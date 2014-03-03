@@ -10,6 +10,7 @@
 
 @interface resultView : UIView
 
+@property (strong , nonatomic) UILabel *daysCount ;
 @property (strong , nonatomic) UILabel *workingLong ;
 @property (strong , nonatomic) UILabel *workingTime ;
 @property (strong , nonatomic) UILabel *lifeLong ;
