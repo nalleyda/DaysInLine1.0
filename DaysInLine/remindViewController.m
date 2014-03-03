@@ -56,26 +56,38 @@ UIDatePicker *remindTimePicker2;
         
         [backgrd setImage:[UIImage imageNamed:@"提醒背景586.png"]];
         
+        self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,110,self.view.frame.size.width, self.view.frame.size.height-265)];
+        self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,110,self.view.frame.size.width, self.view.frame.size.height-265)];
+        
+        self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
+        self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
+
         
     }else{
         
         [backgrd setImage:[UIImage imageNamed:@"提醒背景.png"]];
+        
+        self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
+        self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
+
+        
+        self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
+        self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
+
         
     }
     
     [self.view addSubview:backgrd];
     [self.view sendSubviewToBack:backgrd];
    
-    self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
+
   //  self.viewDate.backgroundColor = [UIColor greenColor];
-    self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
     
-    self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(50, self.view.frame.size.height-240, self.view.frame.size.width-80, 30)];
-    self.setTimeLabel.textColor = [UIColor blackColor];
+        self.setTimeLabel.textColor = [UIColor blackColor];
     self.setTimeLabel.backgroundColor = [UIColor clearColor];
    // self.setTimeLabel2 = self.setTimeLabel;
     
-    self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(50, self.view.frame.size.height-240, self.view.frame.size.width-80, 30)];
+   
     self.setTimeLabel2.textColor = [UIColor blackColor];
     self.setTimeLabel2.backgroundColor = [UIColor clearColor];
     
@@ -94,18 +106,35 @@ UIDatePicker *remindTimePicker2;
     remindTimePicker = [[UIDatePicker alloc] init] ;
     remindTimePicker2 = [[UIDatePicker alloc] init] ;
     
+    if (screenBounds.size.height == 568) {
+        
+        remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, 70);
+        
+        remindDatePicker.transform = CGAffineTransformMakeScale(0.7, 0.7);
+        
+        remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 210);
+        remindTimePicker.transform = CGAffineTransformMakeScale(0.7, 0.7);
+        
+    }else{
+        remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, 70);
+        
+        remindDatePicker.transform = CGAffineTransformMakeScale(0.65, 0.6);
+        
+        remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 210);
+        remindTimePicker.transform = CGAffineTransformMakeScale(0.65, 0.6);
+        
+    }
+
     remindDatePicker.datePickerMode = UIDatePickerModeDate;
-    remindDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-20, 30);
-    remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, 75);
-    
-    remindDatePicker.transform = CGAffineTransformMakeScale(0.65, 0.55);
+//    remindDatePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-20, 30);
+
 
     [self.viewDate addSubview:remindDatePicker];
     
     remindTimePicker.datePickerMode = UIDatePickerModeTime;
-    remindTimePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
-    remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 180);
-    remindTimePicker.transform = CGAffineTransformMakeScale(0.65, 0.55);
+ //   remindTimePicker.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
+ 
+
     
     
      [self.viewDate addSubview:remindTimePicker];
@@ -115,9 +144,19 @@ UIDatePicker *remindTimePicker2;
     
     [self.remindMode addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventValueChanged];
     self.remindMode.selectedSegmentIndex= 0;
+    if (screenBounds.size.height == 568) {
+        
+        self.returnButton = [[UIButton alloc] initWithFrame:CGRectMake(remindDatePicker.frame.origin.x+10, self.view.frame.size.height-150, 40, 40)];
+        self.okButton = [[UIButton alloc] initWithFrame:CGRectMake(230 , self.view.frame.size.height-150, 40, 40)];
+        
+    }else{
+        self.returnButton = [[UIButton alloc] initWithFrame:CGRectMake(remindDatePicker.frame.origin.x, self.view.frame.size.height-88, 40, 40)];
+        self.okButton = [[UIButton alloc] initWithFrame:CGRectMake(240 , self.view.frame.size.height-88, 40, 40)];
+        
+        
+    }
     
-    self.returnButton = [[UIButton alloc] initWithFrame:CGRectMake(remindDatePicker.frame.origin.x, self.view.frame.size.height-100, 40, 40)];
-    self.okButton = [[UIButton alloc] initWithFrame:CGRectMake(240 , self.view.frame.size.height-100, 40, 40)];
+
     
     [self.okButton setImage:[UIImage imageNamed:@"okInAlert.png"] forState:UIControlStateNormal];
     [self.returnButton setImage:[UIImage imageNamed:@"returnInAlert.png"] forState:UIControlStateNormal];
@@ -157,7 +196,7 @@ UIDatePicker *remindTimePicker2;
     remindTimePicker2.datePickerMode = UIDatePickerModeTime;
     remindTimePicker2.frame = CGRectMake(0, 0, self.view.frame.size.width-120, 30);
     remindTimePicker2.center = CGPointMake(self.view.frame.size.width/2, 180);
-    remindTimePicker2.transform = CGAffineTransformMakeScale(0.65, 0.55);
+    remindTimePicker2.transform = CGAffineTransformMakeScale(0.65, 0.6);
     
     
     [self.viewInterval addSubview:self.setTimeLabel2];

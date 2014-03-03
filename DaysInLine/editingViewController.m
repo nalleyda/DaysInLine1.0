@@ -520,7 +520,15 @@ SystemSoundID soundObject;
         AudioServicesPlaySystemSound(soundObject);
     }
     
-    remindViewController *my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController" bundle:nil];
+    remindViewController *my_remind ;
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController586" bundle:nil];
+    }else{
+       my_remind = [[remindViewController alloc] initWithNibName:@"remindViewController" bundle:nil];
+        
+    }
     my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     my_remind.setRemindDelegate = self;
