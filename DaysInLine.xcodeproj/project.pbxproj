@@ -21,6 +21,8 @@
 		0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
+		0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9118C4C7B8006756FF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0B6AEF9418C4CA59006756FF /* FrontiaSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9318C4CA59006756FF /* FrontiaSource.bundle */; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
 		0B9009DD1877D791008D3799 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009D81877D791008D3799 /* left_arrow.png */; };
@@ -131,7 +133,6 @@
 		0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */; };
 		0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27F018BCE5F10016BCE4 /* libz.dylib */; };
 		0BFD280B18BCF2F20016BCE4 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD280A18BCF2F20016BCE4 /* Frontia.framework */; };
-		0BFD281218BCF4030016BCE4 /* FrontiaSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */; };
 		0BFE899F18C30FC0002F6F67 /* backgroundHome586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE899E18C30FC0002F6F67 /* backgroundHome586@2x.png */; };
 		0BFE89A118C31511002F6F67 /* 提醒背景586.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE89A018C31511002F6F67 /* 提醒背景586.png */; };
 		0BFE89AF18C32554002F6F67 /* 支出.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE89AE18C32554002F6F67 /* 支出.png */; };
@@ -170,6 +171,9 @@
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
 		0B2C3339185B7CEE00CB2763 /* moneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moneyView.xib; sourceTree = "<group>"; };
 		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
+		0B6AEF9018C4C7B8006756FF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
+		0B6AEF9118C4C7B8006756FF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
+		0B6AEF9318C4CA59006756FF /* FrontiaSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FrontiaSource.bundle; sourceTree = "<group>"; };
 		0B8F0D8C18641FA900FD1264 /* remindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController.xib; sourceTree = "<group>"; };
 		0B8F0D8F186422F300FD1264 /* remindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindViewController.h; sourceTree = "<group>"; };
 		0B8F0D90186422F300FD1264 /* remindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remindViewController.m; sourceTree = "<group>"; };
@@ -305,7 +309,6 @@
 		0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		0BFD27F018BCE5F10016BCE4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		0BFD280A18BCF2F20016BCE4 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Frontia.framework; path = "/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs/Frontia.framework"; sourceTree = "<absolute>"; };
-		0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FrontiaSource.bundle; sourceTree = "<group>"; };
 		0BFE899E18C30FC0002F6F67 /* backgroundHome586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundHome586@2x.png"; sourceTree = "<group>"; };
 		0BFE89A018C31511002F6F67 /* 提醒背景586.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景586.png"; sourceTree = "<group>"; };
 		0BFE89AE18C32554002F6F67 /* 支出.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "支出.png"; sourceTree = "<group>"; };
@@ -609,7 +612,9 @@
 		0BFD27F218BCE65A0016BCE4 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				0BFD281118BCF4030016BCE4 /* FrontiaSource.bundle */,
+				0B6AEF9318C4CA59006756FF /* FrontiaSource.bundle */,
+				0B6AEF9018C4C7B8006756FF /* JSONKit.h */,
+				0B6AEF9118C4C7B8006756FF /* JSONKit.m */,
 			);
 			name = libs;
 			path = "../../Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs";
@@ -738,7 +743,6 @@
 				0B92BE3418B0C4F3003AE50C /* returnInAlert.png in Resources */,
 				0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */,
 				0BB08A7318A9F41D00DE111E /* tagBtn.png in Resources */,
-				0BFD281218BCF4030016BCE4 /* FrontiaSource.bundle in Resources */,
 				0BB08A8218A9F41D00DE111E /* saveBtn2.png in Resources */,
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
@@ -797,6 +801,7 @@
 				0BB08A7E18A9F41D00DE111E /* moneyBtn2.png in Resources */,
 				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 				0BB08A8018A9F41D00DE111E /* collectionBtn2.png in Resources */,
+				0B6AEF9418C4CA59006756FF /* FrontiaSource.bundle in Resources */,
 				0BF646C318BF947100159161 /* result@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,6 +826,7 @@
 				0BA18F6D187C41B700ADBB01 /* collectionView.m in Sources */,
 				134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */,
 				0B942F861896720A002864B8 /* statisticViewController.m in Sources */,
+				0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */,
 				0B9B364A1895467600E9151A /* statisticView.m in Sources */,
 				0BD700861813ABFB004FCBE2 /* homeView.m in Sources */,
 				0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */,

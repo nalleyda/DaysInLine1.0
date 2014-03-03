@@ -19,7 +19,7 @@
 #import "settingView.h"
 #import "globalVars.h"
 
-//#import "JSONKit.h"
+#import "JSONKit.h"
 #import <Frontia/Frontia.h>
 
 
