@@ -18,16 +18,18 @@
     NSMutableArray *textInlabel;
     NSMutableArray *beSelected;//判断打开标签后，某cell是否已选
 
+    NSMutableArray *loadCellOnce;//判断某cell是否已load
+
 }
 @end
 
 @implementation editingViewController
 
 
+
 bool flag;
 NSString *oldRemindDate;
 bool firstInmoney;
-bool moveON;
 bool haveSaved;
 bool firstInTag;//判断打开标签后，某cell是否已选
 SystemSoundID soundObject;
@@ -88,6 +90,10 @@ SystemSoundID soundObject;
     tagLabels = [[NSMutableArray alloc] init];
     textInlabel = [[NSMutableArray alloc] init];
     beSelected = [[NSMutableArray alloc] init];
+    loadCellOnce = [[NSMutableArray alloc] init];
+
+
+    
     self.selectedTags = [[NSMutableString alloc] init];
 
     NSString *docsDir;
@@ -285,7 +291,14 @@ SystemSoundID soundObject;
     
     selected = [[NSMutableArray alloc] init];
     firstInTag = YES;
-
+    
+    
+    NSNumber *haveload = [[NSNumber alloc] initWithBool:NO];
+    for (int i = 0; i<self.tags.count; i++) {
+        
+        [loadCellOnce insertObject:haveload atIndex:i];
+        
+    }
 
    
     [self dismissKeyboard];
@@ -344,6 +357,22 @@ SystemSoundID soundObject;
     self.tagTable.dataSource = self;
     self.tagTable.allowsMultipleSelection = YES;
     
+  //  [selected removeAllObjects];
+    
+    
+    
+    for (int i = 0; i<self.tags.count; i++) {
+        
+
+        
+        NSIndexPath *index = [NSIndexPath indexPathForRow:i inSection:0];
+        [self tableView: self.tagTable cellForRowAtIndexPath: index];
+        
+
+
+
+    }
+
     
     CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
     [alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
@@ -2367,6 +2396,7 @@ SystemSoundID soundObject;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //  //NSLog(@"count:%d",[currentAlbumData[@"titles"] count]);
+    
     return self.tags.count;
 }
 
@@ -2374,15 +2404,16 @@ SystemSoundID soundObject;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tagcell"];
-    if (!cell)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"tagcell"];
-        
-        
+ //   if ([(NSNumber *)[loadCellOnce objectAtIndex:indexPath.row] boolValue] == YES ) {
+
+  
+     NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; //出列可重用的cell
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSUInteger row=[indexPath row];
-    cell.backgroundColor = [UIColor clearColor];
+       NSUInteger row=[indexPath row];
+   //r cell.backgroundColor = [UIColor clearColor];
     
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell1-1.png"]];
     UIImageView *clivkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell2-1.png"]];
@@ -2392,8 +2423,36 @@ SystemSoundID soundObject;
     //设置文本
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.textLabel.text =[self.tags objectAtIndex :row];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
+    
+  //  NSUInteger row=[indexPath row];
     
     
+    
+    NSNumber *haveSelected = [[NSNumber alloc] initWithBool:NO];
+    
+    if ([textInlabel containsObject:cell.textLabel.text]) {
+        
+        haveSelected = [[NSNumber alloc] initWithBool:YES];
+        
+        if ([(NSNumber *)[loadCellOnce objectAtIndex:[indexPath row]] boolValue] == NO ) {
+            [selected addObject:[self.tags objectAtIndex:row]];
+
+        }
+        
+      
+    }
+    if ([(NSNumber *)[loadCellOnce objectAtIndex:[indexPath row]] boolValue] == NO ) {
+        [beSelected insertObject:haveSelected atIndex:row];
+        
+    }
+    
+    NSLog(@"selected:%d", selected.count);
+    NSLog(@"beselected:%d", beSelected.count);
+    
+    NSNumber *haveload = [[NSNumber alloc] initWithBool:YES];
+    [loadCellOnce insertObject:haveload atIndex:indexPath.row];
+
     
     return cell;
 }
@@ -2404,29 +2463,19 @@ SystemSoundID soundObject;
     
     NSUInteger row=[indexPath row];
 
-    NSNumber *haveSelected = [[NSNumber alloc] initWithBool:NO];
+ //   NSNumber *haveSelected = [[NSNumber alloc] initWithBool:NO];
     
-    if ([textInlabel containsObject:cell.textLabel.text]) {
+    if ([(NSNumber *)[beSelected objectAtIndex:row] boolValue] == YES ) {
         
-        haveSelected = [[NSNumber alloc] initWithBool:YES];
         
-        [selected addObject:[self.tags objectAtIndex:row]];
-        
-        //  [self tableView:tableView didSelectRowAtIndexPath:indexPath];
-        
-      //  [cell setSelected:YES];
         cell.highlighted = YES;
         NSLog(@"selected:%d", cell.selected);
         
     }
     
-    [beSelected insertObject:haveSelected atIndex:row];
-    
-    
-  
-
     
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
   
