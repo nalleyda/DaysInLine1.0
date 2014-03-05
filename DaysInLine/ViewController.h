@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <iAd/iAd.h>
 #import "sqlite3.h"
 #import "redrawButtonDelegate.h"
 #import "drawTagDelegate.h"
@@ -18,7 +19,7 @@
 @class homeView;
 @class daylineView;
 
-@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate>
+@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate,ADBannerViewDelegate>
 {
     sqlite3 *dataBase;
     NSString *databasePath;
@@ -27,4 +28,7 @@
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
 @property (weak, nonatomic) NSObject <drawTagDelegate> *drawLabelDelegate;
 
+
+@property (strong, nonatomic) ADBannerView *adView;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 @end

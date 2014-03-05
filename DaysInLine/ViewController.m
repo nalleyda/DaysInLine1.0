@@ -321,7 +321,19 @@ int collectNum;
     //创建system sound 对象
     AudioServicesCreateSystemSoundID(soundfileurl, &soundFileObject);
     
-  
+    //iAd广告
+     CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+      self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 610, self.view.frame.size.width, 60)];
+       
+    }else
+    {
+        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 505, self.view.frame.size.width, 60)];
+    }
+    
+    self.adView.delegate = self;
+    [self.adView setBackgroundColor:[UIColor clearColor]];
+
 
        
 }
@@ -371,6 +383,7 @@ int collectNum;
         lifeArea[i] = 0;
     }
 
+    [self.adView removeFromSuperview];
     //获取当前日期
     
     NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
@@ -799,6 +812,9 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10016" eventLabel:@"selectTap"];
 
     
+    [self.adView removeFromSuperview];
+
+    
     if (soundSwitch) {
         
         
@@ -1052,6 +1068,8 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
+    [self.view addSubview:self.adView];
+    
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
     sqlite3_stmt *stateQueryEvent;
@@ -1205,6 +1223,8 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10018" eventLabel:@"statisticTap"];
 
     
+    [self.view addSubview:self.adView];
+
     //播放
     if (soundSwitch) {
         
@@ -1292,7 +1312,8 @@ int collectNum;
     
     [[Frontia getStatistics] logEvent:@"10019" eventLabel:@"settingTap"];
 
-    
+    [self.view addSubview:self.adView];
+
     if (soundSwitch) {
         
         
@@ -2794,22 +2815,49 @@ int collectNum;
     
      [searchBar resignFirstResponder];
 }
-#pragma mark - 实现监听开始输入的方法
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-    NSLog(@"开始输入搜索内容");
-    return YES;
-}
-#pragma mark - 实现监听输入完毕的方法
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar {
-    NSLog(@"输入完毕");
-    return YES;
-}
 
 #pragma mark -设置正文内容
 
 -(void)setMainText:(UITextView *)mainText
 {
    [mainText setText:self.textInMain];
+}
+
+
+-(void) bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if(!self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOn"  context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, -100);
+        [UIView commitAnimations];
+        self.bannerIsVisible = YES;
+    }
+}
+
+-(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    if(self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOff"  context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, 100);
+        [UIView commitAnimations];
+        self.bannerIsVisible = NO;
+    }
+}
+
+
+#pragma mark - AdViewDelegates
+
+
+
+
+-(void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    NSLog(@"Ad will load");
+}
+-(void)bannerViewActionDidFinish:(ADBannerView *)banner{
+    NSLog(@"Ad did finish");
+    
 }
 
 @end

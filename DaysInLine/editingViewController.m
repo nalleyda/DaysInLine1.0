@@ -258,11 +258,7 @@ SystemSoundID soundObject;
     AudioServicesCreateSystemSoundID(soundfileurl, &soundObject);
  
 
-    //iAd广告
-    self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 50)];
-    self.adView.delegate = self;
-     [self.adView setBackgroundColor:[UIColor clearColor]];
-    //[self.adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
+        //[self.adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
 
 }
@@ -380,7 +376,6 @@ SystemSoundID soundObject;
 
     }
 
-    [self.view addSubview:self.adView];
     
     CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
     [alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
@@ -2775,41 +2770,7 @@ SystemSoundID soundObject;
 }
 
 
--(void) bannerViewDidLoadAd:(ADBannerView *)banner
-{
-    if(!self.bannerIsVisible)
-    {
-        [UIView beginAnimations:@"animateAdBannerOn"  context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, -100);
-        [UIView commitAnimations];
-        self.bannerIsVisible = YES;
-    }
-}
 
--(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    if(self.bannerIsVisible)
-    {
-        [UIView beginAnimations:@"animateAdBannerOff"  context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, 100);
-        [UIView commitAnimations];
-        self.bannerIsVisible = NO;
-    }
-}
-
-
-#pragma mark - AdViewDelegates
-
-
-
-
--(void)bannerViewWillLoadAd:(ADBannerView *)banner{
-    NSLog(@"Ad will load");
-}
--(void)bannerViewActionDidFinish:(ADBannerView *)banner{
-    NSLog(@"Ad did finish");
-    
-}
 @end
 
 
