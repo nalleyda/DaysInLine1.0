@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <iAd/iAd.h>
 #import "sqlite3.h"
 #import "redrawButtonDelegate.h"
 #import "remindDataDelegate.h"
@@ -21,6 +22,7 @@
 
 @interface editingViewController : UIViewController
     <UIAlertViewDelegate,
+    ADBannerViewDelegate,
     remindDataDelegate,
     drawTagDelegate,
     UIActionSheetDelegate,
@@ -88,6 +90,9 @@
 @property (weak, nonatomic) NSObject <redrawButtonDelegate> *drawBtnDelegate;
 @property (weak, nonatomic) NSObject <reloadTableDelegate> *reloadDelegate;
 @property (weak, nonatomic) NSObject <setMainTextDelegate> *setTextDelegate;
+
+@property (strong, nonatomic) ADBannerView *adView;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 //@property (weak, nonatomic) NSObject <addTagDelegate> *addTagDataDelegate;
 - (IBAction)endEditing:(id)sender;
 -(void)pictureTapped:(UIButton *)sender;

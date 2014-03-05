@@ -1802,6 +1802,8 @@ int collectNum;
     UITableViewCell *cell_1 = [tableView dequeueReusableCellWithIdentifier:@"selectEvent"];
     UITableViewCell *cell_2 = [tableView dequeueReusableCellWithIdentifier:@"selectTags"];
     UITableViewCell *cell_3 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInTag"];
+
+
     UITableViewCell *cell_4 = [tableView dequeueReusableCellWithIdentifier:@"collectCell"];
     UITableViewCell *cell_5 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInSearch"];
     switch (tableView.tag) {
@@ -1890,6 +1892,7 @@ int collectNum;
             NSUInteger row4=[indexPath row];
             
                 if(cell_4==nil){
+
                     cell_4 = [[[NSBundle mainBundle]loadNibNamed:@"collectCell" owner:self options:nil] lastObject];//加载nib文件
                     
                 }

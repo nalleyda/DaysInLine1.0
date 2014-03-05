@@ -258,7 +258,13 @@ SystemSoundID soundObject;
     AudioServicesCreateSystemSoundID(soundfileurl, &soundObject);
  
 
+    //iAd广告
+    self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 50)];
+    self.adView.delegate = self;
+     [self.adView setBackgroundColor:[UIColor clearColor]];
+    //[self.adView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];
     
+
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -287,6 +293,7 @@ SystemSoundID soundObject;
     
     [[Frontia getStatistics] logEvent:@"10007" eventLabel:@"tagTap"];
 
+    
     
     
     selected = [[NSMutableArray alloc] init];
@@ -373,6 +380,7 @@ SystemSoundID soundObject;
 
     }
 
+    [self.view addSubview:self.adView];
     
     CustomIOS7AlertView *alert = [[CustomIOS7AlertView alloc] init];
     [alert setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
@@ -384,6 +392,15 @@ SystemSoundID soundObject;
      
     
     [alert show];
+    
+    /*
+    CustomIOS7AlertView *alertAd = [[CustomIOS7AlertView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 100)];
+    [alertAd setButtonTitles:[NSMutableArray arrayWithObjects:nil]];
+    [alertAd setContainerView:self.adView];
+    [alertAd show];
+     */
+    
+    
 
 }
 -(void)addButtonTapped
@@ -479,10 +496,17 @@ SystemSoundID soundObject;
         for (int i = 0; i < selected.count; i++) {
             [choices appendFormat:@"%@,",selected[i]];
             UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 150+30*i, self.view.frame.size.width-265, 20)];
+            tag.backgroundColor = [UIColor clearColor];
             tag.text = selected[i];
+            
+            UIImageView *tagImage = [[UIImageView alloc] initWithFrame:CGRectMake(250, 150+30*i, self.view.frame.size.width-280, 20)];
+            tagImage.image = [UIImage imageNamed:@"标签.png"];
+            
+            [self.view bringSubviewToFront:tag];
+            
             [tagLabels addObject:tag];
             [textInlabel addObject:tag.text];
-            
+            [self.view addSubview:tagImage];
             [self.view addSubview:tag];
             
         }
@@ -653,7 +677,7 @@ SystemSoundID soundObject;
     }
 }
 
-#pragma mark - 保存图片至沙盒
+#pragma mark - 保存图片至沙盒 和 系统相册
 - (void) saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
     NSData *imageData = UIImageJPEGRepresentation(currentImage, 0.5);
@@ -664,6 +688,8 @@ SystemSoundID soundObject;
     
     // 将图片写入文件
     [imageData writeToFile:fullPath atomically:NO];
+    //保存到相册
+     UIImageWriteToSavedPhotosAlbum(currentImage, nil, nil,nil);
 }
 
 #pragma mark - image picker delegte
@@ -2219,6 +2245,9 @@ SystemSoundID soundObject;
                 
             }
             
+            [beSelected addObject: [[NSNumber alloc] initWithBool:NO]];
+
+            
             //NSLog(@"点击了确定按钮");
         }
         else {
@@ -2376,11 +2405,18 @@ SystemSoundID soundObject;
         NSLog(@"tagToDraw.count = %d",tagToDraw.count );
         if (tagToDraw.count > 0) {
             for (int i = 0; i < tagToDraw.count; i++) {
-                UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(280, 150+30*i, self.view.frame.size.width-280, 20)];
+                UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 150+30*i, self.view.frame.size.width-280, 20)];
                 tag.text = tagToDraw[i];
+                tag.backgroundColor = [UIColor clearColor];
+                
+                UIImageView *tagImage = [[UIImageView alloc] initWithFrame:CGRectMake(250, 150+30*i, self.view.frame.size.width-280, 20)];
+                tagImage.image = [UIImage imageNamed:@"标签.png"];
+
+                [self.view bringSubviewToFront:tag];
                
                 [tagLabels addObject:tag];
                 [textInlabel addObject:tag.text];
+                [self.view addSubview:tagImage];
                 [self.view addSubview:tag];
                 
             }
@@ -2738,4 +2774,42 @@ SystemSoundID soundObject;
     
 }
 
+
+-(void) bannerViewDidLoadAd:(ADBannerView *)banner
+{
+    if(!self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOn"  context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, -100);
+        [UIView commitAnimations];
+        self.bannerIsVisible = YES;
+    }
+}
+
+-(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+    if(self.bannerIsVisible)
+    {
+        [UIView beginAnimations:@"animateAdBannerOff"  context:NULL];
+        banner.frame = CGRectOffset(banner.frame, 0, 100);
+        [UIView commitAnimations];
+        self.bannerIsVisible = NO;
+    }
+}
+
+
+#pragma mark - AdViewDelegates
+
+
+
+
+-(void)bannerViewWillLoadAd:(ADBannerView *)banner{
+    NSLog(@"Ad will load");
+}
+-(void)bannerViewActionDidFinish:(ADBannerView *)banner{
+    NSLog(@"Ad did finish");
+    
+}
 @end
+
+

@@ -61,7 +61,8 @@
         
         [self addSubview:self.soundSwitch];
         
-        
+        /*
+         
         UILabel *icloud = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128, 100, 30)];
         icloud.text = @"同步到iCloud";
         icloud.font = [UIFont systemFontOfSize:16.0];
@@ -69,7 +70,7 @@
         
         [self addSubview:icloud];
         
-        
+      
         self.icloudSwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+130, 60, 25)];
         
         self.icloudSwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
@@ -84,16 +85,16 @@
         self.icloudSwitch.offImage = [UIImage imageNamed:@"cross.png"];
         self.icloudSwitch.onImage = [UIImage imageNamed:@"check.png"];
         [self addSubview:self.icloudSwitch];
-        
-        UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+178, 80, 30)];
+        */
+        UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128, 100, 30)];
         firstDay.text = @"周首日";
         firstDay.font = [UIFont systemFontOfSize:16.0];
         firstDay.backgroundColor = [UIColor clearColor];
         
         [self addSubview:firstDay];
+       
         
-        
-        self.daySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+180, 60, 25)];
+        self.daySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+130, 60, 25)];
         
         self.daySwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
         self.daySwitch.alpha = 1.0;
@@ -133,11 +134,11 @@
     CGContextAddLineToPoint(context, self.frame.size.width-20, self.frame.origin.y+160);
     CGContextStrokePath(context);
     
-    
+   /*
     CGContextMoveToPoint(context,10, self.frame.origin.y+210);
     CGContextAddLineToPoint(context, self.frame.size.width-20, self.frame.origin.y+210);
     CGContextStrokePath(context);
-    
+    */
    
     
     //  CGContextRef context = UIGraphicsGetCurrentContext();

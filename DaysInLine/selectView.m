@@ -67,9 +67,9 @@
 
         self.backgroundColor = [UIColor whiteColor];
       
-        self.eventsTable =[[UITableView alloc] initWithFrame: CGRectMake(0, (self.frame.size.height)/2-10, self.frame.size.width-20, (self.frame.size.height-150)/2-20)];
+        self.eventsTable =[[UITableView alloc] initWithFrame: CGRectMake(0, (self.frame.size.height)/2, self.frame.size.width-20, (self.frame.size.height-150)/2-30)];
 
-        self.eventsTable.rowHeight = 34;
+        self.eventsTable.rowHeight = 32;
         self.eventsTable.tag = 0;
         NSLog(@"frame:%f",self.eventsTable.frame.origin.y);
         [self.eventsTable setEditing:NO];

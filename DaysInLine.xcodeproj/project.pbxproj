@@ -47,7 +47,6 @@
 		0B92BE3B18B0C75D003AE50C /* 299x62按键.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B92BE3A18B0C75D003AE50C /* 299x62按键.png */; };
 		0B93EC4718AB422600F871C4 /* 色点.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC4618AB422600F871C4 /* 色点.png */; };
 		0B93EC4A18ABA5EF00F871C4 /* customButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B93EC4918ABA5EE00F871C4 /* customButton.m */; };
-		0B93EC5B18ABD06A00F871C4 /* editView.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5618ABD06A00F871C4 /* editView.png */; };
 		0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */; };
 		0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5818ABD06A00F871C4 /* addTapped.png */; };
 		0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */; };
@@ -119,7 +118,6 @@
 		0BF646C018BF92CC00159161 /* resultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF646BF18BF92CC00159161 /* resultView.m */; };
 		0BF646D618BF9CDE00159161 /* statisticViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF646D518BF9CDE00159161 /* statisticViewController.xib */; };
 		0BF646D818BF9D0100159161 /* statisticViewController586.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF646D718BF9D0100159161 /* statisticViewController586.xib */; };
-		0BF933F018A9092E00C6EA81 /* editView586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF933EF18A9092E00C6EA81 /* editView586@2x.png */; };
 		0BF9EF7718BB8A6D00F38370 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7318BB8A6D00F38370 /* check.png */; };
 		0BF9EF7818BB8A6D00F38370 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7418BB8A6D00F38370 /* check@2x.png */; };
 		0BF9EF7918BB8A6D00F38370 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7518BB8A6D00F38370 /* cross.png */; };
@@ -140,6 +138,10 @@
 		0BFE89B518C32D40002F6F67 /* 心情.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE89B118C32D40002F6F67 /* 心情.png */; };
 		0BFE89B618C32D40002F6F67 /* 收入.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE89B218C32D40002F6F67 /* 收入.png */; };
 		0BFE89B718C32D40002F6F67 /* 成长.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFE89B318C32D40002F6F67 /* 成长.png */; };
+		0BFF71E018C7697F0011AFDE /* editView@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFF71DF18C7697F0011AFDE /* editView@2x.png */; };
+		0BFF71E218C76AAB0011AFDE /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFF71E118C76AAB0011AFDE /* iAd.framework */; };
+		0BFF71E818C76D130011AFDE /* editView586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFF71E718C76D130011AFDE /* editView586@2x.png */; };
+		0BFF71EA18C7792C0011AFDE /* 标签.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BFF71E918C7792C0011AFDE /* 标签.png */; };
 		134E8AFE189CEC6700C2F805 /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */; };
 /* End PBXBuildFile section */
 
@@ -204,7 +206,6 @@
 		0B93EC4618AB422600F871C4 /* 色点.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "色点.png"; sourceTree = "<group>"; };
 		0B93EC4818ABA5ED00F871C4 /* customButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = customButton.h; sourceTree = "<group>"; };
 		0B93EC4918ABA5EE00F871C4 /* customButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = customButton.m; sourceTree = "<group>"; };
-		0B93EC5618ABD06A00F871C4 /* editView.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editView.png; sourceTree = "<group>"; };
 		0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightBackground@2x.png"; sourceTree = "<group>"; };
 		0B93EC5818ABD06A00F871C4 /* addTapped.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addTapped.png; sourceTree = "<group>"; };
 		0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundHome@2x.png"; sourceTree = "<group>"; };
@@ -295,7 +296,6 @@
 		0BF646BF18BF92CC00159161 /* resultView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = resultView.m; sourceTree = "<group>"; };
 		0BF646D518BF9CDE00159161 /* statisticViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statisticViewController.xib; sourceTree = "<group>"; };
 		0BF646D718BF9D0100159161 /* statisticViewController586.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = statisticViewController586.xib; sourceTree = "<group>"; };
-		0BF933EF18A9092E00C6EA81 /* editView586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editView586@2x.png"; sourceTree = "<group>"; };
 		0BF9EF7318BB8A6D00F38370 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		0BF9EF7418BB8A6D00F38370 /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
 		0BF9EF7518BB8A6D00F38370 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
@@ -316,6 +316,11 @@
 		0BFE89B118C32D40002F6F67 /* 心情.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "心情.png"; sourceTree = "<group>"; };
 		0BFE89B218C32D40002F6F67 /* 收入.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收入.png"; sourceTree = "<group>"; };
 		0BFE89B318C32D40002F6F67 /* 成长.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "成长.png"; sourceTree = "<group>"; };
+		0BFF71CE18C71F190011AFDE /* DaysInLine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = DaysInLine.entitlements; sourceTree = "<group>"; };
+		0BFF71DF18C7697F0011AFDE /* editView@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editView@2x.png"; sourceTree = "<group>"; };
+		0BFF71E118C76AAB0011AFDE /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		0BFF71E718C76D130011AFDE /* editView586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editView586@2x.png"; sourceTree = "<group>"; };
+		0BFF71E918C7792C0011AFDE /* 标签.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "标签.png"; sourceTree = "<group>"; };
 		134E8AFC189CEC6700C2F805 /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
 		134E8AFD189CEC6700C2F805 /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -325,6 +330,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFF71E218C76AAB0011AFDE /* iAd.framework in Frameworks */,
 				0BDDD2DD18C4CFB70077F527 /* Frontia.framework in Frameworks */,
 				0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */,
 				0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */,
@@ -394,6 +400,7 @@
 				0BFE89B018C32D40002F6F67 /* 工作生活.png */,
 				0BDDD2E418C4E4880077F527 /* result586@2x.png */,
 				0BDDD2E518C4E4880077F527 /* result@2x.png */,
+				0BFF71E918C7792C0011AFDE /* 标签.png */,
 				0BFE89B118C32D40002F6F67 /* 心情.png */,
 				0BFE89B218C32D40002F6F67 /* 收入.png */,
 				0BFE89B318C32D40002F6F67 /* 成长.png */,
@@ -468,6 +475,7 @@
 		0B9A53CD1812274D0085FFD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0BFF71E118C76AAB0011AFDE /* iAd.framework */,
 				0BDDD2DC18C4CFB70077F527 /* Frontia.framework */,
 				0BFD27F018BCE5F10016BCE4 /* libz.dylib */,
 				0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */,
@@ -490,6 +498,7 @@
 		0B9A53D41812274D0085FFD7 /* DaysInLine */ = {
 			isa = PBXGroup;
 			children = (
+				0BFF71CE18C71F190011AFDE /* DaysInLine.entitlements */,
 				0BD700881813AC26004FCBE2 /* data */,
 				0B9A53DD1812274D0085FFD7 /* AppDelegate.h */,
 				0B9A53DE1812274D0085FFD7 /* AppDelegate.m */,
@@ -527,8 +536,8 @@
 				0BA61BE618A28293000B7163 /* rightBackground.png */,
 				0B93EC5718ABD06A00F871C4 /* rightBackground@2x.png */,
 				0BAE55AD185B7B1700695F0E /* icon.png */,
-				0BF933EF18A9092E00C6EA81 /* editView586@2x.png */,
-				0B93EC5618ABD06A00F871C4 /* editView.png */,
+				0BFF71E718C76D130011AFDE /* editView586@2x.png */,
+				0BFF71DF18C7697F0011AFDE /* editView@2x.png */,
 				0B9A53D61812274D0085FFD7 /* DaysInLine-Info.plist */,
 				0B9A53D71812274D0085FFD7 /* InfoPlist.strings */,
 				0B9A53DA1812274D0085FFD7 /* main.m */,
@@ -679,6 +688,11 @@
 				TargetAttributes = {
 					0B9A53CA1812274D0085FFD7 = {
 						DevelopmentTeam = DBBLJY69ER;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					0B9A53EB1812274D0085FFD7 = {
 						TestTargetID = 0B9A53CA1812274D0085FFD7;
@@ -710,6 +724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B25F88918B9E9E00025B0CB /* okSound.wav in Resources */,
+				0BFF71E018C7697F0011AFDE /* editView@2x.png in Resources */,
 				0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */,
 				0BFE899F18C30FC0002F6F67 /* backgroundHome586@2x.png in Resources */,
 				0B92BE2318B0ADF0003AE50C /* 日期角标.png in Resources */,
@@ -718,6 +733,7 @@
 				0BA61BD218A25108000B7163 /* star1.png in Resources */,
 				0B9009DD1877D791008D3799 /* left_arrow.png in Resources */,
 				0B93EC5E18ABD06A00F871C4 /* backgroundHome@2x.png in Resources */,
+				0BFF71EA18C7792C0011AFDE /* 标签.png in Resources */,
 				0BF9EF7918BB8A6D00F38370 /* cross.png in Resources */,
 				0BF9EF7A18BB8A6D00F38370 /* cross@2x.png in Resources */,
 				0BFE89B618C32D40002F6F67 /* 收入.png in Resources */,
@@ -731,6 +747,7 @@
 				0BF9EF7818BB8A6D00F38370 /* check@2x.png in Resources */,
 				0BDDD2E618C4E4880077F527 /* result586@2x.png in Resources */,
 				0BB08A7518A9F41D00DE111E /* remindBtn.png in Resources */,
+				0BFF71E818C76D130011AFDE /* editView586@2x.png in Resources */,
 				0B92BE2018B09E97003AE50C /* addBtn.png in Resources */,
 				0BE6C65118A778CA007769D8 /* photoView.xib in Resources */,
 				0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */,
@@ -738,7 +755,6 @@
 				0BB08A7818A9F41D00DE111E /* returnBtn.png in Resources */,
 				0BB08A8118A9F41D00DE111E /* deleteBtn2.png in Resources */,
 				0BDDD2DF18C4D0760077F527 /* remindViewController586.xib in Resources */,
-				0B93EC5B18ABD06A00F871C4 /* editView.png in Resources */,
 				0BA61BD318A25108000B7163 /* star2.png in Resources */,
 				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
 				0BB08A7418A9F41D00DE111E /* photoBtn.png in Resources */,
@@ -791,7 +807,6 @@
 				0B92BE3918B0C4F3003AE50C /* deleteInAlert.png in Resources */,
 				0B93EC5D18ABD06A00F871C4 /* addTapped.png in Resources */,
 				0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */,
-				0BF933F018A9092E00C6EA81 /* editView586@2x.png in Resources */,
 				0B9597F218AD211B002923AF /* OkButton.png in Resources */,
 				0B93EC4718AB422600F871C4 /* 色点.png in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
@@ -972,6 +987,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DaysInLine/DaysInLine.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -1004,6 +1020,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = DaysInLine/DaysInLine.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
