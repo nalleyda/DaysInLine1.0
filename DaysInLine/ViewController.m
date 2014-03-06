@@ -559,13 +559,13 @@ int collectNum;
                     }
                     NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,2)];
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,3)];
-                 if (!todayRedrawDone) {   
+              //   if (!todayRedrawDone) {
                     
                     [self.drawBtnDelegate redrawButton:startTm :endTm :title :evtType :NULL];
                     
-                    todayRedrawDone = YES;
+               //     todayRedrawDone = YES;
                     
-                }
+             //   }
                     if ([evtType intValue]==0) {
                         for (int i = [startTm intValue]/15; i < [endTm intValue]/15; i++) {
                             workArea[i] = 1;

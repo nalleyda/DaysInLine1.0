@@ -71,6 +71,8 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
     
+    /*
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请注意以下事项" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert show];
     
@@ -79,6 +81,7 @@
     dic = notification.userInfo;
     NSLog(@"user info = %@",[dic objectForKey:@"key"]);
     
+    */
     // 图标上的数字减1
     application.applicationIconBadgeNumber -= 1;
 }

@@ -43,6 +43,7 @@ double expendAll;
     
     UIImageView *backImage;
 
+
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
@@ -50,6 +51,8 @@ double expendAll;
         backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         NSLog(@"586height:%.2f",self.view.bounds.size.height);
         [backImage setImage:[UIImage imageNamed:@"result586.png"]];
+        
+         self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
 
 
     }else{
@@ -61,6 +64,11 @@ double expendAll;
 
     [self.view addSubview:backImage];
     [self.view sendSubviewToBack:backImage];
+    
+    self.adView.delegate = self;
+    [self.adView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.adView];
+
     
     resultView *my_result = [[resultView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:my_result];
@@ -193,7 +201,12 @@ double expendAll;
         
         NSLog(@"income:%.2f",incomeAll);
         NSLog(@"expend:%.2f",expendAll);
+
         if (incomeAll >= expendAll) {
+            
+            if (incomeAll <0.0001) {
+                return;
+            }
             my_result.incomingLong.frame = CGRectMake(78, y+ 307,211, 11);
             
             my_result.incoming.frame = CGRectMake(2+my_result.incomingLong.frame.origin.x+my_result.incomingLong.frame.size.width*3/4, my_result.incomingLong.frame.origin.y-19, 60, 16) ;

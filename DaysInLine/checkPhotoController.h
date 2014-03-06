@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <Frontia/Frontia.h>
+#import <iAd/iAd.h>
 
-@interface checkPhotoController : UIViewController
+
+
+@interface checkPhotoController : UIViewController <ADBannerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *fullPhoto;
 - (IBAction)backToEdit:(UIButton *)sender;
 
+
+@property (strong, nonatomic) ADBannerView *adView;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 @end

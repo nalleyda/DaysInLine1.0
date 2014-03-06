@@ -10,9 +10,11 @@
 #import "sqlite3.h"
 #import "resultView.h"
 #import <Frontia/Frontia.h>
+#import <iAd/iAd.h>
 
 
-@interface statisticViewController : UIViewController
+
+@interface statisticViewController : UIViewController <ADBannerViewDelegate>
 {
     sqlite3 *dataBase;
     NSString *databasePath;
@@ -25,4 +27,8 @@
 
 @property (weak, nonatomic) NSString *startDate;
 @property (weak, nonatomic) NSString *endDate;
+
+
+@property (strong, nonatomic) ADBannerView *adView;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 @end

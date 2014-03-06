@@ -18,7 +18,7 @@
     if (self) {
         
         
-        
+        /*
         
         UIImageView *rightBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         
@@ -26,6 +26,9 @@
         
         [self addSubview:rightBackground];
         [self sendSubviewToBack:rightBackground];
+        */
+        self.backgroundColor = [UIColor clearColor];
+
 
        
         
@@ -41,8 +44,8 @@
         
         self.goInThatDay= [UIButton buttonWithType:UIButtonTypeCustom];
         self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, frame.size.height-100, 120, 30);
-        [self.goInThatDay setBackgroundImage:[UIImage imageNamed: @"299x62按键.png"] forState:UIControlStateNormal];
-        [self.goInThatDay setTitle:@"回顾当日" forState:UIControlStateNormal];
+        [self.goInThatDay setBackgroundImage:[UIImage imageNamed: @"查看当日.png"] forState:UIControlStateNormal];
+       // [self.goInThatDay setTitle:@"回顾当日" forState:UIControlStateNormal];
         
        // self.goInThatDay.layer.borderColor = [UIColor blackColor].CGColor;
        // self.goInThatDay.layer.borderWidth = 1.0;
@@ -65,7 +68,7 @@
         //self.calendar.backgroundColor = [UIColor clearColor];
         [self.dateView addSubview:self.calendar];
 
-        self.backgroundColor = [UIColor whiteColor];
+       // self.backgroundColor = [UIColor whiteColor];
       
         self.eventsTable =[[UITableView alloc] initWithFrame: CGRectMake(0, (self.frame.size.height)/2, self.frame.size.width-20, (self.frame.size.height-150)/2-30)];
 
@@ -92,12 +95,14 @@
         [self.tagView addSubview:self.alltagTable];
 
         self.returnToTags= [UIButton buttonWithType:UIButtonTypeCustom];
-        self.returnToTags.frame = CGRectMake((self.frame.size.width-20)/2-60, self.frame.size.height-120, 120, 30);
-        [self.returnToTags setTitle:@"重选标签" forState:UIControlStateNormal];
+        self.returnToTags.frame = CGRectMake((self.frame.size.width-20)/2-60, self.frame.size.height-120, 100, 30);
+        [self.returnToTags setBackgroundImage:[UIImage imageNamed: @"重返标签.png"] forState:UIControlStateNormal];
+
+        //[self.returnToTags setTitle:@"重选标签" forState:UIControlStateNormal];
         
-        self.returnToTags.layer.borderColor = [UIColor blackColor].CGColor;
-        self.returnToTags.layer.borderWidth = 1.0;
-        [self.returnToTags setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+       // self.returnToTags.layer.borderColor = [UIColor blackColor].CGColor;
+        //self.returnToTags.layer.borderWidth = 1.0;
+        //[self.returnToTags setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
 
         [self.tagView addSubview:self.returnToTags];

@@ -33,6 +33,17 @@
     [self.view addSubview:backImage];
     [self.view sendSubviewToBack:backImage];
     
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
+        
+    }
+    
+    self.adView.delegate = self;
+    [self.adView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.adView];
+    
+
     
    // self.fullPhoto.backgroundColor = [UIColor blackColor];
     self.fullPhoto.ContentMode = UIViewContentModeScaleAspectFit;

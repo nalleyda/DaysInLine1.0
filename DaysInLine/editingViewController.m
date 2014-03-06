@@ -21,6 +21,7 @@
     NSMutableArray *beSelected;//判断打开标签后，某cell是否已选
 
     NSMutableArray *loadCellOnce;//判断某cell是否已load
+    NSUInteger sourceType ;
 
 }
 @end
@@ -145,6 +146,7 @@ SystemSoundID soundObject;
     self.mainText.tag = 106;
     [self.setTextDelegate setMainText:self.mainText];
     self.mainText.delegate = self;
+    self.mainText.font = [UIFont systemFontOfSize:16.0];
     
     if ([self.mainText.text isEqualToString:@"点击输入......"]) {
         self.mainText.textColor = [UIColor lightGrayColor];
@@ -238,7 +240,7 @@ SystemSoundID soundObject;
     
     
     self.exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.exitButton setImage:[UIImage imageNamed:@"returnInAlert.png"] forState:UIControlStateNormal];
+    [self.exitButton setImage:[UIImage imageNamed:@"键盘返回键.png"] forState:UIControlStateNormal];
     CGRect exitBtFrame = CGRectMake(self.view.frame.size.width-48, y, 48.0f, 30.0f);
     
     [self.exitButton setFrame:exitBtFrame];
@@ -405,7 +407,7 @@ SystemSoundID soundObject;
 {
      [[Frontia getStatistics] logEvent:@"10024" eventLabel:@"addTag"];
     
-    [selected removeAllObjects];
+   // [selected removeAllObjects];
     if (soundSwitch) {
         
         CFBundleRef mainbundle=CFBundleGetMainBundle();
@@ -498,6 +500,8 @@ SystemSoundID soundObject;
             [choices appendFormat:@"%@,",selected[i]];
             UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 5+160+30*i, 60, 20)];
             tag.backgroundColor = [UIColor clearColor];
+            tag.textColor = [UIColor whiteColor];
+
             tag.text = selected[i];
             tag.font = [UIFont systemFontOfSize:11.0];
             
@@ -692,7 +696,11 @@ SystemSoundID soundObject;
     // 将图片写入文件
     [imageData writeToFile:fullPath atomically:NO];
     //保存到相册
-     UIImageWriteToSavedPhotosAlbum(currentImage, nil, nil,nil);
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        
+        UIImageWriteToSavedPhotosAlbum(currentImage, nil, nil,nil);
+
+    }
 }
 
 #pragma mark - image picker delegte
@@ -2112,8 +2120,8 @@ SystemSoundID soundObject;
     }
 
     if (actionSheet.tag == 255) {
-        NSUInteger sourceType = 0;
-
+ 
+        sourceType = 0;
         // 判断是否支持相机
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             switch (buttonIndex) {
@@ -2246,10 +2254,11 @@ SystemSoundID soundObject;
                 
                 [self.tagTable reloadData];
                 
+                [beSelected addObject: [[NSNumber alloc] initWithBool:NO]];
+                
+
             }
             
-            [beSelected addObject: [[NSNumber alloc] initWithBool:NO]];
-
             
             //NSLog(@"点击了确定按钮");
         }
@@ -2410,6 +2419,7 @@ SystemSoundID soundObject;
             for (int i = 0; i < tagToDraw.count; i++) {
                 UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 5+160+30*i, 60, 20)];
                 tag.text = tagToDraw[i];
+                tag.textColor = [UIColor whiteColor];
                 tag.font = [UIFont systemFontOfSize:11.0];
                 tag.backgroundColor = [UIColor clearColor];
                 
@@ -2455,14 +2465,14 @@ SystemSoundID soundObject;
     }
        NSUInteger row=[indexPath row];
    //r cell.backgroundColor = [UIColor clearColor];
-    
+/*
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell1-1.png"]];
     UIImageView *clivkImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell2-1.png"]];
     cell.backgroundView = bgImageView;
     cell.selectedBackgroundView = clivkImageView;
-    
+  */
     //设置文本
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.textLabel.text =[self.tags objectAtIndex :row];
     cell.textLabel.backgroundColor = [UIColor clearColor];
     
@@ -2524,10 +2534,12 @@ SystemSoundID soundObject;
     
     NSUInteger row=[indexPath row];
     
-    if ([(NSNumber *)[beSelected objectAtIndex:row] boolValue] == YES && firstInTag ==YES) {
+    if ([(NSNumber *)[beSelected objectAtIndex:row] boolValue] == YES /*&& firstInTag ==YES*/) {
        // [self tableView:tableView didDeselectRowAtIndexPath:indexPath];
         [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
-        firstInTag = NO;
+       // firstInTag = NO;
+        [beSelected insertObject:[[NSNumber alloc] initWithBool:NO] atIndex:row];
+        
         [tableView deselectRowAtIndexPath:indexPath animated:NO];
       
         //theUITableViewCell.highlighted = NO;
@@ -2579,6 +2591,13 @@ SystemSoundID soundObject;
     //NSLog(@"here!!!!!!!!!");
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
+      
+            
+        [beSelected removeObjectAtIndex:indexPath.row];
+
+        [selected removeObject:[self.tags objectAtIndex:indexPath.row]];
+        
+        
         const char *dbpath = [databasePath UTF8String];
         sqlite3_stmt *statement;
         
@@ -2610,10 +2629,12 @@ SystemSoundID soundObject;
         }
         sqlite3_close(dataBase);
         
+
+        
         // Delete the row from the data source.
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self.tagTable setEditing:NO animated:YES];
-
+        
         
     }
    

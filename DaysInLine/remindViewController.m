@@ -61,6 +61,10 @@ UIDatePicker *remindTimePicker2;
         
         self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
         self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
+        
+        
+        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
+
 
         
     }else{
@@ -80,6 +84,12 @@ UIDatePicker *remindTimePicker2;
     [self.view addSubview:backgrd];
     [self.view sendSubviewToBack:backgrd];
    
+    
+    self.adView.delegate = self;
+    [self.adView setBackgroundColor:[UIColor clearColor]];
+    [self.view addSubview:self.adView];
+    
+
 
   //  self.viewDate.backgroundColor = [UIColor greenColor];
     

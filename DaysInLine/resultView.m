@@ -28,21 +28,22 @@
          CGRect screenBounds = [[UIScreen mainScreen] bounds];
         if (screenBounds.size.height == 568) {
             y += 50;
-        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-130, 80, 50)];
+        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-130, 97, 30)];
         self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+73, 50, 50)];
 
         }else
         {
             y-=10;
-        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-100, 80, 50)];
+        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-90, 97, 30)];
         self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+83, 50, 50)];
 
         }
         
         self.continueButton.backgroundColor = [UIColor clearColor];
-        [self.continueButton setTitle:@"继续努力" forState:UIControlStateNormal];
+        [self.continueButton setBackgroundImage:[UIImage imageNamed: @"继续努力.png"] forState:UIControlStateNormal];
+        //[self.continueButton setTitle:@"继续努力" forState:UIControlStateNormal];
       //  self.continueButton.titleLabel.text = @"继续努力";
-        self.continueButton.titleLabel.textColor = [UIColor blueColor];
+      //  self.continueButton.titleLabel.textColor = [UIColor blueColor];
         [self addSubview:self.continueButton];
 
         

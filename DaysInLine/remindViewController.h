@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "remindDataDelegate.h"
 #import <Frontia/Frontia.h>
+#import <iAd/iAd.h>
 
-@interface remindViewController : UIViewController
+
+@interface remindViewController : UIViewController <ADBannerViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *remindMode;
 
 @property (strong, nonatomic)  UIButton *returnButton;
@@ -18,6 +20,9 @@
 
 @property (strong, nonatomic) NSString *remindDate;
 @property (strong, nonatomic) NSString *remindTime;
+
+@property (strong, nonatomic) ADBannerView *adView;
+@property (nonatomic, assign) BOOL bannerIsVisible;
 
 @property (weak, nonatomic) NSObject <remindDataDelegate> *setRemindDelegate;
 @end
