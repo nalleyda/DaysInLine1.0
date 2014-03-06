@@ -15,6 +15,8 @@
 @interface editingViewController (){
     NSMutableArray *selected;
     NSMutableArray *tagLabels;
+    NSMutableArray *tagImages;
+
     NSMutableArray *textInlabel;
     NSMutableArray *beSelected;//判断打开标签后，某cell是否已选
 
@@ -88,6 +90,7 @@ SystemSoundID soundObject;
     //self.remindData = nil;
     //NSLog(@"<<<<<%@>>>>>",self.remindData);
     tagLabels = [[NSMutableArray alloc] init];
+    tagImages = [[NSMutableArray alloc] init];
     textInlabel = [[NSMutableArray alloc] init];
     beSelected = [[NSMutableArray alloc] init];
     loadCellOnce = [[NSMutableArray alloc] init];
@@ -481,25 +484,30 @@ SystemSoundID soundObject;
     //NSLog(@"count is %lu",(unsigned long)tagLabels.count);
     for (int i = 0 ; i< tagLabels.count ; i++) {
         UILabel * oldTag = [tagLabels objectAtIndex:i];
+        UIImageView *oldImage = [tagImages objectAtIndex:i];
     
+        [oldImage removeFromSuperview];
         [oldTag removeFromSuperview];
       
     }
     [textInlabel removeAllObjects];
     [tagLabels removeAllObjects];
+    [tagImages removeAllObjects];
     if (selected.count > 0) {
         for (int i = 0; i < selected.count; i++) {
             [choices appendFormat:@"%@,",selected[i]];
-            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 150+30*i, self.view.frame.size.width-265, 20)];
+            UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 5+160+30*i, 60, 20)];
             tag.backgroundColor = [UIColor clearColor];
             tag.text = selected[i];
+            tag.font = [UIFont systemFontOfSize:11.0];
             
-            UIImageView *tagImage = [[UIImageView alloc] initWithFrame:CGRectMake(250, 150+30*i, self.view.frame.size.width-280, 20)];
+            UIImageView *tagImage = [[UIImageView alloc] initWithFrame:CGRectMake(255, 160+30*i,70, 30)];
             tagImage.image = [UIImage imageNamed:@"标签.png"];
             
             [self.view bringSubviewToFront:tag];
             
             [tagLabels addObject:tag];
+            [tagImages addObject:tagImage];
             [textInlabel addObject:tag.text];
             [self.view addSubview:tagImage];
             [self.view addSubview:tag];
@@ -2400,16 +2408,18 @@ SystemSoundID soundObject;
         NSLog(@"tagToDraw.count = %d",tagToDraw.count );
         if (tagToDraw.count > 0) {
             for (int i = 0; i < tagToDraw.count; i++) {
-                UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 150+30*i, self.view.frame.size.width-280, 20)];
+                UILabel *tag = [[UILabel alloc] initWithFrame:CGRectMake(260, 5+160+30*i, 60, 20)];
                 tag.text = tagToDraw[i];
+                tag.font = [UIFont systemFontOfSize:11.0];
                 tag.backgroundColor = [UIColor clearColor];
                 
-                UIImageView *tagImage = [[UIImageView alloc] initWithFrame:CGRectMake(250, 150+30*i, self.view.frame.size.width-280, 20)];
+                UIImageView *tagImage = [[UIImageView alloc] initWithFrame:CGRectMake(255, 160+30*i, 70, 30)];
                 tagImage.image = [UIImage imageNamed:@"标签.png"];
 
                 [self.view bringSubviewToFront:tag];
                
                 [tagLabels addObject:tag];
+                [tagImages addObject:tagImage];
                 [textInlabel addObject:tag.text];
                 [self.view addSubview:tagImage];
                 [self.view addSubview:tag];
