@@ -2478,7 +2478,7 @@ SystemSoundID soundObject;
     //设置文本
     cell.textLabel.textAlignment = NSTextAlignmentLeft;
     cell.textLabel.text =[self.tags objectAtIndex :row];
-    cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.backgroundColor = [UIColor clearColor];
     
   //  NSUInteger row=[indexPath row];
     

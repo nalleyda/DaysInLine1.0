@@ -2217,6 +2217,7 @@ int collectNum;
                // NSLog(@"%@",self.collectEventTitle[row3]);
                 // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
                 ((UILabel *)[cell_3.contentView viewWithTag:2]).text = self.EventDateInTag[row3];
+                cell_3.backgroundColor = [UIColor clearColor];
 
              /*
                 cell_3.textLabel.text = self.EventsInTag[row3];
@@ -2298,6 +2299,7 @@ int collectNum;
                 // NSLog(@"%@",self.collectEventTitle[row3]);
                 // ((UILabel *)[cell_4.contentView viewWithTag:2]).text = self.collectEventTag[row4];
                 ((UILabel *)[cell_5.contentView viewWithTag:2]).text = self.EventDateInSearch[row5];
+                cell_5.backgroundColor = [UIColor clearColor];
 
                 
             }
@@ -2322,7 +2324,7 @@ int collectNum;
                 
                 cell_6.detailTextLabel.text = self.settingInformationRight[row6];
                 cell_6.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-                cell_6.detailTextLabel.backgroundColor = [UIColor clearColor];
+                //cell_6.detailTextLabel.backgroundColor = [UIColor clearColor];
             }
             cell = cell_6;
             
