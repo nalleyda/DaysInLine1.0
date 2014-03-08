@@ -69,6 +69,8 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
     
     /*
@@ -83,6 +85,8 @@
     
     */
     // 图标上的数字减1
+   // remindSwitch ? (notification.soundName = UILocalNotificationDefaultSoundName):(notification.soundName = nil);
+
     application.applicationIconBadgeNumber -= 1;
 }
 @end

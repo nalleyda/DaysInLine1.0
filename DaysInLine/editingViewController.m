@@ -1823,6 +1823,8 @@ SystemSoundID soundObject;
                 notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
                 
                 notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
+                remindSwitch ? (notification.soundName = UILocalNotificationDefaultSoundName):(notification.soundName = nil);
+
                 notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:@"value1",@"key1",nil];
  
                 [[UIApplication sharedApplication]   scheduleLocalNotification:notification];
@@ -1889,6 +1891,8 @@ SystemSoundID soundObject;
                 notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
                 
                 notification.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@",nil),self.theme.text];
+                remindSwitch ? (notification.soundName = UILocalNotificationDefaultSoundName):(notification.soundName = nil);
+
                 notification.userInfo=[[NSDictionary alloc] initWithObjectsAndKeys:@"value1",@"key1",nil];
                 
                 [[UIApplication sharedApplication]   scheduleLocalNotification:notification];

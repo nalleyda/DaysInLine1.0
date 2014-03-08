@@ -22,22 +22,28 @@
         [self addSubview:rightBackground];
         [self sendSubviewToBack:rightBackground];
         
-  */      
+  */
+        
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
+        [self addGestureRecognizer:tap];
+        
+        
 
         self.backgroundColor = [UIColor clearColor];
 
-        self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(10,280,self.frame.size.width-20, 100) style:UITableViewStylePlain];
+        self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(2,300,self.frame.size.width-10, 110) style:UITableViewStylePlain];
         
         self.settingTable.tag = 5;
-        self.settingTable.rowHeight = 48;
+        self.settingTable.rowHeight = 38;
         self.settingTable.backgroundColor = [UIColor clearColor];
 
         
         [self addSubview:self.settingTable];
-        
+       
         
         UILabel *soundLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+78, 40, 30)];
-        soundLabel.text = @"声音";
+        soundLabel.text = @"音效";
         soundLabel.font = [UIFont systemFontOfSize:16.0];
         soundLabel.backgroundColor = [UIColor clearColor];
         
@@ -87,24 +93,100 @@
         [self addSubview:self.icloudSwitch];
         */
         UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128, 100, 30)];
-        firstDay.text = @"周首日";
+        firstDay.text = @"收藏夹密码";
         firstDay.font = [UIFont systemFontOfSize:16.0];
         firstDay.backgroundColor = [UIColor clearColor];
         
         [self addSubview:firstDay];
        
         
-        self.daySwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+130, 60, 25)];
+        self.remindSoundSwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+130, 60, 25)];
         
-        self.daySwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
-        self.daySwitch.alpha = 1.0;
+        self.remindSoundSwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
+        self.remindSoundSwitch.alpha = 1.0;
         //self.daySwitch.transform = CGAffineTransformMakeScale(0.8, 0.8);
-        self.daySwitch.thumbTintColor = [UIColor blueColor];
+        self.remindSoundSwitch.thumbTintColor = [UIColor blueColor];
         //[self.daySwitch setOn:YES animated:YES];
         
-        self.daySwitch.offImage = [UIImage imageNamed:@"cross.png"];
-        self.daySwitch.onImage = [UIImage imageNamed:@"check.png"];
-        [self addSubview:self.daySwitch];
+        self.remindSoundSwitch.offImage = [UIImage imageNamed:@"cross.png"];
+        self.remindSoundSwitch.onImage = [UIImage imageNamed:@"check.png"];
+        [self addSubview:self.remindSoundSwitch];
+        
+        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160, 190, 50)];
+        
+        self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 50, 30)];
+        [self.tips setTitle:@"提示" forState:UIControlStateNormal ];
+        [self.tips setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        self.tips.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        self.tips.layer.borderWidth = 0.0f;
+        self.tips.backgroundColor = [UIColor clearColor];
+        
+        self.tipText = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 120, 30)];
+        self.tipText.textAlignment = NSTextAlignmentRight;
+        self.tipText.font = [UIFont systemFontOfSize:16.0];
+       // tipText.text = userTips;
+       self. tipText.backgroundColor = [UIColor clearColor];
+        
+        [self.tipsView addSubview:self.tipText];
+        [self.tipsView addSubview:self.tips];
+        
+        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160, 190, 140)];
+        
+        
+        UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 30)];
+        passwordText.font = [UIFont systemFontOfSize:14.0];
+        passwordText.text = @"设置密码:";
+        passwordText.backgroundColor = [UIColor clearColor];
+        
+        UILabel *passwordAgain = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, 70, 30)];
+        passwordAgain.font = [UIFont systemFontOfSize:14.0];
+        passwordAgain.text = @"再次输入:";
+        passwordAgain.backgroundColor = [UIColor clearColor];
+        
+        UILabel *setTipsText = [[UILabel alloc] initWithFrame:CGRectMake(0, 78, 70, 30)];
+        setTipsText.font = [UIFont systemFontOfSize:14.0];
+        setTipsText.text = @"密码提示:";
+        setTipsText.backgroundColor = [UIColor clearColor];
+
+        self.password = [[UITextField alloc] initWithFrame:CGRectMake(75, 13, 100, 25)];
+        self.password.secureTextEntry = YES;
+        self.password.keyboardType = UIKeyboardTypeNumberPad;
+        self.password.layer.borderWidth = 0.8f;
+        self.password.layer.borderColor = [UIColor grayColor].CGColor;
+        self.password2 = [[UITextField alloc] initWithFrame:CGRectMake(75, 46, 100, 25)];
+        self.password2.secureTextEntry = YES;
+        self.password2.keyboardType = UIKeyboardTypeNumberPad;
+
+        self.password2.layer.borderWidth = 0.8f;
+        self.password2.layer.borderColor = [UIColor grayColor].CGColor;
+
+        self.userTip =  [[UITextField alloc] initWithFrame:CGRectMake(75, 81, 100, 25)];
+        self.userTip.layer.borderWidth = 0.8f;
+        self.userTip.layer.borderColor = [UIColor grayColor].CGColor;
+        self.confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 113, 40, 25)];
+        [self.confirmButton setTitle:@"确定" forState:UIControlStateNormal ];
+        [self.confirmButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+
+        self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        self.confirmButton.layer.borderWidth = 0.0f;
+        self.confirmButton.backgroundColor = [UIColor clearColor];
+        
+        [self.passwordView addSubview:passwordText];
+        [self.passwordView addSubview:passwordAgain];
+        [self.passwordView addSubview:setTipsText];
+        [self.passwordView addSubview:self.password];
+        [self.passwordView addSubview:self.password2];
+        [self.passwordView addSubview:self.userTip];
+        [self.passwordView addSubview:self.confirmButton];
+
+
+
+        [self addSubview:self.passwordView];
+        [self addSubview:self.tipsView];
+        
+        [self.tipsView setHidden:YES];
+        [self.passwordView setHidden:YES];
+
         
 
 
@@ -147,5 +229,21 @@
     
 }
 
+
+-(void)dismissKeyboard {
+    
+        NSArray *subviews = [self.passwordView subviews];
+        for (id objInput in subviews) {
+            if ([objInput isKindOfClass:[UITextField class]]) {
+                UITextField *theTextField = objInput;
+                if ([objInput isFirstResponder]) {
+                    [theTextField resignFirstResponder];
+                }
+            }
+            
+        }
+
+    
+}
 
 @end

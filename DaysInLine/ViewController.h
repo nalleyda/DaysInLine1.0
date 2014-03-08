@@ -19,7 +19,7 @@
 @class homeView;
 @class daylineView;
 
-@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate,ADBannerViewDelegate>
+@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate,ADBannerViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
 {
     sqlite3 *dataBase;
     NSString *databasePath;

@@ -49,6 +49,7 @@
 @property(nonatomic, strong) NSMutableArray *EventDateInSearch;
 @property(nonatomic, strong) NSMutableArray *EventsIDInTag;
 @property(nonatomic, strong) NSMutableArray *EventsIDInSearch;
+
 @property(nonatomic, strong) NSString *dateToSelect;
 @property(nonatomic, strong) NSString *pickAdate;
 @property(nonatomic, strong) NSString *textInMain;
@@ -61,6 +62,9 @@
 @property(nonatomic, strong) NSMutableArray *collectEventEnd;
 
 @property(nonatomic, strong) NSArray *cellBackground;
+@property(nonatomic, strong) NSArray *settingInformationLeft;
+@property(nonatomic, strong) NSArray *settingInformationRight;
+
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellinCollection;
 
@@ -72,6 +76,7 @@
 
 SystemSoundID soundFileObject;
 bool todayRedrawDone;
+bool hasPassWord;
 
 bool selectedDayRedrawDone;
 int collectNum;
@@ -110,6 +115,11 @@ int collectNum;
     self.collectEventDate = [[NSMutableArray alloc] init];
     self.collectEventStart = [[NSMutableArray alloc] init];
     self.collectEventEnd = [[NSMutableArray alloc] init];
+    
+    
+    self.settingInformationLeft = [[NSArray alloc] initWithObjects:@"版本",@"QQ",@"email", nil];
+    self.settingInformationRight = [[NSArray alloc] initWithObjects:@"V1.0",@"82107815",@"sheepcao1986@163.com", nil];
+
     
     self.cellBackground = [[NSArray alloc] initWithObjects:@"cell1-1",@"cell2-1",@"cell3-1",@"cell4-1", nil];
     
@@ -215,7 +225,11 @@ int collectNum;
     sqlite3_stmt *statement;
     sqlite3_stmt *statement_1;
     sqlite3_stmt *statement_2;
-    
+    sqlite3_stmt *statement_3;
+    sqlite3_stmt *statement_4;
+    sqlite3_stmt *statement_5;
+
+
     const char *dbpath = [databasePath UTF8String];
     if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
         /*           NSString *createsql = @"CREATE TABLE IF NOT EXISTS DAYTABLE (ID INTEGER PRIMARY KEY AUTOINCREMENT,DATE TEXT UNIQUE,MOOD INTEGER,GROWTH INTEGER)";
@@ -228,12 +242,14 @@ int collectNum;
         NSString *createCollect = @"CREATE TABLE IF NOT EXISTS collection (collectionID INTEGER PRIMARY KEY AUTOINCREMENT,eventID INTEGER)";
         
         NSString *createGlobal = @"CREATE TABLE IF NOT EXISTS globalVar (varName TEXT PRIMARY KEY,value INTEGER)";
+        NSString *createPassword = @"CREATE TABLE IF NOT EXISTS passwordVar (varName TEXT PRIMARY KEY,value TEXT)";
         
         [self execSql:createDayable];
         [self execSql:createEvent];
         [self execSql:createTag];
         [self execSql:createCollect];
         [self execSql:createGlobal];
+        [self execSql:createPassword];
     }
     else {
         NSLog(@"数据库打开失败");
@@ -299,6 +315,7 @@ int collectNum;
             int sound = sqlite3_column_int(statement_2, 0);
             soundSwitch = sound;
             
+            
         }else{
             soundSwitch = YES;
         }
@@ -308,7 +325,73 @@ int collectNum;
     }
     sqlite3_finalize(statement_2);
     
+    
+    NSString *remindSoundName = @"remindSwitch";
+    
+    NSString *queryRemindSound= [NSString stringWithFormat:@"SELECT value from globalVar where varName=\"%@\"",remindSoundName];
+    const char *queryRemindstatement = [queryRemindSound UTF8String];
+    if (sqlite3_prepare_v2(dataBase, queryRemindstatement, -1, &statement_3, NULL)==SQLITE_OK) {
+        if  (sqlite3_step(statement_3)==SQLITE_ROW) {
+            //当天数据已经存在，则取出数据还原界面
+            int remindSound = sqlite3_column_int(statement_3, 0);
+            remindSwitch = remindSound;
+            
+            
+        }else{
+            remindSwitch = NO;
+        }
+        
+        //[allTags addObject:nil];
+        // NSLog(@"%@",self.allTags[5]);
+    }
+    sqlite3_finalize(statement_3);
   
+    NSString *passwordName = @"password";
+    
+    NSString *queryPassword= [NSString stringWithFormat:@"SELECT value from passwordVar where varName=\"%@\"",passwordName];
+    const char *queryPasswordStatement = [queryPassword UTF8String];
+    if (sqlite3_prepare_v2(dataBase, queryPasswordStatement, -1, &statement_4, NULL)==SQLITE_OK) {
+        if  (sqlite3_step(statement_4)==SQLITE_ROW) {
+            //当天数据已经存在，则取出数据还原密码
+          //  char *date = (char *) sqlite3_column_text(statement_1, 0);
+         //   NSString *dateWithEvent = [NSString stringWithUTF8String:date];
+
+            char *pswd = (char *) sqlite3_column_text(statement_4, 0);
+            NSString *pswdText = [NSString stringWithUTF8String:pswd];
+            password = pswdText;
+            
+            
+        }else{
+            password = nil;
+        }
+        
+        //[allTags addObject:nil];
+        // NSLog(@"%@",self.allTags[5]);
+    }
+    sqlite3_finalize(statement_4);
+    
+    
+    NSString *tipName = @"tips";
+    
+    NSString *queryTip= [NSString stringWithFormat:@"SELECT value from passwordVar where varName=\"%@\"",tipName];
+    const char *queryTipStatement = [queryTip UTF8String];
+    if (sqlite3_prepare_v2(dataBase, queryTipStatement, -1, &statement_5, NULL)==SQLITE_OK) {
+        if  (sqlite3_step(statement_5)==SQLITE_ROW) {
+            //当天数据已经存在，则取出数据还原密码提示
+            char *tp = (char *)sqlite3_column_text (statement_5, 0);
+            NSString *tpText = [NSString stringWithUTF8String:tp];
+            userTips = tpText;
+            
+            
+        }else{
+            userTips = @"";
+        }
+        
+        //[allTags addObject:nil];
+        // NSLog(@"%@",self.allTags[5]);
+    }
+    sqlite3_finalize(statement_5);
+
     
     
     sqlite3_close(dataBase);
@@ -335,7 +418,10 @@ int collectNum;
     [self.adView setBackgroundColor:[UIColor clearColor]];
 
 
-       
+    
+    
+
+    
 }
 
 
@@ -1054,11 +1140,39 @@ int collectNum;
  
 }
 
-
 -(void)treasureTapped
 {
+    if (password) {
+        
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"请输入收藏夹密码"
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定",nil];
+    
+    alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+    UITextField *pswd = [alert textFieldAtIndex:0];
+    pswd.keyboardType = UIKeyboardTypeNumberPad ;
+    alert.tag =1;
+    [ alert  show];
+    }
+    else
+    {
+        [self treasurePass];
+    }
+        
+    
+}
+-(void)treasurePass
+{
+    
+    
     
     [[Frontia getStatistics] logEvent:@"10017" eventLabel:@"collectTap"];
+    
+
+    
 
     
     //播放
@@ -1312,6 +1426,9 @@ int collectNum;
     
     [[Frontia getStatistics] logEvent:@"10019" eventLabel:@"settingTap"];
 
+    
+    
+    
     [self.view addSubview:self.adView];
 
     if (soundSwitch) {
@@ -1359,9 +1476,210 @@ int collectNum;
     [self.my_setting.soundSwitch setOn:soundSwitch animated:YES];
     NSLog(@"soundSwitch:%hhd",soundSwitch);
     [self.my_setting.soundSwitch addTarget:self action:@selector(soundSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    
+    [self.my_setting.remindSoundSwitch setOn:remindSwitch animated:YES];
+    NSLog(@"remindSoundSwitch:%hhd",remindSwitch);
+    [self.my_setting.remindSoundSwitch addTarget:self action:@selector(remindSoundSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    
+    if (remindSwitch) {
+        if (password) {
+            [self.my_setting.passwordView setHidden:YES];
+            [self.my_setting.tipsView setHidden:NO];
+            [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
+            
+        }else
+        {
+            [self.my_setting.passwordView setHidden:NO];
+            [self.my_setting.tipsView setHidden:YES];
+            self.my_setting.password.delegate = self;
+            self.my_setting.password2.delegate = self;
+            self.my_setting.userTip.delegate = self;
+            
+            [self.my_setting.confirmButton addTarget:self action:@selector(confirmPassword) forControlEvents:UIControlEventTouchUpInside];
+            
+        }
+        
+    }else
+    {
+        [self.my_setting.passwordView setHidden:YES];
+        [self.my_setting.tipsView setHidden:YES];
+        
+    }
 
-
+  
     [self.homePage addSubview:self.my_setting];
+}
+
+-(void)remindSoundSwitchChanged:(SevenSwitch *)sender
+{
+    sqlite3_stmt *varStatement;
+    sqlite3_stmt *stmt;
+    NSString *soundName = @"remindSwitch";
+    
+    NSLog(@"Changed value to: %@", sender.on ? @"ON" : @"OFF");
+    sender.on ? (remindSwitch = YES) : (remindSwitch = NO);
+    
+    
+    const char *dbpath = [databasePath UTF8String];
+    
+    
+    if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+        
+        
+        NSString *insertGlobalVar = [NSString stringWithFormat:@"INSERT INTO globalVar(varName,value) VALUES(?,?)"];
+        
+        //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+        const char *insertVarsatement = [insertGlobalVar UTF8String];
+        sqlite3_prepare_v2(dataBase, insertVarsatement, -1, &varStatement, NULL);
+        sqlite3_bind_text(varStatement,1, [soundName UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_int(varStatement, 2, remindSwitch);
+        
+        
+        if (sqlite3_step(varStatement)==SQLITE_DONE) {
+            NSLog(@"innsert today ok");
+            
+        }
+        else {
+            NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+            //update DAYTABLE set MOOD=?where date=?
+            NSString *updateGlobalVar = [NSString stringWithFormat:@"update globalVar set value=?where varName=?"];
+            if (sqlite3_prepare_v2(dataBase, [updateGlobalVar UTF8String], -1, &stmt, NULL)!=SQLITE_OK) {
+                NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+            }
+            sqlite3_bind_int(stmt, 1, remindSwitch);
+            sqlite3_bind_text(stmt, 2, [soundName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_step(stmt);
+            sqlite3_finalize(stmt);
+            
+            
+        }
+        sqlite3_finalize(varStatement);
+        
+        
+        if (remindSwitch) {
+            if (password) {
+                [self.my_setting.passwordView setHidden:YES];
+                [self.my_setting.tipsView setHidden:NO];
+                [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
+
+            }else
+            {
+                [self.my_setting.passwordView setHidden:NO];
+                [self.my_setting.tipsView setHidden:YES];
+                self.my_setting.password.delegate = self;
+                 self.my_setting.password2.delegate = self;
+                self.my_setting.userTip.delegate = self;
+                
+                [self.my_setting.confirmButton addTarget:self action:@selector(confirmPassword) forControlEvents:UIControlEventTouchUpInside];
+                
+            }
+            
+        }else
+        {
+            [self.my_setting.passwordView setHidden:YES];
+            [self.my_setting.tipsView setHidden:YES];
+            
+        }
+        
+        sqlite3_close(dataBase);
+        
+    }
+    
+    
+    NSLog(@"remind now is:%hhd",remindSwitch);
+
+}
+
+-(void)tipsTapped{
+
+    self.my_setting.tipText.text = userTips;
+    
+}
+-(void)confirmPassword{
+    
+    if ([self.my_setting.password.text isEqualToString:self.my_setting.password2.text]) {
+        password = self.my_setting.password.text ;
+        userTips = self.my_setting.userTip.text;
+        
+        //密码数据插入数据库
+        
+        sqlite3_stmt *passwordStatement;
+        sqlite3_stmt *tipsStatement;
+        //sqlite3_stmt *stmtPassword;
+      //  sqlite3_stmt *stmtTips;
+        NSString *passwordName = @"password";
+        NSString *tipsName = @"tips";
+        const char *dbpath = [databasePath UTF8String];
+        
+        
+        if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
+            
+            
+            NSString *insertPassword = [NSString stringWithFormat:@"INSERT INTO passwordVar(varName,value) VALUES(?,?)"];
+            
+            //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+            const char *passwordsatement = [insertPassword UTF8String];
+            sqlite3_prepare_v2(dataBase, passwordsatement, -1, &passwordStatement, NULL);
+            sqlite3_bind_text(passwordStatement,1, [passwordName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(passwordStatement, 2, [password UTF8String], -1, SQLITE_TRANSIENT);
+            
+            
+            if (sqlite3_step(passwordStatement)==SQLITE_DONE) {
+                NSLog(@"innsert password ok");
+                
+            }
+            else {
+                NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+               
+            }
+            sqlite3_finalize(passwordStatement);
+            
+            
+            NSString *insertTip = [NSString stringWithFormat:@"INSERT INTO passwordVar(varName,value) VALUES(?,?)"];
+            
+            //    NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO DAYTABLE(DATE) VALUES(\"%@\",\"%d\")",today,9];
+            const char *tipsatement = [insertTip UTF8String];
+            sqlite3_prepare_v2(dataBase, tipsatement, -1, &tipsStatement, NULL);
+            sqlite3_bind_text(tipsStatement,1, [tipsName UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(tipsStatement, 2, [userTips UTF8String], -1, SQLITE_TRANSIENT);
+            
+            
+            if (sqlite3_step(tipsStatement)==SQLITE_DONE) {
+                NSLog(@"innsert tips ok");
+                
+            }
+            else {
+                NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
+                
+            }
+            sqlite3_finalize(tipsStatement);
+            
+            sqlite3_close(dataBase);
+
+        }
+        [self.my_setting.passwordView setHidden:YES];
+        [self.my_setting.tipsView setHidden:NO];
+        [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
+        
+    }else{
+    
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"两次输入密码不一致！"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        
+        
+        [ alert  show];
+        self.my_setting.password.text = @"";
+        self.my_setting.password2.text = @"";
+        self.my_setting.userTip.text = @"";
+
+
+
+    }
 }
 
 - (void)soundSwitchChanged:(SevenSwitch *)sender {
@@ -1801,9 +2119,12 @@ int collectNum;
             tableRows = self.collectEvent.count;
              NSLog(@"^^^^^^^^^%ld^^^^^^^^^",(long)tableRows);
             break;
-        case  4:
+        case 4:
             tableRows = self.EventsInSearch.count;
             NSLog(@"~~~~~~~~~%ld~~~~~~lll",(long)tableRows);
+            break;
+        case 5:
+            tableRows = 3;
             break;
         default: tableRows = 0;
             break;
@@ -1827,6 +2148,7 @@ int collectNum;
 
     UITableViewCell *cell_4 = [tableView dequeueReusableCellWithIdentifier:@"collectCell"];
     UITableViewCell *cell_5 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInSearch"];
+    UITableViewCell *cell_6 = [tableView dequeueReusableCellWithIdentifier:@"settingCell"];
     switch (tableView.tag) {
         case 0:
             
@@ -1983,6 +2305,29 @@ int collectNum;
             
             
             break;
+        }
+        case 5:
+        {
+            if (!cell_6)
+            {
+                cell_6 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"settingCell"];
+            }
+            NSUInteger row6=[indexPath row];
+            [cell_6 setSelectionStyle:UITableViewCellSelectionStyleNone];
+            //设置文本
+            if (row6<self.settingInformationLeft.count) {
+                cell_6.textLabel.text = self.settingInformationLeft[row6];
+                cell_6.textLabel.font = [UIFont systemFontOfSize:14.0];
+                cell_6.backgroundColor = [UIColor clearColor];
+                
+                cell_6.detailTextLabel.text = self.settingInformationRight[row6];
+                cell_6.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+                cell_6.detailTextLabel.backgroundColor = [UIColor clearColor];
+            }
+            cell = cell_6;
+            
+            break;
+
         }
         default: cell = nil;
             break;
@@ -2723,7 +3068,7 @@ int collectNum;
 -(void)reloadTable
 {
     if (self.my_collect.hidden == NO) {
-        [self treasureTapped];
+        [self treasurePass];
     }
     if (self.my_select.hidden ==NO){
         
@@ -2824,6 +3169,41 @@ int collectNum;
 }
 
 
+
+-(void)alertView : (UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    //得到输入框
+    if (alertView.tag == 1) {
+        if (buttonIndex == 1) {
+            
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            if([tf.text isEqualToString:password])
+            {
+                [self treasurePass];
+            }
+            else{
+                
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"密码错误"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil];
+                
+               // alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                // alert.tag =1;
+                [ alert  show];
+                
+                
+                
+            }
+        }
+    }
+}
+
+
+
+
 -(void) bannerViewDidLoadAd:(ADBannerView *)banner
 {
     if(!self.bannerIsVisible)
@@ -2847,6 +3227,8 @@ int collectNum;
 }
 
 
+
+
 #pragma mark - AdViewDelegates
 
 
@@ -2859,5 +3241,24 @@ int collectNum;
     NSLog(@"Ad did finish");
     
 }
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    
+}
+
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+
 
 @end

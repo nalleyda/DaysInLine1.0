@@ -12,12 +12,17 @@
 int workArea[96] ;
 int lifeArea[96] ;
 NSString *modifyDate;
+NSString *userTips;
+NSString *password;
+
 //BOOL hasTheDay;
 
 int modifying;
 int modifyEventId;
 
 BOOL soundSwitch;
+BOOL remindSwitch;
+//int startDay; //1 = sunday, 2 = monday
 
 #define NR_IMAGEVIEW 5
 #define IMAGEVIEW_TAG_BASE 200
