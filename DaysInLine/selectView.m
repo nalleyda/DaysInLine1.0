@@ -64,7 +64,7 @@
 
         
         self.calendar = [[CKCalendarView alloc] initWithStartDay:startSunday];
-        self.calendar.frame = CGRectMake(0, 0, self.frame.size.width-20, (self.frame.size.height-150)/2);
+        self.calendar.frame = CGRectMake(0, 0, self.frame.size.width-14, (self.frame.size.height-150)/2);
         //self.calendar.backgroundColor = [UIColor clearColor];
         [self.dateView addSubview:self.calendar];
 

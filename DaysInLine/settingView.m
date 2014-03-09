@@ -30,16 +30,20 @@
         CGRect screenBounds = [[UIScreen mainScreen] bounds];
         int y = 0;
         if (screenBounds.size.height == 568) {
+            
+            self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(2,350,self.frame.size.width-10, 110) style:UITableViewStylePlain];
         
         }else
         {
             y-=30;
+            
+            self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(2,300,self.frame.size.width-10, 110) style:UITableViewStylePlain];
         }
         
 
         self.backgroundColor = [UIColor clearColor];
 
-        self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(2,300,self.frame.size.width-10, 110) style:UITableViewStylePlain];
+
         
         self.settingTable.tag = 5;
         self.settingTable.rowHeight = 38;
@@ -119,23 +123,24 @@
         self.remindSoundSwitch.onImage = [UIImage imageNamed:@"check.png"];
         [self addSubview:self.remindSoundSwitch];
         
-        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 50)];
+        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 140)];
         
-        self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 50, 30)];
-        [self.tips setTitle:@"提示" forState:UIControlStateNormal ];
-        [self.tips setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        self.tips.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 100, 30)];
+        [self.tips setTitle:@"提示      " forState:UIControlStateNormal ];
+        [self.tips setTitleColor:[UIColor colorWithRed:112/255.0f green:112/255.0f blue:112/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        self.tips.titleLabel.font = [UIFont systemFontOfSize:14.0];
         self.tips.layer.borderWidth = 0.0f;
-        self.tips.backgroundColor = [UIColor clearColor];
+        [self.tips setBackgroundImage:[UIImage imageNamed:@"passwordBtn"] forState:UIControlStateNormal];
+  
         
 
         
-        self.modifyPassword = [[UIButton alloc] initWithFrame:CGRectMake(0, 38, 50, 30)];
+        self.modifyPassword = [[UIButton alloc] initWithFrame:CGRectMake(0, 48, 100, 30)];
         [self.modifyPassword setTitle:@"修改密码" forState:UIControlStateNormal ];
-        [self.modifyPassword setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        self.modifyPassword.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        [self.modifyPassword setTitleColor:[UIColor colorWithRed:112/255.0f green:112/255.0f blue:112/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        self.modifyPassword.titleLabel.font = [UIFont systemFontOfSize:14.0];
         self.modifyPassword.layer.borderWidth = 0.0f;
-        self.modifyPassword.backgroundColor = [UIColor clearColor];
+        [self.modifyPassword setBackgroundImage:[UIImage imageNamed:@"passwordBtn"] forState:UIControlStateNormal];
 
         
         self.tipText = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 120, 30)];
@@ -144,10 +149,11 @@
        // tipText.text = userTips;
        self. tipText.backgroundColor = [UIColor clearColor];
         
+        [self.tipsView addSubview:self.modifyPassword];
         [self.tipsView addSubview:self.tipText];
         [self.tipsView addSubview:self.tips];
         
-        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 140)];
+        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 155)];
         
         
         UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 30)];
@@ -180,13 +186,15 @@
         self.userTip =  [[UITextField alloc] initWithFrame:CGRectMake(75, 81, 100, 25)];
         self.userTip.layer.borderWidth = 0.8f;
         self.userTip.layer.borderColor = [UIColor grayColor].CGColor;
-        self.confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(100, 113, 40, 25)];
-        [self.confirmButton setTitle:@"确定" forState:UIControlStateNormal ];
+        self.userTip.delegate = self;
+        self.confirmButton = [[UIButton alloc] initWithFrame:CGRectMake(64, 123, 83, 30)];
+        //[self.confirmButton setTitle:@"确定" forState:UIControlStateNormal ];
         [self.confirmButton setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 
-        self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
+       // self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         self.confirmButton.layer.borderWidth = 0.0f;
-        self.confirmButton.backgroundColor = [UIColor clearColor];
+        [self.confirmButton setBackgroundImage:[UIImage imageNamed:@"passwordOk"] forState:UIControlStateNormal];
+
         
         [self.passwordView addSubview:passwordText];
         [self.passwordView addSubview:passwordAgain];
@@ -277,13 +285,20 @@
     
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
     // 输出点击的view的类名
     NSLog(@"%@", NSStringFromClass([touch.view class]));
     
     // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SevenSwitch"]) {
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SevenSwitch"]||[NSStringFromClass([touch.view class]) isEqualToString:@"UIButton"]) {
         return NO;
     }
     return  YES;

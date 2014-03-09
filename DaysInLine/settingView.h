@@ -10,7 +10,7 @@
 #import "SevenSwitch.h"
 #import "globalVars.h"
 
-@interface settingView : UIView<UIGestureRecognizerDelegate>
+@interface settingView : UIView<UIGestureRecognizerDelegate,UITextFieldDelegate>
 
 @property (strong , nonatomic) SevenSwitch *soundSwitch ;
 //@property (strong , nonatomic) SevenSwitch *icloudSwitch ;

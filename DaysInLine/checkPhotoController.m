@@ -27,13 +27,29 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIImageView *backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    [backImage setImage:[UIImage imageNamed:@"照片背景.png"]];
+    
+    UIImageView *backImage;
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if (screenBounds.size.height == 568) {
+        
+       backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        NSLog(@"586height:%.2f",self.view.bounds.size.height);
+        [backImage setImage:[UIImage imageNamed:@"照片背景586.png"]];
+        
+        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
+        
+        
+    }else{
+       backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [backImage setImage:[UIImage imageNamed:@"照片背景.png"]];
+        
+    }
+
     
     [self.view addSubview:backImage];
     [self.view sendSubviewToBack:backImage];
     
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+   // CGRect screenBounds = [[UIScreen mainScreen] bounds];
     if (screenBounds.size.height == 568) {
         self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
         

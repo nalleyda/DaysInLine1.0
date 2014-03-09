@@ -140,7 +140,8 @@ SystemSoundID soundObject;
 
     
     self.mainText = [[UITextView alloc] initWithFrame:CGRectMake(40, 155, 220, mainText_Height)];
-    UILabel *extend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 20, mainText_Height)];
+    UILabel *extend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 23, mainText_Height)];
+    extend.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:extend];
     [self.view addSubview:self.mainText];
     self.mainText.tag = 106;
@@ -1043,7 +1044,7 @@ SystemSoundID soundObject;
     
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
     
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", @"取消", nil];
     actionSheet.tag = 1;
 	[actionSheet showInView:self.view];
     
@@ -1079,7 +1080,7 @@ SystemSoundID soundObject;
     
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
     
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", @"取消",nil];
     actionSheet.tag = 2;
 	[actionSheet showInView:self.view];
     
@@ -2064,60 +2065,63 @@ SystemSoundID soundObject;
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 1) {
-        
-    
-	UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:201];
-	NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-    formatter.dateFormat = @"H:mm";
-    NSString *timestart = [formatter stringFromDate:datePicker.date];
-    
-	[(UILabel *)[self.view viewWithTag:103] setText:timestart];
-    [self.startTimeButton setTitle:@"" forState:UIControlStateNormal];
-        
-    NSArray *startTime = [self.startLabel.text componentsSeparatedByString:@":"];
-    double hour_0 = [startTime[0] doubleValue];
-    double minite_0 = [startTime[1] doubleValue];
-    double startNum = hour_0*60 + minite_0;
-    startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
-    }
-    
-    if (actionSheet.tag == 2) {
-        
-        
-        UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:202];
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-        formatter.dateFormat = @"H:mm";
-        NSString *timestart = [formatter stringFromDate:datePicker.date];
-    
-                [(UILabel *)[self.view viewWithTag:104] setText:timestart];
-        [self.endTimeButton setTitle:@"" forState:UIControlStateNormal];
-        
-        NSArray *endTime = [self.endLabel.text componentsSeparatedByString:@":"];
-        
-        
-        double hour_1 = [endTime[0] doubleValue];
-        double minite_1 = [endTime[1] doubleValue];
-        double endNum = hour_1*60 + minite_1;
-
-        endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
-        if (self.startLabel.text) {
-            if ([endTimeNum doubleValue]<=[startTimeNum doubleValue]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"结束时间应该比开始时间更大哦！"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"确定"
-                                                      otherButtonTitles:nil];
-                [alert show];
-            }
+        if (buttonIndex == 0) {
+            UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:201];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+            formatter.dateFormat = @"H:mm";
+            NSString *timestart = [formatter stringFromDate:datePicker.date];
+            
+            [(UILabel *)[self.view viewWithTag:103] setText:timestart];
+            [self.startTimeButton setTitle:@"" forState:UIControlStateNormal];
+            
+            NSArray *startTime = [self.startLabel.text componentsSeparatedByString:@":"];
+            double hour_0 = [startTime[0] doubleValue];
+            double minite_0 = [startTime[1] doubleValue];
+            double startNum = hour_0*60 + minite_0;
+            startTimeNum = [[NSNumber alloc] initWithDouble:(startNum)];
+        }else if(buttonIndex == 1)
+        {
+            return;
         }
         
+    }
+    
+	    
+    if (actionSheet.tag == 2) {
         
- /*
-        NSArray *startTime = [timestart componentsSeparatedByString:@":"];
-        int hour = [startTime[0] intValue];
-        int minite = [startTime[1] intValue];
-        //NSLog(@"hour:%d,minite:%d",hour,minite);
-*/
+        if (buttonIndex == 0) {
+            
+            UIDatePicker *datePicker = (UIDatePicker *)[actionSheet viewWithTag:202];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
+            formatter.dateFormat = @"H:mm";
+            NSString *timestart = [formatter stringFromDate:datePicker.date];
+            
+            [(UILabel *)[self.view viewWithTag:104] setText:timestart];
+            [self.endTimeButton setTitle:@"" forState:UIControlStateNormal];
+            
+            NSArray *endTime = [self.endLabel.text componentsSeparatedByString:@":"];
+            
+            
+            double hour_1 = [endTime[0] doubleValue];
+            double minite_1 = [endTime[1] doubleValue];
+            double endNum = hour_1*60 + minite_1;
+            
+            endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
+            if (self.startLabel.text) {
+                if ([endTimeNum doubleValue]<=[startTimeNum doubleValue]) {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                    message:@"结束时间应该比开始时间更大哦！"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"确定"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+            }
+
+        }else if(buttonIndex == 1)
+        {
+            return;
+        }
         
         
         

@@ -137,7 +137,7 @@ int collectNum;
     
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         
-        CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
+        CGRect frame7 = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
             
         NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
             
@@ -152,7 +152,7 @@ int collectNum;
         NSLog(@"ios7!!!!");
     }else{
         
-        CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+        CGRect frame = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
         
         NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
         
@@ -1142,7 +1142,7 @@ int collectNum;
 
 -(void)treasureTapped
 {
-    if (password) {
+    if (remindSwitch&&password) {
         
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
@@ -1488,7 +1488,7 @@ int collectNum;
             [self.my_setting.passwordView setHidden:YES];
             [self.my_setting.tipsView setHidden:NO];
             [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
-            [self.my_setting.tips addTarget:self action:@selector(modifyPawdTapped) forControlEvents:UIControlEventTouchUpInside];
+            [self.my_setting.modifyPassword addTarget:self action:@selector(modifyPawdTapped) forControlEvents:UIControlEventTouchUpInside];
             
         }else
         {
@@ -1564,6 +1564,7 @@ int collectNum;
                 [self.my_setting.passwordView setHidden:YES];
                 [self.my_setting.tipsView setHidden:NO];
                 [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
+                [self.my_setting.modifyPassword addTarget:self action:@selector(modifyPawdTapped) forControlEvents:UIControlEventTouchUpInside];
 
             }else
             {
@@ -1665,7 +1666,7 @@ int collectNum;
             }
             else {
                 NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
-                //update DAYTABLE set MOOD=?where date=?
+                //update password
                 NSString *updatePassword = [NSString stringWithFormat:@"update passwordVar set value=?where varName=?"];
                 if (sqlite3_prepare_v2(dataBase, [updatePassword UTF8String], -1, &stmtPassword, NULL)!=SQLITE_OK) {
                     NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
@@ -1695,7 +1696,15 @@ int collectNum;
             }
             else {
                 NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
-                
+                //update tip
+                NSString *updatePassword = [NSString stringWithFormat:@"update passwordVar set value=?where varName=?"];
+                if (sqlite3_prepare_v2(dataBase, [updatePassword UTF8String], -1, &stmtTips, NULL)!=SQLITE_OK) {
+                    NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+                }
+                sqlite3_bind_text(stmtTips, 1, [userTips UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmtTips, 2, [tipsName UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_step(stmtTips);
+                sqlite3_finalize(stmtTips);
             }
             sqlite3_finalize(tipsStatement);
             
@@ -1705,6 +1714,7 @@ int collectNum;
         [self.my_setting.passwordView setHidden:YES];
         [self.my_setting.tipsView setHidden:NO];
         [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
+        [self.my_setting.modifyPassword addTarget:self action:@selector(modifyPawdTapped) forControlEvents:UIControlEventTouchUpInside];
         
     }else{
     
@@ -3266,7 +3276,8 @@ int collectNum;
                 [ alert  show];
                 
                 [self.my_setting.remindSoundSwitch setOn:YES];
-                
+                remindSwitch = YES;
+
                 
                 
             }
@@ -3275,6 +3286,7 @@ int collectNum;
         }else
         {
             [self.my_setting.remindSoundSwitch setOn:YES];
+            remindSwitch = YES;
 
         }
         
@@ -3286,6 +3298,7 @@ int collectNum;
             {
                 [self.my_setting.passwordView setHidden:NO];
                 [self.my_setting.tipsView setHidden:YES];
+                [self.my_setting.confirmButton addTarget:self action:@selector(confirmPassword) forControlEvents:UIControlEventTouchUpInside];
             }
             else{
                 

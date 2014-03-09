@@ -152,7 +152,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" tag="105" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jnF-cr-2Iy">
-                    <rect key="frame" x="88" y="110" width="208" height="30"/>
+                    <rect key="frame" x="88" y="110" width="195" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -202,7 +202,7 @@
                 <constraint firstItem="HXi-cd-CSi" firstAttribute="leading" secondItem="d6A-NF-qtA" secondAttribute="leading" id="bi9-Rr-bPb"/>
                 <constraint firstItem="ksZ-1h-47g" firstAttribute="top" secondItem="PTi-KT-iw5" secondAttribute="top" id="cYc-Qn-w1X"/>
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="trailing" secondItem="PTi-KT-iw5" secondAttribute="trailing" id="ekU-NV-RG8"/>
-                <constraint firstAttribute="trailing" secondItem="jnF-cr-2Iy" secondAttribute="trailing" constant="24" id="hXd-iK-49f"/>
+                <constraint firstAttribute="trailing" secondItem="jnF-cr-2Iy" secondAttribute="trailing" constant="37" id="hXd-iK-49f"/>
                 <constraint firstAttribute="bottom" secondItem="tpe-fm-0n4" secondAttribute="bottom" constant="11" id="iZd-qD-jsG"/>
                 <constraint firstItem="adU-64-2xG" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" id="j06-ww-gtV"/>
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="centerY" secondItem="zxP-Np-Ufk" secondAttribute="centerY" id="jDp-c3-GDY"/>
