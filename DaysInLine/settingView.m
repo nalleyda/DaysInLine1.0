@@ -23,11 +23,18 @@
         [self sendSubviewToBack:rightBackground];
         
   */
-        
-        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
+        tap.delegate = self;
         [self addGestureRecognizer:tap];
+
+        CGRect screenBounds = [[UIScreen mainScreen] bounds];
+        int y = 0;
+        if (screenBounds.size.height == 568) {
         
+        }else
+        {
+            y-=30;
+        }
         
 
         self.backgroundColor = [UIColor clearColor];
@@ -42,14 +49,14 @@
         [self addSubview:self.settingTable];
        
         
-        UILabel *soundLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+78, 40, 30)];
+        UILabel *soundLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+78+y, 40, 30)];
         soundLabel.text = @"音效";
         soundLabel.font = [UIFont systemFontOfSize:16.0];
         soundLabel.backgroundColor = [UIColor clearColor];
         
         [self addSubview:soundLabel];
         
-        self.soundSwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+80, 60, 25)];
+        self.soundSwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+80+y, 60, 25)];
         self.soundSwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
         self.soundSwitch.alpha = 1.0; // 设置透明度 范围在0.0-1.0之间 0.0是完全透明
         
@@ -92,7 +99,7 @@
         self.icloudSwitch.onImage = [UIImage imageNamed:@"check.png"];
         [self addSubview:self.icloudSwitch];
         */
-        UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128, 100, 30)];
+        UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128+y, 100, 30)];
         firstDay.text = @"收藏夹密码";
         firstDay.font = [UIFont systemFontOfSize:16.0];
         firstDay.backgroundColor = [UIColor clearColor];
@@ -100,7 +107,7 @@
         [self addSubview:firstDay];
        
         
-        self.remindSoundSwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+130, 60, 25)];
+        self.remindSoundSwitch = [[SevenSwitch alloc] initWithFrame:CGRectMake(130, self.frame.origin.y+130+y, 60, 25)];
         
         self.remindSoundSwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
         self.remindSoundSwitch.alpha = 1.0;
@@ -112,7 +119,7 @@
         self.remindSoundSwitch.onImage = [UIImage imageNamed:@"check.png"];
         [self addSubview:self.remindSoundSwitch];
         
-        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160, 190, 50)];
+        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 50)];
         
         self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 50, 30)];
         [self.tips setTitle:@"提示" forState:UIControlStateNormal ];
@@ -120,6 +127,16 @@
         self.tips.titleLabel.font = [UIFont systemFontOfSize:16.0];
         self.tips.layer.borderWidth = 0.0f;
         self.tips.backgroundColor = [UIColor clearColor];
+        
+
+        
+        self.modifyPassword = [[UIButton alloc] initWithFrame:CGRectMake(0, 38, 50, 30)];
+        [self.modifyPassword setTitle:@"修改密码" forState:UIControlStateNormal ];
+        [self.modifyPassword setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        self.modifyPassword.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        self.modifyPassword.layer.borderWidth = 0.0f;
+        self.modifyPassword.backgroundColor = [UIColor clearColor];
+
         
         self.tipText = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 120, 30)];
         self.tipText.textAlignment = NSTextAlignmentRight;
@@ -130,7 +147,7 @@
         [self.tipsView addSubview:self.tipText];
         [self.tipsView addSubview:self.tips];
         
-        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160, 190, 140)];
+        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 140)];
         
         
         UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 30)];
@@ -190,6 +207,7 @@
         
 
 
+
     }
     return self;
 }
@@ -199,12 +217,25 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    
+    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    int y = 0;
+    if (screenBounds.size.height == 568) {
+        
+    }else
+    {
+        y-=30;
+    }
+    
+
+    
     // Drawing code
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(context, 0.25f); //设置线的宽度 为1个像素
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
-    CGContextMoveToPoint(context,10, self.frame.origin.y+110);
-    CGContextAddLineToPoint(context, self.frame.size.width-20, self.frame.origin.y+110);
+    CGContextMoveToPoint(context,10, self.frame.origin.y+110+y);
+    CGContextAddLineToPoint(context, self.frame.size.width-20, self.frame.origin.y+110+y);
     CGContextStrokePath(context);
     
     NSLog(@"setting frame:y%.2f,width:%.2f",self.frame.origin.y,self.frame.size.width);
@@ -212,8 +243,8 @@
    
   
     
-    CGContextMoveToPoint(context,10, self.frame.origin.y+160);
-    CGContextAddLineToPoint(context, self.frame.size.width-20, self.frame.origin.y+160);
+    CGContextMoveToPoint(context,10, self.frame.origin.y+160+y);
+    CGContextAddLineToPoint(context, self.frame.size.width-20, self.frame.origin.y+160+y);
     CGContextStrokePath(context);
     
    /*
@@ -244,6 +275,18 @@
         }
 
     
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    // 输出点击的view的类名
+    NSLog(@"%@", NSStringFromClass([touch.view class]));
+    
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SevenSwitch"]) {
+        return NO;
+    }
+    return  YES;
 }
 
 @end

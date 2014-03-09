@@ -33,6 +33,7 @@
 		0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
+		0B335BEE18CC9A1C00587CB5 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B335BED18CC9A1C00587CB5 /* Frontia.framework */; };
 		0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9118C4C7B8006756FF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
@@ -113,7 +114,6 @@
 		0BD700861813ABFB004FCBE2 /* homeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD700851813ABFB004FCBE2 /* homeView.m */; };
 		0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008A1813BC66004FCBE2 /* daylineView.m */; };
 		0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
-		0BDDD2DD18C4CFB70077F527 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDDD2DC18C4CFB70077F527 /* Frontia.framework */; };
 		0BDDD2DF18C4D0760077F527 /* remindViewController586.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BDDD2DE18C4D0760077F527 /* remindViewController586.xib */; };
 		0BDDD2E618C4E4880077F527 /* result586@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDDD2E418C4E4880077F527 /* result586@2x.png */; };
 		0BDDD2E718C4E4880077F527 /* result@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BDDD2E518C4E4880077F527 /* result@2x.png */; };
@@ -189,6 +189,7 @@
 		0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景.png"; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
 		0B2C3339185B7CEE00CB2763 /* moneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moneyView.xib; sourceTree = "<group>"; };
+		0B335BED18CC9A1C00587CB5 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Frontia.framework; sourceTree = "<group>"; };
 		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
 		0B6AEF9018C4C7B8006756FF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
 		0B6AEF9118C4C7B8006756FF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
@@ -293,7 +294,6 @@
 		0BD7008A1813BC66004FCBE2 /* daylineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = daylineView.m; path = view/daylineView.m; sourceTree = "<group>"; };
 		0BD7008C1814242C004FCBE2 /* dayLineScoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dayLineScoller.h; sourceTree = "<group>"; };
 		0BD7008D1814242C004FCBE2 /* dayLineScoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dayLineScoller.m; sourceTree = "<group>"; };
-		0BDDD2DC18C4CFB70077F527 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Frontia.framework; path = DaysInLine/Frontia.framework; sourceTree = "<group>"; };
 		0BDDD2DE18C4D0760077F527 /* remindViewController586.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController586.xib; sourceTree = "<group>"; };
 		0BDDD2E418C4E4880077F527 /* result586@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "result586@2x.png"; path = "../../../Users/zhangli/Downloads/result586@2x.png"; sourceTree = "<group>"; };
 		0BDDD2E518C4E4880077F527 /* result@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "result@2x.png"; path = "../../../Users/zhangli/Downloads/result@2x.png"; sourceTree = "<group>"; };
@@ -340,8 +340,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B335BEE18CC9A1C00587CB5 /* Frontia.framework in Frameworks */,
 				0BFF71E218C76AAB0011AFDE /* iAd.framework in Frameworks */,
-				0BDDD2DD18C4CFB70077F527 /* Frontia.framework in Frameworks */,
 				0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */,
 				0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */,
 				0BFD27ED18BCE5C60016BCE4 /* CoreLocation.framework in Frameworks */,
@@ -490,8 +490,8 @@
 		0B9A53CD1812274D0085FFD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0B335BED18CC9A1C00587CB5 /* Frontia.framework */,
 				0BFF71E118C76AAB0011AFDE /* iAd.framework */,
-				0BDDD2DC18C4CFB70077F527 /* Frontia.framework */,
 				0BFD27F018BCE5F10016BCE4 /* libz.dylib */,
 				0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */,
 				0BFD27EC18BCE5C60016BCE4 /* CoreLocation.framework */,
@@ -1016,6 +1016,7 @@
 					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs",
 					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs",
 					"/Develop/DaysInLine-new-master/DaysInLine",
+					"/Develop/DaysInLine-new-master",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";
@@ -1049,6 +1050,7 @@
 					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2/libs",
 					"/Users/zhangli/Downloads/Baidu-Frontia-iOS-2-1/libs",
 					"/Develop/DaysInLine-new-master/DaysInLine",
+					"/Develop/DaysInLine-new-master",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DaysInLine/DaysInLine-Prefix.pch";

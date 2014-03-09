@@ -1488,6 +1488,7 @@ int collectNum;
             [self.my_setting.passwordView setHidden:YES];
             [self.my_setting.tipsView setHidden:NO];
             [self.my_setting.tips addTarget:self action:@selector(tipsTapped) forControlEvents:UIControlEventTouchUpInside];
+            [self.my_setting.tips addTarget:self action:@selector(modifyPawdTapped) forControlEvents:UIControlEventTouchUpInside];
             
         }else
         {
@@ -1578,9 +1579,24 @@ int collectNum;
             
         }else
         {
+            if (password) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"请输入密码"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"取消"
+                                                      otherButtonTitles:@"确定",nil];
+                
+                alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                UITextField *pswd = [alert textFieldAtIndex:0];
+                pswd.keyboardType = UIKeyboardTypeNumberPad ;
+                alert.tag =2;
+                [ alert  show];
+
+            }
+            else{
             [self.my_setting.passwordView setHidden:YES];
             [self.my_setting.tipsView setHidden:YES];
-            
+            }
         }
         
         sqlite3_close(dataBase);
@@ -1591,6 +1607,8 @@ int collectNum;
     NSLog(@"remind now is:%hhd",remindSwitch);
 
 }
+
+//modifyPawdTapped
 
 -(void)tipsTapped{
 
@@ -3175,7 +3193,7 @@ int collectNum;
 -(void)alertView : (UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     //得到输入框
-    if (alertView.tag == 1) {
+    if ((alertView.tag == 1)) {
         if (buttonIndex == 1) {
             
             UITextField *tf=[alertView textFieldAtIndex:0];
@@ -3200,7 +3218,43 @@ int collectNum;
                 
             }
         }
+    }else if (alertView.tag ==2)
+    {
+        if (buttonIndex ==1) {
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            if([tf.text isEqualToString:password])
+            {
+                [self.my_setting.passwordView setHidden:YES];
+                [self.my_setting.tipsView setHidden:YES];
+            }
+            else{
+                
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"密码错误"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil];
+                
+                // alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                // alert.tag =1;
+                [ alert  show];
+                
+                [self.my_setting.remindSoundSwitch setOn:YES];
+                
+                
+                
+            }
+
+
+        }else
+        {
+            [self.my_setting.remindSoundSwitch setOn:YES];
+
+        }
+        
     }
+    
 }
 
 
