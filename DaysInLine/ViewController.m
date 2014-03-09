@@ -1607,8 +1607,22 @@ int collectNum;
     NSLog(@"remind now is:%hhd",remindSwitch);
 
 }
+-(void)modifyPawdTapped{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                    message:@"请输入原密码"
+                                                   delegate:self
+                                          cancelButtonTitle:@"取消"
+                                          otherButtonTitles:@"确定",nil];
+    
+    alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+    UITextField *pswd = [alert textFieldAtIndex:0];
+    pswd.keyboardType = UIKeyboardTypeNumberPad ;
+    alert.tag =3;
+    [ alert  show];
 
-//modifyPawdTapped
+    
+}
+
 
 -(void)tipsTapped{
 
@@ -1625,8 +1639,9 @@ int collectNum;
         
         sqlite3_stmt *passwordStatement;
         sqlite3_stmt *tipsStatement;
-        //sqlite3_stmt *stmtPassword;
-      //  sqlite3_stmt *stmtTips;
+        
+        sqlite3_stmt *stmtPassword;
+        sqlite3_stmt *stmtTips;
         NSString *passwordName = @"password";
         NSString *tipsName = @"tips";
         const char *dbpath = [databasePath UTF8String];
@@ -1650,7 +1665,17 @@ int collectNum;
             }
             else {
                 NSLog(@"Error while insert:%s",sqlite3_errmsg(dataBase));
-               
+                //update DAYTABLE set MOOD=?where date=?
+                NSString *updatePassword = [NSString stringWithFormat:@"update passwordVar set value=?where varName=?"];
+                if (sqlite3_prepare_v2(dataBase, [updatePassword UTF8String], -1, &stmtPassword, NULL)!=SQLITE_OK) {
+                    NSLog(@"Error:%s",sqlite3_errmsg(dataBase));
+                }
+                sqlite3_bind_text(stmtPassword, 1, [password UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_bind_text(stmtPassword, 2, [passwordName UTF8String], -1, SQLITE_TRANSIENT);
+                sqlite3_step(stmtPassword);
+                sqlite3_finalize(stmtPassword);
+                
+
             }
             sqlite3_finalize(passwordStatement);
             
@@ -3253,6 +3278,36 @@ int collectNum;
 
         }
         
+    } else if (alertView.tag == 3)
+    {
+        if (buttonIndex ==1) {
+            UITextField *tf=[alertView textFieldAtIndex:0];
+            if([tf.text isEqualToString:password])
+            {
+                [self.my_setting.passwordView setHidden:NO];
+                [self.my_setting.tipsView setHidden:YES];
+            }
+            else{
+                
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"密码错误"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"确定"
+                                                      otherButtonTitles:nil];
+                
+                // alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+                // alert.tag =1;
+                [ alert  show];
+                
+                
+                
+                
+            }
+            
+            
+        }
+
     }
     
 }

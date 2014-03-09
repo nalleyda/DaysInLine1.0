@@ -33,7 +33,7 @@
 		0B2B2F7B18B3A4BC00B7EA83 /* 提醒背景.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */; };
 		0B2C333A185B7CEE00CB2763 /* editingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3338185B7CEE00CB2763 /* editingView.xib */; };
 		0B2C333B185B7CEE00CB2763 /* moneyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C3339185B7CEE00CB2763 /* moneyView.xib */; };
-		0B335BEE18CC9A1C00587CB5 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B335BED18CC9A1C00587CB5 /* Frontia.framework */; };
+		0B3686AA18CC9FA90036DCA3 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B3686A818CC9F440036DCA3 /* Frontia.framework */; };
 		0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9118C4C7B8006756FF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
@@ -189,7 +189,7 @@
 		0B2B2F7A18B3A4BC00B7EA83 /* 提醒背景.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒背景.png"; sourceTree = "<group>"; };
 		0B2C3338185B7CEE00CB2763 /* editingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = editingView.xib; sourceTree = "<group>"; };
 		0B2C3339185B7CEE00CB2763 /* moneyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = moneyView.xib; sourceTree = "<group>"; };
-		0B335BED18CC9A1C00587CB5 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Frontia.framework; sourceTree = "<group>"; };
+		0B3686A818CC9F440036DCA3 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Frontia.framework; path = DaysInLine/Frontia.framework; sourceTree = "<group>"; };
 		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
 		0B6AEF9018C4C7B8006756FF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
 		0B6AEF9118C4C7B8006756FF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
@@ -340,7 +340,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B335BEE18CC9A1C00587CB5 /* Frontia.framework in Frameworks */,
+				0B3686AA18CC9FA90036DCA3 /* Frontia.framework in Frameworks */,
 				0BFF71E218C76AAB0011AFDE /* iAd.framework in Frameworks */,
 				0BFD27F118BCE5F10016BCE4 /* libz.dylib in Frameworks */,
 				0BFD27EF18BCE5E50016BCE4 /* libstdc++.dylib in Frameworks */,
@@ -490,7 +490,7 @@
 		0B9A53CD1812274D0085FFD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B335BED18CC9A1C00587CB5 /* Frontia.framework */,
+				0B3686A818CC9F440036DCA3 /* Frontia.framework */,
 				0BFF71E118C76AAB0011AFDE /* iAd.framework */,
 				0BFD27F018BCE5F10016BCE4 /* libz.dylib */,
 				0BFD27EE18BCE5E50016BCE4 /* libstdc++.dylib */,
