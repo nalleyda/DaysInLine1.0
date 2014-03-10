@@ -21,6 +21,12 @@
 		0B066B9718C8D292004827D7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B066B9518C8D292004827D7 /* Default.png */; };
 		0B066B9918C8D33A004827D7 /* 键盘返回键.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B066B9818C8D33A004827D7 /* 键盘返回键.png */; };
 		0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C491618BE334F00B7CF19 /* selectCell.xib */; };
+		0B1D8E8A18CDFB2500B1FA6B /* moneyBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */; };
+		0B1D8E9018CDFEAA00B1FA6B /* 设置汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */; };
+		0B1D8E9118CDFEAA00B1FA6B /* 统计汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */; };
+		0B1D8E9218CDFEAA00B1FA6B /* 收藏夹汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8F18CDFEAA00B1FA6B /* 收藏夹汉字.png */; };
+		0B1D8E9418CE05E400B1FA6B /* 收入高亮.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E9318CE05E400B1FA6B /* 收入高亮.png */; };
+		0B1D8E9618CE067900B1FA6B /* 提醒高亮.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E9518CE067900B1FA6B /* 提醒高亮.png */; };
 		0B25F88618B9E9E00025B0CB /* cancelSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88218B9E9E00025B0CB /* cancelSound.wav */; };
 		0B25F88718B9E9E00025B0CB /* editSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88318B9E9E00025B0CB /* editSound.wav */; };
 		0B25F88818B9E9E00025B0CB /* addSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0B25F88418B9E9E00025B0CB /* addSound.wav */; };
@@ -99,14 +105,12 @@
 		0BB08A7418A9F41D00DE111E /* photoBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6318A9F41D00DE111E /* photoBtn.png */; };
 		0BB08A7518A9F41D00DE111E /* remindBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6418A9F41D00DE111E /* remindBtn.png */; };
 		0BB08A7618A9F41D00DE111E /* collectionBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6518A9F41D00DE111E /* collectionBtn.png */; };
-		0BB08A7718A9F41D00DE111E /* moneyBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6618A9F41D00DE111E /* moneyBtn.png */; };
 		0BB08A7818A9F41D00DE111E /* returnBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6718A9F41D00DE111E /* returnBtn.png */; };
 		0BB08A7918A9F41D00DE111E /* saveBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6818A9F41D00DE111E /* saveBtn.png */; };
 		0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6918A9F41D00DE111E /* deleteBtn.png */; };
 		0BB08A7B18A9F41D00DE111E /* tagBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6A18A9F41D00DE111E /* tagBtn2.png */; };
 		0BB08A7C18A9F41D00DE111E /* remindBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6B18A9F41D00DE111E /* remindBtn2.png */; };
 		0BB08A7D18A9F41D00DE111E /* photoBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6C18A9F41D00DE111E /* photoBtn2.png */; };
-		0BB08A7E18A9F41D00DE111E /* moneyBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6D18A9F41D00DE111E /* moneyBtn2.png */; };
 		0BB08A7F18A9F41D00DE111E /* returnBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6E18A9F41D00DE111E /* returnBtn2.png */; };
 		0BB08A8018A9F41D00DE111E /* collectionBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A6F18A9F41D00DE111E /* collectionBtn2.png */; };
 		0BB08A8118A9F41D00DE111E /* deleteBtn2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BB08A7018A9F41D00DE111E /* deleteBtn2.png */; };
@@ -178,6 +182,12 @@
 		0B066B9818C8D33A004827D7 /* 键盘返回键.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "键盘返回键.png"; sourceTree = "<group>"; };
 		0B0C491618BE334F00B7CF19 /* selectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectCell.xib; sourceTree = "<group>"; };
 		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
+		0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moneyBtn.png; sourceTree = "<group>"; };
+		0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置汉字.png"; sourceTree = "<group>"; };
+		0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "统计汉字.png"; sourceTree = "<group>"; };
+		0B1D8E8F18CDFEAA00B1FA6B /* 收藏夹汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收藏夹汉字.png"; sourceTree = "<group>"; };
+		0B1D8E9318CE05E400B1FA6B /* 收入高亮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "收入高亮.png"; sourceTree = "<group>"; };
+		0B1D8E9518CE067900B1FA6B /* 提醒高亮.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "提醒高亮.png"; sourceTree = "<group>"; };
 		0B25F88218B9E9E00025B0CB /* cancelSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cancelSound.wav; sourceTree = "<group>"; };
 		0B25F88318B9E9E00025B0CB /* editSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = editSound.wav; sourceTree = "<group>"; };
 		0B25F88418B9E9E00025B0CB /* addSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = addSound.wav; sourceTree = "<group>"; };
@@ -276,14 +286,12 @@
 		0BB08A6318A9F41D00DE111E /* photoBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBtn.png; sourceTree = "<group>"; };
 		0BB08A6418A9F41D00DE111E /* remindBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remindBtn.png; sourceTree = "<group>"; };
 		0BB08A6518A9F41D00DE111E /* collectionBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectionBtn.png; sourceTree = "<group>"; };
-		0BB08A6618A9F41D00DE111E /* moneyBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moneyBtn.png; sourceTree = "<group>"; };
 		0BB08A6718A9F41D00DE111E /* returnBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = returnBtn.png; sourceTree = "<group>"; };
 		0BB08A6818A9F41D00DE111E /* saveBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveBtn.png; sourceTree = "<group>"; };
 		0BB08A6918A9F41D00DE111E /* deleteBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteBtn.png; sourceTree = "<group>"; };
 		0BB08A6A18A9F41D00DE111E /* tagBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tagBtn2.png; sourceTree = "<group>"; };
 		0BB08A6B18A9F41D00DE111E /* remindBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = remindBtn2.png; sourceTree = "<group>"; };
 		0BB08A6C18A9F41D00DE111E /* photoBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoBtn2.png; sourceTree = "<group>"; };
-		0BB08A6D18A9F41D00DE111E /* moneyBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moneyBtn2.png; sourceTree = "<group>"; };
 		0BB08A6E18A9F41D00DE111E /* returnBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = returnBtn2.png; sourceTree = "<group>"; };
 		0BB08A6F18A9F41D00DE111E /* collectionBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collectionBtn2.png; sourceTree = "<group>"; };
 		0BB08A7018A9F41D00DE111E /* deleteBtn2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = deleteBtn2.png; sourceTree = "<group>"; };
@@ -429,6 +437,9 @@
 				0B066B8118C8BD2F004827D7 /* 查看结果.png */,
 				0B066B8218C8BD2F004827D7 /* 继续努力.png */,
 				0B066B8318C8BD2F004827D7 /* 查看当日.png */,
+				0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */,
+				0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */,
+				0B1D8E8F18CDFEAA00B1FA6B /* 收藏夹汉字.png */,
 				0B93EC4618AB422600F871C4 /* 色点.png */,
 				0B3686BD18CCCE1F0036DCA3 /* passwordOk.png */,
 				0B3686BB18CCC1350036DCA3 /* passwordBtn.png */,
@@ -436,15 +447,16 @@
 				0BB08A6218A9F41D00DE111E /* tagBtn.png */,
 				0BB08A6318A9F41D00DE111E /* photoBtn.png */,
 				0BB08A6418A9F41D00DE111E /* remindBtn.png */,
+				0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */,
+				0B1D8E9518CE067900B1FA6B /* 提醒高亮.png */,
+				0B1D8E9318CE05E400B1FA6B /* 收入高亮.png */,
 				0BB08A6518A9F41D00DE111E /* collectionBtn.png */,
-				0BB08A6618A9F41D00DE111E /* moneyBtn.png */,
 				0BB08A6718A9F41D00DE111E /* returnBtn.png */,
 				0BB08A6818A9F41D00DE111E /* saveBtn.png */,
 				0BB08A6918A9F41D00DE111E /* deleteBtn.png */,
 				0BB08A6A18A9F41D00DE111E /* tagBtn2.png */,
 				0BB08A6B18A9F41D00DE111E /* remindBtn2.png */,
 				0BB08A6C18A9F41D00DE111E /* photoBtn2.png */,
-				0BB08A6D18A9F41D00DE111E /* moneyBtn2.png */,
 				0BB08A6E18A9F41D00DE111E /* returnBtn2.png */,
 				0BB08A6F18A9F41D00DE111E /* collectionBtn2.png */,
 				0BB08A7018A9F41D00DE111E /* deleteBtn2.png */,
@@ -769,6 +781,7 @@
 				0B066B8718C8BD2F004827D7 /* 查看当日.png in Resources */,
 				0BB08A7518A9F41D00DE111E /* remindBtn.png in Resources */,
 				0BFF71E818C76D130011AFDE /* editView586@2x.png in Resources */,
+				0B1D8E9218CDFEAA00B1FA6B /* 收藏夹汉字.png in Resources */,
 				0BE6C65118A778CA007769D8 /* photoView.xib in Resources */,
 				0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */,
 				0B066B9318C8D12A004827D7 /* 统计.png in Resources */,
@@ -790,10 +803,12 @@
 				0B066B9118C8D12A004827D7 /* 查询.png in Resources */,
 				0B25F88718B9E9E00025B0CB /* editSound.wav in Resources */,
 				0BBED40A18A68AFA00B47E53 /* cell1-1.png in Resources */,
+				0B1D8E9618CE067900B1FA6B /* 提醒高亮.png in Resources */,
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
 				0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */,
 				0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */,
 				0B92BE3618B0C4F3003AE50C /* okInAlert.png in Resources */,
+				0B1D8E9018CDFEAA00B1FA6B /* 设置汉字.png in Resources */,
 				0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */,
 				0B3686B018CCA8C30036DCA3 /* 照片背景586.png in Resources */,
 				0BFE89B518C32D40002F6F67 /* 心情.png in Resources */,
@@ -812,6 +827,7 @@
 				0BA61BEB18A2886B000B7163 /* 按键3-2.png in Resources */,
 				0BFE89B418C32D40002F6F67 /* 工作生活.png in Resources */,
 				0B92BE3518B0C4F3003AE50C /* searchInAlert.png in Resources */,
+				0B1D8E9418CE05E400B1FA6B /* 收入高亮.png in Resources */,
 				0B066B8B18C8CA39004827D7 /* 到.png in Resources */,
 				0B9597F318AD211B002923AF /* cancelButton.png in Resources */,
 				0B3686B618CCB92D0036DCA3 /* 加号64.png in Resources */,
@@ -825,7 +841,9 @@
 				0BFE89AF18C32554002F6F67 /* 支出.png in Resources */,
 				0B066B9618C8D292004827D7 /* Default-568h@2x.png in Resources */,
 				0B3686BC18CCC1350036DCA3 /* passwordBtn.png in Resources */,
+				0B1D8E9118CDFEAA00B1FA6B /* 统计汉字.png in Resources */,
 				0B066B8518C8BD2F004827D7 /* 查看结果.png in Resources */,
+				0B1D8E8A18CDFB2500B1FA6B /* moneyBtn.png in Resources */,
 				0B93EC5C18ABD06A00F871C4 /* rightBackground@2x.png in Resources */,
 				0BB08A7618A9F41D00DE111E /* collectionBtn.png in Resources */,
 				0B00AC54187D849400427F35 /* collectCell.xib in Resources */,
@@ -838,12 +856,10 @@
 				0B93EC4718AB422600F871C4 /* 色点.png in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
 				0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */,
-				0BB08A7718A9F41D00DE111E /* moneyBtn.png in Resources */,
 				0BB08A7D18A9F41D00DE111E /* photoBtn2.png in Resources */,
 				0BB08A7918A9F41D00DE111E /* saveBtn.png in Resources */,
 				0B92BE3718B0C4F3003AE50C /* cancelInAlert.png in Resources */,
 				0B3686BA18CCBC900036DCA3 /* check@2x.png in Resources */,
-				0BB08A7E18A9F41D00DE111E /* moneyBtn2.png in Resources */,
 				0B9009E01877D791008D3799 /* right_arrow@2x.png in Resources */,
 				0BB08A8018A9F41D00DE111E /* collectionBtn2.png in Resources */,
 			);

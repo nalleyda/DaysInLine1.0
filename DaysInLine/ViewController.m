@@ -513,7 +513,7 @@ int collectNum;
             [self.my_dayline removeFromSuperview];
             if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
                 
-                CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
+                CGRect frame7 = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
                 
                 NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
                 
@@ -521,7 +521,8 @@ int collectNum;
                 NSLog(@"ios7!!!!");
             }else{
                 
-                CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+       
+                CGRect frame = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
                 
                 NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
                 
@@ -994,7 +995,7 @@ int collectNum;
         
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
             
-            CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
+            CGRect frame7 = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
             
             NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
             
@@ -1002,7 +1003,7 @@ int collectNum;
             NSLog(@"ios7!!!!");
         }else{
             
-            CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+            CGRect frame = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
             
             NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
             
@@ -1451,7 +1452,7 @@ int collectNum;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         
-        CGRect frame7 = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
+        CGRect frame7 = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y+5, self.view.frame.size.width-85, self.view.frame.size.height-5 );
         
         NSLog(@"frame here is :%f  y, %f   height",frame7.origin.y,frame7.size.height);
         
@@ -1459,8 +1460,8 @@ int collectNum;
         
         NSLog(@"ios7!!!!");
     }else{
-        
-        CGRect frame = CGRectMake(self.view.frame.origin.x+85,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
+
+        CGRect frame = CGRectMake(self.view.frame.origin.x+80,self.view.frame.origin.y-20, self.view.frame.size.width-85, self.view.frame.size.height );
         
         NSLog(@"frame here is :%f  y, %f   height",frame.origin.y,frame.size.height);
     
@@ -2034,8 +2035,23 @@ int collectNum;
     my_modifyViewController.incomeFinal = [income doubleValue];
     my_modifyViewController.expendFinal = [expend doubleValue];
     [self.drawLabelDelegate drawTag:oldLabel];
-  //  my_modifyViewController.oldLabel = oldLabel;
+    //  my_modifyViewController.oldLabel = oldLabel;
     my_modifyViewController.remindData = remind;
+    if (my_modifyViewController.incomeFinal>0.001 ||my_modifyViewController.expendFinal>0.001) {
+        [my_modifyViewController.moneyButton setImage:[UIImage imageNamed: @"收入高亮.png"] forState:UIControlStateNormal];
+    }else
+    {
+        [my_modifyViewController.moneyButton setImage:[UIImage imageNamed: @"moneyBtn.png"] forState:UIControlStateNormal];
+        
+    }
+
+    if (my_modifyViewController.remindData.length >3) {
+        [my_modifyViewController.remindButton setImage:[UIImage imageNamed: @"提醒高亮.png"] forState:UIControlStateNormal];
+    }else
+    {
+        [my_modifyViewController.remindButton setImage:[UIImage imageNamed: @"remindBtn.png"] forState:UIControlStateNormal];
+        
+    }
     
  //   [(UITextField*)[my_modifyViewController.moneyAlert viewWithTag:501] setText:[NSString stringWithFormat:@"%.2f",[income_mdfy floatValue]]];
     modifyEventId = [evtID_mdfy intValue];
@@ -2669,6 +2685,23 @@ int collectNum;
             [self.drawLabelDelegate drawTag:oldLabel];
 
             my_selectEvent.remindData = remind;
+     
+            if (my_selectEvent.incomeFinal>0.001 ||my_selectEvent.expendFinal>0.001) {
+                [my_selectEvent.moneyButton setImage:[UIImage imageNamed: @"收入高亮.png"] forState:UIControlStateNormal];
+            }else
+            {
+                [my_selectEvent.moneyButton setImage:[UIImage imageNamed: @"moneyBtn.png"] forState:UIControlStateNormal];
+                
+            }
+            
+            if (my_selectEvent.remindData.length >3) {
+                [my_selectEvent.remindButton setImage:[UIImage imageNamed: @"提醒高亮.png"] forState:UIControlStateNormal];
+            }else
+            {
+                [my_selectEvent.remindButton setImage:[UIImage imageNamed: @"remindBtn.png"] forState:UIControlStateNormal];
+                
+            }
+
             
             modifyEventId = [evtID_mdfy intValue];
             my_selectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -2863,7 +2896,21 @@ int collectNum;
             [self.drawLabelDelegate drawTag:oldLabel];
             
             my_collectEvent.remindData = remind;
+            if (my_collectEvent.incomeFinal>0.001 ||my_collectEvent.expendFinal>0.001) {
+                [my_collectEvent.moneyButton setImage:[UIImage imageNamed: @"收入高亮.png"] forState:UIControlStateNormal];
+            }else
+            {
+                [my_collectEvent.moneyButton setImage:[UIImage imageNamed: @"moneyBtn.png"] forState:UIControlStateNormal];
+                
+            }
             
+            if (my_collectEvent.remindData.length >3) {
+                [my_collectEvent.remindButton setImage:[UIImage imageNamed: @"提醒高亮.png"] forState:UIControlStateNormal];
+            }else
+            {
+                [my_collectEvent.remindButton setImage:[UIImage imageNamed: @"remindBtn.png"] forState:UIControlStateNormal];
+                
+            }
             modifyEventId = [evtID_mdfy intValue];
             my_collectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:my_collectEvent animated:YES completion:Nil ];
@@ -3045,7 +3092,22 @@ int collectNum;
             [self.drawLabelDelegate drawTag:oldLabel];
             
             my_selectEvent.remindData = remind;
+            if (my_selectEvent.incomeFinal>0.001 ||my_selectEvent.expendFinal>0.001) {
+                [my_selectEvent.moneyButton setImage:[UIImage imageNamed: @"收入高亮.png"] forState:UIControlStateNormal];
+            }else
+            {
+                [my_selectEvent.moneyButton setImage:[UIImage imageNamed: @"moneyBtn.png"] forState:UIControlStateNormal];
+                
+            }
             
+            if (my_selectEvent.remindData.length >3) {
+                [my_selectEvent.remindButton setImage:[UIImage imageNamed: @"提醒高亮.png"] forState:UIControlStateNormal];
+            }else
+            {
+                [my_selectEvent.remindButton setImage:[UIImage imageNamed: @"remindBtn.png"] forState:UIControlStateNormal];
+                
+            }
+
             modifyEventId = [evtID_mdfy intValue];
             my_selectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:my_selectEvent animated:YES completion:Nil ];

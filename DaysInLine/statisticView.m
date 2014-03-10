@@ -18,11 +18,12 @@
         
         
         
-        UILabel *tips = [[UILabel alloc] initWithFrame:CGRectMake(5, self.frame.origin.y+30, self.frame.size.width-20, 30) ];
-        tips.text = @"请选择想要分析的时间段：";
-        tips.backgroundColor = [UIColor clearColor];
+        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-22, self.frame.origin.y+30, 38 , 20) ];
+        //tips.text = @"请选择想要分析的时间段：";
+       // tips.backgroundColor = [UIColor clearColor];
         
-        [self addSubview:tips];
+        title.image = [UIImage imageNamed:@"统计汉字.png"];
+        [self addSubview:title];
        
         /*
         UILabel *to= [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-15, self.frame.size.height/2-30, 40, 40) ];

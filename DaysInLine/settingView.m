@@ -23,6 +23,14 @@
         [self sendSubviewToBack:rightBackground];
         
   */
+        
+        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-22, self.frame.origin.y+30, 37 , 20) ];
+        //tips.text = @"请选择想要分析的时间段：";
+        // tips.backgroundColor = [UIColor clearColor];
+        
+        title.image = [UIImage imageNamed:@"设置汉字.png"];
+        [self addSubview:title];
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
         tap.delegate = self;
         [self addGestureRecognizer:tap];
@@ -68,7 +76,7 @@
         
         // oneSwitch.onTintColor = [UIColor redColor]; // 在oneSwitch开启的状态显示的颜色 默认是blueColor
         // oneSwitch.tintColor = [UIColor purpleColor]; // 设置关闭状态的颜色
-        self.soundSwitch.thumbTintColor = [UIColor blueColor]; // 设置开关上左右滑动的小圆点的颜色
+        self.soundSwitch.thumbTintColor = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:257/255.0 alpha:1.0f]; // 设置开关上左右滑动的小圆点的颜色
         
         // [self.soundSwitch setOn:YES animated:YES];
         self.soundSwitch.offImage = [UIImage imageNamed:@"cross.png"];
@@ -116,7 +124,7 @@
         self.remindSoundSwitch.backgroundColor = [UIColor clearColor]; // 设置背景色
         self.remindSoundSwitch.alpha = 1.0;
         //self.daySwitch.transform = CGAffineTransformMakeScale(0.8, 0.8);
-        self.remindSoundSwitch.thumbTintColor = [UIColor blueColor];
+        self.remindSoundSwitch.thumbTintColor = [UIColor colorWithRed:247/255.0 green:247/255.0 blue:257/255.0 alpha:1.0f];
         //[self.daySwitch setOn:YES animated:YES];
         
         self.remindSoundSwitch.offImage = [UIImage imageNamed:@"cross.png"];

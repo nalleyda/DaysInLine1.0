@@ -117,13 +117,24 @@ UIDatePicker *remindTimePicker2;
     remindTimePicker2 = [[UIDatePicker alloc] init] ;
     
     if (screenBounds.size.height == 568) {
-        
+
+
         remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, 70);
-        
-        remindDatePicker.transform = CGAffineTransformMakeScale(0.7, 0.7);
-        
+       
         remindTimePicker.center = CGPointMake(self.view.frame.size.width/2, 210);
-        remindTimePicker.transform = CGAffineTransformMakeScale(0.7, 0.7);
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
+            //NSLog(@"ios7!!!!");
+            remindDatePicker.transform = CGAffineTransformMakeScale(0.7, 0.7);
+            remindTimePicker.transform = CGAffineTransformMakeScale(0.7, 0.7);
+
+        }else
+        {
+            remindDatePicker.transform = CGAffineTransformMakeScale(0.55, 0.5);
+            remindTimePicker.transform = CGAffineTransformMakeScale(0.55, 0.5);
+            
+
+        }
+        
         
     }else{
         remindDatePicker.center = CGPointMake(self.view.frame.size.width/2, 70);

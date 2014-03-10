@@ -84,6 +84,7 @@ SystemSoundID soundObject;
 
     
     //self.incomeFinal=0.0f;
+    haveSaved = NO;
     firstInmoney = NO;
     if (modifying == 0) {
         self.remindData = @"";
@@ -194,7 +195,7 @@ SystemSoundID soundObject;
     
     
     self.moneyButton = (UIButton *)[self.view viewWithTag:1004];
-    
+    self.remindButton =(UIButton *)[self.view viewWithTag:1002];
    
 	// Do any additional setup after loading the view.
     [self.startTimeButton addTarget:self action:@selector(startTimeTapped) forControlEvents:UIControlEventTouchUpInside];
@@ -600,7 +601,6 @@ SystemSoundID soundObject;
         NSArray *remindDate = [oldRemindDate componentsSeparatedByString:@","];
         my_remind.remindDate = remindDate[0];
         my_remind.remindTime = remindDate[1];
-
         
     }
 
@@ -2009,6 +2009,14 @@ SystemSoundID soundObject;
     NSString *outcomeText = outcome.text;
     self.expendFinal=[outcomeText doubleValue];
     //NSLog(@"BBBBBBBBB%f",self.incomeFinal);
+    
+    if (self.incomeFinal>0.001 ||self.expendFinal>0.001) {
+        [self.moneyButton setImage:[UIImage imageNamed: @"收入高亮.png"] forState:UIControlStateNormal];
+    }else
+    {
+        [self.moneyButton setImage:[UIImage imageNamed: @"moneyBtn.png"] forState:UIControlStateNormal];
+
+    }
    
     [self.moneyAlert close];
     //[income resignFirstResponder];
@@ -2405,10 +2413,19 @@ SystemSoundID soundObject;
 -(void)setRemindData:(NSString *)date :(NSString *)time
 {
     self.remindData = [NSString stringWithFormat:@"%@,%@",date,time];
-    //NSLog(@"%@",self.remindData);
-    
+    if (self.remindData.length >3) {
+        [self.remindButton setImage:[UIImage imageNamed: @"提醒高亮.png"] forState:UIControlStateNormal];
+    }else
+    {
+        [self.remindButton setImage:[UIImage imageNamed: @"remindBtn.png"] forState:UIControlStateNormal];
+        
+    }
     
 }
+//NSLog(@"%@",self.remindData);
+    
+    
+
 
 #pragma mark drawTag delegation
 

@@ -21,10 +21,14 @@
         [self addSubview:self.collectionScroll];
         */
         
-        self.backgroundColor = [UIColor clearColor];
-
+        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-22, self.frame.origin.y+30, 50 , 20) ];
+        //tips.text = @"请选择想要分析的时间段：";
+        // tips.backgroundColor = [UIColor clearColor];
         
-        self.collectionTable = [[UITableView alloc] initWithFrame:CGRectMake(10,55,self.frame.size.width-20, self.frame.size.height-100)];
+        title.image = [UIImage imageNamed:@"收藏夹汉字.png"];
+        [self addSubview:title];
+        
+        self.collectionTable = [[UITableView alloc] initWithFrame:CGRectMake(10,70,self.frame.size.width-20, self.frame.size.height-100)];
    
         self.collectionTable.tag = 3;
         self.collectionTable.rowHeight = 48;
