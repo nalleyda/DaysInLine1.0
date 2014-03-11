@@ -63,10 +63,16 @@ UIDatePicker *remindTimePicker2;
         self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
         
         
-        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
-
-
+        self.gAdBannerView = [[GADBannerView alloc]
+                              initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
         
+        self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+        
+        self.gAdBannerView.rootViewController = self;
+        self.gAdBannerView.backgroundColor = [UIColor clearColor];
+        
+        [self.gAdBannerView loadRequest:[GADRequest request]];
+        [self.view addSubview:self.gAdBannerView];
     }else{
         
         [backgrd setImage:[UIImage imageNamed:@"提醒背景.png"]];
@@ -79,16 +85,26 @@ UIDatePicker *remindTimePicker2;
         self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
 
         
+        self.gAdBannerView = [[GADBannerView alloc]
+                              initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
+        
+        self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+        
+        self.gAdBannerView.rootViewController = self;
+        self.gAdBannerView.backgroundColor = [UIColor clearColor];
+        
+        [self.gAdBannerView loadRequest:[GADRequest request]];
+        [self.view addSubview:self.gAdBannerView];
+
     }
     
     [self.view addSubview:backgrd];
     [self.view sendSubviewToBack:backgrd];
    
     
-    self.adView.delegate = self;
-    [self.adView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:self.adView];
     
+
+
 
 
   //  self.viewDate.backgroundColor = [UIColor greenColor];
@@ -375,4 +391,16 @@ UIDatePicker *remindTimePicker2;
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-@end
+
+
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    NSLog(@"Admob load");
+   
+}
+
+// An error occured
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"Admob error: %@", error);
+}@end

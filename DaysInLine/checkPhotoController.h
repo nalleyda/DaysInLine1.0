@@ -9,15 +9,19 @@
 #import <UIKit/UIKit.h>
 #import <Frontia/Frontia.h>
 #import <iAd/iAd.h>
+#import "GADBannerView.h"
+
+#define ADMOB_ID @"a1531ddc35a4db2"
 
 
-
-@interface checkPhotoController : UIViewController <ADBannerViewDelegate>
+@interface checkPhotoController : UIViewController <ADBannerViewDelegate,GADBannerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *fullPhoto;
 - (IBAction)backToEdit:(UIButton *)sender;
 
 
-@property (strong, nonatomic) ADBannerView *adView;
+//@property (strong, nonatomic) ADBannerView *adView;
+@property (strong, nonatomic) ADBannerView *iAdBannerView;
+@property (strong, nonatomic) GADBannerView *gAdBannerView;
 @property (nonatomic, assign) BOOL bannerIsVisible;
 @end

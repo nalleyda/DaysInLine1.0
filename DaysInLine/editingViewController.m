@@ -62,6 +62,9 @@ SystemSoundID soundObject;
  */
 - (void)viewDidLoad
 {
+    
+    
+    
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)]){
         self.edgesForExtendedLayout = UIRectEdgeBottom;
         //NSLog(@"aloha!");

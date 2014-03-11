@@ -11,10 +11,12 @@
 #import "resultView.h"
 #import <Frontia/Frontia.h>
 #import <iAd/iAd.h>
+#import "GADBannerView.h"
+
+#define ADMOB_ID @"a1531ddc35a4db2"
 
 
-
-@interface statisticViewController : UIViewController <ADBannerViewDelegate>
+@interface statisticViewController : UIViewController <ADBannerViewDelegate,GADBannerViewDelegate>
 {
     sqlite3 *dataBase;
     NSString *databasePath;
@@ -29,6 +31,8 @@
 @property (weak, nonatomic) NSString *endDate;
 
 
-@property (strong, nonatomic) ADBannerView *adView;
+//@property (strong, nonatomic) ADBannerView *adView;
+@property (strong, nonatomic) ADBannerView *iAdBannerView;
+@property (strong, nonatomic) GADBannerView *gAdBannerView;
 @property (nonatomic, assign) BOOL bannerIsVisible;
 @end

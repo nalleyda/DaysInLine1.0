@@ -35,8 +35,20 @@
        backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         NSLog(@"586height:%.2f",self.view.bounds.size.height);
         [backImage setImage:[UIImage imageNamed:@"照片背景586.png"]];
-        
-        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
+        if (screenBounds.size.height == 568) {
+            self.gAdBannerView = [[GADBannerView alloc]
+                                  initWithFrame:CGRectMake(0.0,self.view.frame.size.height+10,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
+            
+            self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+            
+            self.gAdBannerView.rootViewController = self;
+            self.gAdBannerView.backgroundColor = [UIColor clearColor];
+            
+            [self.gAdBannerView loadRequest:[GADRequest request]];
+            [self.view addSubview:self.gAdBannerView];
+        }
+
+
         
         
     }else{
@@ -50,16 +62,6 @@
     [self.view sendSubviewToBack:backImage];
     
    // CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568) {
-        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 500, self.view.frame.size.width, 60)];
-        
-    }
-    
-    self.adView.delegate = self;
-    [self.adView setBackgroundColor:[UIColor clearColor]];
-    [self.view addSubview:self.adView];
-    
-
     
    // self.fullPhoto.backgroundColor = [UIColor blackColor];
     self.fullPhoto.ContentMode = UIViewContentModeScaleAspectFit;
@@ -92,5 +94,18 @@
 - (IBAction)backToEdit:(UIButton *)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)adViewDidReceiveAd:(GADBannerView *)view
+{
+    NSLog(@"Admob load");
+   
+}
+
+// An error occured
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"Admob error: %@", error);
 }
 @end

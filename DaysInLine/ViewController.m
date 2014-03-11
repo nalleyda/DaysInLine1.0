@@ -80,6 +80,7 @@ bool hasPassWord;
 
 bool selectedDayRedrawDone;
 int collectNum;
+//int failLoadiAD;
 
 - (void)viewDidLoad
 {
@@ -405,19 +406,17 @@ int collectNum;
     AudioServicesCreateSystemSoundID(soundfileurl, &soundFileObject);
     
     //iAd广告
-     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    if (screenBounds.size.height == 568) {
-      self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 610, self.view.frame.size.width, 60)];
-       
-    }else
-    {
-        self.adView = [[ADBannerView alloc] initWithFrame:CGRectMake(0, 505, self.view.frame.size.width, 60)];
-    }
+   //  CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    self.gAdBannerView = [[GADBannerView alloc]
+                          initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
     
-    self.adView.delegate = self;
-    [self.adView setBackgroundColor:[UIColor clearColor]];
-
-
+    self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+    
+    self.gAdBannerView.rootViewController = self;
+    self.gAdBannerView.backgroundColor = [UIColor clearColor];
+    
+    [self.gAdBannerView loadRequest:[GADRequest request]];
+    [self.view addSubview:self.gAdBannerView];
     
     
 
@@ -469,7 +468,10 @@ int collectNum;
         lifeArea[i] = 0;
     }
 
-    [self.adView removeFromSuperview];
+    [self.iAdBannerView removeFromSuperview];
+    [self.gAdBannerView removeFromSuperview];
+
+    
     //获取当前日期
     
     NSDateFormatter *formater = [[ NSDateFormatter alloc] init];
@@ -899,7 +901,9 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10016" eventLabel:@"selectTap"];
 
     
-    [self.adView removeFromSuperview];
+    [self.iAdBannerView removeFromSuperview];
+    [self.gAdBannerView removeFromSuperview];
+
 
     
     if (soundSwitch) {
@@ -1183,7 +1187,9 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
-    [self.view addSubview:self.adView];
+    [self.view addSubview:self.iAdBannerView];
+    [self.view addSubview:self.gAdBannerView];
+
     
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
@@ -1338,7 +1344,8 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10018" eventLabel:@"statisticTap"];
 
     
-    [self.view addSubview:self.adView];
+    [self.view addSubview:self.iAdBannerView];
+    [self.view addSubview:self.gAdBannerView];
 
     //播放
     if (soundSwitch) {
@@ -1430,7 +1437,9 @@ int collectNum;
     
     
     
-    [self.view addSubview:self.adView];
+    [self.view addSubview:self.iAdBannerView];
+    [self.view addSubview:self.gAdBannerView];
+
 
     if (soundSwitch) {
         
@@ -3388,19 +3397,18 @@ int collectNum;
 }
 
 
-
-
--(void) bannerViewDidLoadAd:(ADBannerView *)banner
+- (void)adViewDidReceiveAd:(GADBannerView *)view
 {
-    if(!self.bannerIsVisible)
-    {
-        [UIView beginAnimations:@"animateAdBannerOn"  context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, -100);
-        [UIView commitAnimations];
-        self.bannerIsVisible = YES;
-    }
+    NSLog(@"Admob load");
+   
 }
 
+// An error occured
+- (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
+{
+    NSLog(@"Admob error: %@", error);
+}
+/*
 -(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
     if(self.bannerIsVisible)
@@ -3412,14 +3420,14 @@ int collectNum;
     }
 }
 
-
+*/
 
 
 #pragma mark - AdViewDelegates
 
 
 
-
+/*
 -(void)bannerViewWillLoadAd:(ADBannerView *)banner{
     NSLog(@"Ad will load");
 }
@@ -3427,7 +3435,7 @@ int collectNum;
     NSLog(@"Ad did finish");
     
 }
-
+*/
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     
