@@ -24,7 +24,7 @@
         
   */
         
-        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-22, self.frame.origin.y+30, 37 , 20) ];
+        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-30, self.frame.origin.y+25, 37 , 20) ];
         //tips.text = @"请选择想要分析的时间段：";
         // tips.backgroundColor = [UIColor clearColor];
         

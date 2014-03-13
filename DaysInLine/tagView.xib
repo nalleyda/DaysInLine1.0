@@ -29,7 +29,7 @@
                     <rect key="frame" x="20" y="167" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                    <state key="normal" title="+" image="addInAlert.png">
+                    <state key="normal" title="+" image="add.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -53,7 +53,7 @@
     </objects>
     <resources>
         <image name="OkButton.png" width="295" height="295"/>
-        <image name="addInAlert.png" width="70" height="70"/>
+        <image name="add.png" width="64" height="64"/>
         <image name="cancelInAlert.png" width="70" height="70"/>
         <image name="deleteInAlert.png" width="70" height="70"/>
         <image name="okInAlert.png" width="70" height="70"/>

@@ -62,6 +62,7 @@
     [self.view sendSubviewToBack:backImage];
     
    // CGRect screenBounds = [[UIScreen mainScreen] bounds];
+  
     
    // self.fullPhoto.backgroundColor = [UIColor blackColor];
     self.fullPhoto.ContentMode = UIViewContentModeScaleAspectFit;
