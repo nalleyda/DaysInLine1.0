@@ -45,7 +45,7 @@
         {
             y-=30;
             
-            self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(2,300,self.frame.size.width-10, 110) style:UITableViewStylePlain];
+            self.settingTable = [[UITableView alloc] initWithFrame:CGRectMake(2,290,self.frame.size.width-10, 110) style:UITableViewStylePlain];
         }
         
 
@@ -131,7 +131,7 @@
         self.remindSoundSwitch.onImage = [UIImage imageNamed:@"check.png"];
         [self addSubview:self.remindSoundSwitch];
         
-        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 140)];
+        self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+155+y, 190, 140)];
         
         self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 100, 30)];
         [self.tips setTitle:@"提示      " forState:UIControlStateNormal ];
@@ -161,7 +161,7 @@
         [self.tipsView addSubview:self.tipText];
         [self.tipsView addSubview:self.tips];
         
-        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+160+y, 190, 155)];
+        self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+155+y, 190, 155)];
         
         
         UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 30)];
@@ -306,7 +306,7 @@
     NSLog(@"%@", NSStringFromClass([touch.view class]));
     
     // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
-    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SevenSwitch"]||[NSStringFromClass([touch.view class]) isEqualToString:@"UIButton"]) {
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"SevenSwitch"]||[NSStringFromClass([touch.view class]) isEqualToString:@"UIButton"]||[NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
         return NO;
     }
     return  YES;

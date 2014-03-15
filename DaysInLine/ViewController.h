@@ -15,13 +15,13 @@
 #import "drawTagDelegate.h"
 #import "reloadTableDelegate.h"
 #import "setMainTextDelegate.h"
-
+#import <StoreKit/SKStoreProductViewController.h>
 #define ADMOB_ID @"a1531ddc35a4db2"
 
 @class homeView;
 @class daylineView;
 
-@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate,ADBannerViewDelegate,GADBannerViewDelegate,UITextFieldDelegate,UIAlertViewDelegate>
+@interface ViewController : UIViewController <redrawButtonDelegate,reloadTableDelegate,setMainTextDelegate,ADBannerViewDelegate,GADBannerViewDelegate,UITextFieldDelegate,UIAlertViewDelegate,SKStoreProductViewControllerDelegate>
 {
     sqlite3 *dataBase;
     NSString *databasePath;
@@ -32,7 +32,7 @@
 
 
 //@property (strong, nonatomic) ADBannerView *adView;
-@property (strong, nonatomic) ADBannerView *iAdBannerView;
+//@property (strong, nonatomic) ADBannerView *iAdBannerView;
 @property (strong, nonatomic) GADBannerView *gAdBannerView;
 //@property (strong, nonatomic) NSNumber *failLoadiAD;
 @property (nonatomic, assign) BOOL bannerIsVisible;

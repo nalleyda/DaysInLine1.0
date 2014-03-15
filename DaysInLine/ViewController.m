@@ -17,7 +17,10 @@
 #import "statisticView.h"
 #import "statisticViewController.h"
 #import "settingView.h"
+#import "contractView.h"
+#import "buttonTranslate.h"
 #import "globalVars.h"
+
 
 #import "JSONKit.h"
 #import <Frontia/Frontia.h>
@@ -36,6 +39,8 @@
 @property (nonatomic,strong) collectionView *my_collect;
 @property (nonatomic,strong) statisticView *my_analyse;
 @property (nonatomic,strong) settingView *my_setting;
+@property (nonatomic,strong) buttonTranslate *my_buttonTranslate;
+@property (nonatomic,strong) contractView *my_contractView;
 @property (nonatomic,strong) NSString *today;
 @property (nonatomic,strong) NSString *lastToday;
 @property (nonatomic,strong) NSMutableArray *allTags;
@@ -62,8 +67,10 @@
 @property(nonatomic, strong) NSMutableArray *collectEventEnd;
 
 @property(nonatomic, strong) NSArray *cellBackground;
+@property(nonatomic, strong) NSArray *settingInformation;
 @property(nonatomic, strong) NSArray *settingInformationLeft;
 @property(nonatomic, strong) NSArray *settingInformationRight;
+
 
 
 @property (strong, nonatomic) IBOutlet UITableViewCell *cellinCollection;
@@ -118,6 +125,7 @@ int collectNum;
     self.collectEventEnd = [[NSMutableArray alloc] init];
     
     
+    self.settingInformation = [[NSArray alloc] initWithObjects:@"按钮释义",@"意见反馈",@"关于我们", nil];
     self.settingInformationLeft = [[NSArray alloc] initWithObjects:@"版本",@"QQ",@"email", nil];
     self.settingInformationRight = [[NSArray alloc] initWithObjects:@"V1.0",@"82107815",@"sheepcao1986@163.com", nil];
 
@@ -468,7 +476,7 @@ int collectNum;
         lifeArea[i] = 0;
     }
 
-    [self.iAdBannerView removeFromSuperview];
+//    [self.iAdBannerView removeFromSuperview];
     [self.gAdBannerView removeFromSuperview];
 
     
@@ -482,6 +490,15 @@ int collectNum;
     
     
     sqlite3_stmt *statement;
+    
+    if ( self.my_contractView ) {
+        [self.my_contractView removeFromSuperview];
+
+    }
+    if ( self.my_buttonTranslate ) {
+        [self.my_buttonTranslate removeFromSuperview];
+        
+    }
     modifyDate = self.today;
     if (!self.lastToday) {
         self.lastToday = self.today;
@@ -490,6 +507,7 @@ int collectNum;
         [self.my_collect setHidden:YES];
         [self.my_analyse setHidden:YES];
         [self.my_setting setHidden:YES];
+
         
         if (self.my_dayline.hidden) {
             [self.my_dayline setHidden:NO];
@@ -901,7 +919,7 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10016" eventLabel:@"selectTap"];
 
     
-    [self.iAdBannerView removeFromSuperview];
+  //  [self.iAdBannerView removeFromSuperview];
     [self.gAdBannerView removeFromSuperview];
 
 
@@ -910,6 +928,15 @@ int collectNum;
         
         
         AudioServicesPlaySystemSound(soundFileObject);
+    }
+    
+    if ( self.my_contractView ) {
+        [self.my_contractView removeFromSuperview];
+        
+    }
+    if ( self.my_buttonTranslate ) {
+        [self.my_buttonTranslate removeFromSuperview];
+        
     }
     
     [self.my_selectDay setHidden:YES];
@@ -1147,6 +1174,9 @@ int collectNum;
 
 -(void)treasureTapped
 {
+    
+    
+    
     if (remindSwitch&&password) {
         
     
@@ -1187,7 +1217,7 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
-    [self.view addSubview:self.iAdBannerView];
+  //  [self.view addSubview:self.iAdBannerView];
     [self.view addSubview:self.gAdBannerView];
 
     
@@ -1203,6 +1233,15 @@ int collectNum;
     NSString *eventTag;
     
     collectNum = 0;
+    
+    if ( self.my_contractView ) {
+        [self.my_contractView removeFromSuperview];
+        
+    }
+    if ( self.my_buttonTranslate ) {
+        [self.my_buttonTranslate removeFromSuperview];
+        
+    }
     
     [self.my_select setHidden:YES];
     [self.my_dayline setHidden:YES];
@@ -1344,7 +1383,7 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10018" eventLabel:@"statisticTap"];
 
     
-    [self.view addSubview:self.iAdBannerView];
+ //   [self.view addSubview:self.iAdBannerView];
     [self.view addSubview:self.gAdBannerView];
 
     //播放
@@ -1354,6 +1393,15 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
+    
+    if ( self.my_contractView ) {
+        [self.my_contractView removeFromSuperview];
+        
+    }
+    if ( self.my_buttonTranslate ) {
+        [self.my_buttonTranslate removeFromSuperview];
+        
+    }
     //UIDatePicker *remindDatePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width-20, 30)] ;
     
     [self.my_dayline setHidden:YES];
@@ -1437,7 +1485,7 @@ int collectNum;
     
     
     
-    [self.view addSubview:self.iAdBannerView];
+ //   [self.view addSubview:self.iAdBannerView];
     [self.view addSubview:self.gAdBannerView];
 
 
@@ -1447,7 +1495,14 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
-    
+    if ( self.my_contractView ) {
+        [self.my_contractView removeFromSuperview];
+        
+    }
+    if ( self.my_buttonTranslate ) {
+        [self.my_buttonTranslate removeFromSuperview];
+        
+    }
     [self.my_dayline setHidden:YES];
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
@@ -2204,6 +2259,9 @@ int collectNum;
         case 5:
             tableRows = 3;
             break;
+        case 6:
+            tableRows = 3;
+            break;
         default: tableRows = 0;
             break;
     }
@@ -2226,7 +2284,9 @@ int collectNum;
 
     UITableViewCell *cell_4 = [tableView dequeueReusableCellWithIdentifier:@"collectCell"];
     UITableViewCell *cell_5 = [tableView dequeueReusableCellWithIdentifier:@"selectEventsInSearch"];
-    UITableViewCell *cell_6 = [tableView dequeueReusableCellWithIdentifier:@"settingCell"];
+    UITableViewCell *cell_6 = [tableView dequeueReusableCellWithIdentifier:@"settingInfoCell"];
+    UITableViewCell *cell_7 = [tableView dequeueReusableCellWithIdentifier:@"contractCell"];
+
     switch (tableView.tag) {
         case 0:
             
@@ -2390,24 +2450,52 @@ int collectNum;
         {
             if (!cell_6)
             {
-                cell_6 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"settingCell"];
+                cell_6 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"settingInfoCell"];
+                [cell_6 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+
             }
             NSUInteger row6=[indexPath row];
-            [cell_6 setSelectionStyle:UITableViewCellSelectionStyleNone];
+            [cell_6 setSelectionStyle:UITableViewCellSelectionStyleDefault];
             //设置文本
-            if (row6<self.settingInformationLeft.count) {
-                cell_6.textLabel.text = self.settingInformationLeft[row6];
+            if (row6<self.self.settingInformation.count) {
+                cell_6.textLabel.text = self.settingInformation[row6];
                 cell_6.textLabel.font = [UIFont systemFontOfSize:14.0];
                 cell_6.backgroundColor = [UIColor clearColor];
                 
-                cell_6.detailTextLabel.text = self.settingInformationRight[row6];
-                cell_6.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
-                //cell_6.detailTextLabel.backgroundColor = [UIColor clearColor];
+               
             }
+            
             cell = cell_6;
             
             break;
 
+        }
+        case 6:
+        {
+            if (!cell_7)
+            {
+                cell_7 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"contractCell"];
+//[cell_6 setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+                
+            }
+            NSUInteger row7=[indexPath row];
+            [cell_7 setSelectionStyle:UITableViewCellSelectionStyleNone];
+            //设置文本
+            //设置文本
+            if (row7<self.settingInformationLeft.count) {
+                cell_7.textLabel.text = self.settingInformationLeft[row7];
+                cell_7.textLabel.font = [UIFont systemFontOfSize:14.0];
+                cell_7.backgroundColor = [UIColor clearColor];
+                
+                cell_7.detailTextLabel.text = self.settingInformationRight[row7];
+                cell_7.detailTextLabel.font = [UIFont systemFontOfSize:12.0];
+                //cell_6.detailTextLabel.backgroundColor = [UIColor clearColor];
+            }
+            
+            cell = cell_7;
+            
+            break;
+            
         }
         default: cell = nil;
             break;
@@ -2421,7 +2509,7 @@ int collectNum;
     NSString *evtTitle;
     NSString *evtDate;
     NSNumber *evtID;
-    NSUInteger row=[indexPath row];
+    NSInteger row1=[indexPath row];
     sqlite3_stmt *statement;
     
     
@@ -2446,12 +2534,14 @@ int collectNum;
 
     
    // tag:0为按日期查询界面中的列表，1为查询界面中的tag列表，2为点击某一tag之后的所有事件列表，3为收藏中的列表，4为关键字查询的列表
-    switch (tableView.tag) {
+    
+   // NSLog(@"table:%d",tableView.tag);
+    switch (tableView.tag){
         case 0:
             
             break;
         case 1:
-            
+        {
             if (soundSwitch) {
                 
                 CFBundleRef mainbundle=CFBundleGetMainBundle();
@@ -2467,7 +2557,7 @@ int collectNum;
             [self.EventsInTag removeAllObjects];
             [self.EventDateInTag removeAllObjects];
             if (sqlite3_open(dbpath, &dataBase)==SQLITE_OK) {
-                NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID,date from event where label like'%%%@%%'",self.allTags[row]];
+                NSString *queryEvent = [NSString stringWithFormat:@"SELECT title,eventID,date from event where label like'%%%@%%'",self.allTags[row1]];
                 const char *queryEventstatment = [queryEvent UTF8String];
                 if (sqlite3_prepare_v2(dataBase, queryEventstatment, -1, &statement, NULL)==SQLITE_OK) {
                     while (sqlite3_step(statement)==SQLITE_ROW) {
@@ -2518,7 +2608,10 @@ int collectNum;
             [self.my_select.returnToTags setHidden:NO];
     
 
+        }
             break;
+   
+        
         case 2:
         {
             
@@ -2534,7 +2627,7 @@ int collectNum;
             }
             
             modifying = 1;
-            int eventid = [self.EventsIDInTag[row] intValue];
+            int eventid = [self.EventsIDInTag[row1] intValue];
             
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
@@ -2718,7 +2811,7 @@ int collectNum;
             
         }
             break;
-            
+         
         case 3:
         {
             if (soundSwitch) {
@@ -2736,7 +2829,7 @@ int collectNum;
             NSLog(@"colletcell tapped");
             
             modifying = 1;
-            int collectEventid = [self.collectEvent[row] intValue];
+            int collectEventid = [self.collectEvent[row1] intValue];
             
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
@@ -2923,11 +3016,12 @@ int collectNum;
             modifyEventId = [evtID_mdfy intValue];
             my_collectEvent.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
             [self presentViewController:my_collectEvent animated:YES completion:Nil ];
-            
-    }
+     
 
+        }
        
             break;
+        
         case 4:
         {
             
@@ -2944,7 +3038,7 @@ int collectNum;
             }
             
             modifying = 1;
-            int eventid = [self.EventsIDInSearch[row] intValue];
+            int eventid = [self.EventsIDInSearch[row1] intValue];
             
             sqlite3_stmt *statement;
             const char *dbpath = [databasePath UTF8String];
@@ -3123,7 +3217,52 @@ int collectNum;
             
         }
             break;
+        
+          
+           case 5:
+        {
+            if ( (int)row1 == 0){
+                self.my_buttonTranslate = [[buttonTranslate alloc]initWithFrame:CGRectMake(self.view.frame.origin.x+80,0, self.view.frame.size.width-85, self.view.frame.size.height )];
+                
+               // [self.my_buttonTranslate.returnBtn addTarget:self action:@selector(returnBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+                [self.my_buttonTranslate.returnToSetting addTarget:self action:@selector(returnToSettingTapped) forControlEvents:UIControlEventTouchUpInside];
+                
+                [self.homePage addSubview:self.my_buttonTranslate];
+                [self.my_setting setHidden:YES];
+                
+                
+                
+            }
+            
+            if ( (int)row1 == 1){
+                
+               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=sheepcao1986@163.com"]]; 
+            }
 
+            
+
+        
+        if ( (int)row1 == 2){
+            self.my_contractView = [[contractView alloc]initWithFrame:CGRectMake(self.view.frame.origin.x+80,0, self.view.frame.size.width-85, self.view.frame.size.height )];
+            self.my_contractView.contractTable.delegate =self;
+            self.my_contractView.contractTable.dataSource = self;
+            
+            [self.my_contractView.returnBtn addTarget:self action:@selector(returnBtnTapped) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.homePage addSubview:self.my_contractView];
+            [self.my_setting setHidden:YES];
+                
+            
+            
+            }
+    
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+        }
+            break;
+
+            
+            
 
         default:
             
@@ -3131,6 +3270,49 @@ int collectNum;
     }
     
 }
+
+-(void)returnToSettingTapped{
+
+    [self.my_setting setHidden:NO];
+    [self.my_buttonTranslate removeFromSuperview];
+    
+}
+
+-(void)returnBtnTapped{
+
+    [self.my_setting setHidden:NO];
+    [self.my_contractView removeFromSuperview];
+}
+
+- (void)evaluate{
+    
+    //初始化控制器
+    SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+    //设置代理请求为当前控制器本身
+    storeProductViewContorller.delegate = self;
+    //加载一个新的视图展示
+    [storeProductViewContorller loadProductWithParameters:
+     //appId唯一的
+     @{SKStoreProductParameterITunesItemIdentifier : @"sheepcao1986@163.com"} completionBlock:^(BOOL result, NSError *error) {
+         //block回调
+         if(error){
+             NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
+         }else{
+             //模态弹出appstore
+             [self presentViewController:storeProductViewContorller animated:YES completion:^{
+             }
+              ];
+         }
+     }];
+}
+//取消按钮监听
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+
 - (UITableViewCellEditingStyle)tableView: (UITableView *)tableView editingStyleForRowAtIndexPath: (NSIndexPath *)indexPath
 {
     if (tableView.tag ==3) {

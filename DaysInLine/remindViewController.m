@@ -84,7 +84,7 @@ UIDatePicker *remindTimePicker2;
         self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
         self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
 
-        
+     /*
         self.gAdBannerView = [[GADBannerView alloc]
                               initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
         
@@ -95,7 +95,7 @@ UIDatePicker *remindTimePicker2;
         
         [self.gAdBannerView loadRequest:[GADRequest request]];
         [self.view addSubview:self.gAdBannerView];
-
+*/
     }
     
     [self.view addSubview:backgrd];

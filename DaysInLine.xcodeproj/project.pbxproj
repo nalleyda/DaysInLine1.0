@@ -147,6 +147,8 @@
 		0BF9EF7918BB8A6D00F38370 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7518BB8A6D00F38370 /* cross.png */; };
 		0BF9EF7A18BB8A6D00F38370 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7618BB8A6D00F38370 /* cross@2x.png */; };
 		0BF9EF7D18BB8A9400F38370 /* SevenSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */; };
+		0BFC22D718D2995300C9B4C5 /* contractView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC22D618D2995300C9B4C5 /* contractView.m */; };
+		0BFC22DA18D2DC9E00C9B4C5 /* buttonTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFC22D918D2DC9E00C9B4C5 /* buttonTranslate.m */; };
 		0BFD27E418BCE5830016BCE4 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27E318BCE5830016BCE4 /* SystemConfiguration.framework */; };
 		0BFD27E618BCE58D0016BCE4 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27E518BCE58D0016BCE4 /* MessageUI.framework */; };
 		0BFD27E818BCE59A0016BCE4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BFD27E718BCE59A0016BCE4 /* QuartzCore.framework */; };
@@ -374,6 +376,10 @@
 		0BF9EF7618BB8A6D00F38370 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
 		0BF9EF7B18BB8A9400F38370 /* SevenSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenSwitch.h; sourceTree = "<group>"; };
 		0BF9EF7C18BB8A9400F38370 /* SevenSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SevenSwitch.m; sourceTree = "<group>"; };
+		0BFC22D518D2995300C9B4C5 /* contractView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = contractView.h; sourceTree = "<group>"; };
+		0BFC22D618D2995300C9B4C5 /* contractView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = contractView.m; sourceTree = "<group>"; };
+		0BFC22D818D2DC9E00C9B4C5 /* buttonTranslate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buttonTranslate.h; sourceTree = "<group>"; };
+		0BFC22D918D2DC9E00C9B4C5 /* buttonTranslate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = buttonTranslate.m; sourceTree = "<group>"; };
 		0BFD27E318BCE5830016BCE4 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0BFD27E518BCE58D0016BCE4 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0BFD27E718BCE59A0016BCE4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -402,9 +408,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BDE612818CF4C36005A59CC /* StoreKit.framework in Frameworks */,
 				0BDE612A18CF4C63005A59CC /* AdSupport.framework in Frameworks */,
 				0BFD27E618BCE58D0016BCE4 /* MessageUI.framework in Frameworks */,
-				0BDE612818CF4C36005A59CC /* StoreKit.framework in Frameworks */,
 				0B3686AA18CC9FA90036DCA3 /* Frontia.framework in Frameworks */,
 				0BDE612618CF4AA5005A59CC /* libGoogleAdMobAds.a in Frameworks */,
 				0BFF71E218C76AAB0011AFDE /* iAd.framework in Frameworks */,
@@ -692,6 +698,10 @@
 				0B0C491618BE334F00B7CF19 /* selectCell.xib */,
 				0BF646BE18BF92CC00159161 /* resultView.h */,
 				0BF646BF18BF92CC00159161 /* resultView.m */,
+				0BFC22D518D2995300C9B4C5 /* contractView.h */,
+				0BFC22D618D2995300C9B4C5 /* contractView.m */,
+				0BFC22D818D2DC9E00C9B4C5 /* buttonTranslate.h */,
+				0BFC22D918D2DC9E00C9B4C5 /* buttonTranslate.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1029,6 +1039,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BFC22D718D2995300C9B4C5 /* contractView.m in Sources */,
 				0B929ED118154B94008E1726 /* buttonInScroll.m in Sources */,
 				0B9A53E51812274D0085FFD7 /* ViewController.m in Sources */,
 				0BA18F6D187C41B700ADBB01 /* collectionView.m in Sources */,
@@ -1046,6 +1057,7 @@
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,
 				0B9009E31877DDA6008D3799 /* selectView.m in Sources */,
 				0BF646C018BF92CC00159161 /* resultView.m in Sources */,
+				0BFC22DA18D2DC9E00C9B4C5 /* buttonTranslate.m in Sources */,
 				0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */,
 				0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */,
 				0BD7008B1813BC66004FCBE2 /* daylineView.m in Sources */,

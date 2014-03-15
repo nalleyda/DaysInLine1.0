@@ -50,7 +50,7 @@
 
             
         }
-        UIButton *my_todayButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 45+2*y, 67, 67)];
+        UIButton *my_todayButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 40+2*y, 67, 67)];
        // my_todayButton.backgroundColor = [UIColor brownColor];
         //[my_todayButton setTitle:@"今天" forState:UIControlStateNormal];
         [my_todayButton setImage:[UIImage imageNamed:@"按键1.png"] forState:UIControlStateNormal];
@@ -58,33 +58,29 @@
 
         self.todayButton = my_todayButton;
         
-        UIButton *my_selectButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 118+y*3, 67, 67)];
+        UIButton *my_selectButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 113+y*3, 67, 67)];
        // my_selectButton.backgroundColor = [UIColor brownColor];
         //[my_selectButton setTitle:@"查询" forState:UIControlStateNormal];
         [my_selectButton setImage:[UIImage imageNamed:@"查询.png"] forState:UIControlStateNormal];
         [my_selectButton setImage:[UIImage imageNamed:@"按键2-2.png"] forState:UIControlStateHighlighted];
         self.selectButton = my_selectButton;
         
-        UIButton *my_treasureButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 191+y*4, 67, 67)];
+        UIButton *my_treasureButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 186+y*4, 67, 67)];
         //my_treasureButton.backgroundColor = [UIColor brownColor];
         //[my_treasureButton setTitle:@"收藏夹" forState:UIControlStateNormal];
         [my_treasureButton setImage:[UIImage imageNamed:@"收藏夹.png"] forState:UIControlStateNormal];
         [my_treasureButton setImage:[UIImage imageNamed:@"按键3-2.png"] forState:UIControlStateHighlighted];
         self.treasureButton = my_treasureButton;
-     /*
-        UIButton *my_achieveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 260, 84, 45)];
-        my_achieveButton.backgroundColor = [UIColor brownColor];
-        [my_achieveButton setTitle:@"状态分析" forState:UIControlStateNormal];
-        self.achieveButton = my_achieveButton;
-      */  
-        UIButton *my_analyseButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 264+y*5, 67, 67)];
+
+        
+        UIButton *my_analyseButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 259+y*5, 67, 67)];
         //my_analyseButton.backgroundColor = [UIColor brownColor];
         //[my_analyseButton setTitle:@"状态分析" forState:UIControlStateNormal];
         [my_analyseButton setImage:[UIImage imageNamed:@"统计.png"] forState:UIControlStateNormal];
         [my_analyseButton setImage:[UIImage imageNamed:@"按键4-2.png"] forState:UIControlStateHighlighted];
         self.analyseButton = my_analyseButton;
         
-        UIButton *my_exitButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 337+y*6, 67, 67)];
+        UIButton *my_exitButton = [[UIButton alloc] initWithFrame:CGRectMake(11, 332+y*6, 67, 67)];
         //my_exitButton.backgroundColor = [UIColor brownColor];
         //[my_exitButton setTitle:@"退出" forState:UIControlStateNormal];
         [my_exitButton setImage:[UIImage imageNamed:@"设置.png"] forState:UIControlStateNormal];
