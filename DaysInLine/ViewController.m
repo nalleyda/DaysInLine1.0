@@ -19,6 +19,7 @@
 #import "settingView.h"
 #import "contractView.h"
 #import "buttonTranslate.h"
+#import "rightTranslate.h"
 #import "globalVars.h"
 
 
@@ -41,6 +42,9 @@
 @property (nonatomic,strong) settingView *my_setting;
 @property (nonatomic,strong) buttonTranslate *my_buttonTranslate;
 @property (nonatomic,strong) contractView *my_contractView;
+@property (nonatomic,strong) rightTranslate *my_rightTranslate;
+
+
 @property (nonatomic,strong) NSString *today;
 @property (nonatomic,strong) NSString *lastToday;
 @property (nonatomic,strong) NSMutableArray *allTags;
@@ -156,6 +160,7 @@ int collectNum;
         self.my_collect = [[collectionView alloc] initWithFrame:frame7];
         self.my_analyse = [[statisticView alloc] initWithFrame:frame7];
         self.my_selectDay = [[daylineView alloc] initWithFrame:frame7];
+        self.my_rightTranslate = [[rightTranslate alloc] initWithFrame:frame7];
       // self.my_setting = [[settingView alloc] initWithFrame:frame7];
 
         NSLog(@"ios7!!!!");
@@ -171,6 +176,8 @@ int collectNum;
         self.my_collect = [[collectionView alloc] initWithFrame:frame];
         self.my_analyse = [[statisticView alloc] initWithFrame:frame];
         self.my_selectDay = [[daylineView alloc] initWithFrame:frame];
+        self.my_rightTranslate = [[rightTranslate alloc] initWithFrame:frame];
+
        // self.my_setting = [[settingView alloc] initWithFrame:frame];
     }
     
@@ -194,10 +201,13 @@ int collectNum;
     [self.homePage addSubview:self.my_collect];
     [self.homePage addSubview:self.my_analyse];
     [self.homePage addSubview:self.my_selectDay];
+    [self.homePage addSubview:self.my_rightTranslate];
+
 
     
     
-    
+    [self.my_rightTranslate setHidden:NO];
+
     [self.my_dayline setHidden:YES];
     [self.my_select setHidden:YES];
     [self.my_selectDay setHidden:YES];
@@ -491,6 +501,8 @@ int collectNum;
     
     sqlite3_stmt *statement;
     
+    [self.my_rightTranslate setHidden:YES];
+
     if ( self.my_contractView ) {
         [self.my_contractView removeFromSuperview];
 
@@ -930,6 +942,8 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
+    [self.my_rightTranslate setHidden:YES];
+
     if ( self.my_contractView ) {
         [self.my_contractView removeFromSuperview];
         
@@ -1234,6 +1248,8 @@ int collectNum;
     
     collectNum = 0;
     
+    [self.my_rightTranslate setHidden:YES];
+
     if ( self.my_contractView ) {
         [self.my_contractView removeFromSuperview];
         
@@ -1393,7 +1409,8 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
-    
+    [self.my_rightTranslate setHidden:YES];
+
     if ( self.my_contractView ) {
         [self.my_contractView removeFromSuperview];
         
@@ -1495,6 +1512,8 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
+    [self.my_rightTranslate setHidden:YES];
+
     if ( self.my_contractView ) {
         [self.my_contractView removeFromSuperview];
         

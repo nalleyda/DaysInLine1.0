@@ -122,30 +122,30 @@
                 <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6A-NF-qtA">
                     <rect key="frame" x="26" y="71" width="114" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
+                    <state key="normal" backgroundImage="timeBtn1.png">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEE-i0-aAA">
                     <rect key="frame" x="180" y="71" width="114" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
+                    <state key="normal" backgroundImage="timeBtn1.png">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXi-cd-CSi">
-                    <rect key="frame" x="31" y="74" width="100" height="25"/>
+                    <rect key="frame" x="26" y="71" width="114" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="b8i-BG-McA"/>
-                        <constraint firstAttribute="height" constant="25" id="tPi-eT-RMr"/>
+                        <constraint firstAttribute="width" constant="114" id="b8i-BG-McA"/>
+                        <constraint firstAttribute="height" constant="30" id="tPi-eT-RMr"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJu-sb-EtN">
-                    <rect key="frame" x="194" y="74" width="100" height="25"/>
+                    <rect key="frame" x="180" y="71" width="114" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -172,7 +172,7 @@
             <constraints>
                 <constraint firstItem="ak2-GO-nui" firstAttribute="leading" secondItem="uUl-Hg-KmG" secondAttribute="trailing" constant="26" id="1Mg-vP-dB9"/>
                 <constraint firstItem="9ST-zX-g5s" firstAttribute="bottom" secondItem="0WL-AF-KdO" secondAttribute="bottom" id="2Pf-Tc-4jO"/>
-                <constraint firstItem="cG5-Ig-cVN" firstAttribute="leading" secondItem="HXi-cd-CSi" secondAttribute="trailing" constant="19" id="550-qK-geJ"/>
+                <constraint firstItem="cG5-Ig-cVN" firstAttribute="leading" secondItem="HXi-cd-CSi" secondAttribute="trailing" constant="10" id="550-qK-geJ"/>
                 <constraint firstAttribute="trailing" secondItem="adU-64-2xG" secondAttribute="trailing" constant="-3" id="5Qt-Dj-Kx0"/>
                 <constraint firstItem="lJu-sb-EtN" firstAttribute="top" secondItem="HXi-cd-CSi" secondAttribute="top" id="5pS-YM-nQt"/>
                 <constraint firstItem="NNr-Va-2MU" firstAttribute="bottom" secondItem="PTi-KT-iw5" secondAttribute="bottom" id="6xI-v5-Qvc"/>
@@ -180,7 +180,7 @@
                 <constraint firstItem="HXi-cd-CSi" firstAttribute="baseline" secondItem="lJu-sb-EtN" secondAttribute="baseline" id="7IF-nZ-TEh"/>
                 <constraint firstItem="0WL-AF-KdO" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="22" id="7pf-Nv-5uM"/>
                 <constraint firstAttribute="trailing" secondItem="ak2-GO-nui" secondAttribute="trailing" constant="47" id="9rl-I4-UDk"/>
-                <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="HXi-cd-CSi" secondAttribute="bottom" constant="11" id="BFD-pH-Zht"/>
+                <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="HXi-cd-CSi" secondAttribute="bottom" constant="9" id="BFD-pH-Zht"/>
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="top" secondItem="9ST-zX-g5s" secondAttribute="top" id="BbL-XD-iT8"/>
                 <constraint firstItem="d6A-NF-qtA" firstAttribute="top" secondItem="0WL-AF-KdO" secondAttribute="bottom" constant="12" id="CJ6-Ft-2qQ"/>
                 <constraint firstItem="tpe-fm-0n4" firstAttribute="top" secondItem="NNr-Va-2MU" secondAttribute="top" id="Ckq-nT-2k7"/>
@@ -199,7 +199,7 @@
                 <constraint firstItem="0WL-AF-KdO" firstAttribute="leading" secondItem="tpe-fm-0n4" secondAttribute="leading" id="WY3-am-URP"/>
                 <constraint firstItem="9ST-zX-g5s" firstAttribute="leading" secondItem="NNr-Va-2MU" secondAttribute="leading" id="Xeo-bf-dwa"/>
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="d6A-NF-qtA" secondAttribute="bottom" constant="9" id="a7k-CW-EhL"/>
-                <constraint firstItem="HXi-cd-CSi" firstAttribute="leading" secondItem="d6A-NF-qtA" secondAttribute="leading" constant="5" id="bi9-Rr-bPb"/>
+                <constraint firstItem="HXi-cd-CSi" firstAttribute="leading" secondItem="d6A-NF-qtA" secondAttribute="leading" id="bi9-Rr-bPb"/>
                 <constraint firstItem="ksZ-1h-47g" firstAttribute="top" secondItem="PTi-KT-iw5" secondAttribute="top" id="cYc-Qn-w1X"/>
                 <constraint firstItem="uUl-Hg-KmG" firstAttribute="trailing" secondItem="PTi-KT-iw5" secondAttribute="trailing" id="ekU-NV-RG8"/>
                 <constraint firstAttribute="trailing" secondItem="jnF-cr-2Iy" secondAttribute="trailing" constant="37" id="hXd-iK-49f"/>
@@ -207,7 +207,7 @@
                 <constraint firstItem="adU-64-2xG" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" id="j06-ww-gtV"/>
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="centerY" secondItem="zxP-Np-Ufk" secondAttribute="centerY" id="jDp-c3-GDY"/>
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="cG5-Ig-cVN" secondAttribute="bottom" constant="12" id="jpV-lL-gvR"/>
-                <constraint firstItem="lJu-sb-EtN" firstAttribute="leading" secondItem="cG5-Ig-cVN" secondAttribute="trailing" constant="27" id="k1b-Sc-Vdr"/>
+                <constraint firstItem="lJu-sb-EtN" firstAttribute="leading" secondItem="cG5-Ig-cVN" secondAttribute="trailing" constant="13" id="k1b-Sc-Vdr"/>
                 <constraint firstItem="tpe-fm-0n4" firstAttribute="trailing" secondItem="0WL-AF-KdO" secondAttribute="trailing" id="mAK-Nb-cJV"/>
                 <constraint firstItem="cG5-Ig-cVN" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="77" id="mzr-sJ-n1U"/>
                 <constraint firstItem="HXi-cd-CSi" firstAttribute="centerY" secondItem="d6A-NF-qtA" secondAttribute="centerY" id="o5E-sl-ggL"/>
@@ -240,5 +240,6 @@
         <image name="saveBtn2.png" width="74" height="74"/>
         <image name="tagBtn.png" width="74" height="74"/>
         <image name="tagBtn2.png" width="74" height="74"/>
+        <image name="timeBtn1.png" width="200" height="60"/>
     </resources>
 </document>

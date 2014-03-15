@@ -26,13 +26,14 @@
     
     
     
-    self.returnBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.contractTable.frame.origin.y + 180, 70, 35)];
-    self.returnBtn.backgroundColor = [UIColor clearColor];
-    [self.returnBtn setTitle:@"返回" forState:UIControlStateNormal] ;
-    [self.returnBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.returnBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.returnBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.returnBtn.layer.borderWidth = 0.4f;
+    self.returnBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.contractTable.frame.origin.y + 180,  83, 30)];
+    [self.returnBtn setImage:[UIImage imageNamed:@"passwordback.png"] forState:UIControlStateNormal];
+   // self.returnBtn.backgroundColor = [UIColor clearColor];
+   // [self.returnBtn setTitle:@"返回" forState:UIControlStateNormal] ;
+    //[self.returnBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    //self.returnBtn.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    //self.returnBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    //self.returnBtn.layer.borderWidth = 0.4f;
     
     [self addSubview:self.contractTable];
     [self addSubview:self.returnBtn];

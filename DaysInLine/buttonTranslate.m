@@ -65,13 +65,14 @@
         
     }
     
-    self.returnToSetting = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.frame.size.height - 100, 70, 35)];
-    self.returnToSetting.backgroundColor = [UIColor clearColor];
-    [self.returnToSetting setTitle:@"返回" forState:UIControlStateNormal] ;
-    [self.returnToSetting setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.returnToSetting.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    self.returnToSetting.layer.borderColor = [UIColor darkGrayColor].CGColor;
-    self.returnToSetting.layer.borderWidth = 0.4f;
+    self.returnToSetting = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.frame.size.height - 100, 83, 30)];
+    [self.returnToSetting setImage:[UIImage imageNamed:@"passwordback.png"] forState:UIControlStateNormal];
+   // self.returnToSetting.backgroundColor = [UIColor clearColor];
+    //[self.returnToSetting setTitle:@"返回" forState:UIControlStateNormal] ;
+   // [self.returnToSetting setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+   // self.returnToSetting.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+   // self.returnToSetting.layer.borderColor = [UIColor darkGrayColor].CGColor;
+   // self.returnToSetting.layer.borderWidth = 0.4f;
     
     [self addSubview:self.returnToSetting];
     

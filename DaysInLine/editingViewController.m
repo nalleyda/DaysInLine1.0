@@ -215,10 +215,11 @@ SystemSoundID soundObject;
     
     
     
-    self.startTimeButton.layer.borderWidth = 3.5;
-    self.startTimeButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.endTimeButton.layer.borderWidth = 3.5;
-    self.endTimeButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.startTimeButton.layer.borderWidth = 3.0;
+    self.startTimeButton.layer.borderColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:235/255.0f alpha:1.0f].CGColor;
+    self.endTimeButton.layer.borderWidth = 3.0;
+    self.endTimeButton.layer.borderColor = [UIColor colorWithRed:255/255.0f green:255/255.0f blue:235/255.0f alpha:1.0f].CGColor;
+
     
     //NSLog(@"type is:%@ ~~~~~",self.eventType);
     
