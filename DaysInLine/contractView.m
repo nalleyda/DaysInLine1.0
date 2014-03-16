@@ -18,7 +18,10 @@
     }
    
     
-    self.contractTable = [[UITableView alloc]initWithFrame:CGRectMake(5,self.frame.size.height/2-80,self.frame.size.width-15, 100) style:UITableViewStylePlain];
+    UIImageView *logoImage = [[UIImageView alloc] initWithFrame:CGRectMake(50, 40 , 140, 140)];
+    logoImage.image = [UIImage imageNamed:@"logo.png"];
+    
+    self.contractTable = [[UITableView alloc]initWithFrame:CGRectMake(5,self.frame.size.height/2-50,self.frame.size.width-15, 100) style:UITableViewStylePlain];
     
    self.contractTable.tag = 6;
    self.contractTable.rowHeight = 36;
@@ -35,6 +38,7 @@
     //self.returnBtn.layer.borderColor = [UIColor darkGrayColor].CGColor;
     //self.returnBtn.layer.borderWidth = 0.4f;
     
+    [self addSubview:logoImage];
     [self addSubview:self.contractTable];
     [self addSubview:self.returnBtn];
     

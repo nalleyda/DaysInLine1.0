@@ -1716,6 +1716,19 @@ int collectNum;
 }
 -(void)confirmPassword{
     
+    if ([self.my_setting.password.text isEqualToString:@""]) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"密码不能为空！"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        
+        
+        [ alert  show];
+        return;
+
+    }
+    
     if ([self.my_setting.password.text isEqualToString:self.my_setting.password2.text]) {
         password = self.my_setting.password.text ;
         userTips = self.my_setting.userTip.text;

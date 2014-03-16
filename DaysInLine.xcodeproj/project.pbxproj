@@ -19,6 +19,7 @@
 		0B066B9318C8D12A004827D7 /* 统计.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B066B8F18C8D12A004827D7 /* 统计.png */; };
 		0B066B9918C8D33A004827D7 /* 键盘返回键.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B066B9818C8D33A004827D7 /* 键盘返回键.png */; };
 		0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C491618BE334F00B7CF19 /* selectCell.xib */; };
+		0B15280F18D563A300E62028 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B15280E18D563A300E62028 /* logo.png */; };
 		0B1D8E8A18CDFB2500B1FA6B /* moneyBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */; };
 		0B1D8E9018CDFEAA00B1FA6B /* 设置汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */; };
 		0B1D8E9118CDFEAA00B1FA6B /* 统计汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */; };
@@ -196,6 +197,7 @@
 		0B066B9818C8D33A004827D7 /* 键盘返回键.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "键盘返回键.png"; sourceTree = "<group>"; };
 		0B0C491618BE334F00B7CF19 /* selectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectCell.xib; sourceTree = "<group>"; };
 		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
+		0B15280E18D563A300E62028 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moneyBtn.png; sourceTree = "<group>"; };
 		0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置汉字.png"; sourceTree = "<group>"; };
 		0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "统计汉字.png"; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				0B9009D71877D791008D3799 /* resources */,
 				0BD7008218139338004FCBE2 /* backgroundHome.png */,
 				0B93EC5918ABD06A00F871C4 /* backgroundHome@2x.png */,
+				0B15280E18D563A300E62028 /* logo.png */,
 				0B1F192E18D49529000F94E5 /* text.png */,
 				0B1F192A18D49485000F94E5 /* star1.png */,
 				0B1F192B18D49485000F94E5 /* star2.png */,
@@ -975,6 +978,7 @@
 				0BA61BEF18A28880000B7163 /* 按键4-2.png in Resources */,
 				0B1F192F18D49529000F94E5 /* text.png in Resources */,
 				0B3686B018CCA8C30036DCA3 /* 照片背景586.png in Resources */,
+				0B15280F18D563A300E62028 /* logo.png in Resources */,
 				0B1F193518D49633000F94E5 /* backBtn.png in Resources */,
 				0BFE89B518C32D40002F6F67 /* 心情.png in Resources */,
 				0B1F192818D49305000F94E5 /* Default-568h@2x.png in Resources */,

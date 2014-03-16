@@ -43,7 +43,7 @@
         [self addSubview:self.selectMode];
         
         self.goInThatDay= [UIButton buttonWithType:UIButtonTypeCustom];
-        self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, frame.size.height-100, 120, 30);
+        self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, frame.size.height-100, 97, 30);
         [self.goInThatDay setBackgroundImage:[UIImage imageNamed: @"查看当日.png"] forState:UIControlStateNormal];
        // [self.goInThatDay setTitle:@"回顾当日" forState:UIControlStateNormal];
         
