@@ -103,7 +103,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetAllowsAntialiasing(context, true);
     CGContextSetShouldAntialias(context, true);
-}
+  }
 
 /*
 // Only override drawRect: if you perform custom drawing.

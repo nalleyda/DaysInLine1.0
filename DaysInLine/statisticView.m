@@ -75,9 +75,7 @@
         self.resultButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-50, self.frame.size.height-100, 100, 30) ];
         [self.resultButton setBackgroundImage:[UIImage imageNamed: @"查看结果.png"] forState:UIControlStateNormal];
       //  [self.resultButton setTitle:@"查看结果" forState:UIControlStateNormal];
-       // self.resultButton.layer.borderColor = [UIColor blackColor].CGColor;
-       // self.resultButton.layer.borderWidth = 1.0;
-       // [self.resultButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+
         
 
         [self addSubview:self.resultButton];

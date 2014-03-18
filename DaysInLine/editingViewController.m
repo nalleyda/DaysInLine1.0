@@ -247,6 +247,7 @@ SystemSoundID soundObject;
     
     self.exitButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.exitButton setImage:[UIImage imageNamed:@"键盘返回键.png"] forState:UIControlStateNormal];
+    self.exitButton.backgroundColor = [UIColor clearColor];
     CGRect exitBtFrame = CGRectMake(self.view.frame.size.width-48, y, 48.0f, 30.0f);
     
     [self.exitButton setFrame:exitBtFrame];
@@ -2169,6 +2170,7 @@ SystemSoundID soundObject;
         imagePickerController.delegate = self;
         imagePickerController.allowsEditing = YES;
         imagePickerController.sourceType = sourceType;
+       // self.wantsFullScreenLayout = YES;
         [self presentViewController:imagePickerController animated:YES completion:^{}];
     }
 }

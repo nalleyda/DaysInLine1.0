@@ -196,6 +196,13 @@ int collectNum;
     self.my_select.eventInSearchTable.dataSource = self;
     self.my_collect.collectionTable.delegate = self;
     self.my_collect.collectionTable.dataSource = self;
+    
+    [self.my_rightTranslate.todayTanslate addTarget:self action:@selector(todayTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_rightTranslate.selectTanslate addTarget:self action:@selector(selectTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_rightTranslate.collectTanslate addTarget:self action:@selector(treasureTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_rightTranslate.analyseTanslate addTarget:self action:@selector(analyseTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_rightTranslate.settingTanslate addTarget:self action:@selector(settingTapped) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.homePage addSubview:self.my_dayline];
     [self.homePage addSubview:self.my_select];
     [self.homePage addSubview:self.my_collect];
@@ -432,13 +439,80 @@ int collectNum;
     
     self.gAdBannerView.rootViewController = self;
     self.gAdBannerView.backgroundColor = [UIColor clearColor];
-    
     [self.gAdBannerView loadRequest:[GADRequest request]];
     [self.view addSubview:self.gAdBannerView];
     
     
 
     
+    //每天晚上8点半提醒用户记录
+  
+    NSArray * allLocalNotification=[[UIApplication sharedApplication] scheduledLocalNotifications];
+    
+    for (UILocalNotification * localNotification in allLocalNotification) {
+        //NSLog(@"%@",localNotification.userInfo);
+        NSString * alarmValue=[localNotification.userInfo objectForKey:@"key"];
+        NSLog(@"alarmValue:%@",alarmValue);
+        if ([@"name" isEqualToString:alarmValue]) {
+        //   [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+
+        return;
+        }else
+        {
+            
+            NSDate *date = [NSDate date];
+            NSLog(@"now 2date is: %@",date);
+            
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+            NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
+            
+            int year = [dateComponent year];
+            int month = [dateComponent month];
+            int day = [dateComponent day];
+            
+            NSDateFormatter* formatter2 = [[NSDateFormatter alloc] init];
+            [formatter2 setDateFormat:@"yyyy-MM-dd"];
+            NSString *datestring = [NSString stringWithFormat:@"%d-%d-%d",year,month,day+2];
+            NSLog(@"datestring:%@",datestring);
+            NSDate * newdate = [formatter2 dateFromString:datestring];
+            NSLog(@"newdate:%@",newdate);
+            
+            int sinceNow = [newdate timeIntervalSinceNow];
+            
+            NSLog(@"sineNow:%f",sinceNow-3.5*60*60);
+            
+            
+            // [date timeIntervalSince1970];
+            
+            
+            UILocalNotification *noti = [[UILocalNotification alloc] init] ;
+            if (noti) {
+                //设置推送时间
+                noti.fireDate = [date dateByAddingTimeInterval:(sinceNow-3.5*60*60)];
+                //设置时区
+                noti.timeZone = [NSTimeZone defaultTimeZone];
+                //设置重复间隔
+                noti.repeatInterval = NSDayCalendarUnit;
+                //推送声音
+                noti.soundName = UILocalNotificationDefaultSoundName;
+                //内容
+                noti.alertBody = @"不积跬步无以至千里，不积小流无以成江海。有序生活从点滴做起。";
+                NSDictionary *infoDic = [NSDictionary dictionaryWithObject:@"name" forKey:@"key"];
+                noti.userInfo = infoDic;
+                NSLog(@"info:%@",noti.userInfo);
+                //添加推送到uiapplication
+                UIApplication *app = [UIApplication sharedApplication];
+                [app scheduleLocalNotification:noti];
+            }
+        }
+    }
+
+   //   NSLog(@"alarmValue:%@",alarmValue);
+
+    
+
+ 
 }
 
 
@@ -3268,7 +3342,7 @@ int collectNum;
             
             if ( (int)row1 == 1){
                 
-               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=sheepcao1986@163.com"]]; 
+               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=s"]];
             }
 
             

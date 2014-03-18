@@ -190,6 +190,8 @@ double expendAll;
 
         
         my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
+      //  my_result.workingTime.text = [NSString stringWithFormat:NSLocalizedString(@"%.2f小时",nil),work_life[0]/60];
+
         my_result.workingLong.frame = CGRectMake(78,y +150, workOfAll*164 , 11);
         
         my_result.lifingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[1]/60];
@@ -285,6 +287,19 @@ double expendAll;
 }
 
 - (IBAction)continueButton:(id)sender {
+    if (soundSwitch) {
+        
+        
+        CFBundleRef mainbundle=CFBundleGetMainBundle();
+        SystemSoundID soundObject_dlt;
+        //获得声音文件URL
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("okSound"),CFSTR("wav"),NULL);
+        //创建system sound 对象
+        AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_dlt);
+        AudioServicesPlaySystemSound(soundObject_dlt);
+    }
+    
+    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

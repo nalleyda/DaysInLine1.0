@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "sqlite3.h"
 #import "resultView.h"
 #import <Frontia/Frontia.h>
 #import <iAd/iAd.h>
 #import "GADBannerView.h"
+#import "globalVars.h"
 
 #define ADMOB_ID @"a1531ddc35a4db2"
 

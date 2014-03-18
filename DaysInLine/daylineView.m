@@ -87,14 +87,14 @@ const int GROWTH_BOTTOM_GAP = 50;
     self.addMoreWork = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreWork setFrame:CGRectMake(70, self.frame.origin.y+75, 32, 32)];
     [self.addMoreWork setImage: [UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
-    //[self.addMoreWork setImage: [UIImage imageNamed:@"addTapped.png"] forState:UIControlStateHighlighted];
+    [self.addMoreWork setImage: [UIImage imageNamed:@"add2.png"] forState:UIControlStateHighlighted];
     self.addMoreWork.tintColor = [UIColor darkGrayColor];
     self.addMoreWork.tag = 0;
     
     self.addMoreLife = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreLife setFrame:CGRectMake(172, self.frame.origin.y+75, 32, 32)];
     [self.addMoreLife setImage: [UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];
-    //[self.addMoreLife setImage: [UIImage imageNamed:@"addTapped.png"] forState:UIControlStateHighlighted];
+    [self.addMoreLife setImage: [UIImage imageNamed:@"add2.png"] forState:UIControlStateHighlighted];
     self.addMoreLife.tintColor = [UIColor darkGrayColor];
     self.addMoreLife.tag = 1;
     
@@ -163,6 +163,7 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     UILabel *workLabel = [[UILabel alloc] initWithFrame:CGRectMake(20+36, frame.origin.y+40, frame.size.width/2-40-18, 26)];
     workLabel.text = @"工作";
+   // workLabel.text = NSLocalizedString(@"btn_title", nil);
     workLabel.backgroundColor = [UIColor clearColor];
     workLabel.textAlignment = NSTextAlignmentCenter;
     workLabel.layer.borderColor = [UIColor clearColor].CGColor;

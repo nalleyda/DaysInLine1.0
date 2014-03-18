@@ -28,45 +28,40 @@
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         height-=5;
      }
-    UIButton *todayTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 48+2*y+height, 217, 50)];
-    [todayTanslate setUserInteractionEnabled:NO];
-    [todayTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
-    [todayTanslate setTitle:@"掌控自我，一切从今天开始" forState:UIControlStateNormal];
-    [todayTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    todayTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
-    [self addSubview:todayTanslate];
+    self.todayTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 48+2*y+height, 217, 50)];
+    [self.todayTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
+    [self.todayTanslate setTitle:@"掌控自我，一切从今天开始" forState:UIControlStateNormal];
+    [self.todayTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.todayTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self addSubview:self.todayTanslate];
     
-    UIButton *selectTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 121+3*y+height, 217, 50)];
-    [selectTanslate setUserInteractionEnabled:NO];
-    [selectTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
-    [selectTanslate setTitle:@"多角度精准定位每条记录" forState:UIControlStateNormal];
-    [selectTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    selectTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
-    [self addSubview:selectTanslate];
+    self.selectTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 121+3*y+height, 217, 50)];
+    [self.selectTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
+    [self.selectTanslate setTitle:@"多角度精准定位每条记录" forState:UIControlStateNormal];
+    [self.selectTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.selectTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self addSubview:self.selectTanslate];
     
-    UIButton *collectTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 194+4*y+height, 217, 50)];
-    [collectTanslate setUserInteractionEnabled:NO];
-    [collectTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
-    [collectTanslate setTitle:@"收录重点事项，支持加密功能" forState:UIControlStateNormal];
-    [collectTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    collectTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
-    [self addSubview:collectTanslate];
+    self.collectTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 194+4*y+height, 217, 50)];
+    [self.collectTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
+    [self.collectTanslate setTitle:@"收录重点事项，支持加密功能" forState:UIControlStateNormal];
+    [self.collectTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.collectTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self addSubview:self.collectTanslate];
 
-    UIButton *analyseTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 267+5*y+height, 217, 50)];
-    [analyseTanslate setUserInteractionEnabled:NO];
-    [analyseTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
-    [analyseTanslate setTitle:@"根据所选时段，统计各项数据" forState:UIControlStateNormal];
-    [analyseTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    analyseTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
-    [self addSubview:analyseTanslate];
+    self.analyseTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 267+5*y+height, 217, 50)];
+    [self.analyseTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
+    [self.analyseTanslate setTitle:@"任意选取时段，绘制生活状态图" forState:UIControlStateNormal];
+    [self.analyseTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.analyseTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self addSubview:self.analyseTanslate];
     
-    UIButton *settingTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 340+6*y+height, 217, 50)];
-    [settingTanslate setUserInteractionEnabled:NO];
-    [settingTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
-    [settingTanslate setTitle:@"声音、加密、教程及反馈" forState:UIControlStateNormal];
-    [settingTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    settingTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
-    [self addSubview:settingTanslate];
+    self.settingTanslate = [[UIButton alloc] initWithFrame:CGRectMake(10, 340+6*y+height, 217, 50)];
+    [self.settingTanslate setBackgroundImage:[UIImage imageNamed:@"text.png"] forState:UIControlStateNormal];
+    [self.settingTanslate setTitle:@"声音、加密、教程及反馈" forState:UIControlStateNormal];
+    [self.settingTanslate setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.settingTanslate.titleLabel.font = [UIFont systemFontOfSize:11.0f];
+    [self addSubview:self.settingTanslate];
     return self;
 }
 

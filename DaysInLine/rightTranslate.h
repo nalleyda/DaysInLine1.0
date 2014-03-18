@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface rightTranslate : UIView
+@property(nonatomic,strong) UIButton *todayTanslate;
+@property(nonatomic,strong) UIButton *selectTanslate;
+@property(nonatomic,strong) UIButton *collectTanslate;
+@property(nonatomic,strong) UIButton *analyseTanslate;
+@property(nonatomic,strong) UIButton *settingTanslate;
+
 
 @end
