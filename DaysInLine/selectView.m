@@ -32,7 +32,7 @@
 
        
         
-        NSArray *selectModeText = [[NSArray alloc] initWithObjects:@"按日期",@"按标签",@"关键字",nil];
+        NSArray *selectModeText = [[NSArray alloc] initWithObjects:NSLocalizedString(@"按日期",nil),NSLocalizedString(@"按标签",nil),NSLocalizedString(@"关键字",nil),nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
         
         [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+18, 200, 30)];
@@ -117,7 +117,7 @@
         self.my_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, self.frame.size.width-30, 40)];
         self.my_searchBar.tintColor = [UIColor clearColor];
         self.my_searchBar.barStyle = UIBarStyleDefault;
-        self.my_searchBar.placeholder = @"请输入：";
+        self.my_searchBar.placeholder = NSLocalizedString(@"请输入：",nil);
         self.my_searchBar.showsCancelButton =NO;
         
         self.eventInSearchTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width-30, self.frame.size.height-150)];

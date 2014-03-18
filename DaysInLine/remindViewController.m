@@ -39,6 +39,11 @@ UIDatePicker *remindTimePicker2;
             self.remindMode.frame = CGRectMake(44, 28, 230, 43);
         }
 
+        self.remindMode = (UISegmentedControl *)[self.view viewWithTag:251];
+        [self.remindMode setTitle:NSLocalizedString(@"按日期设置",nil) forSegmentAtIndex:0];//设置指定索引的题目
+        [self.remindMode setTitle:NSLocalizedString(@"按间隔设置",nil) forSegmentAtIndex:1];//设置指定索引的题目
+
+
     }
     return self;
 }
@@ -59,8 +64,8 @@ UIDatePicker *remindTimePicker2;
         self.viewDate = [[UIView alloc] initWithFrame:CGRectMake(0,110,self.view.frame.size.width, self.view.frame.size.height-265)];
         self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,110,self.view.frame.size.width, self.view.frame.size.height-265)];
         
-        self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
-        self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-290, self.view.frame.size.width-80, 30)];
+        self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(40, self.view.frame.size.height-295, self.view.frame.size.width-70, 30)];
+        self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(40, self.view.frame.size.height-295, self.view.frame.size.width-70, 30)];
         
         
         self.gAdBannerView = [[GADBannerView alloc]
@@ -81,8 +86,8 @@ UIDatePicker *remindTimePicker2;
         self.viewInterval = [[UIView alloc] initWithFrame:CGRectMake(0,70,self.view.frame.size.width, self.view.frame.size.height-180)];
 
         
-        self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
-        self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(60, self.view.frame.size.height-190, self.view.frame.size.width-80, 30)];
+        self.setTimeLabel= [[UILabel alloc] initWithFrame:CGRectMake(40, self.view.frame.size.height-195, self.view.frame.size.width-70, 30)];
+        self.setTimeLabel2= [[UILabel alloc] initWithFrame:CGRectMake(40, self.view.frame.size.height-195, self.view.frame.size.width-70, 30)];
 
      /*
         self.gAdBannerView = [[GADBannerView alloc]
@@ -97,6 +102,10 @@ UIDatePicker *remindTimePicker2;
         [self.view addSubview:self.gAdBannerView];
 */
     }
+    
+    self.setTimeLabel.textAlignment = NSTextAlignmentCenter;
+    self.setTimeLabel2.textAlignment = NSTextAlignmentCenter;
+
     
     [self.view addSubview:backgrd];
     [self.view sendSubviewToBack:backgrd];
@@ -118,8 +127,8 @@ UIDatePicker *remindTimePicker2;
     self.setTimeLabel2.backgroundColor = [UIColor clearColor];
     
     if (self.remindDate) {
-        self.setTimeLabel.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
-        self.setTimeLabel2.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        self.setTimeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"已设提醒:%@  %@",nil),self.remindDate,self.remindTime];
+        self.setTimeLabel2.text =[NSString stringWithFormat:NSLocalizedString(@"已设提醒:%@  %@",nil),self.remindDate,self.remindTime];
     }
     
    // [self.view addSubview:self.setTimeLabel];
@@ -221,14 +230,14 @@ UIDatePicker *remindTimePicker2;
    // daysInterval.backgroundColor = [UIColor whiteColor];
     daysInterval.delegate = self;
     dayslabel = [[UILabel alloc] init];
-    dayslabel.frame = CGRectMake(0, 0, 60, 40);
-    dayslabel.center = CGPointMake(self.view.frame.size.width/2+45, 60);
-    dayslabel.text = @"天后";
+    dayslabel.frame = CGRectMake(0, 0, 100, 40);
+    dayslabel.center = CGPointMake(self.view.frame.size.width/2+65, 60);
+    dayslabel.text = NSLocalizedString(@"天后",nil);
     dayslabel.textColor = [UIColor purpleColor];
     dayslabel.backgroundColor = [UIColor clearColor];
     dayslabel.textAlignment = NSTextAlignmentCenter;
     dayslabel.layer.borderColor = [UIColor clearColor].CGColor;
-    dayslabel.font = [UIFont fontWithName:@"Courier-BoldOblique" size:24.0];
+    dayslabel.font = [UIFont fontWithName:@"Courier-BoldOblique" size:15.0];
     [self.viewInterval addSubview:daysInterval];
     [self.viewInterval addSubview:dayslabel];
     remindTimePicker2.datePickerMode = UIDatePickerModeTime;
@@ -350,8 +359,8 @@ UIDatePicker *remindTimePicker2;
         self.remindTime = [formatter stringFromDate:remindTimePicker.date];
         
 
-        self.setTimeLabel.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
-        self.setTimeLabel2.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        self.setTimeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"已设提醒:%@  %@",nil),self.remindDate,self.remindTime];
+        self.setTimeLabel2.text =[NSString stringWithFormat:NSLocalizedString(@"已设提醒:%@  %@",nil),self.remindDate,self.remindTime];
         
       
     
@@ -368,8 +377,8 @@ UIDatePicker *remindTimePicker2;
         self.remindTime = [formatter stringFromDate:remindTimePicker2.date];
         
         
-        self.setTimeLabel.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
-        self.setTimeLabel2.text =[NSString stringWithFormat:@"已设提醒:%@  %@",self.remindDate,self.remindTime];
+        self.setTimeLabel.text =[NSString stringWithFormat:NSLocalizedString(@"已设提醒:%@  %@",nil),self.remindDate,self.remindTime];
+        self.setTimeLabel2.text =[NSString stringWithFormat:NSLocalizedString(@"已设提醒:%@  %@",nil),self.remindDate,self.remindTime];
         
         
     }

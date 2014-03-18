@@ -130,6 +130,13 @@ SystemSoundID soundObject;
     self.endLabel = (UILabel *)[self.view viewWithTag:104];
     self.theme = (UITextField *)[self.view viewWithTag:105];
     
+    self.toLabel =(UILabel *)[self.view viewWithTag:121];
+    self.titleLabel =(UILabel *)[self.view viewWithTag:120];
+
+    [self.toLabel setText:NSLocalizedString(@"到",nil)];
+    [self.titleLabel setText:NSLocalizedString(@"主题",nil)];
+
+    
     int mainText_Height = 180;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
         //NSLog(@"ios7!!!!");
@@ -153,7 +160,7 @@ SystemSoundID soundObject;
     self.mainText.delegate = self;
     self.mainText.font = [UIFont systemFontOfSize:16.0];
     
-    if ([self.mainText.text isEqualToString:@"点击输入......"]) {
+    if ([self.mainText.text isEqualToString:NSLocalizedString(@"点击输入......",nil)]) {
         self.mainText.textColor = [UIColor lightGrayColor];
     }else
     {
@@ -431,11 +438,11 @@ SystemSoundID soundObject;
     UIAlertView* addSelection;
     
     addSelection = [[UIAlertView alloc]
-                    initWithTitle:@"请输入标签"
+                    initWithTitle:NSLocalizedString(@"请输入标签",nil)
                     message:nil
                     delegate:self
-                    cancelButtonTitle:@"取消"
-                    otherButtonTitles:@"确定",nil];
+                    cancelButtonTitle:NSLocalizedString(@"取消",nil)
+                    otherButtonTitles:NSLocalizedString(@"确定",nil),nil];
     
     [addSelection setAlertViewStyle:UIAlertViewStylePlainTextInput];
     addSelection.tag = 3;
@@ -599,6 +606,9 @@ SystemSoundID soundObject;
     my_remind.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     my_remind.setRemindDelegate = self;
+    
+    //[my_remind.remindMode setTitle:@"按日期提醒" forSegmentAtIndex:0];//设置指定索引的题目
+    //[my_remind.remindMode setTitle:@"按间隔提醒" forSegmentAtIndex:1];//设置指定索引的题目
     //NSLog(@"<<<<<%@>>>>>2",self.remindData);
     oldRemindDate = self.remindData;
     if (![oldRemindDate isEqualToString:@""]) {
@@ -659,9 +669,9 @@ SystemSoundID soundObject;
     
     if (((UIButton *)self.imageViewButton[4]).imageView.image ) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"照片数量达到上限！"
+                                                        message:NSLocalizedString(@"照片数量达到上限！",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"确定"
+                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                               otherButtonTitles:nil];
       
         
@@ -673,17 +683,17 @@ SystemSoundID soundObject;
         // 判断是否支持相机
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
-            sheet  = [[UIActionSheet alloc] initWithTitle:@"请选择"
+            sheet  = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"请选择",nil)
                                                  delegate:self
                                         cancelButtonTitle:nil
-                                   destructiveButtonTitle:@"取消"
-                                        otherButtonTitles:@"拍照", @"从相册选择", nil];
+                                   destructiveButtonTitle:NSLocalizedString(@"取消",nil)
+                                        otherButtonTitles:NSLocalizedString(@"拍照",nil), NSLocalizedString(@"从相册选择",nil), nil];
         } else {
-            sheet = [[UIActionSheet alloc] initWithTitle:@"请选择"
+            sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"请选择",nil)
                                                 delegate:self
                                        cancelButtonTitle:nil
-                                  destructiveButtonTitle:@"取消"
-                                       otherButtonTitles:@"从相册选择", nil];
+                                  destructiveButtonTitle:NSLocalizedString(@"取消",nil)
+                                       otherButtonTitles:NSLocalizedString(@"从相册选择",nil), nil];
         }
         sheet.tag = 255;
         [sheet showInView:self.view];
@@ -968,6 +978,17 @@ SystemSoundID soundObject;
     [tmpCustomView setUserInteractionEnabled:YES];
     UITextField * income = (UITextField *)[tmpCustomView viewWithTag:501];
     UITextField * outcome = (UITextField *)[tmpCustomView viewWithTag:502];
+    UILabel * incomeLabel = (UILabel *)[tmpCustomView viewWithTag:510];
+    UILabel * outcomeLabel = (UILabel *)[tmpCustomView viewWithTag:511];
+    UILabel * money1 = (UILabel *)[tmpCustomView viewWithTag:512];
+    UILabel * money2 = (UILabel *)[tmpCustomView viewWithTag:513];
+    
+    [incomeLabel setText:NSLocalizedString(@"收入",nil)];
+    [outcomeLabel setText:NSLocalizedString(@"支出",nil)];
+    [money1 setText:NSLocalizedString(@"元",nil)];
+    [money2 setText:NSLocalizedString(@"元",nil)];
+
+    
     income.delegate =self;
     outcome.delegate = self;
 
@@ -1049,7 +1070,7 @@ SystemSoundID soundObject;
     
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
     
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", @"取消", nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"确定",nil), NSLocalizedString(@"取消",nil), nil];
     actionSheet.tag = 1;
 	[actionSheet showInView:self.view];
     
@@ -1085,7 +1106,7 @@ SystemSoundID soundObject;
     
     NSString *title = UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation) ? @"\n\n\n\n\n\n\n\n\n" : @"\n\n\n\n\n\n\n\n\n\n\n" ;
     
-	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:@"确定", @"取消",nil];
+	UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:title delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"确定",nil), NSLocalizedString(@"取消",nil),nil];
     actionSheet.tag = 2;
 	[actionSheet showInView:self.view];
     
@@ -1136,10 +1157,10 @@ SystemSoundID soundObject;
             if (sqlite3_prepare_v2(dataBase, queryCollectIDstatement, -1, &stmtIfcollect, NULL)==SQLITE_OK) {
                 if (sqlite3_step(stmtIfcollect)==SQLITE_ROW) {
                     
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示"
-                                                                    message:@"收藏夹中已收录此事"
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"温馨提示",nil)
+                                                                    message:NSLocalizedString(@"收藏夹中已收录此事",nil)
                                                                    delegate:nil
-                                                          cancelButtonTitle:@"确定"
+                                                          cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                           otherButtonTitles:nil];
                     
                     [ alert  show];
@@ -1152,18 +1173,16 @@ SystemSoundID soundObject;
                     sqlite3_bind_int(stmtInsertCollect,1, modifyEventId);
                     
                     if (sqlite3_step(stmtInsertCollect)==SQLITE_DONE) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示"
-                                                                        message:@"成功添加至收藏夹"
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"温馨提示",nil)
+                                                                        message:NSLocalizedString(@"成功添加至收藏夹",nil)
                                                                        delegate:nil
-                                                              cancelButtonTitle:@"确定"
+                                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                               otherButtonTitles:nil];
                         
                         [ alert  show];
                         
-                        //NSLog(@"innsert collect ok   in modifying   collect");
                     }
                     else {
-                        //NSLog(@"Error while insert collect in modifying :%s",sqlite3_errmsg(dataBase));
                     }
                     
                     
@@ -1189,10 +1208,10 @@ SystemSoundID soundObject;
         
         flag=NO;
         if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"请输入事件起始和结束时间"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                            message:NSLocalizedString(@"请输入事件起始和结束时间",nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"确定"
+                                                  cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                   otherButtonTitles:nil];
             [alert show];
             return;
@@ -1217,10 +1236,10 @@ SystemSoundID soundObject;
             double endNum = hour_1*60 + minite_1;
             
             if (startNum >= endNum) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"结束应该在开始之后哦"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                                message:NSLocalizedString(@"结束应该在开始之后哦",nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"确定"
+                                                      cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                       otherButtonTitles:nil];
                 alert.tag = 100;
                 [alert show];
@@ -1246,10 +1265,10 @@ SystemSoundID soundObject;
                 
                 
                 if (flag) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                    message:@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充"
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                                    message:NSLocalizedString(@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充",nil)
                                                                    delegate:nil
-                                                          cancelButtonTitle:@"确定"
+                                                          cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                           otherButtonTitles:nil];
                     alert.tag = 101;
                     [alert show];
@@ -1263,7 +1282,7 @@ SystemSoundID soundObject;
                     
                     NSLog(@"text!!!!:%@",self.theme.text);
                     if (!self.theme.text||[self.theme.text isEqualToString:@""]) {
-                        self.theme.text = @"无主题";
+                        self.theme.text = NSLocalizedString(@"无主题",nil);
                     }
                     
                     [self.drawBtnDelegate redrawButton:startTimeNum:endTimeNum:self.theme.text:self.eventType:oldStartNum];
@@ -1316,10 +1335,8 @@ SystemSoundID soundObject;
                         sqlite3_bind_text(statementInsert,13, [self.imageName UTF8String], -1, SQLITE_TRANSIENT);
                         
                         if (sqlite3_step(statementInsert)==SQLITE_DONE) {
-                            //NSLog(@"innsert event okssssssssssscollect");
                         }
                         else {
-                            //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                         }
                         
                         sqlite3_finalize(statementInsert);
@@ -1382,9 +1399,9 @@ SystemSoundID soundObject;
                 }
             }
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                            message:@"该事项已自动保存并存入收藏夹"
+                                                            message:NSLocalizedString(@"该事项已自动保存并存入收藏夹",nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"确定"
+                                                  cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                   otherButtonTitles:nil];
             
             [ alert  show];
@@ -1470,10 +1487,10 @@ SystemSoundID soundObject;
     //NSLog(@"delete！！！！！！！！");
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"确定删除该事项吗"
+                                                    message:NSLocalizedString(@"确定删除该事项吗",nil)
                                                    delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定",nil];
+                                          cancelButtonTitle:NSLocalizedString(@"取消",nil)
+                                          otherButtonTitles:NSLocalizedString(@"确定",nil),nil];
     alert.tag = 4;
     
     [ alert  show];
@@ -1545,10 +1562,10 @@ SystemSoundID soundObject;
 
     //NSLog(@"hello!");
     if (([self.startLabel.text isEqualToString:@""]) || ([self.endLabel.text isEqualToString:@""])) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                        message:@"请输入事件起始和结束时间"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                        message:NSLocalizedString(@"请输入事件起始和结束时间",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"确定"
+                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                               otherButtonTitles:nil];
         [alert show];
         return;
@@ -1570,10 +1587,10 @@ SystemSoundID soundObject;
         double endNum = hour_1*60 + minite_1;
         
         if (startNum >= endNum) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                            message:@"结束应该在开始之后哦"
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                            message:NSLocalizedString(@"结束应该在开始之后哦",nil)
                                                            delegate:nil
-                                                  cancelButtonTitle:@"确定"
+                                                  cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                   otherButtonTitles:nil];
             alert.tag = 100;
             [alert show];
@@ -1600,10 +1617,10 @@ SystemSoundID soundObject;
             
             
             if (flag) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                                message:NSLocalizedString(@"该时段已有事件存在，请修改起止时间或选择相应事件进行补充",nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"确定"
+                                                      cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                       otherButtonTitles:nil];
                 alert.tag = 101;
                 [alert show];
@@ -1658,7 +1675,7 @@ SystemSoundID soundObject;
 
                 NSLog(@"text!!!!:%@",self.theme.text);
                 if (!self.theme.text||[self.theme.text isEqualToString:@""]) {
-                    self.theme.text = @"无主题";
+                    self.theme.text = NSLocalizedString(@"无主题",nil);
                 }
                 
                 
@@ -1823,7 +1840,7 @@ SystemSoundID soundObject;
              
                 //notification.alertBody=@"TIME！";
                 
-                notification.alertAction = @"打开";  //提示框按钮
+                notification.alertAction = NSLocalizedString(@"打开",nil);  //提示框按钮
                 notification.hasAction = YES; //是否显示额外的按钮，为no时alertAction消失
                 
                 notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
@@ -1891,7 +1908,7 @@ SystemSoundID soundObject;
                 
                 //notification.alertBody=@"TIME！";
                 
-                notification.alertAction = @"打开";  //提示框按钮
+                notification.alertAction = NSLocalizedString(@"打开",nil);  //提示框按钮
                 notification.hasAction = YES; //是否显示额外的按钮，为no时alertAction消失
                 
                 notification.applicationIconBadgeNumber = 1; //设置app图标右上角的数字
@@ -2056,10 +2073,10 @@ SystemSoundID soundObject;
     else{
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"本次编辑内容尚未保存，确定离开吗"
+                                                        message:NSLocalizedString(@"本次编辑内容尚未保存，确定离开吗",nil)
                                                        delegate:self
-                                              cancelButtonTitle:@"取消"
-                                              otherButtonTitles:@"确定",nil];
+                                              cancelButtonTitle:NSLocalizedString(@"取消",nil)
+                                              otherButtonTitles:NSLocalizedString(@"确定",nil),nil];
         alert.tag = 5;
         
         [ alert  show];
@@ -2122,10 +2139,10 @@ SystemSoundID soundObject;
             endTimeNum = [[NSNumber alloc] initWithDouble:(endNum)];
             if (self.startLabel.text) {
                 if ([endTimeNum doubleValue]<=[startTimeNum doubleValue]) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                    message:@"结束时间应该比开始时间更大哦！"
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                                    message:NSLocalizedString(@"结束时间应该比开始时间更大哦！",nil)
                                                                    delegate:nil
-                                                          cancelButtonTitle:@"确定"
+                                                          cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                           otherButtonTitles:nil];
                     [alert show];
                 }
@@ -2255,10 +2272,10 @@ SystemSoundID soundObject;
                     else {
                         //NSLog(@"Error while insert event:%s",sqlite3_errmsg(dataBase));
                         UIAlertView *tagNotUnique = [[UIAlertView alloc]
-                                                     initWithTitle:@"Attention"
-                                                     message:@"This tag is already exist!"
+                                                     initWithTitle:NSLocalizedString(@"Attention",nil)
+                                                     message:NSLocalizedString(@"This tag is already exist!",nil)
                                                      delegate:nil
-                                                     cancelButtonTitle:@"确定"
+                                                     cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                      otherButtonTitles:nil];
                         
                         
@@ -2358,10 +2375,10 @@ SystemSoundID soundObject;
                     
                     if (sqlite3_step(statement_1)==SQLITE_DONE) {
                         //NSLog(@"delete event ok");
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                        message:@"成功删除该事项"
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                                        message:NSLocalizedString(@"成功删除该事项",nil)
                                                                        delegate:nil
-                                                              cancelButtonTitle:@"确定"
+                                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                               otherButtonTitles:nil];
                         [alert show];
                         
@@ -2392,10 +2409,10 @@ SystemSoundID soundObject;
                 sqlite3_close(dataBase);
                 //NSLog(@"事项删除完毕！！！！！！") ;
             }else{
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                message:@"该事件尚未保存，无须删除"
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"提示",nil)
+                                                                message:NSLocalizedString(@"该事件尚未保存，无须删除",nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"确定"
+                                                      cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                       otherButtonTitles:nil];
                 [alert show];
 
@@ -2675,7 +2692,7 @@ SystemSoundID soundObject;
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if ([textView.text isEqualToString:@"点击输入......"]) {
+    if ([textView.text isEqualToString:NSLocalizedString(@"点击输入......",nil)]) {
         textView.text = @"";
     }
     textView.textColor = [UIColor blackColor]; //optional
@@ -2709,7 +2726,7 @@ SystemSoundID soundObject;
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
     if ([textView.text isEqualToString:@""]) {
-        textView.text = @"点击输入......";
+        textView.text = NSLocalizedString(@"点击输入......",nil);
         textView.textColor = [UIColor lightGrayColor]; //optional
     }
     

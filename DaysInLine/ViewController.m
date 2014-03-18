@@ -129,8 +129,8 @@ int collectNum;
     self.collectEventEnd = [[NSMutableArray alloc] init];
     
     
-    self.settingInformation = [[NSArray alloc] initWithObjects:@"按钮释义",@"意见反馈",@"关于我们", nil];
-    self.settingInformationLeft = [[NSArray alloc] initWithObjects:@"版本",@"QQ",@"email", nil];
+    self.settingInformation = [[NSArray alloc] initWithObjects:NSLocalizedString(@"按钮释义",nil),NSLocalizedString(@"意见反馈",nil),NSLocalizedString(@"关于我们",nil), nil];
+    self.settingInformationLeft = [[NSArray alloc] initWithObjects:NSLocalizedString(@"版本",nil),@"QQ",@"email", nil];
     self.settingInformationRight = [[NSArray alloc] initWithObjects:@"V1.0",@"82107815",@"sheepcao1986@163.com", nil];
 
     
@@ -497,7 +497,7 @@ int collectNum;
                 //推送声音
                 noti.soundName = UILocalNotificationDefaultSoundName;
                 //内容
-                noti.alertBody = @"不积跬步无以至千里，不积小流无以成江海。有序生活从点滴做起。";
+                noti.alertBody = NSLocalizedString(@"不积跬步无以至千里，不积小流无以成江海。有序生活从点滴做起。",nil);
                 NSDictionary *infoDic = [NSDictionary dictionaryWithObject:@"name" forKey:@"key"];
                 noti.userInfo = infoDic;
                 NSLog(@"info:%@",noti.userInfo);
@@ -969,7 +969,7 @@ int collectNum;
     startTime = [NSString stringWithFormat:@"%02d:00",hour];
     endTime = [NSString stringWithFormat:@"%02d:45",hour];
     
-    self.textInMain = @"点击输入......";
+    self.textInMain = NSLocalizedString(@"点击输入......",nil);
     
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
     my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
@@ -1083,10 +1083,10 @@ int collectNum;
     //获取将要查询的日期
     if (!self.dateToSelect) {
         NSLog(@"没选日期！");
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出错啦！"
-                                                        message:@"请先选择要查看的日期"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"出错啦！",nil)
+                                                        message:NSLocalizedString(@"请先选择要查看的日期",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"确定"
+                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                               otherButtonTitles:nil];
         
         [ alert  show];
@@ -1269,10 +1269,10 @@ int collectNum;
         
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"请输入收藏夹密码"
+                                                    message:NSLocalizedString(@"请输入收藏夹密码",nil)
                                                    delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定",nil];
+                                          cancelButtonTitle:NSLocalizedString(@"取消",nil)
+                                          otherButtonTitles:NSLocalizedString(@"确定",nil),nil];
     
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
     UITextField *pswd = [alert textFieldAtIndex:0];
@@ -1531,10 +1531,10 @@ int collectNum;
     formatter.dateFormat = @"yyyy-MM-dd";
     
     if ([self.my_analyse.dateStart.date compare: self.my_analyse.dateEnd.date] ==NSOrderedDescending) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"出错啦！"
-                                                        message:@"统计起始日期大于终止日期"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"出错啦！",nil)
+                                                        message:NSLocalizedString(@"统计起始日期大于终止日期",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"确定"
+                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                               otherButtonTitles:nil];
         
         [ alert  show];
@@ -1740,10 +1740,10 @@ int collectNum;
         {
             if (password) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"请输入密码"
+                                                                message:NSLocalizedString(@"请输入密码",nil)
                                                                delegate:self
-                                                      cancelButtonTitle:@"取消"
-                                                      otherButtonTitles:@"确定",nil];
+                                                      cancelButtonTitle:NSLocalizedString(@"取消",nil)
+                                                      otherButtonTitles:NSLocalizedString(@"确定",nil),nil];
                 
                 alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
                 UITextField *pswd = [alert textFieldAtIndex:0];
@@ -1768,10 +1768,10 @@ int collectNum;
 }
 -(void)modifyPawdTapped{
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                    message:@"请输入原密码"
+                                                    message:NSLocalizedString(@"请输入原密码",nil)
                                                    delegate:self
-                                          cancelButtonTitle:@"取消"
-                                          otherButtonTitles:@"确定",nil];
+                                          cancelButtonTitle:NSLocalizedString(@"取消",nil)
+                                          otherButtonTitles:NSLocalizedString(@"确定",nil),nil];
     
     alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
     UITextField *pswd = [alert textFieldAtIndex:0];
@@ -1792,9 +1792,9 @@ int collectNum;
     
     if ([self.my_setting.password.text isEqualToString:@""]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"密码不能为空！"
+                                                        message:NSLocalizedString(@"密码不能为空！",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"确定"
+                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                               otherButtonTitles:nil];
         
         
@@ -1890,9 +1890,9 @@ int collectNum;
     }else{
     
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"两次输入密码不一致！"
+                                                        message:NSLocalizedString(@"两次输入密码不一致！",nil)
                                                        delegate:nil
-                                              cancelButtonTitle:@"确定"
+                                              cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                               otherButtonTitles:nil];
         
         
@@ -3535,7 +3535,7 @@ int collectNum;
                 
                 char *ttl_mdfy = (char *)sqlite3_column_text(statement, 0);
                 if (ttl_mdfy == nil) {
-                    evtTitle_search = @"空";
+                    evtTitle_search = NSLocalizedString(@"空",nil);
                 }else {
                     evtTitle_search = [[NSString alloc] initWithUTF8String:ttl_mdfy];
                     
@@ -3545,7 +3545,7 @@ int collectNum;
                 
                 char *date_mdfy = (char *)sqlite3_column_text(statement, 2);
                 if (date_mdfy == nil) {
-                    evtDate_search = @"空";
+                    evtDate_search = NSLocalizedString(@"空",nil);
                 }else {
                     evtDate_search = [[NSString alloc] initWithUTF8String:date_mdfy];
                     
@@ -3599,9 +3599,9 @@ int collectNum;
                 
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"密码错误"
+                                                                message:NSLocalizedString(@"密码错误",nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"确定"
+                                                      cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                       otherButtonTitles:nil];
                 
                // alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
@@ -3625,9 +3625,9 @@ int collectNum;
                 
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"密码错误"
+                                                                message:NSLocalizedString(@"密码错误",nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"确定"
+                                                      cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                       otherButtonTitles:nil];
                 
                 // alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
@@ -3663,9 +3663,9 @@ int collectNum;
                 
                 
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"密码错误"
+                                                                message:NSLocalizedString(@"密码错误",nil)
                                                                delegate:nil
-                                                      cancelButtonTitle:@"确定"
+                                                      cancelButtonTitle:NSLocalizedString(@"确定",nil)
                                                       otherButtonTitles:nil];
                 
                 // alert.alertViewStyle = UIAlertViewStyleSecureTextInput;

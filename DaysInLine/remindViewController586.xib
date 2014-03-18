@@ -21,8 +21,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <segments>
-                        <segment title="按期日期提醒"/>
-                        <segment title="按间隔提醒"/>
+                        <segment title=""/>
+                        <segment title=""/>
                     </segments>
                 </segmentedControl>
             </subviews>

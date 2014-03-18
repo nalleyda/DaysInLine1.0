@@ -62,7 +62,7 @@
        
         
         UILabel *soundLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+78+y, 40, 30)];
-        soundLabel.text = @"音效";
+        soundLabel.text = NSLocalizedString(@"音效",nil);
         soundLabel.font = [UIFont systemFontOfSize:16.0];
         soundLabel.backgroundColor = [UIColor clearColor];
         
@@ -112,7 +112,7 @@
         [self addSubview:self.icloudSwitch];
         */
         UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128+y, 100, 30)];
-        firstDay.text = @"收藏夹密码";
+        firstDay.text = NSLocalizedString(@"收藏夹密码",nil);
         firstDay.font = [UIFont systemFontOfSize:16.0];
         firstDay.backgroundColor = [UIColor clearColor];
         
@@ -134,7 +134,7 @@
         self.tipsView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+155+y, 190, 140)];
         
         self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 100, 30)];
-        [self.tips setTitle:@"提示      " forState:UIControlStateNormal ];
+        [self.tips setTitle:NSLocalizedString(@"提示      ",nil) forState:UIControlStateNormal ];
         [self.tips setTitleColor:[UIColor colorWithRed:112/255.0f green:112/255.0f blue:112/255.0f alpha:1.0f] forState:UIControlStateNormal];
         self.tips.titleLabel.font = [UIFont systemFontOfSize:14.0];
         self.tips.layer.borderWidth = 0.0f;
@@ -144,7 +144,7 @@
 
         
         self.modifyPassword = [[UIButton alloc] initWithFrame:CGRectMake(0, 48, 100, 30)];
-        [self.modifyPassword setTitle:@"修改密码" forState:UIControlStateNormal ];
+        [self.modifyPassword setTitle:NSLocalizedString(@"修改密码",nil) forState:UIControlStateNormal ];
         [self.modifyPassword setTitleColor:[UIColor colorWithRed:112/255.0f green:112/255.0f blue:112/255.0f alpha:1.0f] forState:UIControlStateNormal];
         self.modifyPassword.titleLabel.font = [UIFont systemFontOfSize:14.0];
         self.modifyPassword.layer.borderWidth = 0.0f;
@@ -166,17 +166,17 @@
         
         UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 30)];
         passwordText.font = [UIFont systemFontOfSize:14.0];
-        passwordText.text = @"设置密码:";
+        passwordText.text = NSLocalizedString(@"设置密码:",nil);
         passwordText.backgroundColor = [UIColor clearColor];
         
         UILabel *passwordAgain = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, 70, 30)];
         passwordAgain.font = [UIFont systemFontOfSize:14.0];
-        passwordAgain.text = @"再次输入:";
+        passwordAgain.text = NSLocalizedString(@"再次输入:",nil);
         passwordAgain.backgroundColor = [UIColor clearColor];
         
         UILabel *setTipsText = [[UILabel alloc] initWithFrame:CGRectMake(0, 78, 70, 30)];
         setTipsText.font = [UIFont systemFontOfSize:14.0];
-        setTipsText.text = @"密码提示:";
+        setTipsText.text = NSLocalizedString(@"密码提示:",nil);
         setTipsText.backgroundColor = [UIColor clearColor];
 
         self.password = [[UITextField alloc] initWithFrame:CGRectMake(75, 13, 100, 25)];

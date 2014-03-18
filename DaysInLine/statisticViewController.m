@@ -189,12 +189,12 @@ double expendAll;
         }
 
         
-        my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
-      //  my_result.workingTime.text = [NSString stringWithFormat:NSLocalizedString(@"%.2f小时",nil),work_life[0]/60];
+       // my_result.workingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[0]/60];
+        my_result.workingTime.text = [NSString stringWithFormat:NSLocalizedString(@"%.2f小时",nil),work_life[0]/60];
 
         my_result.workingLong.frame = CGRectMake(78,y +150, workOfAll*164 , 11);
         
-        my_result.lifingTime.text = [NSString stringWithFormat:@"%.2f小时",work_life[1]/60];
+        my_result.lifingTime.text = [NSString stringWithFormat:NSLocalizedString(@"%.2f小时",nil),work_life[1]/60];
         my_result.lifeLong.frame = CGRectMake(78+workOfAll*164,y +150, lifeOfAll*164 , 11);
         
         my_result.moodLong.frame = CGRectMake(78, y+ 212,211*moodAverage/(5*days), 11);

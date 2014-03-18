@@ -29,7 +29,7 @@
     }
     
     NSArray *imageNames = [NSArray arrayWithObjects:@"add.png",@"searchInAlert.png",@"tagBtn.png",@"remindBtn.png",@"photoBtn.png",@"moneyBtn.png",@"collectionBtn.png",@"saveBtn.png",@"deleteBtn.png",@"returnBtn.png",nil];
-    NSArray *meanningLable = [NSArray arrayWithObjects:@"添加事项",@"查看照片",@"添加标签",@"设定提醒",@"附加照片",@"收支管理",@"收藏事项",@"保存事项",@"删除事项",@"返回上级",nil];
+    NSArray *meanningLable = [NSArray arrayWithObjects:NSLocalizedString(@"添加事项",nil),NSLocalizedString(@"查看照片",nil),NSLocalizedString(@"添加标签",nil),NSLocalizedString(@"设定提醒",nil),NSLocalizedString(@"附加照片",nil),NSLocalizedString(@"收支管理",nil),NSLocalizedString(@"收藏事项",nil),NSLocalizedString(@"保存事项",nil),NSLocalizedString(@"删除事项",nil),NSLocalizedString(@"返回上级",nil),nil];
 
     
     for (int i = 0; i<5; i++) {

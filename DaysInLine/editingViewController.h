@@ -62,6 +62,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *returnButton;
 @property (weak, nonatomic) UILabel *startLabel;
 @property (weak, nonatomic) UILabel *endLabel;
+
+@property (weak, nonatomic) UILabel *toLabel;
+@property (weak, nonatomic) UILabel *titleLabel;
+
 //@property (strong, nonatomic) IBOutlet NSMutableArray *imageView;
 @property (strong, nonatomic) IBOutlet NSMutableArray *imageViewButton;
 @property (strong, nonatomic) CustomIOS7AlertView *moneyAlert;
