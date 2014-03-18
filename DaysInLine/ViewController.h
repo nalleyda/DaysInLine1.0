@@ -32,7 +32,7 @@
 
 
 //@property (strong, nonatomic) ADBannerView *adView;
-//@property (strong, nonatomic) ADBannerView *iAdBannerView;
+@property (strong, nonatomic) ADBannerView *iAdBannerView;
 @property (strong, nonatomic) GADBannerView *gAdBannerView;
 //@property (strong, nonatomic) NSNumber *failLoadiAD;
 @property (nonatomic, assign) BOOL bannerIsVisible;

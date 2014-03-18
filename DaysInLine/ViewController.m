@@ -98,6 +98,8 @@ int collectNum;
     
        [super viewDidLoad];
     
+    
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundHome.png"]];
 /*
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -432,18 +434,16 @@ int collectNum;
     
     //iAd广告
    //  CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    self.gAdBannerView = [[GADBannerView alloc]
-                          initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
     
-    self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+    self.iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
+   
+    [self.iAdBannerView setDelegate:self];
     
-    self.gAdBannerView.rootViewController = self;
-    self.gAdBannerView.backgroundColor = [UIColor clearColor];
-    [self.gAdBannerView loadRequest:[GADRequest request]];
-    [self.view addSubview:self.gAdBannerView];
-    
-    
+    [self.view addSubview:self.iAdBannerView];
 
+    
+    
+   // [self bannerView:self.iAdBannerView didFailToReceiveAdWithError:nil];
     
     //每天晚上8点半提醒用户记录
   
@@ -560,7 +560,7 @@ int collectNum;
         lifeArea[i] = 0;
     }
 
-//    [self.iAdBannerView removeFromSuperview];
+    [self.iAdBannerView removeFromSuperview];
     [self.gAdBannerView removeFromSuperview];
 
     
@@ -1005,7 +1005,7 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10016" eventLabel:@"selectTap"];
 
     
-  //  [self.iAdBannerView removeFromSuperview];
+    [self.iAdBannerView removeFromSuperview];
     [self.gAdBannerView removeFromSuperview];
 
 
@@ -1305,7 +1305,7 @@ int collectNum;
         AudioServicesPlaySystemSound(soundFileObject);
     }
     
-  //  [self.view addSubview:self.iAdBannerView];
+    [self.view addSubview:self.iAdBannerView];
     [self.view addSubview:self.gAdBannerView];
 
     
@@ -1473,7 +1473,7 @@ int collectNum;
     [[Frontia getStatistics] logEvent:@"10018" eventLabel:@"statisticTap"];
 
     
- //   [self.view addSubview:self.iAdBannerView];
+    [self.view addSubview:self.iAdBannerView];
     [self.view addSubview:self.gAdBannerView];
 
     //播放
@@ -1576,7 +1576,7 @@ int collectNum;
     
     
     
- //   [self.view addSubview:self.iAdBannerView];
+    [self.view addSubview:self.iAdBannerView];
     [self.view addSubview:self.gAdBannerView];
 
 
@@ -3695,35 +3695,46 @@ int collectNum;
 - (void)adView:(GADBannerView *)view didFailToReceiveAdWithError:(GADRequestError *)error
 {
     NSLog(@"Admob error: %@", error);
-}
-/*
--(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
-{
-    if(self.bannerIsVisible)
-    {
-        [UIView beginAnimations:@"animateAdBannerOff"  context:NULL];
-        banner.frame = CGRectOffset(banner.frame, 0, 100);
-        [UIView commitAnimations];
-        self.bannerIsVisible = NO;
-    }
+    [self.gAdBannerView removeFromSuperview];
 }
 
-*/
+-(void) bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+     NSLog(@"iad failed");
+    [self.iAdBannerView removeFromSuperview];
+    
+    
+    
+    self.gAdBannerView = [[GADBannerView alloc]
+                          initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
+    
+    self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+    
+    self.gAdBannerView.delegate = self;
+    self.gAdBannerView.rootViewController = self;
+    self.gAdBannerView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.gAdBannerView];
+
+    [self.gAdBannerView loadRequest:[GADRequest request]];
+
+    
+}
+
+
 
 
 #pragma mark - AdViewDelegates
 
 
 
-/*
 -(void)bannerViewWillLoadAd:(ADBannerView *)banner{
-    NSLog(@"Ad will load");
+    NSLog(@"iAd will load");
 }
 -(void)bannerViewActionDidFinish:(ADBannerView *)banner{
-    NSLog(@"Ad did finish");
+    NSLog(@"iAd did finish");
     
 }
-*/
+
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     
