@@ -55,7 +55,7 @@
     [self addSubview:selectTrans];
     [self bringSubviewToFront:self.selectTanslate];
     
-    UIImageView *collectTrans = [[UIImageView alloc] initWithFrame:CGRectMake(10, 194+3*y+height, 217, 50)];
+    UIImageView *collectTrans = [[UIImageView alloc] initWithFrame:CGRectMake(10, 194+4*y+height, 217, 50)];
     self.collectTanslate = [[UIButton alloc] initWithFrame:CGRectMake(27, 194+4*y+height, 200, 50)];
     collectTrans.image = [UIImage imageNamed:@"text.png"];
     self.collectTanslate.backgroundColor = [UIColor clearColor];
@@ -68,7 +68,7 @@
     [self addSubview:collectTrans];
     [self bringSubviewToFront:self.collectTanslate];
 
-    UIImageView *analyseTrans = [[UIImageView alloc] initWithFrame:CGRectMake(10, 267+3*y+height, 217, 50)];
+    UIImageView *analyseTrans = [[UIImageView alloc] initWithFrame:CGRectMake(10, 267+5*y+height, 217, 50)];
     self.analyseTanslate = [[UIButton alloc] initWithFrame:CGRectMake(27, 267+5*y+height, 200, 50)];
     analyseTrans.image = [UIImage imageNamed:@"text.png"];
     self.analyseTanslate.backgroundColor = [UIColor clearColor];
@@ -82,7 +82,7 @@
     [self addSubview:analyseTrans];
     [self bringSubviewToFront:self.analyseTanslate];
     
-    UIImageView *settingTrans = [[UIImageView alloc] initWithFrame:CGRectMake(10, 340+3*y+height, 217, 50)];
+    UIImageView *settingTrans = [[UIImageView alloc] initWithFrame:CGRectMake(10, 340+6*y+height, 217, 50)];
     self.settingTanslate = [[UIButton alloc] initWithFrame:CGRectMake(27, 340+6*y+height, 200, 50)];
     settingTrans.image = [UIImage imageNamed:@"text.png"];
     self.settingTanslate.backgroundColor = [UIColor clearColor];
