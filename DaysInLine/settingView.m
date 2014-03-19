@@ -24,11 +24,16 @@
         
   */
         
-        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-30, self.frame.origin.y+25, 37 , 20) ];
+      //  UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-30, self.frame.origin.y+25, 37 , 20) ];
         //tips.text = @"请选择想要分析的时间段：";
         // tips.backgroundColor = [UIColor clearColor];
         
-        title.image = [UIImage imageNamed:@"设置汉字.png"];
+       // title.image = [UIImage imageNamed:@"设置汉字.png"];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.frame.origin.y+30, 80 , 20) ];
+        title.backgroundColor = [UIColor clearColor];
+        title.text = NSLocalizedString(@"设 置",nil);
+        title.font = [UIFont fontWithName:@"BoldOblique" size:18];
+        [title setTextColor:[UIColor darkGrayColor]];
         [self addSubview:title];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]   initWithTarget:self action:@selector(dismissKeyboard)];
@@ -61,7 +66,7 @@
         [self addSubview:self.settingTable];
        
         
-        UILabel *soundLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+78+y, 40, 30)];
+        UILabel *soundLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+78+y, 80, 30)];
         soundLabel.text = NSLocalizedString(@"音效",nil);
         soundLabel.font = [UIFont systemFontOfSize:16.0];
         soundLabel.backgroundColor = [UIColor clearColor];
@@ -111,7 +116,7 @@
         self.icloudSwitch.onImage = [UIImage imageNamed:@"check.png"];
         [self addSubview:self.icloudSwitch];
         */
-        UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128+y, 100, 30)];
+        UILabel *firstDay = [[UILabel alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+128+y, 130, 30)];
         firstDay.text = NSLocalizedString(@"收藏夹密码",nil);
         firstDay.font = [UIFont systemFontOfSize:16.0];
         firstDay.backgroundColor = [UIColor clearColor];
@@ -136,7 +141,7 @@
         self.tips = [[UIButton alloc] initWithFrame:CGRectMake(0, 8, 100, 30)];
         [self.tips setTitle:NSLocalizedString(@"提示      ",nil) forState:UIControlStateNormal ];
         [self.tips setTitleColor:[UIColor colorWithRed:112/255.0f green:112/255.0f blue:112/255.0f alpha:1.0f] forState:UIControlStateNormal];
-        self.tips.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        self.tips.titleLabel.font = [UIFont systemFontOfSize:12.0];
         self.tips.layer.borderWidth = 0.0f;
         [self.tips setBackgroundImage:[UIImage imageNamed:@"passwordBtn"] forState:UIControlStateNormal];
   
@@ -146,7 +151,7 @@
         self.modifyPassword = [[UIButton alloc] initWithFrame:CGRectMake(0, 48, 100, 30)];
         [self.modifyPassword setTitle:NSLocalizedString(@"修改密码",nil) forState:UIControlStateNormal ];
         [self.modifyPassword setTitleColor:[UIColor colorWithRed:112/255.0f green:112/255.0f blue:112/255.0f alpha:1.0f] forState:UIControlStateNormal];
-        self.modifyPassword.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        self.modifyPassword.titleLabel.font = [UIFont systemFontOfSize:12.0];
         self.modifyPassword.layer.borderWidth = 0.0f;
         [self.modifyPassword setBackgroundImage:[UIImage imageNamed:@"passwordBtn"] forState:UIControlStateNormal];
 
@@ -164,34 +169,34 @@
         self.passwordView = [[UIView alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+155+y, 190, 155)];
         
         
-        UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 70, 30)];
-        passwordText.font = [UIFont systemFontOfSize:14.0];
+        UILabel *passwordText = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 90, 30)];
+        passwordText.font = [UIFont systemFontOfSize:13.0];
         passwordText.text = NSLocalizedString(@"设置密码:",nil);
         passwordText.backgroundColor = [UIColor clearColor];
         
-        UILabel *passwordAgain = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, 70, 30)];
-        passwordAgain.font = [UIFont systemFontOfSize:14.0];
+        UILabel *passwordAgain = [[UILabel alloc] initWithFrame:CGRectMake(0, 43, 90, 30)];
+        passwordAgain.font = [UIFont systemFontOfSize:13.0];
         passwordAgain.text = NSLocalizedString(@"再次输入:",nil);
         passwordAgain.backgroundColor = [UIColor clearColor];
         
-        UILabel *setTipsText = [[UILabel alloc] initWithFrame:CGRectMake(0, 78, 70, 30)];
-        setTipsText.font = [UIFont systemFontOfSize:14.0];
+        UILabel *setTipsText = [[UILabel alloc] initWithFrame:CGRectMake(0, 78, 90, 30)];
+        setTipsText.font = [UIFont systemFontOfSize:13.0];
         setTipsText.text = NSLocalizedString(@"密码提示:",nil);
         setTipsText.backgroundColor = [UIColor clearColor];
 
-        self.password = [[UITextField alloc] initWithFrame:CGRectMake(75, 13, 100, 25)];
+        self.password = [[UITextField alloc] initWithFrame:CGRectMake(95, 13, 100, 25)];
         self.password.secureTextEntry = YES;
         self.password.keyboardType = UIKeyboardTypeNumberPad;
         self.password.layer.borderWidth = 0.8f;
         self.password.layer.borderColor = [UIColor grayColor].CGColor;
-        self.password2 = [[UITextField alloc] initWithFrame:CGRectMake(75, 46, 100, 25)];
+        self.password2 = [[UITextField alloc] initWithFrame:CGRectMake(95, 46, 100, 25)];
         self.password2.secureTextEntry = YES;
         self.password2.keyboardType = UIKeyboardTypeNumberPad;
 
         self.password2.layer.borderWidth = 0.8f;
         self.password2.layer.borderColor = [UIColor grayColor].CGColor;
 
-        self.userTip =  [[UITextField alloc] initWithFrame:CGRectMake(75, 81, 100, 25)];
+        self.userTip =  [[UITextField alloc] initWithFrame:CGRectMake(95, 81, 100, 25)];
         self.userTip.layer.borderWidth = 0.8f;
         self.userTip.layer.borderColor = [UIColor grayColor].CGColor;
         self.userTip.delegate = self;
@@ -201,8 +206,10 @@
 
        // self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
         self.confirmButton.layer.borderWidth = 0.0f;
-        [self.confirmButton setBackgroundImage:[UIImage imageNamed:@"passwordOk"] forState:UIControlStateNormal];
-
+        [self.confirmButton setBackgroundImage:[UIImage imageNamed:@"password"] forState:UIControlStateNormal];
+        [self.confirmButton setTitle:NSLocalizedString(@"确定",nil) forState:UIControlStateNormal] ;
+        [self.confirmButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        self.confirmButton.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:17];
         
         [self.passwordView addSubview:passwordText];
         [self.passwordView addSubview:passwordAgain];

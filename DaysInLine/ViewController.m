@@ -91,6 +91,7 @@ bool hasPassWord;
 
 bool selectedDayRedrawDone;
 int collectNum;
+int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
 //int failLoadiAD;
 
 - (void)viewDidLoad
@@ -435,13 +436,26 @@ int collectNum;
     //iAd广告
    //  CGRect screenBounds = [[UIScreen mainScreen] bounds];
     
+    inwhichButton = 0;
+    
     self.iAdBannerView = [[ADBannerView alloc] initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
    
     [self.iAdBannerView setDelegate:self];
+    self.iAdBannerView.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.iAdBannerView];
-
+    self.bannerIsVisible = YES;
     
+    self.gAdBannerView = [[GADBannerView alloc]
+                          initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
+    
+    self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
+    
+    self.gAdBannerView.delegate = self;
+    self.gAdBannerView.rootViewController = self;
+    self.gAdBannerView.backgroundColor = [UIColor clearColor];
+    [self.gAdBannerView loadRequest:[GADRequest request]];
+
     
    // [self bannerView:self.iAdBannerView didFailToReceiveAdWithError:nil];
     
@@ -560,9 +574,13 @@ int collectNum;
         lifeArea[i] = 0;
     }
 
-    [self.iAdBannerView removeFromSuperview];
-    [self.gAdBannerView removeFromSuperview];
+    inwhichButton = 1;
+    if ( self.bannerIsVisible ) {
+        [self.iAdBannerView removeFromSuperview];
 
+    }else{
+        [self.gAdBannerView removeFromSuperview];
+    }
     
     //获取当前日期
     
@@ -948,7 +966,7 @@ int collectNum;
     CFBundleRef mainbundle=CFBundleGetMainBundle();
      SystemSoundID soundObject;
     //获得声音文件URL
-    CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+    CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
     //创建system sound 对象
     AudioServicesCreateSystemSoundID(soundfileurl, &soundObject);
     AudioServicesPlaySystemSound(soundObject);
@@ -1004,10 +1022,15 @@ int collectNum;
     
     [[Frontia getStatistics] logEvent:@"10016" eventLabel:@"selectTap"];
 
-    
-    [self.iAdBannerView removeFromSuperview];
-    [self.gAdBannerView removeFromSuperview];
-
+    inwhichButton = 2;
+  //  [self.iAdBannerView removeFromSuperview];
+  //  [self.gAdBannerView removeFromSuperview];
+    if ( self.bannerIsVisible ) {
+        [self.iAdBannerView removeFromSuperview];
+        
+    }else{
+        [self.gAdBannerView removeFromSuperview];
+    }
 
     
     if (soundSwitch) {
@@ -1070,7 +1093,7 @@ int collectNum;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_goInDay;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
         AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -1304,10 +1327,13 @@ int collectNum;
         
         AudioServicesPlaySystemSound(soundFileObject);
     }
-    
-    [self.view addSubview:self.iAdBannerView];
-    [self.view addSubview:self.gAdBannerView];
+    inwhichButton = 3;
+    if (self.bannerIsVisible) {
+        [self.view addSubview:self.iAdBannerView];
 
+    }else {
+        [self.view addSubview:self.gAdBannerView];
+    }
     
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
@@ -1472,10 +1498,16 @@ int collectNum;
     
     [[Frontia getStatistics] logEvent:@"10018" eventLabel:@"statisticTap"];
 
-    
-    [self.view addSubview:self.iAdBannerView];
-    [self.view addSubview:self.gAdBannerView];
+    inwhichButton = 4;
+    //[self.view addSubview:self.iAdBannerView];
+    //[self.view addSubview:self.gAdBannerView];
 
+    if (self.bannerIsVisible) {
+        [self.view addSubview:self.iAdBannerView];
+        
+    }else {
+        [self.view addSubview:self.gAdBannerView];
+    }
     //播放
     if (soundSwitch) {
         
@@ -1519,7 +1551,7 @@ int collectNum;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_goInDay;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
         AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -1575,11 +1607,19 @@ int collectNum;
 
     
     
+    inwhichButton = 5;
+   // [self.view addSubview:self.iAdBannerView];
+   // [self.view addSubview:self.gAdBannerView];
+
+
+    if (self.bannerIsVisible) {
+        [self.view addSubview:self.iAdBannerView];
+        
+    }else {
+        [self.view addSubview:self.gAdBannerView];
+    }
     
-    [self.view addSubview:self.iAdBannerView];
-    [self.view addSubview:self.gAdBannerView];
-
-
+    
     if (soundSwitch) {
         
         
@@ -2049,7 +2089,7 @@ int collectNum;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_goInDay;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
         AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -2653,7 +2693,7 @@ int collectNum;
                 CFBundleRef mainbundle=CFBundleGetMainBundle();
                 SystemSoundID soundObject_goInDay;
                 //获得声音文件URL
-                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
                 //创建system sound 对象
                 AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
                 AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -2726,7 +2766,7 @@ int collectNum;
                 CFBundleRef mainbundle=CFBundleGetMainBundle();
                 SystemSoundID soundObject_goInDay;
                 //获得声音文件URL
-                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
                 //创建system sound 对象
                 AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
                 AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -2925,7 +2965,7 @@ int collectNum;
                 CFBundleRef mainbundle=CFBundleGetMainBundle();
                 SystemSoundID soundObject_goInDay;
                 //获得声音文件URL
-                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
                 //创建system sound 对象
                 AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
                 AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -3137,7 +3177,7 @@ int collectNum;
                 CFBundleRef mainbundle=CFBundleGetMainBundle();
                 SystemSoundID soundObject_goInDay;
                 //获得声音文件URL
-                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+                CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
                 //创建system sound 对象
                 AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_goInDay);
                 AudioServicesPlaySystemSound(soundObject_goInDay);
@@ -3702,20 +3742,15 @@ int collectNum;
 {
      NSLog(@"iad failed");
     [self.iAdBannerView removeFromSuperview];
+    self.bannerIsVisible = NO;
     
     
     
-    self.gAdBannerView = [[GADBannerView alloc]
-                          initWithFrame:CGRectMake(0.0,self.view.frame.size.height - GAD_SIZE_320x50.height,GAD_SIZE_320x50.width,GAD_SIZE_320x50.height)];
-    
-    self.gAdBannerView.adUnitID = ADMOB_ID;//调用id
-    
-    self.gAdBannerView.delegate = self;
-    self.gAdBannerView.rootViewController = self;
-    self.gAdBannerView.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:self.gAdBannerView];
+    if (inwhichButton !=1 &&inwhichButton != 2) {
+        [self.view addSubview:self.gAdBannerView];
 
-    [self.gAdBannerView loadRequest:[GADRequest request]];
+    }
+
 
     
 }

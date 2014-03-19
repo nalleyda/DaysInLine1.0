@@ -18,11 +18,16 @@
         
         
         
-        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25, self.frame.origin.y+30, 38 , 20) ];
+       // UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25, self.frame.origin.y+30, 38 , 20) ];
         //tips.text = @"请选择想要分析的时间段：";
        // tips.backgroundColor = [UIColor clearColor];
         
-        title.image = [UIImage imageNamed:@"统计汉字.png"];
+       // title.image = [UIImage imageNamed:@"统计汉字.png"];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.frame.origin.y+30, 80 , 20) ];
+        title.backgroundColor = [UIColor clearColor];
+        title.text = NSLocalizedString(@"统 计",nil);
+        title.font = [UIFont fontWithName:@"BoldOblique" size:18];
+        [title setTextColor:[UIColor darkGrayColor]];
         [self addSubview:title];
        
         /*
@@ -73,9 +78,12 @@
              
         
         self.resultButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-50, self.frame.size.height-100, 100, 30) ];
-        [self.resultButton setBackgroundImage:[UIImage imageNamed: @"查看结果.png"] forState:UIControlStateNormal];
-      //  [self.resultButton setTitle:@"查看结果" forState:UIControlStateNormal];
-
+        [self.resultButton setBackgroundImage:[UIImage imageNamed: @"password.png"] forState:UIControlStateNormal];
+        [self.resultButton setTitle:NSLocalizedString(@"查看结果",nil) forState:UIControlStateNormal];
+        self.resultButton.backgroundColor = [UIColor clearColor];
+        
+        [self.resultButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        self.resultButton.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:17];
         
 
         [self addSubview:self.resultButton];

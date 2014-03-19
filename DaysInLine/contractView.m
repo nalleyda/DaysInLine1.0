@@ -30,7 +30,10 @@
     
     
     self.returnBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.contractTable.frame.origin.y + 180,  83, 30)];
-    [self.returnBtn setImage:[UIImage imageNamed:@"passwordback.png"] forState:UIControlStateNormal];
+    [self.returnBtn setBackgroundImage:[UIImage imageNamed:@"password.png"] forState:UIControlStateNormal];
+    [self.returnBtn setTitle:NSLocalizedString(@"返回",nil) forState:UIControlStateNormal] ;
+    [self.returnBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    self.returnBtn.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:17];
    // self.returnBtn.backgroundColor = [UIColor clearColor];
    // [self.returnBtn setTitle:@"返回" forState:UIControlStateNormal] ;
     //[self.returnBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

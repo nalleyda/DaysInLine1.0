@@ -135,7 +135,8 @@ SystemSoundID soundObject;
 
     [self.toLabel setText:NSLocalizedString(@"到",nil)];
     [self.titleLabel setText:NSLocalizedString(@"主题",nil)];
-
+    //self.toLabel.font = [UIFont systemFontOfSize:16.0];
+    self.titleLabel.font = [UIFont systemFontOfSize:16.0];
     
     int mainText_Height = 180;
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
@@ -761,7 +762,7 @@ SystemSoundID soundObject;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_photo;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_photo);
         AudioServicesPlaySystemSound(soundObject_photo);
@@ -822,7 +823,7 @@ SystemSoundID soundObject;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_InPhoto;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_InPhoto);
         AudioServicesPlaySystemSound(soundObject_InPhoto);
@@ -1062,7 +1063,7 @@ SystemSoundID soundObject;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_time;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_time);
         AudioServicesPlaySystemSound(soundObject_time);
@@ -1098,7 +1099,7 @@ SystemSoundID soundObject;
         CFBundleRef mainbundle=CFBundleGetMainBundle();
         SystemSoundID soundObject_time;
         //获得声音文件URL
-        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("mp3"),NULL);
+        CFURLRef soundfileurl=CFBundleCopyResourceURL(mainbundle,CFSTR("goEdit"),CFSTR("wav"),NULL);
         //创建system sound 对象
         AudioServicesCreateSystemSoundID(soundfileurl, &soundObject_time);
         AudioServicesPlaySystemSound(soundObject_time);

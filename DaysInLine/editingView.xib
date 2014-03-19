@@ -161,10 +161,10 @@
                     </connections>
                 </textField>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="120" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zxP-Np-Ufk">
-                    <rect key="frame" x="43" y="113" width="37" height="26"/>
+                    <rect key="frame" x="30" y="113" width="50" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="37" id="F8s-FM-EoY"/>
+                        <constraint firstAttribute="width" constant="50" id="F8s-FM-EoY"/>
                         <constraint firstAttribute="height" constant="26" id="FbD-E5-cE1"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -211,7 +211,7 @@
                 <constraint firstItem="jnF-cr-2Iy" firstAttribute="top" secondItem="cG5-Ig-cVN" secondAttribute="bottom" constant="12" id="jpV-lL-gvR"/>
                 <constraint firstItem="lJu-sb-EtN" firstAttribute="leading" secondItem="cG5-Ig-cVN" secondAttribute="trailing" constant="13" id="k1b-Sc-Vdr"/>
                 <constraint firstItem="tpe-fm-0n4" firstAttribute="trailing" secondItem="0WL-AF-KdO" secondAttribute="trailing" id="mAK-Nb-cJV"/>
-                <constraint firstItem="zxP-Np-Ufk" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" constant="43" id="mvg-77-GOt"/>
+                <constraint firstItem="zxP-Np-Ufk" firstAttribute="leading" secondItem="d0u-Lm-SJW" secondAttribute="leading" constant="30" id="mvg-77-GOt"/>
                 <constraint firstItem="cG5-Ig-cVN" firstAttribute="top" secondItem="d0u-Lm-SJW" secondAttribute="top" constant="77" id="mzr-sJ-n1U"/>
                 <constraint firstItem="HXi-cd-CSi" firstAttribute="centerY" secondItem="d6A-NF-qtA" secondAttribute="centerY" id="o5E-sl-ggL"/>
                 <constraint firstItem="ak2-GO-nui" firstAttribute="leading" secondItem="ksZ-1h-47g" secondAttribute="leading" id="oql-Fn-aSF"/>

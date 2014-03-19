@@ -21,11 +21,17 @@
         [self addSubview:self.collectionScroll];
         */
         
-        UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25, self.frame.origin.y+30, 50 , 20) ];
+       // UIImageView *title = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25, self.frame.origin.y+30, 50 , 20) ];
         //tips.text = @"请选择想要分析的时间段：";
         // tips.backgroundColor = [UIColor clearColor];
         
-        title.image = [UIImage imageNamed:@"收藏夹汉字.png"];
+      //  title.image = [UIImage imageNamed:@"收藏夹汉字.png"];
+        UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.origin.y+30, 80 , 20) ];
+        title.backgroundColor = [UIColor clearColor];
+        title.text = NSLocalizedString(@"收藏夹",nil);
+        title.font = [UIFont fontWithName:@"BoldOblique" size:18];
+        [title setTextColor:[UIColor darkGrayColor]];
+
         [self addSubview:title];
         
         self.collectionTable = [[UITableView alloc] initWithFrame:CGRectMake(10,70,self.frame.size.width-20, self.frame.size.height-100)];

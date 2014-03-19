@@ -34,8 +34,11 @@
         
         NSArray *selectModeText = [[NSArray alloc] initWithObjects:NSLocalizedString(@"按日期",nil),NSLocalizedString(@"按标签",nil),NSLocalizedString(@"关键字",nil),nil];
         self.selectMode = [[UISegmentedControl alloc] initWithItems:selectModeText];
+        [self.selectMode setWidth:70 forSegmentAtIndex:0];
+        [self.selectMode setWidth:70 forSegmentAtIndex:1];
+        [self.selectMode setWidth:80 forSegmentAtIndex:2];
         
-        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-100, frame.origin.y+18, 200, 30)];
+        [self.selectMode setFrame:CGRectMake(self.frame.size.width/2-106, frame.origin.y+18, 200, 30)];
         self.selectMode.selectedSegmentIndex= 0;
         [self.selectMode addTarget:self action:@selector(selectValueChanged:) forControlEvents:UIControlEventValueChanged];
         
@@ -44,12 +47,15 @@
         
         self.goInThatDay= [UIButton buttonWithType:UIButtonTypeCustom];
         self.goInThatDay.frame = CGRectMake((self.frame.size.width-20)/2-60, frame.size.height-100, 97, 30);
-        [self.goInThatDay setBackgroundImage:[UIImage imageNamed: @"查看当日.png"] forState:UIControlStateNormal];
-       // [self.goInThatDay setTitle:@"回顾当日" forState:UIControlStateNormal];
-        
+        [self.goInThatDay setBackgroundImage:[UIImage imageNamed: @"password.png"] forState:UIControlStateNormal];
+        [self.goInThatDay setTitle:NSLocalizedString(@" 查看当日",nil) forState:UIControlStateNormal];
+        self.goInThatDay.backgroundColor = [UIColor clearColor];
+       
+        [self.goInThatDay setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        self.goInThatDay.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:17];
        // self.goInThatDay.layer.borderColor = [UIColor blackColor].CGColor;
        // self.goInThatDay.layer.borderWidth = 1.0;
-        [self.goInThatDay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+       // [self.goInThatDay setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
 
         //按日期查询视图
@@ -96,10 +102,13 @@
 
         self.returnToTags= [UIButton buttonWithType:UIButtonTypeCustom];
         self.returnToTags.frame = CGRectMake((self.frame.size.width-20)/2-60, self.frame.size.height-120, 100, 30);
-        [self.returnToTags setBackgroundImage:[UIImage imageNamed: @"重返标签.png"] forState:UIControlStateNormal];
+        [self.returnToTags setBackgroundImage:[UIImage imageNamed: @"password.png"] forState:UIControlStateNormal];
 
-        //[self.returnToTags setTitle:@"重选标签" forState:UIControlStateNormal];
+        [self.returnToTags setTitle:NSLocalizedString(@"重选标签",nil) forState:UIControlStateNormal];
+        self.returnToTags.backgroundColor = [UIColor clearColor];
         
+        [self.returnToTags setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        self.returnToTags.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:17];
        // self.returnToTags.layer.borderColor = [UIColor blackColor].CGColor;
         //self.returnToTags.layer.borderWidth = 1.0;
         //[self.returnToTags setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

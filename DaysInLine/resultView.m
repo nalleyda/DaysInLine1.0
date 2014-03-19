@@ -24,45 +24,102 @@
 
         }
         
+        UILabel *longSentence;
+        
         /* fit for 4-inch screen */
          CGRect screenBounds = [[UIScreen mainScreen] bounds];
         if (screenBounds.size.height == 568) {
             y += 50;
-        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-130, 97, 30)];
-        self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+73, 50, 50)];
+        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-130, 110, 32)];
+        self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(190, y+73, 50, 50)];
+        longSentence = [[UILabel alloc] initWithFrame:CGRectMake(70, y+73, 250, 50)];
 
         }else
         {
             y-=10;
-        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-90, 97, 30)];
-        self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+83, 50, 50)];
+        self.continueButton = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-40, self.frame.size.height-90, 110, 32)];
+        self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(190, y+83, 50, 50)];
+           
+        longSentence = [[UILabel alloc] initWithFrame:CGRectMake(70, y+83, 250, 50)];
 
         }
         
+        longSentence.text = NSLocalizedString(@"该阶段共有记录           天",nil);
+        [longSentence setTextColor:[UIColor darkGrayColor]];
+        longSentence.font = [UIFont fontWithName:@"BoldOblique" size:10];
+        longSentence.backgroundColor = [UIColor clearColor];
+        [self addSubview:longSentence];
+        
         self.continueButton.backgroundColor = [UIColor clearColor];
-        [self.continueButton setBackgroundImage:[UIImage imageNamed: @"继续努力.png"] forState:UIControlStateNormal];
-        //[self.continueButton setTitle:@"继续努力" forState:UIControlStateNormal];
-      //  self.continueButton.titleLabel.text = @"继续努力";
-      //  self.continueButton.titleLabel.textColor = [UIColor blueColor];
+        [self.continueButton setBackgroundImage:[UIImage imageNamed: @"password.png"] forState:UIControlStateNormal];
+        [self.continueButton setTitle:NSLocalizedString(@"继续努力",nil) forState:UIControlStateNormal];
+        [self.continueButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        self.continueButton.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:15];
         [self addSubview:self.continueButton];
+        
 
+        
         
        // self.daysCount = [[UILabel alloc] initWithFrame:CGRectMake(175, y+73, 50, 50)];
         self.daysCount.backgroundColor = [UIColor clearColor];
         self.daysCount.textAlignment = NSTextAlignmentCenter;
         self.daysCount.textColor = [UIColor colorWithRed:59/255.0f green:170/255.0f blue:217/255.0f alpha:1.0f];
-        self.daysCount.font = [UIFont systemFontOfSize:20.0];
+        self.daysCount.font = [UIFont systemFontOfSize:22.0];
         [self addSubview:self.daysCount];
-
+        [self bringSubviewToFront:self.daysCount];
         
         UIImageView *workImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +133, 260    , 30)];
         [workImage setImage:[UIImage imageNamed:@"工作生活.png"]];
+        
+        UILabel *workLabel = [[UILabel alloc] initWithFrame:CGRectMake(37,y +133, 80    , 30)];
+        workLabel.text = NSLocalizedString(@"工作",nil);
+       // workLabel.textAlignment = NSTextAlignmentLeft;
+        workLabel.backgroundColor = [UIColor clearColor];
+        [workLabel setTextColor:[UIColor whiteColor]];
+        workLabel.font = [UIFont systemFontOfSize:13.0f];
+        [self bringSubviewToFront:workLabel];
+        
+        UILabel *lifeLabel = [[UILabel alloc] initWithFrame:CGRectMake(248,y +133, 80    , 30)];
+        lifeLabel.text = NSLocalizedString(@"生活",nil);
+        lifeLabel.backgroundColor = [UIColor clearColor];
+        [lifeLabel setTextColor:[UIColor darkGrayColor]];
+        lifeLabel.font = [UIFont systemFontOfSize:13.0f];
+        [self bringSubviewToFront:lifeLabel];
+        
+        UILabel *moodLabel = [[UILabel alloc] initWithFrame:CGRectMake(37,y +195, 80    , 30)];
+        moodLabel.text = NSLocalizedString(@"心情",nil);
+        moodLabel.backgroundColor = [UIColor clearColor];
+        [moodLabel setTextColor:[UIColor whiteColor]];
+        moodLabel.font = [UIFont systemFontOfSize:12.0f];
+        [self bringSubviewToFront:moodLabel];
+        
+        UILabel *growLabel = [[UILabel alloc] initWithFrame:CGRectMake(33,y +240, 80    , 30)];
+        growLabel.text = NSLocalizedString(@"成长",nil);
+        growLabel.backgroundColor = [UIColor clearColor];
+        [growLabel setTextColor:[UIColor whiteColor]];
+        growLabel.font = [UIFont systemFontOfSize:12.0f];
+        [self bringSubviewToFront:growLabel];
+        
+        UILabel *incomeLabel = [[UILabel alloc] initWithFrame:CGRectMake(37,y +290, 80    , 30)];
+        incomeLabel.text = NSLocalizedString(@"收入",nil);
+        incomeLabel.backgroundColor = [UIColor clearColor];
+        [incomeLabel setTextColor:[UIColor whiteColor]];
+        incomeLabel.font = [UIFont systemFontOfSize:12.0f];
+        [self bringSubviewToFront:incomeLabel];
+        
+        UILabel *expendLabel = [[UILabel alloc] initWithFrame:CGRectMake(33,y +335, 80    , 30)];
+        expendLabel.text = NSLocalizedString(@"支出",nil);
+        expendLabel.backgroundColor = [UIColor clearColor];
+        [expendLabel setTextColor:[UIColor whiteColor]];
+        expendLabel.font = [UIFont systemFontOfSize:12.0f];
+        [self bringSubviewToFront:expendLabel];
         
         self.workingLong = [[UILabel alloc] init];
         self.workingLong.backgroundColor = [UIColor colorWithRed:97/255.0f green:197/255.0f blue:185/255.0f alpha:1.0f];
         self.workingTime = [[UILabel alloc] initWithFrame:CGRectMake(80,y +133, 100 , 16)];
         self.workingTime.backgroundColor = [UIColor clearColor];
         self.workingTime.font = [UIFont systemFontOfSize:10.0];
+        
         
         
         self.lifeLong = [[UILabel alloc] init];
@@ -77,7 +134,7 @@
         [self addSubview:self.lifingTime];
         [self addSubview:self.workingLong];
         [self addSubview:self.workingTime];
-        [self addSubview:workImage];
+
         
         UIImageView *moodImage = [[UIImageView alloc] initWithFrame:CGRectMake(30,y +195, 260    , 30)];
         [moodImage setImage:[UIImage imageNamed:@"心情.png"]];
@@ -142,6 +199,14 @@
         [self addSubview:self.expendingLong];
         
         [self addSubview:expendImage];
+        
+        [self addSubview:workImage];
+        [self addSubview:workLabel];
+        [self addSubview:lifeLabel];
+        [self addSubview:moodLabel];
+        [self addSubview:growLabel];
+        [self addSubview:incomeLabel];
+        [self addSubview:expendLabel];
         
     }
     return self;

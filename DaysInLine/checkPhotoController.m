@@ -48,12 +48,29 @@
             [self.view addSubview:self.gAdBannerView];
         }
 
+        UILabel *photoLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-50, 20, 100, 50)];
+        photoLabel.text = NSLocalizedString(@"照片浏览",nil);
+        photoLabel.textAlignment = NSTextAlignmentCenter;
+        [photoLabel setTextColor:[UIColor darkGrayColor]];
+        photoLabel.font = [UIFont fontWithName:@"BoldOblique" size:18];
+        photoLabel.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:photoLabel];
+
 
         
         
     }else{
        backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         [backImage setImage:[UIImage imageNamed:@"照片背景.png"]];
+        
+        UILabel *photoLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-50, 22, 100, 50)];
+        photoLabel.text = NSLocalizedString(@"照片浏览",nil);
+        photoLabel.textAlignment = NSTextAlignmentCenter;
+
+        [photoLabel setTextColor:[UIColor darkGrayColor]];
+        photoLabel.font = [UIFont fontWithName:@"BoldOblique" size:18];
+        photoLabel.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:photoLabel];
         
     }
 

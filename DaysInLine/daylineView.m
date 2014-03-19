@@ -104,7 +104,7 @@ const int GROWTH_BOTTOM_GAP = 50;
     int bottom_y = frame.origin.y + frame.size.height;
     for (int i=0; i<5; i++) {
         UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [starButton setFrame:CGRectMake(65+i*30, bottom_y - MOOD_BOTTOM_GAP, 25, 25)];
+        [starButton setFrame:CGRectMake(70+i*30, bottom_y - MOOD_BOTTOM_GAP, 25, 25)];
         [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
         [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
         starButton.tag = i;
@@ -114,7 +114,7 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     for (int i=0; i<5; i++) {
         UIButton *starButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [starButton setFrame:CGRectMake(65+i*30, bottom_y - GROWTH_BOTTOM_GAP, 25, 25)];
+        [starButton setFrame:CGRectMake(70+i*30, bottom_y - GROWTH_BOTTOM_GAP, 25, 25)];
         
         [starButton setImage:[UIImage imageNamed:@"star1.png"] forState:UIControlStateNormal];
         [starButton setImage:[UIImage imageNamed:@"star2.png"] forState:UIControlStateHighlighted];
@@ -184,19 +184,19 @@ const int GROWTH_BOTTOM_GAP = 50;
     
     int bottom_y = frame.origin.y + frame.size.height;
     
-    UILabel *moodLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, bottom_y - MOOD_BOTTOM_GAP, 40, 26)];
+    UILabel *moodLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, bottom_y - MOOD_BOTTOM_GAP, 55, 26)];
     moodLabel.text = NSLocalizedString(@"心情",nil);
     moodLabel.backgroundColor = [UIColor clearColor];
-    moodLabel.font = [UIFont systemFontOfSize:14.0];
-    moodLabel.textAlignment = NSTextAlignmentCenter;
+    moodLabel.font = [UIFont systemFontOfSize:13.0];
+    moodLabel.textAlignment = NSTextAlignmentLeft;
     moodLabel.layer.borderColor = [UIColor clearColor].CGColor;
     moodLabel.layer.borderWidth = 2.0;
     
-    UILabel *growthLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, bottom_y - GROWTH_BOTTOM_GAP, 40, 26)];
+    UILabel *growthLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, bottom_y - GROWTH_BOTTOM_GAP, 55, 26)];
     growthLabel.text = NSLocalizedString(@"成长",nil);
-    growthLabel.font = [UIFont systemFontOfSize:14.0];
+    growthLabel.font = [UIFont systemFontOfSize:13.0];
     growthLabel.backgroundColor = [UIColor clearColor];
-    growthLabel.textAlignment = NSTextAlignmentCenter;
+    growthLabel.textAlignment = NSTextAlignmentLeft;
     growthLabel.layer.borderColor = [UIColor clearColor].CGColor;
     growthLabel.layer.borderWidth = 2.0;
  

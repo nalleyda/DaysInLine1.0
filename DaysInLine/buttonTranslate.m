@@ -29,7 +29,7 @@
     }
     
     NSArray *imageNames = [NSArray arrayWithObjects:@"add.png",@"searchInAlert.png",@"tagBtn.png",@"remindBtn.png",@"photoBtn.png",@"moneyBtn.png",@"collectionBtn.png",@"saveBtn.png",@"deleteBtn.png",@"returnBtn.png",nil];
-    NSArray *meanningLable = [NSArray arrayWithObjects:NSLocalizedString(@"添加事项",nil),NSLocalizedString(@"查看照片",nil),NSLocalizedString(@"添加标签",nil),NSLocalizedString(@"设定提醒",nil),NSLocalizedString(@"附加照片",nil),NSLocalizedString(@"收支管理",nil),NSLocalizedString(@"收藏事项",nil),NSLocalizedString(@"保存事项",nil),NSLocalizedString(@"删除事项",nil),NSLocalizedString(@"返回上级",nil),nil];
+    NSArray *meanningLable = [NSArray arrayWithObjects:NSLocalizedString(@"添加事项",nil),NSLocalizedString(@"查看照片",nil),NSLocalizedString(@"添加标签",nil),NSLocalizedString(@"设定提醒",nil),NSLocalizedString(@"附加照片",nil),NSLocalizedString(@"收支管理",nil),NSLocalizedString(@"收藏事项",nil),NSLocalizedString(@"保存事项",nil),NSLocalizedString(@"删除事项",nil),NSLocalizedString(@"返回",nil),nil];
 
     
     for (int i = 0; i<5; i++) {
@@ -42,7 +42,7 @@
         //解释
         UILabel *labelLeft = [[UILabel alloc] initWithFrame:CGRectMake(50, self.frame.origin.y+50+65*i+y+height*i, 60, 35)];
         labelLeft.text = (NSString *)meanningLable[2*i];
-        UILabel *labelRight =[ [UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2+52, self.frame.origin.y+50+65*i+y+height*i, 60, 35)];
+        UILabel *labelRight =[ [UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width/2+52, self.frame.origin.y+50+65*i+y+height*i, 70, 35)];
         labelRight.text = (NSString *)meanningLable[2*i+1];
         
         labelLeft.font = [UIFont systemFontOfSize:14.0f];
@@ -66,11 +66,11 @@
     }
     
     self.returnToSetting = [[UIButton alloc] initWithFrame:CGRectMake(self.frame.size.width/2-35, self.frame.size.height - 100, 83, 30)];
-    [self.returnToSetting setImage:[UIImage imageNamed:@"passwordback.png"] forState:UIControlStateNormal];
+    [self.returnToSetting setBackgroundImage:[UIImage imageNamed:@"password.png"] forState:UIControlStateNormal];
    // self.returnToSetting.backgroundColor = [UIColor clearColor];
-    //[self.returnToSetting setTitle:@"返回" forState:UIControlStateNormal] ;
-   // [self.returnToSetting setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-   // self.returnToSetting.titleLabel.font = [UIFont systemFontOfSize:14.0f];
+    [self.returnToSetting setTitle:NSLocalizedString(@"返回",nil) forState:UIControlStateNormal] ;
+    [self.returnToSetting setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    self.returnToSetting.titleLabel.font = [UIFont fontWithName:@"BoldOblique" size:17];
    // self.returnToSetting.layer.borderColor = [UIColor darkGrayColor].CGColor;
    // self.returnToSetting.layer.borderWidth = 0.4f;
     
