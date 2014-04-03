@@ -152,9 +152,9 @@ SystemSoundID soundObject;
 
     
     self.mainText = [[UITextView alloc] initWithFrame:CGRectMake(40, 155, 220, mainText_Height)];
-    UILabel *extend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 23, mainText_Height)];
-    extend.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:extend];
+    self.mainTextExtend = [[UILabel alloc] initWithFrame:CGRectMake(260, 155, 23, mainText_Height)];
+    self.mainTextExtend.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.mainTextExtend];
     [self.view addSubview:self.mainText];
     self.mainText.tag = 106;
     [self.setTextDelegate setMainText:self.mainText];
@@ -2716,6 +2716,7 @@ SystemSoundID soundObject;
     }
     
     textView.frame=CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, (mainText_Height-100));
+    self.mainTextExtend.frame = CGRectMake(self.mainTextExtend.frame.origin.x, self.mainTextExtend.frame.origin.y, self.mainTextExtend.frame.size.width, (mainText_Height-100));
     
     NSLog(@"mainText frame4:%.2f",textView.frame.size.height);
     
@@ -2747,6 +2748,8 @@ SystemSoundID soundObject;
     
     
     [textView setFrame:CGRectMake(textView.frame.origin.x, textView.frame.origin.y, textView.frame.size.width, mainText_Height)];
+    
+    self.mainTextExtend.frame = CGRectMake(self.mainTextExtend.frame.origin.x, self.mainTextExtend.frame.origin.y, self.mainTextExtend.frame.size.width, mainText_Height);
     
       NSLog(@"mainText frame4:%.2f",textView.frame.size.height);
     

@@ -3381,8 +3381,21 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
             }
             
             if ( (int)row1 == 1){
+                NSString *lang;
+                if([[self currentLanguage] compare:@"zh-Hans" options:NSCaseInsensitiveSearch]==NSOrderedSame || [[self currentLanguage] compare:@"zh-Hant" options:NSCaseInsensitiveSearch]==NSOrderedSame)
+                {
+                    lang = @"zh";
+                    NSLog(@"current Language == Chinese");
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/daysinline/id844914780?mt=8"]];
+
+                    
+                }else{
+                    lang = @"en";
+                    NSLog(@"current Language == English");
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/us/app/daysinline/id844914780?mt=8"]];
+                    
+                }
                 
-               [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=s"]];
             }
 
             
@@ -3428,6 +3441,14 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
 
     [self.my_setting setHidden:NO];
     [self.my_contractView removeFromSuperview];
+}
+
+-(NSString*)currentLanguage
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
+    NSString *currentLang = [languages objectAtIndex:0];
+    return currentLang;
 }
 
 - (void)evaluate{

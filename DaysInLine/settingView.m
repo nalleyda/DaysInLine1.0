@@ -156,8 +156,8 @@
         [self.modifyPassword setBackgroundImage:[UIImage imageNamed:@"passwordBtn"] forState:UIControlStateNormal];
 
         
-        self.tipText = [[UILabel alloc] initWithFrame:CGRectMake(50, 8, 120, 30)];
-        self.tipText.textAlignment = NSTextAlignmentRight;
+        self.tipText = [[UILabel alloc] initWithFrame:CGRectMake(95, 8, 120, 30)];
+        self.tipText.textAlignment = NSTextAlignmentLeft;
         self.tipText.font = [UIFont systemFontOfSize:16.0];
        // tipText.text = userTips;
        self. tipText.backgroundColor = [UIColor clearColor];

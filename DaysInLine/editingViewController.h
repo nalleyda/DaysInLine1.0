@@ -73,6 +73,7 @@
 @property (strong, nonatomic) CustomIOS7AlertView *checkAlert;
 @property (weak, nonatomic)  UITableView *tagTable;
 @property (strong, nonatomic)  IBOutlet UITextView *mainText;
+@property (strong, nonatomic)   UILabel *mainTextExtend;
 @property (weak, nonatomic) IBOutlet UITextField *theme;
 @property (weak, nonatomic) IBOutlet NSNumber *eventType;
 @property double incomeFinal;
