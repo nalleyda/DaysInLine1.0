@@ -1285,6 +1285,13 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
 
 -(void)treasureTapped
 {
+    NSUserDefaults *defaults = [ NSUserDefaults standardUserDefaults ];
+    
+    NSArray *languages = [defaults objectForKey : @"AppleLanguages" ];
+    
+    NSLog ( @"%@" , languages);
+    NSString *currentLanguage = [[NSLocale preferredLanguages] objectAtIndex:0];
+    NSLog(@"lang:%@",currentLanguage);
     
     
     
