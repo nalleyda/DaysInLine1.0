@@ -2542,7 +2542,7 @@ SystemSoundID soundObject;
         
       
     }
-    if ([(NSNumber *)[loadCellOnce objectAtIndex:[indexPath row]] boolValue] == NO ) {
+    if (loadCellOnce.count>0 && [(NSNumber *)[loadCellOnce objectAtIndex:[indexPath row]] boolValue] == NO ) {
         [beSelected insertObject:haveSelected atIndex:row];
         
     }
