@@ -74,16 +74,10 @@ const int GROWTH_BOTTOM_GAP = 50;
 
 -(void)drawButtons:(CGRect)frame
 {
-   /* self.addMoreWork = [[UIButton alloc]initWithFrame:CGRectMake(40, self.frame.size.height-220+85, 80, 35)];
-    [self.addMoreWork setTitle:@"添加工作" forState:UIControlStateNormal];
+    self.shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+20, 45, 30)];
+    [self.shareBtn setTitle:@"share" forState:UIControlStateNormal];
+    [self addSubview:self.shareBtn];
     
-    [self.addMoreWork setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    self.addMoreWork.backgroundColor = [UIColor colorWithRed:0.0 green:0.85 blue:0.9 alpha:1.0];
-   // self.addMoreWork.tintColor = [UIColor colorWithRed:0.0 green:0.85 blue:0.9 alpha:1.0];
-    [self.addMoreWork.layer setMasksToBounds:YES];
-    [self.addMoreWork.layer setCornerRadius:10.0];//设置矩形四个圆角半径
-   [self.addMoreWork.layer setBorderWidth:1.0];
-*/
     self.addMoreWork = [UIButton buttonWithType:UIButtonTypeContactAdd];
     [self.addMoreWork setFrame:CGRectMake(70, self.frame.origin.y+75, 32, 32)];
     [self.addMoreWork setImage: [UIImage imageNamed:@"add.png"] forState:UIControlStateNormal];

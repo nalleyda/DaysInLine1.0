@@ -691,6 +691,7 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     }
     [self.my_dayline.addMoreLife addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
     [self.my_dayline.addMoreWork addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
+    [self.my_dayline.shareBtn addTarget:self action:@selector(shareTapped) forControlEvents:UIControlEventTouchUpInside];
     
 
     self.my_dayline.dateNow.text = modifyDate;
@@ -945,6 +946,40 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     
     sqlite3_close(dataBase);
     
+}
+
+-(void)shareTapped
+{
+  
+    
+    if(UIGraphicsBeginImageContextWithOptions != NULL)
+    {
+        UIGraphicsBeginImageContextWithOptions( self.my_dayline.my_scoller.contentSize, NO, 0.0);
+    } else {
+        UIGraphicsBeginImageContext(self.my_dayline.my_scoller.contentSize);
+    }
+    
+    //获取图像
+    [ self.my_dayline.my_scoller.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *test = [[UIImageView alloc] initWithImage:image];
+    test.frame = CGRectMake(0, 0, self.view.frame.size.width, self.my_dayline.my_scoller.contentSize.height);
+    [self.view addSubview:test];
+ 
+    /*
+    //保存图像
+    NSString *path = [NSHomeDirectory() stringByAppendingFormat:@"%@.png",self.my_dayline.dateNow.text];
+    if ([UIImagePNGRepresentation(image) writeToFile:path atomically:YES]) {
+       
+        NSLog(@"Succeeded! %@",path);
+    }  
+    else {  
+        NSLog(@"Failed!");  
+    } 
+     */
+
 }
 
 -(void)eventTapped:(UIButton *)sender

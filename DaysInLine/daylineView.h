@@ -13,6 +13,7 @@
 @interface daylineView : UIView
 
 @property (nonatomic,strong) NSMutableArray *starArray;
+@property (nonatomic,strong) UIButton *shareBtn ;
 @property (nonatomic,strong) UIButton *addMoreWork ;
 @property (nonatomic,strong) UIButton *addMoreLife ;
 @property (nonatomic,strong) UILabel *dateNow;
