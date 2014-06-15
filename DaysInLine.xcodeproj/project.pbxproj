@@ -23,6 +23,7 @@
 		0B066B9318C8D12A004827D7 /* 统计.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B066B8F18C8D12A004827D7 /* 统计.png */; };
 		0B066B9918C8D33A004827D7 /* 键盘返回键.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B066B9818C8D33A004827D7 /* 键盘返回键.png */; };
 		0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0C491618BE334F00B7CF19 /* selectCell.xib */; };
+		0B0D3BAD194DD54D00B2CBEE /* shareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0D3BAC194DD54D00B2CBEE /* shareView.m */; };
 		0B15280F18D563A300E62028 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B15280E18D563A300E62028 /* logo.png */; };
 		0B15281518D5F49C00E62028 /* add2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B15281418D5F49C00E62028 /* add2.png */; };
 		0B1D8E8A18CDFB2500B1FA6B /* moneyBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */; };
@@ -51,6 +52,7 @@
 		0B3686BA18CCBC900036DCA3 /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3686B918CCBC900036DCA3 /* check@2x.png */; };
 		0B3686BC18CCC1350036DCA3 /* passwordBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3686BB18CCC1350036DCA3 /* passwordBtn.png */; };
 		0B3686BE18CCCE1F0036DCA3 /* passwordOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3686BD18CCCE1F0036DCA3 /* passwordOk.png */; };
+		0B452F04194DECFD00828853 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
 		0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9118C4C7B8006756FF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
@@ -116,7 +118,6 @@
 		0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40818A68AFA00B47E53 /* cell3-1.png */; };
 		0BBED40D18A68AFA00B47E53 /* cell4-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40918A68AFA00B47E53 /* cell4-1.png */; };
 		0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD7008218139338004FCBE2 /* backgroundHome.png */; };
-		0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
 		0BDDD2DF18C4D0760077F527 /* remindViewController586.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BDDD2DE18C4D0760077F527 /* remindViewController586.xib */; };
 		0BDE612618CF4AA5005A59CC /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDE612518CF4AA5005A59CC /* libGoogleAdMobAds.a */; };
 		0BDE612818CF4C36005A59CC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDE612718CF4C36005A59CC /* StoreKit.framework */; };
@@ -201,6 +202,8 @@
 		0B066B8F18C8D12A004827D7 /* 统计.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "统计.png"; sourceTree = "<group>"; };
 		0B066B9818C8D33A004827D7 /* 键盘返回键.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "键盘返回键.png"; sourceTree = "<group>"; };
 		0B0C491618BE334F00B7CF19 /* selectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = selectCell.xib; sourceTree = "<group>"; };
+		0B0D3BAB194DD54D00B2CBEE /* shareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareView.h; sourceTree = "<group>"; };
+		0B0D3BAC194DD54D00B2CBEE /* shareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareView.m; sourceTree = "<group>"; };
 		0B0D6DB418B63721001CBA96 /* setMainTextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = setMainTextDelegate.h; sourceTree = "<group>"; };
 		0B15280E18D563A300E62028 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		0B15281418D5F49C00E62028 /* add2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add2.png; sourceTree = "<group>"; };
@@ -731,6 +734,8 @@
 				0BFC22D918D2DC9E00C9B4C5 /* buttonTranslate.m */,
 				0B1F193A18D4AAF6000F94E5 /* rightTranslate.h */,
 				0B1F193B18D4AAF6000F94E5 /* rightTranslate.m */,
+				0B0D3BAB194DD54D00B2CBEE /* shareView.h */,
+				0B0D3BAC194DD54D00B2CBEE /* shareView.m */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -1084,15 +1089,16 @@
 				0B25F89218BA3ACD0025B0CB /* settingView.m in Sources */,
 				0BF9EF7D18BB8A9400F38370 /* SevenSwitch.m in Sources */,
 				0B9A53DB1812274D0085FFD7 /* main.m in Sources */,
+				0B0D3BAD194DD54D00B2CBEE /* shareView.m in Sources */,
 				0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */,
 				0B916CFD1816BB2200B3F41D /* editingViewController.m in Sources */,
 				0B9009E31877DDA6008D3799 /* selectView.m in Sources */,
 				0B02149518D86CBF00FF3AAC /* homeView.m in Sources */,
 				0BF646C018BF92CC00159161 /* resultView.m in Sources */,
+				0B452F04194DECFD00828853 /* dayLineScoller.m in Sources */,
 				0BFC22DA18D2DC9E00C9B4C5 /* buttonTranslate.m in Sources */,
 				0B9009E61877EBE4008D3799 /* CKCalendarView.m in Sources */,
 				0BE6C65518A7BC52007769D8 /* checkPhotoController.m in Sources */,
-				0BD7008E1814242D004FCBE2 /* dayLineScoller.m in Sources */,
 				0B1F193C18D4AAF6000F94E5 /* rightTranslate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

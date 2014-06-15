@@ -31,7 +31,8 @@
 @property (weak, nonatomic) NSObject <drawTagDelegate> *drawLabelDelegate;
 
 
-//@property (strong, nonatomic) ADBannerView *adView;
+@property (nonatomic,strong) UIView *finalShare;
+
 @property (strong, nonatomic) ADBannerView *iAdBannerView;
 @property (strong, nonatomic) GADBannerView *gAdBannerView;
 //@property (strong, nonatomic) NSNumber *failLoadiAD;

@@ -25,6 +25,7 @@ const int TIME_LABEL_HEIGHT = 20;
 const int NR_TIME_LABEL = 24;
 const int MINUTES_OF_DAY = 24 * 60;
 const int TIME_LABEL_TAG_BASE = 2000;
+
 UILabel *labelTime[NR_TIME_LABEL];
 
 - (id)initWithFrame:(CGRect)frame
@@ -37,16 +38,19 @@ UILabel *labelTime[NR_TIME_LABEL];
         CGSize newSize = CGSizeMake(self.frame.size.width, NR_TIME_LABEL*TIME_LABEL_SPACE);
         [self setContentOffset:CGPointMake(0, 6 * TIME_LABEL_SPACE)]; /* scroller initially stay at 6:00 */
         [self setContentSize:newSize];
-        //NSLog(@"***************%f",self.frame.size.height);
+
+
+        self.viewToShare = [[shareView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, NR_TIME_LABEL*TIME_LABEL_SPACE)];
+        self.viewToShare.backgroundColor = [UIColor clearColor];
+       // [self.shareView setHidden:NO];
+        [self addSubview:self.viewToShare];
         
-     //   self.btnInScroll = [[buttonInScroll alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 3*self.frame.size.height)];
-     //   [self addSubview:self.btnInScroll];
-
-
        
     }
     return self;
 }
+
+
 
 - (void)drawRect:(CGRect)rect
 {
@@ -55,13 +59,6 @@ UILabel *labelTime[NR_TIME_LABEL];
 
     for (int i = 0; i < NR_TIME_LABEL; i++) {
         
-        /*        UIButton *buttonWorks1 = [[UIButton alloc]initWithFrame:CGRectMake(0, i+10, self.frame.size.width/2, 30)];
-         buttonWorks1.backgroundColor = [UIColor blueColor];
-         buttonWorks1.layer.borderWidth = 1.0;
-         
-         buttonWorks1.layer.borderColor = [UIColor blackColor].CGColor;
-         [buttonWorks1 setTitle:@"11111" forState:UIControlStateNormal];
-         */
         
         labelTime[i] = [[UILabel alloc] initWithFrame:
                         CGRectMake(0, i*TIME_LABEL_SPACE, TIME_LABEL_WIDTH, TIME_LABEL_HEIGHT)];
@@ -69,8 +66,9 @@ UILabel *labelTime[NR_TIME_LABEL];
         labelTime[i].backgroundColor = [UIColor clearColor];
         labelTime[i].text = [NSString stringWithFormat:@"%02d:00",i % NR_TIME_LABEL];
         labelTime[i].tag = TIME_LABEL_TAG_BASE + i;
-        [self addSubview: labelTime[i]];
-        //        [self addSubview:buttonWorks1];
+        [self.viewToShare addSubview:labelTime[i]];
+       // [self addSubview: labelTime[i]];
+
     }
 
 }
@@ -92,7 +90,6 @@ UILabel *labelTime[NR_TIME_LABEL];
                 if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/15) {
                     //NSLog(@"find it!!!!");
                     [curView removeFromSuperview];
-                    //NSLog(@"removed it :%ld!!!!",(long)curView.tag);
                 }
                 
             }
@@ -109,23 +106,8 @@ UILabel *labelTime[NR_TIME_LABEL];
     double start = ([startNum doubleValue]/MINUTES_OF_DAY) * h +5;//+ TIME_LABEL_HEIGHT / 2;
     double end = ([endNum doubleValue]/MINUTES_OF_DAY) * h +5;//+ TIME_LABEL_HEIGHT / 2;
     double height = end - start;
-   /* if (height<15) {
-        height=15;
-    }
-    */
+  
     
-    
-    //NSLog(@"start:%f,height:%f,longth:%d",start,end-start,h);
-  /*
-    UIButton *eventButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [eventButton setFrame:CGRectMake(40, start, self.frame.size.width/2-28, height)];
-    
-    [eventButton setTitle:@"hello world" forState:UIControlStateNormal];
-    [eventButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    eventButton.titleLabel.font = [UIFont systemFontOfSize:12.0];
-   */
- 
-    //NSLog(@"in draw the typ is : %@",eventType);
     UIButton *eventButton;
     if ([eventType intValue] == 0) {
          eventButton = [[UIButton alloc] initWithFrame:CGRectMake(40, start, (self.frame.size.width)/2-24, height)];
@@ -164,7 +146,9 @@ UILabel *labelTime[NR_TIME_LABEL];
     
     [eventButton addTarget:self action:@selector(eventModify:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self addSubview:eventButton];
+   
+    [self.viewToShare addSubview:eventButton];
+   // [self addSubview:eventButton];
      //NSLog(@"redraw000");
    // [self setNeedsDisplay];
     
@@ -177,6 +161,21 @@ UILabel *labelTime[NR_TIME_LABEL];
     [self.modifyEvent_delegate modifyEvent:[[NSNumber alloc] initWithInteger:sender.tag]];
     
     
+    
+}
+
+
+-(UIImage *)getContentImage
+{
+    
+    UIGraphicsBeginImageContext(self.viewToShare.frame.size);
+    
+    
+    //获取图像
+    [ self.viewToShare.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
     
 }
 

@@ -39,19 +39,7 @@ const int GROWTH_BOTTOM_GAP = 50;
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-   /* CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor);
-    float lengths[] = {10,5};
-    
-    CGContextSetLineDash(context, 0, lengths, 2);  //画虚线
-    CGContextMoveToPoint(context,36+5, self.frame.origin.y+70);    //开始画线
-    CGContextAddLineToPoint(context, self.frame.size.width, self.frame.origin.y+70);
-    CGContextStrokePath(context);
-    
-    CGContextSetLineDash(context, 0, lengths, 2);
-    CGContextMoveToPoint(context, self.frame.size.width/2+18+0.1, self.frame.origin.y+40);
-    CGContextAddLineToPoint(context, self.frame.size.width/2+18+0.1, self.frame.size.height-100);
-    CGContextStrokePath(context);
-   */
+ 
     CGContextSetLineWidth(context, 0.25f); //设置线的宽度 为1个像素
     CGContextSetStrokeColorWithColor(context, [UIColor grayColor].CGColor); //设置线的颜色为灰色
     CGContextMoveToPoint(context,36+5, self.frame.origin.y+70);

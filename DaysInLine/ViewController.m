@@ -83,6 +83,8 @@
 @end
 
 @implementation ViewController
+const int LABEL_SPACE  = 30;
+
 
 
 SystemSoundID soundFileObject;
@@ -951,22 +953,58 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
 -(void)shareTapped
 {
   
-    
+  /*
     if(UIGraphicsBeginImageContextWithOptions != NULL)
     {
-        UIGraphicsBeginImageContextWithOptions( self.my_dayline.my_scoller.contentSize, NO, 0.0);
+        UIGraphicsBeginImageContextWithOptions( self.my_dayline.my_scoller.contentSize, NO,  0.0);
     } else {
         UIGraphicsBeginImageContext(self.my_dayline.my_scoller.contentSize);
     }
+    */
+    
+    /*
+    UIGraphicsBeginImageContext(self.my_dayline.my_scoller.contentSize);
+
     
     //获取图像
     [ self.my_dayline.my_scoller.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    */
+    self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_dayline.my_scoller.viewToShare.frame.size.width,self.my_dayline.my_scoller.frame.size.height+LABEL_SPACE)];
     
-    UIImageView *test = [[UIImageView alloc] initWithImage:image];
-    test.frame = CGRectMake(0, 0, self.view.frame.size.width, self.my_dayline.my_scoller.contentSize.height);
-    [self.view addSubview:test];
+ 
+
+    
+    UIImageView *test = [[UIImageView alloc] initWithImage:[self.my_dayline.my_scoller getContentImage]];
+    test.contentMode = UIViewContentModeScaleToFill;
+    test.frame = CGRectMake(0, LABEL_SPACE, self.view.frame.size.height*self.my_dayline.my_scoller.contentSize.width/self.my_dayline.my_scoller.contentSize.height, self.view.frame.size.height-LABEL_SPACE);
+
+    [self.finalShare addSubview:test];
+    
+    UILabel *workLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 8, 80, 16)];
+    // workLabel.text = @"工作";
+    workLabel.text = NSLocalizedString(@"工作", nil);
+    workLabel.backgroundColor = [UIColor clearColor];
+    workLabel.textAlignment = NSTextAlignmentCenter;
+    workLabel.layer.borderColor = [UIColor clearColor].CGColor;
+    workLabel.layer.borderWidth = 2.0;
+    
+    
+    UILabel *lifeLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 8, 30, 16)];
+    
+    lifeLabel.text = NSLocalizedString(@"生活",nil);
+    lifeLabel.backgroundColor = [UIColor clearColor];
+    lifeLabel.textAlignment = NSTextAlignmentCenter;
+    lifeLabel.layer.borderColor = [UIColor clearColor].CGColor;
+    lifeLabel.layer.borderWidth = 2.0;
+    
+    
+    [self.finalShare addSubview:workLabel];
+    [self.finalShare addSubview:lifeLabel];
+    
+    [self.view addSubview:self.finalShare];
+    
  
     /*
     //保存图像
