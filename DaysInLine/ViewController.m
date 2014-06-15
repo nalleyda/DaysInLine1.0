@@ -963,15 +963,9 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     */
     
     /*
-    UIGraphicsBeginImageContext(self.my_dayline.my_scoller.contentSize);
 
-    
-    //获取图像
-    [ self.my_dayline.my_scoller.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
     */
-    self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_dayline.my_scoller.viewToShare.frame.size.width,self.my_dayline.my_scoller.frame.size.height+LABEL_SPACE)];
+    self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_dayline.my_scoller.viewToShare.frame.size.width,self.my_dayline.my_scoller.viewToShare.frame.size.height+LABEL_SPACE)];
     
  
 
@@ -1003,7 +997,19 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     [self.finalShare addSubview:workLabel];
     [self.finalShare addSubview:lifeLabel];
     
-    [self.view addSubview:self.finalShare];
+    
+    UIGraphicsBeginImageContext(self.finalShare.frame.size);
+    
+    
+    //获取图像
+    [ self.finalShare.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *testView = [[UIImageView alloc]initWithImage:image];
+    testView.frame = CGRectMake(0, 0, self.finalShare.frame.size.width, self.finalShare.frame.size.height) ;
+    
+    [self.view addSubview:testView];
     
  
     /*
