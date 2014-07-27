@@ -28,7 +28,7 @@
 
 
 
-@interface ViewController ()<CKCalendarDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
+@interface ViewController ()<CKCalendarDelegate,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UIActionSheetDelegate>
 
 @property (nonatomic,weak) UIImageView *background;
 @property (nonatomic,weak) homeView *homePage;
@@ -104,16 +104,7 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     
     
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"backgroundHome.png"]];
-/*
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7) {
-        self.view.clipsToBounds = YES;
-        CGRect screenRect = [[UIScreen mainScreen] bounds];
-        CGFloat screenHeight = screenRect.size.height;
-        self.view.frame =  CGRectMake(0, 20, self.view.frame.size.width,screenHeight-20);
-        self.view.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+20);
-        NSLog(@"ios7!!!!");
-    }
-*/
+
 
     
 	// Do any additional setup after loading the view, typically from a nib.
@@ -950,49 +941,116 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     
 }
 
+/*
+-(UIView *)makeShareView
+{
+    double width = [[UIScreen mainScreen] bounds].size.width;
+    double height = [[UIScreen mainScreen] bounds].size.height/2.5;
+    UIView *shareView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    [shareView setBackgroundColor:[UIColor colorWithPatternImage:    [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"action-sheet-panel" ofType:@"png"]]]];
+    shareView.alpha = 0.8f;
+    //
+    UIButton *weixin = [[UIButton alloc] init];
+    [weixin setFrame:CGRectMake(50, 30, 40, 40)];
+    [weixin setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"weixin" ofType:@"png"]] forState:UIControlStateNormal];
+    [weixin addTarget:self action:@selector(onSelectWeixin) forControlEvents:UIControlEventTouchUpInside];
+    [shareView addSubview:weixin];
+    //
+    UIButton *wx_friend = [[UIButton alloc] init];
+    [wx_friend setFrame:CGRectMake(140, 30, 40, 40)];
+    [wx_friend setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"wx_friend" ofType:@"png"]] forState:UIControlStateNormal];
+    [wx_friend addTarget:self action:@selector(onSelectwx_friend) forControlEvents:UIControlEventTouchUpInside];
+    [shareView addSubview:wx_friend];
+    //
+    UIButton *wx_favorite = [[UIButton alloc] init];
+    [wx_favorite setFrame:CGRectMake(230, 30, 40, 40)];
+    [wx_favorite setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"wx_favorite" ofType:@"png"]] forState:UIControlStateNormal];
+    [wx_favorite addTarget:self action:@selector(onSelectwx_favorite) forControlEvents:UIControlEventTouchUpInside];
+    [shareView addSubview:wx_favorite];
+    //
+    UIButton *weibo = [[UIButton alloc] init];
+    [weibo setFrame:CGRectMake(50, 100, 40, 40)];
+    [weibo setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"weibo" ofType:@"png"]] forState:UIControlStateNormal];
+    [weibo addTarget:self action:@selector(onSelectweibo) forControlEvents:UIControlEventTouchUpInside];
+    [shareView addSubview:weibo];
+    //
+    UIButton *Qzone = [[UIButton alloc] init];
+    [Qzone setFrame:CGRectMake(140, 100, 40, 40)];
+    [Qzone setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Qzone" ofType:@"png"]] forState:UIControlStateNormal];
+    [Qzone addTarget:self action:@selector(onSelectQzone) forControlEvents:UIControlEventTouchUpInside];
+    [shareView addSubview:Qzone];
+    //
+    UIButton *qq = [[UIButton alloc] init];
+    [qq setFrame:CGRectMake(230, 100, 40, 40)];
+    [qq setImage:[UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"qq" ofType:@"png"]] forState:UIControlStateNormal];
+    [qq addTarget:self action:@selector(onSelectqq) forControlEvents:UIControlEventTouchUpInside];
+    [shareView addSubview:qq];
+    
+    return shareView;
+    
+
+}
+*/
+
 -(void)shareTapped
 {
-  
-  /*
-    if(UIGraphicsBeginImageContextWithOptions != NULL)
+    CustomActionSheet* sheet = [[CustomActionSheet alloc] initWithButtons:[NSArray arrayWithObjects:
+                                                                            [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"weixin"] title:@"微信好友"],
+                                                                            [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"wx_friend"] title:@"朋友圈"],
+                                                                            [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"wx_favorite"] title:@"收藏到微信"],
+                                                                            [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"weibo"] title:@"新浪微博"],[CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"Qzone"] title:@"QQ空间"],[CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"QQ"] title:@"QQ好友"],
+                                                                            
+                                                                            nil]];
+    sheet.delegate = self;
+    [sheet showInView:self.view];
+    
+    if (self.my_dayline.hidden == NO) {
+        
+        self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_dayline.my_scoller.viewToShare.frame.size.width,self.my_dayline.my_scoller.viewToShare.frame.size.height+LABEL_SPACE)];
+        
+        UIImageView *test = [[UIImageView alloc] initWithImage:[self.my_dayline.my_scoller getContentImage]];
+        test.contentMode = UIViewContentModeScaleToFill;
+        test.frame = CGRectMake(0, LABEL_SPACE, self.my_dayline.my_scoller.viewToShare.frame.size.width, self.my_dayline.my_scoller.viewToShare.frame.size.height);
+        [self.finalShare addSubview:test];
+
+    }else
     {
-        UIGraphicsBeginImageContextWithOptions( self.my_dayline.my_scoller.contentSize, NO,  0.0);
-    } else {
-        UIGraphicsBeginImageContext(self.my_dayline.my_scoller.contentSize);
+        self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_selectDay.my_scoller.viewToShare.frame.size.width,self.my_selectDay.my_scoller.viewToShare.frame.size.height+LABEL_SPACE)];
+        
+        UIImageView *test = [[UIImageView alloc] initWithImage:[self.my_selectDay.my_scoller getContentImage]];
+        test.contentMode = UIViewContentModeScaleToFill;
+        test.frame = CGRectMake(0, LABEL_SPACE, self.my_selectDay.my_scoller.viewToShare.frame.size.width, self.my_selectDay.my_scoller.viewToShare.frame.size.height);
+        
+        [self.finalShare addSubview:test];
     }
-    */
     
-    /*
-
-    */
-    self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_dayline.my_scoller.viewToShare.frame.size.width,self.my_dayline.my_scoller.viewToShare.frame.size.height+LABEL_SPACE)];
+//    self.finalShare = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.my_dayline.my_scoller.viewToShare.frame.size.width,self.my_dayline.my_scoller.viewToShare.frame.size.height+LABEL_SPACE)];
+//    
+//    UIImageView *test = [[UIImageView alloc] initWithImage:[self.my_dayline.my_scoller getContentImage]];
+//    test.contentMode = UIViewContentModeScaleToFill;
+//    test.frame = CGRectMake(0, LABEL_SPACE, self.view.frame.size.height*self.my_dayline.my_scoller.contentSize.width/self.my_dayline.my_scoller.contentSize.height, self.view.frame.size.height-LABEL_SPACE);
+//
+//    [self.finalShare addSubview:test];
     
- 
-
-    
-    UIImageView *test = [[UIImageView alloc] initWithImage:[self.my_dayline.my_scoller getContentImage]];
-    test.contentMode = UIViewContentModeScaleToFill;
-    test.frame = CGRectMake(0, LABEL_SPACE, self.view.frame.size.height*self.my_dayline.my_scoller.contentSize.width/self.my_dayline.my_scoller.contentSize.height, self.view.frame.size.height-LABEL_SPACE);
-
-    [self.finalShare addSubview:test];
-    
-    UILabel *workLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 8, 80, 16)];
+    UILabel *workLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 8, 80, 22)];
     // workLabel.text = @"工作";
     workLabel.text = NSLocalizedString(@"工作", nil);
     workLabel.backgroundColor = [UIColor clearColor];
     workLabel.textAlignment = NSTextAlignmentCenter;
     workLabel.layer.borderColor = [UIColor clearColor].CGColor;
     workLabel.layer.borderWidth = 2.0;
+    workLabel.font = [UIFont systemFontOfSize:14.0f];
     
     
-    UILabel *lifeLabel = [[UILabel alloc] initWithFrame:CGRectMake(67, 8, 30, 16)];
+    UILabel *lifeLabel = [[UILabel alloc] initWithFrame:CGRectMake(140, 8, 80, 22)];
     
     lifeLabel.text = NSLocalizedString(@"生活",nil);
     lifeLabel.backgroundColor = [UIColor clearColor];
     lifeLabel.textAlignment = NSTextAlignmentCenter;
     lifeLabel.layer.borderColor = [UIColor clearColor].CGColor;
     lifeLabel.layer.borderWidth = 2.0;
-    
+    lifeLabel.font = [UIFont systemFontOfSize:14.0f];
+
     
     [self.finalShare addSubview:workLabel];
     [self.finalShare addSubview:lifeLabel];
@@ -1006,24 +1064,55 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    UIImageView *testView = [[UIImageView alloc]initWithImage:image];
-    testView.frame = CGRectMake(0, 0, self.finalShare.frame.size.width, self.finalShare.frame.size.height) ;
+  //  self.shareImg =image;
+    self.shareImg = [self halfCutShareImg:image];
+//   
+//    UIImageView *testView = [[UIImageView alloc]initWithImage:self.shareImg];
+//    testView.frame = CGRectMake(0, 0, self.finalShare.frame.size.width, self.finalShare.frame.size.height) ;
+//    
+//    NSLog(@"width:%f,height:%f",self.finalShare.frame.size.width, self.finalShare.frame.size.height);
+//    
+//    [self.view addSubview:testView];
     
-    [self.view addSubview:testView];
-    
- 
-    /*
-    //保存图像
-    NSString *path = [NSHomeDirectory() stringByAppendingFormat:@"%@.png",self.my_dayline.dateNow.text];
-    if ([UIImagePNGRepresentation(image) writeToFile:path atomically:YES]) {
-       
-        NSLog(@"Succeeded! %@",path);
-    }  
-    else {  
-        NSLog(@"Failed!");  
-    } 
-     */
 
+}
+
+-(UIImage *)halfCutShareImg:(UIImage *)longImg
+{
+    
+    UIImage *firstImg = [longImg getSubImage:CGRectMake(0, 0, 245, 1230/4)];
+    UIImage *secondImg = [longImg getSubImage:CGRectMake(0, 1230/4, 245, 1230/4)];
+    UIImage *thirdImg = [longImg getSubImage:CGRectMake(0, 1230/2, 245, 1230/4)];
+    UIImage *fourthImg = [longImg getSubImage:CGRectMake(0, 1230*3/4, 245, 1230/4+20)];
+    UIImageView *first = [[UIImageView alloc] initWithImage:firstImg];
+    first.frame = CGRectMake(40, 70, 245, 1230/4);
+    UIImageView *second = [[UIImageView alloc] initWithImage:secondImg];
+    second.frame = CGRectMake(40, 70+1230/4, 245, 1230/4);
+    
+    UIImageView *third = [[UIImageView alloc] initWithImage:thirdImg];
+    third.frame = CGRectMake(40, 70+1230/2, 245, 1230/4);
+    UIImageView *fourth = [[UIImageView alloc] initWithImage:fourthImg];
+    fourth.frame = CGRectMake(40, 70+1230*3/4, 245, 1230/4+20);
+    
+    
+    UIImageView *shareTitle = [[UIImageView alloc] initWithFrame:CGRectMake(0, 7, 320, 63)];
+    [shareTitle setImage:[UIImage imageNamed:@"shareTitle"]];
+    
+    UIView *wholeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1230+100)];
+    wholeView.backgroundColor = [UIColor colorWithRed:240/255.0f green:240/255.0f blue:240/255.0f alpha:1.0f];
+    [wholeView addSubview:first];
+    [wholeView addSubview:second];
+    [wholeView addSubview:third];
+    [wholeView addSubview:fourth];
+    [wholeView addSubview:shareTitle];
+    
+    UIGraphicsBeginImageContext(wholeView.frame.size);
+    [wholeView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *entireOne = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    return entireOne;
+    
 }
 
 -(void)eventTapped:(UIButton *)sender
@@ -1248,7 +1337,8 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
         [self.my_selectDay.addMoreLife addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
         [self.my_selectDay.addMoreWork addTarget:self action:@selector(eventTapped:) forControlEvents:UIControlEventTouchUpInside];
         
-        
+        [self.my_selectDay.shareBtn addTarget:self action:@selector(shareTapped) forControlEvents:UIControlEventTouchUpInside];
+
         
         
         
@@ -3894,6 +3984,81 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
 }
 
 
+#pragma shareMethod
 
+-(void)choseAtIndex:(int)index
+{
+    switch (index) {
+        case 0:
+           _scene = WXSceneSession;
+            [self sendImageContent];
+            break;
+        case 1:
+            _scene = WXSceneTimeline;
+            break;
+        case 2:
+            _scene = WXSceneFavorite;
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+
+
+- (void) sendImageContent
+{
+    
+   // [self.shareImg scaleToSize:CGSizeMake(470, 2460)];
+    
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:self.shareImg];
+    
+    WXImageObject *ext = [WXImageObject object];
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"res5thumb" ofType:@"png"];
+//    NSLog(@"filepath :%@",filePath);
+//    ext.imageData = [NSData dataWithContentsOfFile:filePath];
+//    
+//    //UIImage* image = [UIImage imageWithContentsOfFile:filePath];
+//    UIImage* image = [UIImage imageWithData:ext.imageData];
+    ext.imageData = UIImageJPEGRepresentation(self.shareImg,1);
+    
+    //    UIImage* image = [UIImage imageNamed:@"res5thumb.png"];
+    //    ext.imageData = UIImagePNGRepresentation(image);
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = _scene;
+    
+    [WXApi sendReq:req];
+}
+- (void) RespImageContent
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    [message setThumbImage:self.shareImg];
+    
+    WXImageObject *ext = [WXImageObject object];
+
+    ext.imageData = UIImageJPEGRepresentation(self.shareImg,1);
+    message.mediaObject = ext;
+    
+    GetMessageFromWXResp* resp = [[GetMessageFromWXResp alloc] init];
+    resp.message = message;
+    resp.bText = NO;
+    
+    [WXApi sendResp:resp];
+}
 
 @end

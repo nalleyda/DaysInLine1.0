@@ -15,8 +15,9 @@
 #define APP_KEY @"uF4iGxR6qLmkAeZVDi2S8e8m"
 #define REPORT_ID @"dd3c60ebbf"
 
-
 #define IosAppVersion [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+#define WX_APP_ID @"wx4e1ffebe5397b9ef"
 
 @implementation AppDelegate
 
@@ -25,8 +26,6 @@
     // Override point for customization after application launch.
     //初始化Frontia
     [Frontia initWithApiKey:APP_KEY];
-    
-    
     FrontiaStatistics* statTracker = [Frontia getStatistics];
     statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
     statTracker.channelId = @"appstore";//设置您的app的发布渠道
@@ -36,6 +35,10 @@
     statTracker.sessionResumeInterval = 100;//设置应用进入后台再回到前台为同一次session的间隔时间[0~600s],超过600s则设为600s，默认为30s
     statTracker.shortAppVersion  = IosAppVersion; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
     [statTracker startWithReportId:REPORT_ID];//设置您在mtj网站上添加的app的appkey
+    
+    //use weixin share..
+    [WXApi registerApp:WX_APP_ID
+       withDescription:@"DaysinLine-share-v1.0"];
 
   
    return YES;
@@ -74,20 +77,18 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification*)notification{
     
-    /*
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"请注意以下事项" message:notification.alertBody delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-    [alert show];
-    
-    NSDictionary* dic = [[NSDictionary alloc]init];
-    //这里可以接受到本地通知中心发送的消息
-    dic = notification.userInfo;
-    NSLog(@"user info = %@",[dic objectForKey:@"key"]);
-    
-    */
-    // 图标上的数字减1
-   // remindSwitch ? (notification.soundName = UILocalNotificationDefaultSoundName):(notification.soundName = nil);
-
+  
     application.applicationIconBadgeNumber -= 1;
+}
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL isSuc = [WXApi handleOpenURL:url delegate:self];
+    NSLog(@"url %@ isSuc %d",url,isSuc == YES ? 1 : 0);
+    return  isSuc;
 }
 @end
