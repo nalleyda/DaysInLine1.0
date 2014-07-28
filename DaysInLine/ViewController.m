@@ -998,8 +998,8 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
                                                                             [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"weixin"] title:@"微信好友"],
                                                                             [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"wx_friend"] title:@"朋友圈"],
                                                                             [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"wx_favorite"] title:@"收藏到微信"],
-                                                                            [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"weibo"] title:@"新浪微博"],[CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"Qzone"] title:@"QQ空间"],[CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"QQ"] title:@"QQ好友"],
-                                                                            
+//                                                                            [CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"weibo"] title:@"新浪微博"],[CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"Qzone"] title:@"QQ空间"],[CustomActionSheetButton buttonWithImage:[UIImage imageNamed:@"qq"] title:@"QQ好友"],
+                                                                           
                                                                             nil]];
     sheet.delegate = self;
     [sheet showInView:self.view];
@@ -3995,9 +3995,13 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
             break;
         case 1:
             _scene = WXSceneTimeline;
+            [self sendImageContent];
+
             break;
         case 2:
             _scene = WXSceneFavorite;
+            [self sendImageContent];
+
             break;
         case 3:
             

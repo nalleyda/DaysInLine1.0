@@ -1529,6 +1529,7 @@ SystemSoundID soundObject;
                 if (sqlite3_step(statement)==SQLITE_ROW) {
                     //找到当前修改的事件，取出数据，并清零对应的Area。
                     //NSLog(@"After select event ID");
+                   // double testStart =sqlite3_column_double(statement,0);
                     NSNumber *startTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,0)];
                     oldStartNum = startTm;
                     NSNumber *endTm = [[NSNumber alloc] initWithDouble:sqlite3_column_double(statement,1)];

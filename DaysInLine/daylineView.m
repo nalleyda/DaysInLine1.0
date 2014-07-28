@@ -62,8 +62,10 @@ const int GROWTH_BOTTOM_GAP = 50;
 
 -(void)drawButtons:(CGRect)frame
 {
-    self.shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, self.frame.origin.y+20, 45, 30)];
-    [self.shareBtn setTitle:@"share" forState:UIControlStateNormal];
+    self.shareBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.frame.origin.y+15, 45, 30)];
+    self.shareBtn.contentMode = UIViewContentModeCenter;
+    [self.shareBtn setBackgroundImage:[UIImage imageNamed:@"shareBack"] forState:UIControlStateNormal];
+    [self.shareBtn setImage:[UIImage imageNamed:@"shareButton"] forState:UIControlStateNormal];
     [self addSubview:self.shareBtn];
     
     self.addMoreWork = [UIButton buttonWithType:UIButtonTypeContactAdd];

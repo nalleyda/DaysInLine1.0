@@ -82,14 +82,15 @@ UILabel *labelTime[NR_TIME_LABEL];
    //enentType:0为工作事件，1为生活事件 startNum=nil时为删除该事件。
     //NSLog(@"drawing begin");
     if (oldStartNum) {
-        if ([self.subviews count] > 0) {
+        if ([self.viewToShare.subviews count] > 0) {
             //NSLog(@"finding the right button:%d",[oldStartNum intValue]);
             
-            for (UIView *curView in self.subviews) {
-                //NSLog(@"button tag is : %ld",(long)curView.tag);
+            for (UIView *curView in self.viewToShare.subviews) {
+                NSLog(@"button tag is : %ld",(long)curView.tag);
                 if (curView.tag == [eventType intValue]*1000+[oldStartNum integerValue]/15) {
-                    //NSLog(@"find it!!!!");
+                    NSLog(@"find it!!!!");
                     [curView removeFromSuperview];
+                    [curView setNeedsDisplay];
                 }
                 
             }

@@ -27,8 +27,6 @@
 		0B15280F18D563A300E62028 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B15280E18D563A300E62028 /* logo.png */; };
 		0B15281518D5F49C00E62028 /* add2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B15281418D5F49C00E62028 /* add2.png */; };
 		0B1D39501984DFB5008196D3 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B1D394D1984DFB5008196D3 /* libWeChatSDK.a */; };
-		0B1D39A619851564008196D3 /* action-sheet-panel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D399819851564008196D3 /* action-sheet-panel.png */; };
-		0B1D39A719851564008196D3 /* action-sheet-panel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D399919851564008196D3 /* action-sheet-panel@2x.png */; };
 		0B1D39A819851564008196D3 /* qq.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D399A19851564008196D3 /* qq.png */; };
 		0B1D39A919851564008196D3 /* qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D399B19851564008196D3 /* qq@2x.png */; };
 		0B1D39AA19851564008196D3 /* Qzone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D399C19851564008196D3 /* Qzone.png */; };
@@ -47,7 +45,6 @@
 		0B1D39BD19851F81008196D3 /* CustomActionSheetButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D39B919851F81008196D3 /* CustomActionSheetButton.xib */; };
 		0B1D39C119853812008196D3 /* UIImage+image_scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1D39C019853812008196D3 /* UIImage+image_scale.m */; };
 		0B1D39C319855417008196D3 /* shareTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D39C219855417008196D3 /* shareTitle.png */; };
-		0B1D39C719855B51008196D3 /* backgroundOfShare.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D39C619855B51008196D3 /* backgroundOfShare.png */; };
 		0B1D8E8A18CDFB2500B1FA6B /* moneyBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */; };
 		0B1D8E9018CDFEAA00B1FA6B /* 设置汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */; };
 		0B1D8E9118CDFEAA00B1FA6B /* 统计汉字.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */; };
@@ -76,6 +73,8 @@
 		0B3686BE18CCCE1F0036DCA3 /* passwordOk.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B3686BD18CCCE1F0036DCA3 /* passwordOk.png */; };
 		0B452F04194DECFD00828853 /* dayLineScoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD7008D1814242C004FCBE2 /* dayLineScoller.m */; };
 		0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B6AEF9118C4C7B8006756FF /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0B7C5470198608C3007E8714 /* shareButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7C546F198608C3007E8714 /* shareButton.png */; };
+		0B7C547219860B63007E8714 /* shareBack.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B7C547119860B63007E8714 /* shareBack.png */; };
 		0B8F0D8E18641FA900FD1264 /* remindViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B8F0D8C18641FA900FD1264 /* remindViewController.xib */; };
 		0B8F0D91186422F300FD1264 /* remindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B8F0D90186422F300FD1264 /* remindViewController.m */; };
 		0B9009DD1877D791008D3799 /* left_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B9009D81877D791008D3799 /* left_arrow.png */; };
@@ -232,8 +231,6 @@
 		0B1D394D1984DFB5008196D3 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		0B1D394E1984DFB5008196D3 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		0B1D394F1984DFB5008196D3 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		0B1D399819851564008196D3 /* action-sheet-panel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-sheet-panel.png"; sourceTree = "<group>"; };
-		0B1D399919851564008196D3 /* action-sheet-panel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-sheet-panel@2x.png"; sourceTree = "<group>"; };
 		0B1D399A19851564008196D3 /* qq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qq.png; sourceTree = "<group>"; };
 		0B1D399B19851564008196D3 /* qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qq@2x.png"; sourceTree = "<group>"; };
 		0B1D399C19851564008196D3 /* Qzone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Qzone.png; sourceTree = "<group>"; };
@@ -254,7 +251,6 @@
 		0B1D39BF19853812008196D3 /* UIImage+image_scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+image_scale.h"; sourceTree = "<group>"; };
 		0B1D39C019853812008196D3 /* UIImage+image_scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image_scale.m"; sourceTree = "<group>"; };
 		0B1D39C219855417008196D3 /* shareTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareTitle.png; sourceTree = "<group>"; };
-		0B1D39C619855B51008196D3 /* backgroundOfShare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundOfShare.png; sourceTree = "<group>"; };
 		0B1D8E8918CDFB2500B1FA6B /* moneyBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = moneyBtn.png; sourceTree = "<group>"; };
 		0B1D8E8D18CDFEAA00B1FA6B /* 设置汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "设置汉字.png"; sourceTree = "<group>"; };
 		0B1D8E8E18CDFEAA00B1FA6B /* 统计汉字.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "统计汉字.png"; sourceTree = "<group>"; };
@@ -286,6 +282,8 @@
 		0B5586AF18890AA9009E6A3E /* reloadTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reloadTableDelegate.h; sourceTree = "<group>"; };
 		0B6AEF9018C4C7B8006756FF /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = "/Develop/DaysInLine-new-master/JSONKit.h"; sourceTree = "<absolute>"; };
 		0B6AEF9118C4C7B8006756FF /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = "/Develop/DaysInLine-new-master/JSONKit.m"; sourceTree = "<absolute>"; };
+		0B7C546F198608C3007E8714 /* shareButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareButton.png; sourceTree = "<group>"; };
+		0B7C547119860B63007E8714 /* shareBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareBack.png; sourceTree = "<group>"; };
 		0B8F0D8C18641FA900FD1264 /* remindViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = remindViewController.xib; sourceTree = "<group>"; };
 		0B8F0D8F186422F300FD1264 /* remindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = remindViewController.h; sourceTree = "<group>"; };
 		0B8F0D90186422F300FD1264 /* remindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = remindViewController.m; sourceTree = "<group>"; };
@@ -539,10 +537,9 @@
 		0B1D395F1984FE1A008196D3 /* shareIMG */ = {
 			isa = PBXGroup;
 			children = (
-				0B1D39C619855B51008196D3 /* backgroundOfShare.png */,
 				0B1D39C219855417008196D3 /* shareTitle.png */,
-				0B1D399819851564008196D3 /* action-sheet-panel.png */,
-				0B1D399919851564008196D3 /* action-sheet-panel@2x.png */,
+				0B7C547119860B63007E8714 /* shareBack.png */,
+				0B7C546F198608C3007E8714 /* shareButton.png */,
 				0B1D399A19851564008196D3 /* qq.png */,
 				0B1D399B19851564008196D3 /* qq@2x.png */,
 				0B1D399C19851564008196D3 /* Qzone.png */,
@@ -1100,7 +1097,6 @@
 				0B1D39B119851564008196D3 /* wx_favorite@2x.png in Resources */,
 				0B066B8418C8BD2F004827D7 /* 重返标签.png in Resources */,
 				0BE6C65618A7BC52007769D8 /* checkPhotoController.xib in Resources */,
-				0B1D39A619851564008196D3 /* action-sheet-panel.png in Resources */,
 				0BB08A7418A9F41D00DE111E /* photoBtn.png in Resources */,
 				0B92BE3418B0C4F3003AE50C /* returnInAlert.png in Resources */,
 				0B1F193818D49633000F94E5 /* timeBtn.png in Resources */,
@@ -1112,7 +1108,6 @@
 				0BA02C6F186B094E00563857 /* tagView.xib in Resources */,
 				0BEABAA818D205EA001EE9A5 /* ios6-icon-114.png in Resources */,
 				0B1F192D18D49485000F94E5 /* star2.png in Resources */,
-				0B1D39A719851564008196D3 /* action-sheet-panel@2x.png in Resources */,
 				0B9A53D91812274D0085FFD7 /* InfoPlist.strings in Resources */,
 				0BEABA9A18D1F8E2001EE9A5 /* add.png in Resources */,
 				0B066B9118C8D12A004827D7 /* 查询.png in Resources */,
@@ -1121,7 +1116,6 @@
 				0BB08A7A18A9F41D00DE111E /* deleteBtn.png in Resources */,
 				0B92BE3818B0C4F3003AE50C /* addInAlert.png in Resources */,
 				0B0C491718BE334F00B7CF19 /* selectCell.xib in Resources */,
-				0B1D39C719855B51008196D3 /* backgroundOfShare.png in Resources */,
 				0B1F192C18D49485000F94E5 /* star1.png in Resources */,
 				0B1D39B319851564008196D3 /* wx_friend@2x.png in Resources */,
 				0BEFA85B18D9CD3F0016EC80 /* password.png in Resources */,
@@ -1155,6 +1149,7 @@
 				0B92BE3518B0C4F3003AE50C /* searchInAlert.png in Resources */,
 				0B1D8E9418CE05E400B1FA6B /* 收入高亮.png in Resources */,
 				0B066B8B18C8CA39004827D7 /* 到.png in Resources */,
+				0B7C5470198608C3007E8714 /* shareButton.png in Resources */,
 				0BBED40D18A68AFA00B47E53 /* cell4-1.png in Resources */,
 				0B92BE3318B0C4F3003AE50C /* tagAlert.png in Resources */,
 				0B1D39A919851564008196D3 /* qq@2x.png in Resources */,
@@ -1169,6 +1164,7 @@
 				0BEFA88718D9FB4A0016EC80 /* okSound.wav in Resources */,
 				0B1D8E9118CDFEAA00B1FA6B /* 统计汉字.png in Resources */,
 				0B066B8518C8BD2F004827D7 /* 查看结果.png in Resources */,
+				0B7C547219860B63007E8714 /* shareBack.png in Resources */,
 				0B1D8E8A18CDFB2500B1FA6B /* moneyBtn.png in Resources */,
 				0BB08A7618A9F41D00DE111E /* collectionBtn.png in Resources */,
 				0B1D39B019851564008196D3 /* wx_favorite.png in Resources */,
