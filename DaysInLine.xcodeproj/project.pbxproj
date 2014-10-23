@@ -134,10 +134,10 @@
 		0BBED40B18A68AFA00B47E53 /* cell2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40718A68AFA00B47E53 /* cell2-1.png */; };
 		0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40818A68AFA00B47E53 /* cell3-1.png */; };
 		0BBED40D18A68AFA00B47E53 /* cell4-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BBED40918A68AFA00B47E53 /* cell4-1.png */; };
-		0BD3426A19F9381F0074A74C /* actionsheet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3426519F9381F0074A74C /* actionsheet_bg@2x.png */; };
-		0BD3426B19F9381F0074A74C /* actionsheet_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3426619F9381F0074A74C /* actionsheet_button@2x.png */; };
-		0BD3426C19F9381F0074A74C /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3426819F9381F0074A74C /* CustomActionSheet.m */; };
-		0BD3426D19F9381F0074A74C /* CustomActionSheetButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3426919F9381F0074A74C /* CustomActionSheetButton.xib */; };
+		0BD3427C19F9398C0074A74C /* actionsheet_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3427719F9398C0074A74C /* actionsheet_bg@2x.png */; };
+		0BD3427D19F9398C0074A74C /* actionsheet_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3427819F9398C0074A74C /* actionsheet_button@2x.png */; };
+		0BD3427E19F9398C0074A74C /* CustomActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BD3427A19F9398C0074A74C /* CustomActionSheet.m */; };
+		0BD3427F19F9398C0074A74C /* CustomActionSheetButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD3427B19F9398C0074A74C /* CustomActionSheetButton.xib */; };
 		0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */ = {isa = PBXBuildFile; fileRef = 0BD7008218139338004FCBE2 /* backgroundHome.png */; };
 		0BDDD2DF18C4D0760077F527 /* remindViewController586.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BDDD2DE18C4D0760077F527 /* remindViewController586.xib */; };
 		0BDE612618CF4AA5005A59CC /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BDE612518CF4AA5005A59CC /* libGoogleAdMobAds.a */; };
@@ -371,11 +371,11 @@
 		0BC09F3C1930DBCB00C12D89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0BC09F3D1930DBCB00C12D89 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main1.storyboard; sourceTree = "<group>"; };
 		0BC09F3E1930DBDB00C12D89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0BD3426519F9381F0074A74C /* actionsheet_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionsheet_bg@2x.png"; sourceTree = "<group>"; };
-		0BD3426619F9381F0074A74C /* actionsheet_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionsheet_button@2x.png"; sourceTree = "<group>"; };
-		0BD3426719F9381F0074A74C /* CustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActionSheet.h; sourceTree = "<group>"; };
-		0BD3426819F9381F0074A74C /* CustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActionSheet.m; sourceTree = "<group>"; };
-		0BD3426919F9381F0074A74C /* CustomActionSheetButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomActionSheetButton.xib; sourceTree = "<group>"; };
+		0BD3427719F9398C0074A74C /* actionsheet_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionsheet_bg@2x.png"; sourceTree = "<group>"; };
+		0BD3427819F9398C0074A74C /* actionsheet_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "actionsheet_button@2x.png"; sourceTree = "<group>"; };
+		0BD3427919F9398C0074A74C /* CustomActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomActionSheet.h; sourceTree = "<group>"; };
+		0BD3427A19F9398C0074A74C /* CustomActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomActionSheet.m; sourceTree = "<group>"; };
+		0BD3427B19F9398C0074A74C /* CustomActionSheetButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomActionSheetButton.xib; sourceTree = "<group>"; };
 		0BD7008218139338004FCBE2 /* backgroundHome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundHome.png; sourceTree = "<group>"; };
 		0BD7008C1814242C004FCBE2 /* dayLineScoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dayLineScoller.h; sourceTree = "<group>"; };
 		0BD7008D1814242C004FCBE2 /* dayLineScoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dayLineScoller.m; sourceTree = "<group>"; };
@@ -519,6 +519,11 @@
 		0B1D394B1984DF82008196D3 /* shareSDK */ = {
 			isa = PBXGroup;
 			children = (
+				0BD3427719F9398C0074A74C /* actionsheet_bg@2x.png */,
+				0BD3427819F9398C0074A74C /* actionsheet_button@2x.png */,
+				0BD3427919F9398C0074A74C /* CustomActionSheet.h */,
+				0BD3427A19F9398C0074A74C /* CustomActionSheet.m */,
+				0BD3427B19F9398C0074A74C /* CustomActionSheetButton.xib */,
 				0B1D394C1984DF8F008196D3 /* weixin */,
 			);
 			name = shareSDK;
@@ -669,7 +674,6 @@
 		0B9A53C21812274D0085FFD7 = {
 			isa = PBXGroup;
 			children = (
-				0BD3426419F9381F0074A74C /* CustomActionSheet */,
 				0B1D39BE198537E3008196D3 /* category */,
 				0B1D394B1984DF82008196D3 /* shareSDK */,
 				0BFD27F218BCE65A0016BCE4 /* libs */,
@@ -790,18 +794,6 @@
 				0B9A53F61812274D0085FFD7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		0BD3426419F9381F0074A74C /* CustomActionSheet */ = {
-			isa = PBXGroup;
-			children = (
-				0BD3426519F9381F0074A74C /* actionsheet_bg@2x.png */,
-				0BD3426619F9381F0074A74C /* actionsheet_button@2x.png */,
-				0BD3426719F9381F0074A74C /* CustomActionSheet.h */,
-				0BD3426819F9381F0074A74C /* CustomActionSheet.m */,
-				0BD3426919F9381F0074A74C /* CustomActionSheetButton.xib */,
-			);
-			path = CustomActionSheet;
 			sourceTree = "<group>";
 		};
 		0BD700871813AC06004FCBE2 /* view */ = {
@@ -1082,7 +1074,7 @@
 				0BE6C65118A778CA007769D8 /* photoView.xib in Resources */,
 				0BA61BF118A28887000B7163 /* 按键5-2.png in Resources */,
 				0B1D39C319855417008196D3 /* shareTitle.png in Resources */,
-				0BD3426D19F9381F0074A74C /* CustomActionSheetButton.xib in Resources */,
+				0BD3427F19F9398C0074A74C /* CustomActionSheetButton.xib in Resources */,
 				0B1F192918D49305000F94E5 /* Default.png in Resources */,
 				0B066B9318C8D12A004827D7 /* 统计.png in Resources */,
 				0BEABAAF18D205EA001EE9A5 /* ios7-icon-60.png in Resources */,
@@ -1100,7 +1092,7 @@
 				0B92BE3418B0C4F3003AE50C /* returnInAlert.png in Resources */,
 				0B1F193818D49633000F94E5 /* timeBtn.png in Resources */,
 				0BBED40C18A68AFA00B47E53 /* cell3-1.png in Resources */,
-				0BD3426B19F9381F0074A74C /* actionsheet_button@2x.png in Resources */,
+				0BD3427D19F9398C0074A74C /* actionsheet_button@2x.png in Resources */,
 				0BB08A7318A9F41D00DE111E /* tagBtn.png in Resources */,
 				0BEFA87318D9E97A0016EC80 /* 提醒背景.png in Resources */,
 				0BB08A8218A9F41D00DE111E /* saveBtn2.png in Resources */,
@@ -1177,7 +1169,7 @@
 				0BEABAAC18D205EA001EE9A5 /* ios6-icon-58.png in Resources */,
 				0BEFA86C18D9E2F10016EC80 /* 工作生活.png in Resources */,
 				0B93EC4718AB422600F871C4 /* 色点.png in Resources */,
-				0BD3426A19F9381F0074A74C /* actionsheet_bg@2x.png in Resources */,
+				0BD3427C19F9398C0074A74C /* actionsheet_bg@2x.png in Resources */,
 				0BD7008318139338004FCBE2 /* backgroundHome.png in Resources */,
 				0B96F9EB18A3CD4600E625AA /* Main1.storyboard in Resources */,
 				0BB08A7D18A9F41D00DE111E /* photoBtn2.png in Resources */,
@@ -1216,7 +1208,7 @@
 				0B6AEF9218C4C7B8006756FF /* JSONKit.m in Sources */,
 				0B9B364A1895467600E9151A /* statisticView.m in Sources */,
 				0B1D39C119853812008196D3 /* UIImage+image_scale.m in Sources */,
-				0BD3426C19F9381F0074A74C /* CustomActionSheet.m in Sources */,
+				0BD3427E19F9398C0074A74C /* CustomActionSheet.m in Sources */,
 				0B9A53DF1812274D0085FFD7 /* AppDelegate.m in Sources */,
 				0B25F89218BA3ACD0025B0CB /* settingView.m in Sources */,
 				0BF9EF7D18BB8A9400F38370 /* SevenSwitch.m in Sources */,
