@@ -474,13 +474,13 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
             NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
             NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:date];
             
-            int year = [dateComponent year];
-            int month = [dateComponent month];
-            int day = [dateComponent day];
+            long year = [dateComponent year];
+            long month = [dateComponent month];
+            long day = [dateComponent day];
             
             NSDateFormatter* formatter2 = [[NSDateFormatter alloc] init];
             [formatter2 setDateFormat:@"yyyy-MM-dd"];
-            NSString *datestring = [NSString stringWithFormat:@"%d-%d-%d",year,month,day+2];
+            NSString *datestring = [NSString stringWithFormat:@"%ld-%ld-%ld",year,month,day+2];
             NSLog(@"datestring:%@",datestring);
             NSDate * newdate = [formatter2 dateFromString:datestring];
             NSLog(@"newdate:%@",newdate);
@@ -1150,15 +1150,15 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     now=[NSDate date];
     comps = [calendar components:unitFlags fromDate:now];
     
-   int hour = [comps hour];
+   long hour = [comps hour];
 
-    startTime = [NSString stringWithFormat:@"%02d:00",hour];
-    endTime = [NSString stringWithFormat:@"%02d:45",hour];
+    startTime = [NSString stringWithFormat:@"%02ld:00",hour];
+    endTime = [NSString stringWithFormat:@"%02ld:45",hour];
     
     self.textInMain = NSLocalizedString(@"点击输入......",nil);
     
    editingViewController *my_editingViewController = [[editingViewController alloc] initWithNibName:@"editingView" bundle:nil];
-    my_editingViewController.eventType = [NSNumber numberWithInt:sender.tag];
+    my_editingViewController.eventType = [NSNumber numberWithInteger:sender.tag];
     my_editingViewController.justInEdit = goInEdit;
 
       my_editingViewController.setTextDelegate = self;
@@ -1848,12 +1848,12 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     self.my_setting.settingTable.dataSource = self;
     
     [self.my_setting.soundSwitch setOn:soundSwitch animated:YES];
-    NSLog(@"soundSwitch:%hhd",soundSwitch);
+  //  NSLog(@"soundSwitch:%hhd",soundSwitch);
     [self.my_setting.soundSwitch addTarget:self action:@selector(soundSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     
     
     [self.my_setting.remindSoundSwitch setOn:remindSwitch animated:YES];
-    NSLog(@"remindSoundSwitch:%hhd",remindSwitch);
+ //   NSLog(@"remindSoundSwitch:%hhd",remindSwitch);
     [self.my_setting.remindSoundSwitch addTarget:self action:@selector(remindSoundSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     
     
@@ -1979,7 +1979,7 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     }
     
     
-    NSLog(@"remind now is:%hhd",remindSwitch);
+//NSLog(@"remind now is:%hhd",remindSwitch);
 
 }
 -(void)modifyPawdTapped{
@@ -2175,7 +2175,7 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
     }
 
 
-    NSLog(@"now is:%hhd",soundSwitch);
+ //   NSLog(@"now is:%hhd",soundSwitch);
 }
 
 -(void)seizeArea:(NSString *)date
@@ -3564,7 +3564,6 @@ int inwhichButton;//0=mainView,1=today,2=select,3=collect,4=analyse,5=setting.
                     NSLog(@"current Language == Chinese");
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/daysinline/id844914780?mt=8"]];
 
-                    
                 }else{
                     lang = @"en";
                     NSLog(@"current Language == English");
